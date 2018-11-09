@@ -12,9 +12,7 @@ void loop() {
    analogWrite(10, 255);
    delay(300);
    analogWrite(10, 0);
-
-   delay(300);
-  
+    delay(300);
    analogWrite(11, 255);
    delay(300);
    analogWrite(11, 0);
