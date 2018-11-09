@@ -50,19 +50,23 @@ public class LoginFrame extends JFrame {
 				if (id.equals("") || password.equals("")) {
 					JOptionPane.showMessageDialog(null, "비어있습니다.");
 				} else {
-					boolean existLogin = LoginTest.loginTest(id, password);
+					boolean existLogin = Login.loginTest(id, password);
 
 					if (existLogin) {
 						// 로그인 성공일 경우
 						JOptionPane.showMessageDialog(null, "로그인 성공");
+						
 						MainFrame m = new MainFrame();
+						m = null;
+						
 					} else {
 						// 로그인 실패일 경우
 						JOptionPane.showMessageDialog(null, "로그인 실패");
+						
 					}
 				}
 				
-				setVisible(false);
+				
 			}
 
 		});

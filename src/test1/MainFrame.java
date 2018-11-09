@@ -174,13 +174,6 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 자동 생성된 메소드 스텁
-				
-				if (yutchecknum == 0) {
-					Yut u = new Yut();
-				} else {
-					
-					yutchecknum =0;
-				}
 
 			}
 

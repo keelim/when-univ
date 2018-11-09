@@ -9,13 +9,13 @@ import assets.DBConnectionMgr;
 
 
 
-public class LoginTest {
-    public static void main(String[] args) {
-         
-        boolean test = loginTest("test", "1234");
-         
-        System.out.println("로그인 결과 :"+test);
-    }
+public class Login {
+//    public static void main(String[] args) {
+//         
+//        boolean test = loginTest("test", "1234");
+//         
+//        System.out.println("로그인 결과 :"+test);
+//    }
  
     public static boolean loginTest(String ID, String PW) {
         boolean flag = false;
