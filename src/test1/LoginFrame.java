@@ -6,11 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LoginFrame extends JFrame {
-	private JTextField textField;
+	private JTextField loginField;
 	private JPasswordField passwordField;
 
 	public LoginFrame() {
@@ -18,10 +19,10 @@ public class LoginFrame extends JFrame {
 		setSize(450, 200);
 		getContentPane().setLayout(null);
 
-		textField = new JTextField();
-		textField.setBounds(188, 53, 116, 21);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		loginField = new JTextField();
+		loginField.setBounds(188, 53, 116, 21);
+		getContentPane().add(loginField);
+		loginField.setColumns(10);
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(188, 84, 116, 21);
@@ -42,13 +43,34 @@ public class LoginFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 자동 생성된 메소드 스텁
-				MainFrame m = new MainFrame();
+				String id = loginField.getText();
+				char[] pass = passwordField.getPassword();
+				String password = new String(pass);
+
+				if (id.equals("") || password.equals("")) {
+					JOptionPane.showMessageDialog(null, "비어있습니다.");
+				} else {
+					boolean existLogin = LoginTest.loginTest(id, password);
+
+					if (existLogin) {
+						// 로그인 성공일 경우
+						JOptionPane.showMessageDialog(null, "로그인 성공");
+						MainFrame m = new MainFrame();
+					} else {
+						// 로그인 실패일 경우
+						JOptionPane.showMessageDialog(null, "로그인 실패");
+					}
+				}
+				
 				setVisible(false);
 			}
-			
+
 		});
 		getContentPane().add(btnNewButton);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
+
+	
+
 }
