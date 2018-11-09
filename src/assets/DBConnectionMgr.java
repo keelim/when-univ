@@ -41,9 +41,9 @@ public class DBConnectionMgr {
     private Vector<ConnectionObject> connections = new Vector<ConnectionObject>(10);
     private String _driver = "org.gjt.mm.mysql.Driver",
     
-    _url = "jdbc:mysql://db주소",
-    _user = "아이디",
-    _password = "비밀번호";
+    _url = "jdbc:mysql://localhost:3306/comp2",
+    _user = "root",
+    _password = "kimjaehyun";
 
     
     private boolean _traceOn = false;
