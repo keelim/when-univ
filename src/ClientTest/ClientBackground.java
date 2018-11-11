@@ -1,4 +1,4 @@
-package client;
+package ClientTest;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

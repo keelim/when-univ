@@ -1,21 +1,21 @@
-package test1;
+package LoginTest;
  
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import AssetTest.DBConnectionMgr;
  
-import assets.DBConnectionMgr;
- 
 
 
 
-public class Login {
-//    public static void main(String[] args) {
-//         
-//        boolean test = loginTest("test", "1234");
-//         
-//        System.out.println("로그인 결과 :"+test);
-//    }
+public class LoginTest {
+    public static void main(String[] args) {
+         
+        boolean test = loginTest("test", "1234");
+         
+        System.out.println("로그인 결과 :"+test);
+    }
  
     public static boolean loginTest(String ID, String PW) {
         boolean flag = false;
@@ -50,7 +50,7 @@ public class Login {
                 // 데이터베이스에서 읽어온 문자열과 사용자가 입력한 비밀번호가 같을 경우에는
                 // 참을 반환을 하겠죠?
                 if (getPass.equals(PW)) {
-                    System.out.println("받아온 비밀번호 :" + getPass);
+                    System.out.println("받아온 비밀번호 : " + getPass);
                     flag = true;
                 }
             }

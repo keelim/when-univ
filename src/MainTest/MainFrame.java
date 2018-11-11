@@ -1,4 +1,4 @@
-package test1;
+package MainTest;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

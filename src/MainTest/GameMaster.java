@@ -1,9 +1,8 @@
-package test1;
+package MainTest;
 
-public class User {
+public class GameMaster {
 	private String ID;
 	private String PW;
 	private int GameMoney;
 	private int level;
-	
 }

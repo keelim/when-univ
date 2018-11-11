@@ -1,4 +1,4 @@
-package test1;
+package MainTest;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
