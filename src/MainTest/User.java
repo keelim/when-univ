@@ -5,4 +5,5 @@ public class User {
 	private String PW;
 	private int GameMoney;
 	private int level;
+	
 }
