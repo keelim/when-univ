@@ -1,14 +1,8 @@
-# keelim_practice
+#Computer Programming 
 
-- python
-- Java
-- Arduino
-- 3D printing
-
-project plan 
-- catia + 3d printing --> aircraft, engine, watch, clock 
- # I think clock is bect idea;
-- arduino + 3d printing -> bluetooth speaker (other)
-- computer Term project --> Yutnori
- ummm now -> class designing
-
+## Issue
+1.  로그인 프로그램
+2. 데이터베이스 --> 내장 데이터 베이스? , 인터넷 서버?
+3. 윷놀이 프로그램 구현 --> 정상적인 작동
+4. shop 기능을 통한 네트워크 및 쓰레드 구현
+- - - 

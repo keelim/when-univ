@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		setTitle("메인화면");
 		setSize(770, 400);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 

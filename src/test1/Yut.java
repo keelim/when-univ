@@ -17,7 +17,7 @@ public class Yut extends JFrame {
 		int i = 1 + (int) (Math.random() * 4);
 		if (i == 1) {
 			try {
-				img = ImageIO.read(new File("도.png"));
+				img = ImageIO.read(new File("source/도.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
@@ -25,7 +25,7 @@ public class Yut extends JFrame {
 		}
 		if (i == 2) {
 			try {
-				img = ImageIO.read(new File("개.png"));
+				img = ImageIO.read(new File("source/개.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
@@ -33,7 +33,7 @@ public class Yut extends JFrame {
 		}
 		if (i == 3) {
 			try {
-				img = ImageIO.read(new File("걸.png"));
+				img = ImageIO.read(new File("source/걸.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
@@ -41,7 +41,7 @@ public class Yut extends JFrame {
 		}
 		if (i == 4) {
 			try {
-				img = ImageIO.read(new File("윷.png"));
+				img = ImageIO.read(new File("source/윷.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
@@ -49,7 +49,7 @@ public class Yut extends JFrame {
 		}
 		if (i == 5) {
 			try {
-				img = ImageIO.read(new File("모.png"));
+				img = ImageIO.read(new File("source/모.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);

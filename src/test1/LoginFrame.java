@@ -11,6 +11,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LoginFrame extends JFrame implements ActionListener {
+	public static void main(String[] args) {
+		new LoginFrame();
+	}
 	private JTextField loginField;
 	private JPasswordField passwordField;
 
