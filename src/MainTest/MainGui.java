@@ -7,10 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MainFrame extends JFrame {
+public class MainGui extends JFrame {
 	private int yutchecknum = 0;
-
-	public MainFrame() {
+	private Yut u;
+	public MainGui() {
 		setTitle("메인화면");
 		setSize(770, 400);
 		setResizable(false);
@@ -170,13 +170,22 @@ public class MainFrame extends JFrame {
 		JButton button_31 = new JButton("윷던지기");
 		button_31.setBounds(637, 303, 105, 49);
 		getContentPane().add(button_31);
+		
+		JButton button_28 = new JButton("턴 넘기기");
+		button_28.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				u.dispose();
+			}
+		});
+		button_28.setBounds(637, 244, 105, 49);
+		getContentPane().add(button_28);
 		button_31.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 자동 생성된 메소드 스텁
-				new Yut();
-			}
+				u = new Yut();
+			}	
 
 		});
 		setLocationRelativeTo(null);

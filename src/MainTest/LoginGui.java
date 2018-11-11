@@ -10,14 +10,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class LoginFrame extends JFrame implements ActionListener {
+public class LoginGui extends JFrame implements ActionListener {
 	public static void main(String[] args) {
-		new LoginFrame();
+		new LoginGui();
 	}
 	private JTextField loginField;
 	private JPasswordField passwordField;
 
-	public LoginFrame() {
+	public LoginGui() {
 		setTitle("로그인 화면");
 		setSize(450, 200);
 		getContentPane().setLayout(null);
@@ -64,7 +64,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 			if (existLogin) {
 				// 로그인 성공일 경우
 				JOptionPane.showMessageDialog(null, "로그인 성공");
-				MainFrame m = new MainFrame();
+				MainGui m = new MainGui();
 				this.setVisible(false);
 				
 				
