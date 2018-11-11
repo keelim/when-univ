@@ -174,7 +174,7 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 자동 생성된 메소드 스텁
-
+				new Yut();
 			}
 
 		});

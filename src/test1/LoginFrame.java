@@ -55,9 +55,8 @@ public class LoginFrame extends JFrame {
 					if (existLogin) {
 						// 로그인 성공일 경우
 						JOptionPane.showMessageDialog(null, "로그인 성공");
-						
 						MainFrame m = new MainFrame();
-						m = null;
+						
 						
 					} else {
 						// 로그인 실패일 경우
