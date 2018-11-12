@@ -6,11 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class MainGui extends JFrame {
-	private int yutchecknum = 0;
 	private Yut u;
+	private ShopTest temp_shop;
+
 	public MainGui() {
+
 		setTitle("메인화면");
 		setSize(770, 400);
 		setResizable(false);
@@ -167,27 +171,54 @@ public class MainGui extends JFrame {
 		button_27.setBounds(278, 152, 33, 23);
 		panel.add(button_27);
 
-		JButton button_31 = new JButton("윷던지기");
-		button_31.setBounds(637, 303, 105, 49);
-		getContentPane().add(button_31);
-		
-		JButton button_28 = new JButton("턴 넘기기");
-		button_28.addActionListener(new ActionListener() {
+		JButton YutButton = new JButton("윷던지기");
+		YutButton.setBounds(637, 303, 105, 49);
+		getContentPane().add(YutButton);
+
+		JButton NextTurnButton = new JButton("턴 넘기기");
+		NextTurnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				u.dispose();
 			}
 		});
-		button_28.setBounds(637, 244, 105, 49);
-		getContentPane().add(button_28);
-		button_31.addActionListener(new ActionListener() {
+
+		NextTurnButton.setBounds(637, 244, 105, 49);
+		getContentPane().add(NextTurnButton);
+
+		JButton ShopButton = new JButton("상점");
+		ShopButton.setBounds(637, 185, 105, 49);
+		ShopButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				temp_shop = new ShopTest();
+			}
+
+		});
+		getContentPane().add(ShopButton);
+
+		JPanel StatusPanel = new JPanel();
+		StatusPanel.setBounds(637, 10, 105, 165);
+		getContentPane().add(StatusPanel);
+		StatusPanel.setLayout(null);
+
+		JLabel IDLabel = new JLabel("New label");
+		IDLabel.setBounds(12, 10, 81, 26);
+		
+		StatusPanel.add(IDLabel);
+
+		JLabel MoneyLabel = new JLabel("New label");
+		MoneyLabel.setBounds(12, 129, 81, 26);
+		StatusPanel.add(MoneyLabel);
+		YutButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO 자동 생성된 메소드 스텁
 				u = new Yut();
-			}	
+			}
 
 		});
+
 		setLocationRelativeTo(null);
 		setVisible(true);
 

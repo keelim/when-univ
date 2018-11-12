@@ -11,7 +11,4 @@ public class ShopTest extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}
-	public static void main(String[] args) {
-		new ShopTest();
-	}
 }
