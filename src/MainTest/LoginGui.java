@@ -14,7 +14,7 @@ public class LoginGui extends JFrame implements ActionListener {
 
 	private JTextField loginField;
 	private JPasswordField passwordField;
-
+	private User user = User.getInstance();
 	public LoginGui() {
 
 		setTitle("로그인 화면");
@@ -62,7 +62,8 @@ public class LoginGui extends JFrame implements ActionListener {
 
 			if (existLogin) {
 				// 로그인 성공일 경우
-
+				user.setID(id);
+				user.setGameMoney(Login.getMoney(id));
 				JOptionPane.showMessageDialog(null, "로그인 성공");
 				MainGui m = new MainGui();
 				this.setVisible(false);
