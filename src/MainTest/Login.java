@@ -28,16 +28,9 @@ public class Login {
 		try {
 			con = pool.getConnection();
 
-			// 문장생성
 			sql = "select PW from user where ID=?";
-
-			// 문장연결, 열차준비
 			pstmt = con.prepareStatement(sql);
-
-			// 빈칸채워주기
 			pstmt.setString(1, ID);
-
-			// 실행, 열차출바알~!
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
