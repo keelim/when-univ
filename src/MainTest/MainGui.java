@@ -13,6 +13,7 @@ public class MainGui extends JFrame {
 	private Yut u;
 	private ShopTest temp_shop;
 	private User user = User.getInstance();
+
 	public MainGui() {
 
 		setTitle("메인화면");
@@ -211,11 +212,11 @@ public class MainGui extends JFrame {
 		MoneyLabel.setBounds(12, 129, 81, 26);
 		StatusPanel.add(MoneyLabel);
 		MoneyLabel.setText(String.valueOf(user.getGameMoney()));
-		
+
 		JLabel IDsign = new JLabel("ID");
 		IDsign.setBounds(12, 24, 81, 26);
 		StatusPanel.add(IDsign);
-		
+
 		JLabel GameMoneySign = new JLabel("GameMoney");
 		GameMoneySign.setBounds(12, 93, 81, 26);
 		StatusPanel.add(GameMoneySign);
@@ -230,6 +231,5 @@ public class MainGui extends JFrame {
 
 		setLocationRelativeTo(null);
 		setVisible(true);
-
 	}
 }
