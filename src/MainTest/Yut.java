@@ -14,40 +14,36 @@ public class Yut extends JFrame {
 	public Yut() {
 		setTitle("윷");
 		setResizable(false);
-		int yut_num = 1 + (int) (Math.random() * 4);
-		if (yut_num == 1) { //switch로 하는 것이 깔끔하지 않을까?
+		int yut_num = (int) (Math.random() * 16);
+		if (yut_num < 4) { // switch로 하는 것이 깔끔하지 않을까?
 			try {
 				img = ImageIO.read(new File("source/도.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
 			}
-		}
-		if (yut_num == 2) {
+		} else if (yut_num < 10) {
 			try {
 				img = ImageIO.read(new File("source/개.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
 			}
-		}
-		if (yut_num == 3) {
+		} else if (yut_num < 14) {
 			try {
 				img = ImageIO.read(new File("source/걸.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
 			}
-		}
-		if (yut_num == 4) {
+		} else if (yut_num < 15) {
 			try {
 				img = ImageIO.read(new File("source/윷.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
 			}
-		}
-		if (yut_num == 5) {
+		} else if (yut_num < 16) {
 			try {
 				img = ImageIO.read(new File("source/모.png"));
 			} catch (IOException e) {
@@ -59,22 +55,18 @@ public class Yut extends JFrame {
 		add(p);
 		pack();
 		setVisible(true);
-
 	}
 
 	class Yut_Panel extends JPanel {
-
 		public void paintComponent(Graphics g) {
 			g.drawImage(img, 0, 0, null);
 		}
 
 		public Dimension getPreferredSize() {
-			if (img == null) {
+			if (img == null)
 				return new Dimension(100, 100);
-			} else {
+			else
 				return new Dimension(img.getWidth(null), img.getHeight(null));
-			}
 		}
-
 	}
 }
