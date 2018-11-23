@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Client {
+public class SuperClient {
 	private String ID;
 	private String PW;
 	private int GameMoney;
@@ -79,7 +79,7 @@ public class Client {
 		}
 	}
 
-	public Client() {
+	public SuperClient() {
 		connect();
 		streamSetting();
 		dataSend();
@@ -87,6 +87,6 @@ public class Client {
 	}
 
 	public static void main(String[] args) {
-		new Client();
+		new SuperClient();
 	}
 }

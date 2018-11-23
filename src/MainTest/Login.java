@@ -14,6 +14,10 @@ public class Login {
 //        System.out.println("로그인 결과 :"+test);
 //    }
 
+	
+	
+	
+	
 	private static Connection con = null;
 	private static PreparedStatement pstmt = null;
 	private static ResultSet rs = null;

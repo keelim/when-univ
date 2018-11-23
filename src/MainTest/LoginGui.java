@@ -15,6 +15,7 @@ public class LoginGui extends JFrame implements ActionListener {
 	private JTextField loginField;
 	private JPasswordField passwordField;
 	private User user = User.getInstance();
+
 	public LoginGui() {
 
 		setTitle("로그인 화면");
@@ -65,8 +66,17 @@ public class LoginGui extends JFrame implements ActionListener {
 				user.setID(id);
 				user.setGameMoney(Login.getMoney(id));
 				JOptionPane.showMessageDialog(null, "로그인 성공");
-				MainGui m = new MainGui();
+				
 				this.setVisible(false);
+				if (id == "supertest") {
+					new Server();
+					new SuperClient();
+					new MainGui();
+				} else {
+					new Server();
+					new Client();
+					new MainGui();
+				}
 
 			} else {
 				// 로그인 실패일 경우
@@ -78,6 +88,7 @@ public class LoginGui extends JFrame implements ActionListener {
 		}
 
 	}
+	// 로그인 접속을 GM 으로 받으면 SuperClent 실행 할 것
 
 	public static void main(String[] args) {
 		LoginGui m = new LoginGui();
