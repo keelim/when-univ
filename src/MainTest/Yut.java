@@ -10,27 +10,32 @@ import javax.swing.*;
 
 public class Yut extends JFrame {
 	BufferedImage img = null;
+	private int send_Yut_num;
 
 	public Yut() {
 		setTitle("윷");
 		setResizable(false);
 		int yut_num = (int) (Math.random() * 16);
-		if (yut_num < 4) { // switch로 하는 것이 깔끔하지 않을까?
+		if (yut_num < 4) { 
 			try {
 				img = ImageIO.read(new File("source/도.png"));
+				this.send_Yut_num = 1;
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
+				
 				System.exit(0);
 			}
 		} else if (yut_num < 10) {
 			try {
 				img = ImageIO.read(new File("source/개.png"));
+				this.send_Yut_num = 2;
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
 			}
 		} else if (yut_num < 14) {
 			try {
+				this.send_Yut_num = 3;
 				img = ImageIO.read(new File("source/걸.png"));
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
@@ -39,6 +44,7 @@ public class Yut extends JFrame {
 		} else if (yut_num < 15) {
 			try {
 				img = ImageIO.read(new File("source/윷.png"));
+				this.send_Yut_num = 4;
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
@@ -46,6 +52,7 @@ public class Yut extends JFrame {
 		} else if (yut_num < 16) {
 			try {
 				img = ImageIO.read(new File("source/모.png"));
+				this.send_Yut_num = 5;
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);

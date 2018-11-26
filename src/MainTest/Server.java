@@ -11,6 +11,7 @@ public class Server {
 	private Socket clientSocket;
 	private DataInputStream dataInputStream;
 	private DataOutputStream dataOutputStream;
+	private List<Intefer> 
 
 	// 1. 데이터를 계속 전송 쓰레드 // 서버 1개 클라이언트 2개 접속 ?? --> 메시자>
 	// 2. 데이터를 계속 수신 쓰레드

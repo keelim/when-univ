@@ -10,7 +10,7 @@ public class Client {
 	private String PW;
 	private int GameMoney;
 	private int level;
-	
+
 	private Socket clientSocket;
 	private DataInputStream dataInputStream;
 	private DataOutputStream dataOutputStream;
@@ -21,7 +21,7 @@ public class Client {
 	public void connect() {
 		try {
 			System.out.println("접속 시도");
-			clientSocket = new Socket("192.168.0.6", 10002);
+			clientSocket = new Socket("10.3.156.252", 10002);
 			System.out.println("접속 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,7 +86,4 @@ public class Client {
 		dataRecv();
 	}
 
-	public static void main(String[] args) {
-		new Client();
-	}
 }

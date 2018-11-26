@@ -15,7 +15,6 @@ public class MainGui extends JFrame {
 	private User user = User.getInstance();
 
 	public MainGui() {
-
 		setTitle("메인화면");
 		setSize(770, 400);
 		setResizable(false);
@@ -191,10 +190,8 @@ public class MainGui extends JFrame {
 		ShopButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				temp_shop = new ShopTest();
 			}
-
 		});
 		getContentPane().add(ShopButton);
 
@@ -221,14 +218,12 @@ public class MainGui extends JFrame {
 		GameMoneySign.setBounds(12, 93, 81, 26);
 		StatusPanel.add(GameMoneySign);
 		YutButton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				u = new Yut();
+				//서버에 u에 대한 것을 보내도록 한다.
 			}
-
 		});
-
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}

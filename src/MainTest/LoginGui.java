@@ -69,13 +69,10 @@ public class LoginGui extends JFrame implements ActionListener {
 				
 				this.setVisible(false);
 				if (id == "supertest") {
-					new Server();
-					new SuperClient();
 					new MainGui();
 				} else {
-					new Server();
-					new Client();
-					new MainGui();
+					Client loginUser = new Client();
+					JFrame mainf = new MainGui();
 				}
 
 			} else {
@@ -88,7 +85,6 @@ public class LoginGui extends JFrame implements ActionListener {
 		}
 
 	}
-	// 로그인 접속을 GM 으로 받으면 SuperClent 실행 할 것
 
 	public static void main(String[] args) {
 		LoginGui m = new LoginGui();
