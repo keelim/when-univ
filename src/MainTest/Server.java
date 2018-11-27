@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Server {
@@ -11,11 +13,21 @@ public class Server {
 	private Socket clientSocket;
 	private DataInputStream dataInputStream;
 	private DataOutputStream dataOutputStream;
-	private List<Intefer> 
+	private List<Integer> client1;
+	private List<Integer> client2;
 
 	// 1. 데이터를 계속 전송 쓰레드 // 서버 1개 클라이언트 2개 접속 ?? --> 메시자>
 	// 2. 데이터를 계속 수신 쓰레드
-
+	public void GameSetting() {
+		client1 = new ArrayList<Integer>();
+		client2 = new ArrayList<Integer>();
+	}
+	
+	
+	
+	
+	
+	
 	public void serverSetting() {
 		try {
 			// localhost, 10002
