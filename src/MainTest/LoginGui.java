@@ -26,7 +26,7 @@ public class LoginGui extends JFrame implements ActionListener {
 		loginField.setBounds(188, 53, 116, 21);
 		getContentPane().add(loginField);
 		loginField.setColumns(10);
-
+		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(188, 84, 116, 21);
 		passwordField.addActionListener(this);
@@ -60,7 +60,6 @@ public class LoginGui extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "비어있습니다.");
 		} else {
 			boolean existLogin = Login.loginTest(id, password);
-
 			if (existLogin) {
 				// 로그인 성공일 경우
 				user.setID(id);
@@ -74,7 +73,6 @@ public class LoginGui extends JFrame implements ActionListener {
 					Client loginUser = new Client();
 					JFrame mainf = new MainGui();
 				}
-
 			} else {
 				// 로그인 실패일 경우
 				JOptionPane.showMessageDialog(null, "로그인 실패");

@@ -2,9 +2,10 @@ package MainTest;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
-
+	//3. 
 public class Client {
 	private String ID;
 	private String PW;
@@ -13,10 +14,13 @@ public class Client {
 
 	private Socket clientSocket;
 	private DataInputStream dataInputStream;
+	private DataInputStream dataInputStream1;
 	private DataOutputStream dataOutputStream;
+	private int receiveServernum;
 
 	// 1. 데이터를 계속 전송 쓰레드
 	// 2. 데이터를 계속 수신 쓰레드
+	// 3. 서버 상태를 알아보는 쓰레드
 
 	public void connect() {
 		try {
@@ -31,7 +35,6 @@ public class Client {
 	public void dataRecv() {
 		Thread t1 = new Thread(new Runnable() {
 			boolean isThread = true;
-
 			@Override
 			public void run() {
 				while (isThread) {
@@ -53,7 +56,6 @@ public class Client {
 		Thread t2 = new Thread(new Runnable() {
 			Scanner in = new Scanner(System.in);
 			boolean isThread = true;
-
 			@Override
 			public void run() {
 				while (isThread) {
@@ -70,10 +72,27 @@ public class Client {
 		});
 		t2.start();
 	}
-
+	
+	public void servercheck() {
+		Thread check = new Thread(() -> {
+			boolean isThread = false;
+			while(isThread) {
+				try {
+					int recivenum = dataInputStream1.readInt();
+					this.receiveServernum = recivenum;
+				} catch (IOException e) {
+					// TODO 자동 생성된 catch 블록
+					e.printStackTrace();
+				}
+			}
+		}) ;
+		check.start();
+	}
+	
 	public void streamSetting() {
 		try {
 			dataInputStream = new DataInputStream(clientSocket.getInputStream());
+			dataInputStream1 = new DataInputStream(clientSocket.getInputStream());
 			dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
 		} catch (Exception e) {
 		}
@@ -84,6 +103,7 @@ public class Client {
 		streamSetting();
 		dataSend();
 		dataRecv();
+		servercheck();
 	}
 
 }
