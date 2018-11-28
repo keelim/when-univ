@@ -10,6 +10,7 @@ public class ShopTest extends JFrame {
 	private int Middle_Money;
 	private JTextField textField;
 
+		//게임 머니를 어떻게 구현을 하는 것인가?
 	public ShopTest() {
 		setTitle("ShopTest");
 		setSize(400, 400);
@@ -26,7 +27,7 @@ public class ShopTest extends JFrame {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		// 상점 메뉴는 멀티 쓰레드를 위한 공간
+		// 상점 메뉴는 멀티 쓰레드를 위한 공간 --> 멀티 쓰레드를 하는 것은 어렵지 않다.
 
 	}
 }

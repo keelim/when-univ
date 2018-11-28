@@ -71,7 +71,9 @@ public class LoginGui extends JFrame implements ActionListener {
 					new MainGui();
 				} else {
 					Client loginUser = new Client();
+					ServerStatusGui ss = new ServerStatusGui();
 					JFrame mainf = new MainGui();
+					
 				}
 			} else {
 				// 로그인 실패일 경우
