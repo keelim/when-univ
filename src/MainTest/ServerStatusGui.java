@@ -13,9 +13,8 @@ public class ServerStatusGui extends JFrame {
 	private Socket clientSocket;
 	private JLabel StringAccess, Accessnum;
 	private int serverstatusNum;
-	
+
 	public ServerStatusGui() {
-		startConnect();
 		setTitle("서버 상태");
 		setSize(500, 500);
 		setLocationRelativeTo(null);
@@ -30,9 +29,6 @@ public class ServerStatusGui extends JFrame {
 		Accessnum = new JLabel("");
 		Accessnum.setBounds(210, 38, 57, 15);
 		getContentPane().add(Accessnum);
-
-	}
-	public void startConnect() {
 		connect();
 		streamSetting();
 		recvData();
@@ -59,19 +55,18 @@ public class ServerStatusGui extends JFrame {
 	}
 
 	public void recvData() {
-		Thread status = new Thread(() -> {
+		new Thread(() -> {
 			boolean isThread = true;
 			while (isThread) {
 				int recvData;
 				try {
 					recvData = input.read();
-					
+					System.out.println(recvData);
 					Accessnum.setText(Integer.toString(recvData));
+					Thread.sleep(50);
 				} catch (Exception e) {
-					// TODO: handle exception
 				}
 			}
-		});
-		status.start();
+		}).start();
 	}
 }

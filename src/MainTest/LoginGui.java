@@ -17,7 +17,6 @@ public class LoginGui extends JFrame implements ActionListener {
 	private User user = User.getInstance();
 
 	public LoginGui() {
-
 		setTitle("로그인 화면");
 		setSize(450, 200);
 		getContentPane().setLayout(null);
@@ -26,7 +25,6 @@ public class LoginGui extends JFrame implements ActionListener {
 		loginField.setBounds(188, 53, 116, 21);
 		getContentPane().add(loginField);
 		loginField.setColumns(10);
-		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(188, 84, 116, 21);
 		passwordField.addActionListener(this);
@@ -51,39 +49,38 @@ public class LoginGui extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO 자동 생성된 메소드 스텁
 		String id = loginField.getText();
 		char[] pass = passwordField.getPassword();
 		String password = new String(pass);
 
 		if (id.equals("") || password.equals("")) {
 			JOptionPane.showMessageDialog(null, "비어있습니다.");
+			
 		} else {
+			
 			boolean existLogin = Login.loginTest(id, password);
 			if (existLogin) {
 				// 로그인 성공일 경우
 				user.setID(id);
 				user.setGameMoney(Login.getMoney(id));
 				JOptionPane.showMessageDialog(null, "로그인 성공");
-				
+
 				this.setVisible(false);
 				if (id == "supertest") {
 					new MainGui();
 				} else {
-					Client loginUser = new Client();
-					ServerStatusGui ss = new ServerStatusGui();
-					JFrame mainf = new MainGui();
-					
+					new Client();
+					new ServerStatusGui();
+					new MainGui();
+
 				}
 			} else {
 				// 로그인 실패일 경우
 				JOptionPane.showMessageDialog(null, "로그인 실패");
 				loginField.setText(""); // 로그인 실패시 --> 모든 칸 빈칸으로
 				passwordField.setText("");
-
 			}
 		}
-
 	}
 
 	public static void main(String[] args) {

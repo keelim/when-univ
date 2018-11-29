@@ -11,7 +11,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Server { // 보내려는 데이터 마다 소켓을 생성을 해주어야 한다.
+public class SubServer { // 보내려는 데이터 마다 소켓을 생성을 해주어야 한다.
 	private ServerSocket serverSocket;
 	private ServerSocket serverSocket1;
 	private Socket clientSocket;
@@ -64,52 +64,15 @@ public class Server { // 보내려는 데이터 마다 소켓을 생성을 해�
 			while (isThread) {
 				try {
 					bufferoutputstream.write(servernum);
-					Thread.sleep(50);
+					bufferoutputstream.flush();
 				} catch (IOException e) {
 					e.printStackTrace();
-				} catch (InterruptedException e) {
-					// TODO 자동 생성된 catch 블록
-					e.printStackTrace();
 				}
 			}
 		}).start();
 	}
 
-	public void dataRecv() {
-		new Thread(() -> {
-			boolean isThread = true;
-			while (isThread) {
-				try {
-					String recvData = dataInputStream.readUTF();
-					if (recvData.equals("/quit"))
-						isThread = false;
-					else
-						System.out.println("상대방 : " + recvData);
-				} catch (Exception e) {
-				}
-			}
 
-		}).start();
-	}
-
-	public void dataSend() {
-		new Thread(() -> {
-			Scanner in = new Scanner(System.in);
-			boolean isThread = true;
-
-			while (isThread) {
-				try {
-					String sendData = in.nextLine();
-					if (sendData.equals("/quit"))
-						isThread = false;
-					else
-						dataOutputStream.writeUTF(sendData);
-				} catch (Exception e) {
-				}
-			}
-
-		}).start();
-	}
 
 	public void closeAll() {
 		try {
@@ -121,16 +84,13 @@ public class Server { // 보내려는 데이터 마다 소켓을 생성을 해�
 		}
 	}
 
-	public Server() {
+	public SubServer() {
 		serverSetting();
 		streamSetting();
-		dataRecv();
-		dataSend();
-		serverNum();
 	}
 
 	public static void main(String[] args) {
 		System.out.println("다중 접속 서버 작동");
-		new Server();
+		new SubServer();
 	}
 }

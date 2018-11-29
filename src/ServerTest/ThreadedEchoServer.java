@@ -16,7 +16,7 @@ public class ThreadedEchoServer
       try
       {  
          int i = 1;
-         ServerSocket s = new ServerSocket(8189);
+         ServerSocket s = new ServerSocket(10004);
 
          while (true)
          {  

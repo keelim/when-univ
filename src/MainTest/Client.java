@@ -25,7 +25,7 @@ public class Client {
 	public void connect() {
 		try {
 			System.out.println("접속 시도");
-			clientSocket = new Socket("10.3.156.252", 10002);
+			clientSocket = new Socket("localhost", 10002);
 			System.out.println("접속 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
