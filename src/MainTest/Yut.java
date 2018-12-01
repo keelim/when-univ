@@ -8,6 +8,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+//어차피 클라이언트 안에서 게임을 실행 하는 것이여서 그렇게 서버 측에서는 신경을 쓸 필요가 없다.
+// 그냥 끊기면 끊긴 것을 확인하고 오류만 수정을 하면 된다.
 public class Yut extends JFrame {
 	BufferedImage img = null;
 	private int send_Yut_num;

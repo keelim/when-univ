@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 
 public class MainGui extends JFrame {
 	private Yut u;
-	private ShopTest temp_shop;
 	private User user = User.getInstance();
 
 	public MainGui() {
@@ -190,7 +189,6 @@ public class MainGui extends JFrame {
 		ShopButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				temp_shop = new ShopTest();
 			}
 		});
 		getContentPane().add(ShopButton);

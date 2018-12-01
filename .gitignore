@@ -1,4 +1,5 @@
-.bin
 .vscode
 .settings
 .project
+.idea
+Comp2.iml
