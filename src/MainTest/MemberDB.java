@@ -52,8 +52,8 @@ public class MemberDB {
             ps.setString(1, id);
             rs = ps.executeQuery();
             if(rs.next()){
-                save.setID(rs.getString("id"));
-                save.setPW(rs.getString("Pwd"));
+                save.setID(rs.getString("ID"));
+                save.setPW(rs.getString("PW"));
                 save.setGameMoney(0);
                 save.setLevel(1);
             }
@@ -109,8 +109,8 @@ public class MemberDB {
             ps = con.prepareStatement(sql);
             ps.setString(1, save.getID());
             ps.setString(2, save.getPW());
-            ps.setInt(3, save.getGameMoney());
-            ps.setInt(4, save.getLevel());
+            ps.setInt(3, 0);
+            ps.setInt(4, 1);
             int r = ps.executeUpdate(); //실행 -> 저장
 
             if(r>0){
