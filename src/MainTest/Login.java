@@ -28,7 +28,7 @@ public class Login {
 				getPass = rs.getString("PW");
 				// 데이터베이스에서 읽어온 문자열과 사용자가 입력한 비밀번호가 같을 경우에는
 				if (getPass.equals(PW)) {
-					System.out.println("받아온 비밀번호 :" + getPass);
+//					System.out.println("받아온 비밀번호 :" + getPass); --> 비밀 번호를 확인을 하는 핸들러
 					flag = true;
 				}
 			}

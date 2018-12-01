@@ -3,3 +3,5 @@
 .project
 .idea
 Comp2.iml
+.classpath
+bin/signupTest/

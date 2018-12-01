@@ -45,6 +45,7 @@ public class LoginGui extends JFrame implements ActionListener {
 		JButton Signupbutton = new JButton("Sign up");
 		Signupbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new MemberGui();
 			}
 		});
 		Signupbutton.setBounds(316, 83, 85, 21);
@@ -71,9 +72,10 @@ public class LoginGui extends JFrame implements ActionListener {
 				user.setGameMoney(Login.getMoney(id));
 				ServerStaus.connect(); //connect 만을 이용을 하여 서버의 상태를 체크 한다. connect static
 				JOptionPane.showMessageDialog(null, "로그인 성공");
-				if(id == "super"){
+				System.out.println(id);
+				if(id.equals("GM")){
 					setVisible(false);
-					new SuperGui();
+					new Member_List();
 				} else{
 					setVisible(false);
 					new MainGui();
