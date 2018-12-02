@@ -11,8 +11,7 @@ import java.util.Vector;
 
 
 public class Member_List extends JFrame implements MouseListener,ActionListener{
-   
-    Vector v;  
+    Vector v;
     Vector cols;
     DefaultTableModel model;
     JTable jTable;
