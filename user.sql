@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- 생성 시간: 18-12-02 08:49
+-- 생성 시간: 18-12-04 00:03
 -- 서버 버전: 5.7.23
 -- PHP 버전: 7.1.23
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- 데이터베이스: `comp2`
 --
-CREATE DATABASE IF NOT EXISTS `comp2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `comp2`;
 
 -- --------------------------------------------------------
 
@@ -34,23 +32,19 @@ CREATE TABLE `user` (
   `ID` varchar(20) NOT NULL,
   `PW` varchar(20) NOT NULL,
   `GameMoney` int(11) NOT NULL,
-  `level` int(11) NOT NULL
+  `level` int(11) NOT NULL,
+  `win` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- 삽입 전에 테이블 비우기 `user`
---
-
-TRUNCATE TABLE `user`;
 --
 -- 테이블의 덤프 데이터 `user`
 --
 
-INSERT INTO `user` (`ID`, `PW`, `GameMoney`, `level`) VALUES
-('201401317', '201401317', 0, 1),
-('201503069', '201503069', 0, 1),
-('201503985', '201503985', 0, 1),
-('GM', 'kimjaehyun08', 100000, 3);
+INSERT INTO `user` (`ID`, `PW`, `GameMoney`, `level`, `win`) VALUES
+('201401317', '201401317', 0, 1, 0),
+('201503069', '201503069', 0, 1, 0),
+('201503985', '201503985', 0, 1, 0),
+('GM', 'kimjaehyun08', 100000, 3, 9999);
 
 --
 -- 덤프된 테이블의 인덱스

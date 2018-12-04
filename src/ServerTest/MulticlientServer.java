@@ -10,18 +10,22 @@ import java.net.Socket;
 import java.net.SocketException;
 
 
-public class MulticlientServer{ // 유저 수에 따른 유저 접속 순서를 보내주는 서버는 만들었다.  --> 서버 가공을 할 것
+public class MulticlientServer{
+   private int alivenum =1;
+   // 유저 수에 따른 유저 접속 순서를 보내주는 서버는 만들었다.  --> 서버 가공을 할 것
     // 서버의 이슈 상태? 1. 게임을 구현을 하기 위한 서버의 기능 2. 접속자를 확인을 하는 서버의 기능? 3. 회원 가입의 기능을 넣는 것이 좋을 듯 하다.
     // 서버와 컴퓨터 간의 게임을 진행을 해야 한다. --> 이를 어떻게 구현을 하는 가?
     // 클라이언트에서 게임을 진행을 하고 그 결과를 서버로 전송만 하게 구현을 하자. --> 결과의 상태는 어떻게 구현을 하여야 하는가?
     //그러면 개발 하기는 훨씬 수월하다. 서버 쓰레드도 지속적 활용을 할 수 가 있다.
     //쓰레드 풀로 구현을 하여야 하는가?
+   // 서버가 살아 있는를 구현을 하는 메소드를 작성을 하는 것이 좋을 것 같다.
    public static void main(String[] args )
    {  
       try
       {  
          int servernumi = 1;
          ServerSocket s = new ServerSocket(18069);
+         ServerSocket s1 = new ServerSocket(1807);
 
          while (true)
          {
@@ -29,10 +33,18 @@ public class MulticlientServer{ // 유저 수에 따른 유저 접속 순서를 
              System.out.println("접속을 기다리고 있습니다.");
             Socket incoming = s.accept();
             System.out.println("Spawning " + servernumi);
-            Runnable r = new ThreadedEchoHandler(incoming, servernumi);
+            Runnable r = new ThreadedEchoHandler(incoming, servernumi); // 새로운 쓰레드를 만들고 실행을 시키는 것이 안전하지 않는가?
             Thread t = new Thread(r);
             servernumi++;
             t.start();
+            new Thread(() ->{
+               Socket alive = null;
+               try {
+                  alive = s1.accept();
+               } catch (IOException e) {
+                  e.printStackTrace();
+               }
+            }).start();
             Thread.sleep(1000);
          }
       } catch (ConnectException e){
@@ -53,10 +65,13 @@ public class MulticlientServer{ // 유저 수에 따른 유저 접속 순서를 
    }
 
 
+
+
 }
 
 class ThreadedEchoHandler implements Runnable
-{ 
+{
+   private int alivenum = 1;
    public ThreadedEchoHandler(Socket i, int servernumi)
    { 
       incoming = i;
@@ -79,6 +94,9 @@ class ThreadedEchoHandler implements Runnable
                System.out.println(integer + "값을 보냅니다. ");
                out.println(integer);
             }
+            new Thread(() -> {
+
+            }).start();
          }
          finally
          {
@@ -91,4 +109,6 @@ class ThreadedEchoHandler implements Runnable
       }
    }
 }
+
+
 

@@ -5,6 +5,8 @@ public class MemberSave {
     private String PW;
     private int GameMoney;
     private int level;
+    private int win;
+
     public String getID() {
         return ID;
     }
@@ -24,11 +26,12 @@ public class MemberSave {
         this.GameMoney = gameMoney;
     }
     public void setLevel(int level){this.level = level;}
+    public void setWin(int win){this.win = win;}
 
     @Override
     public String toString() {
         return "MemberSave [ID=" + ID + ", PW=" + PW + ", GameMoney=" + GameMoney
-                + ", level=" + level + "]";
+                + ", level=" + level + ", win= "+ win+ "]";
     }
     public int getLevel() {
         return level;

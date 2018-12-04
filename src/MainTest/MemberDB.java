@@ -54,8 +54,9 @@ public class MemberDB {
             if(rs.next()){
                 save.setID(rs.getString("ID"));
                 save.setPW(rs.getString("PW"));
-                save.setGameMoney(0);
-                save.setLevel(1);
+                save.setGameMoney(rs.getInt("GameMoney"));
+                save.setLevel(rs.getInt("level"));
+                save.setWin(rs.getInt("win"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,12 +80,13 @@ public class MemberDB {
                 String pwd = rs.getString("PW");
                 int gameMoney = rs.getInt("GameMoney");
                 int level = rs.getInt("level");
+                int win = rs.getInt("win");
                 Vector row = new Vector();
                 row.add(id);
                 row.add(pwd);
                 row.add(gameMoney);
                 row.add(level);
-
+                row.add(win);
                 data.add(row);
             }//while
         }catch(Exception e){

@@ -44,7 +44,7 @@ public class Member_List extends JFrame implements MouseListener,ActionListener{
         setSize(600,200);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }//end 생성자
+    }
    
    
     //JTable의 컬럼
@@ -54,6 +54,7 @@ public class Member_List extends JFrame implements MouseListener,ActionListener{
         col.add("비밀번호");
         col.add("GameMoney");
         col.add("level");
+        col.add("win");
        
         return col;
     }//getColumn

@@ -2,6 +2,9 @@ package MainTest;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,8 +17,24 @@ public class LoginGui extends JFrame implements ActionListener {
 	private JTextField loginField;
 	private JPasswordField passwordField;
 	private User user = User.getInstance();
+	private Socket socket;
 
-	public LoginGui() {
+	public void checkServer(){
+		JOptionPane.showMessageDialog(null, "서버 확인 중 입니다. ");
+		try {
+			socket = new Socket("127.0.0.1", 1807);
+			JOptionPane.showMessageDialog(null, "서버가 확인 되었습니다. ");
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "서버의 문제가 있습니다. ");
+			JOptionPane.showMessageDialog(null, "클라이언트를 종료 합니다. ");
+			System.exit(1);
+		}
+	}
+
+
+	public LoginGui() throws IOException {
+		checkServer();
 		setTitle("로그인 화면");
 		setSize(450, 200);
 		getContentPane().setLayout(null);
@@ -91,7 +110,7 @@ public class LoginGui extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		LoginGui m = new LoginGui();
 	}
 
