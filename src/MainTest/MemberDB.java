@@ -106,13 +106,15 @@ public class MemberDB {
         try{
             con = getConn();
             String sql = "insert into user(" +
-                        "ID,PW,GameMoney,level) "+
-                        "values(?,?,?,?)";
+                        "ID,PW,GameMoney,level, win) "+
+                        "values(?,?,?,?, ?)";
             ps = con.prepareStatement(sql);
             ps.setString(1, save.getID());
             ps.setString(2, save.getPW());
             ps.setInt(3, 0);
             ps.setInt(4, 1);
+            ps.setInt(5, 0);
+
             int r = ps.executeUpdate(); //실행 -> 저장
 
             if(r>0){

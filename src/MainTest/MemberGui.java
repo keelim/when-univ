@@ -50,7 +50,7 @@ public class MemberGui extends JFrame implements ActionListener {
         //화면에 세팅
         IDField.setText(id);
         IDField.setEditable(false); //편집 안되게
-        PWField.setText(""); //비밀번호는 안보여준다.
+        PWField.setText(""); //
     }//viewData
    
    

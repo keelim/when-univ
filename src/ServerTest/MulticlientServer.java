@@ -11,7 +11,7 @@ import java.net.SocketException;
 
 
 public class MulticlientServer{
-   private int alivenum =1;
+   private static int serverconnect_num = 0;
    // 유저 수에 따른 유저 접속 순서를 보내주는 서버는 만들었다.  --> 서버 가공을 할 것
     // 서버의 이슈 상태? 1. 게임을 구현을 하기 위한 서버의 기능 2. 접속자를 확인을 하는 서버의 기능? 3. 회원 가입의 기능을 넣는 것이 좋을 듯 하다.
     // 서버와 컴퓨터 간의 게임을 진행을 해야 한다. --> 이를 어떻게 구현을 하는 가?
@@ -35,6 +35,7 @@ public class MulticlientServer{
             System.out.println("Spawning " + servernumi);
             Runnable r = new ThreadedEchoHandler(incoming, servernumi); // 새로운 쓰레드를 만들고 실행을 시키는 것이 안전하지 않는가?
             Thread t = new Thread(r);
+            ++serverconnect_num;
             servernumi++;
             t.start();
             new Thread(() ->{
@@ -49,10 +50,12 @@ public class MulticlientServer{
          }
       } catch (ConnectException e){
           System.out.println("소켓이 끊겼습니다. ");
+          --serverconnect_num;
           System.out.println("프로그램을 종료 합니다. ");
           System.exit(1);
       } catch (SocketException e){
           System.out.println("소켓이 끊겼습니다. ");
+          --serverconnect_num;
           System.out.println("프로그램을 종료 합니다. ");
           System.exit(1);
 
