@@ -1,14 +1,11 @@
 package SigninTest;
 
-import  java.awt.*;
 import javax.swing.*;
-
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
  
 public class MemberGui extends JFrame implements ActionListener {
-   
-   
-    JPanel p;
     JTextField IDField;
     JPasswordField PWField; //비밀번호
     JButton btnInsert, btnCancel, btnUpdate,btnDelete; //가입, 취소, 수정 , 탈퇴 버튼
@@ -55,7 +52,7 @@ public class MemberGui extends JFrame implements ActionListener {
     }//id를 가지고 생성
  
        
-    //MemberSave 의 회원 정보를 가지고 화면에 셋팅해주는 메소드
+    //ServerMemberSave 의 회원 정보를 가지고 화면에 셋팅해주는 메소드
     private void viewData(MemberSave vMem){
        
         String id = vMem.getID();
@@ -113,7 +110,6 @@ public class MemberGui extends JFrame implements ActionListener {
        
         setSize(350,500);
         setVisible(true);
-        //setDefaultCloseOperation(EXIT_ON_CLOSE); //System.exit(0) //프로그램종료
         setDefaultCloseOperation(DISPOSE_ON_CLOSE); //dispose(); //현재창만 닫는다.
        
        
@@ -171,7 +167,6 @@ public class MemberGui extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "비밀번호를 꼭 입력하세요!");
             return; //메소드 끝
         }
-        //System.out.println(mList);
         MemberDB db = new MemberDB();
         boolean ok = db.deleteMember(id, pwd);
        

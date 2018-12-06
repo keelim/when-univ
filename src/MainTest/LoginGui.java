@@ -3,7 +3,7 @@ package MainTest;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 public class LoginGui extends JFrame implements ActionListener {
@@ -11,12 +11,21 @@ public class LoginGui extends JFrame implements ActionListener {
 	private JPasswordField passwordField;
 	private User user = User.getInstance();
 	private Socket socket;
+	private OutputStream alive;
+    private PrintWriter alive_writer;
 
 	public void checkServer(){
 		JOptionPane.showMessageDialog(null, "서버 확인 중 입니다. ");
 		try {
-			socket = new Socket("127.0.0.1", 1807);
+			socket = new Socket("127.0.0.1", 1807); // 서버 확인 포트
 			JOptionPane.showMessageDialog(null, "서버가 확인 되었습니다. ");
+            alive = socket.getOutputStream();
+            alive_writer = new PrintWriter(alive, true);
+            new Thread(() ->{
+                alive_writer.println(9999);
+            }).start();
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "서버의 문제가 있습니다. ");
@@ -25,9 +34,9 @@ public class LoginGui extends JFrame implements ActionListener {
 		}
 	}
 
-
+//	서버 체크하기
 	public LoginGui() throws IOException {
-		checkServer();
+
 		setTitle("로그인 화면");
 		setSize(450, 200);
 		getContentPane().setLayout(null);

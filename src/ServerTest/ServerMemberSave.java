@@ -1,17 +1,12 @@
-package SigninTest;
+package ServerTest;
 
-public class MemberSave {
-   
-   
+public class ServerMemberSave {
     private String ID;
     private String PW;
     private int GameMoney;
     private int level;
+    private int win;
 
-    //이클립스팁 : Getter/Setter 만들기
-    //             우클릭 -> source->Generate Getters And Setters-> [Select AlL] -> [OK]
-   
-   
     public String getID() {
         return ID;
     }
@@ -30,17 +25,14 @@ public class MemberSave {
     public void setGameMoney(int gameMoney) {
         this.GameMoney = gameMoney;
     }
-
     public void setLevel(int level){this.level = level;}
+    public void setWin(int win){this.win = win;}
 
-    //DTO 객체 확인
-    //이클립스팁 : toString() 자동생성: 우클릭 -> source -> Generate toString->[OK]
     @Override
     public String toString() {
         return "ServerMemberSave [ID=" + ID + ", PW=" + PW + ", GameMoney=" + GameMoney
-                + ", level=" + level + "]";
+                + ", level=" + level + ", win= "+ win+ "]";
     }
-
     public int getLevel() {
         return level;
     }

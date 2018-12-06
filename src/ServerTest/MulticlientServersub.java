@@ -1,12 +1,15 @@
 package ServerTest;
 
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class MulticlientServer { // 각각의 유저들에게 소켓과 일을 부여를 해야 한다. 데이터를 받고 구분을 하는 것으로 하자
+public class MulticlientServersub { // 각각의 유저들에게 소켓과 일을 부여를 해야 한다. 데이터를 받고 구분을 하는 것으로 하자
     // 멀티 룸을 가지는 서버는 무리이다.
     private static int input_data;
     private static int room_num;
@@ -14,7 +17,7 @@ public class MulticlientServer { // 각각의 유저들에게 소켓과 일을 �
     public static void main(String[] args) {
         input_data = 0;
         try {
-            ServerSocket s = new ServerSocket(18069);
+            ServerSocket s = new ServerSocket(18070);
 
             while (true) {
                 System.out.println("멀티 서버 구성입니다. ");
@@ -30,6 +33,12 @@ public class MulticlientServer { // 각각의 유저들에게 소켓과 일을 �
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static void streamSetting(){
+        try (OutputStream outStream = incoming.getOutputStream();
+            PrintWriter out = new PrintWriter(outStream, true /* autoFlush */);
+            InputStream inStream = incoming.getInputStream();){
+
     }
 
     static class ThreadedEchoHandler implements Runnable { // 데이터를 판단하는 쓰레드
@@ -48,9 +57,7 @@ public class MulticlientServer { // 각각의 유저들에게 소켓과 일을 �
 
         public void run() {
             try {
-                try (OutputStream outStream = incoming.getOutputStream();
-                     PrintWriter out = new PrintWriter(outStream, true /* autoFlush */);
-                     InputStream inStream = incoming.getInputStream();) {
+
 
                     boolean isThread = true;
                     while (isThread) {

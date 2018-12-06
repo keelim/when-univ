@@ -43,7 +43,7 @@ public class MemberGui extends JFrame implements ActionListener {
     }//id를 가지고 생성
  
        
-    //MemberSave 의 회원 정보를 가지고 화면에 셋팅해주는 메소드
+    //ServerMemberSave 의 회원 정보를 가지고 화면에 셋팅해주는 메소드
     private void viewData(MemberSave vMem){
         String id = vMem.getID();
         String pwd = vMem.getPW();
