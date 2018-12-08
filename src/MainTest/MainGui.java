@@ -173,28 +173,6 @@ public class MainGui extends JFrame {
         NextTurnButton.setBounds(637, 244, 105, 49);
         getContentPane().add(NextTurnButton);
 
-        JPanel StatusPanel = new JPanel();
-        StatusPanel.setBounds(637, 10, 105, 165);
-        getContentPane().add(StatusPanel);
-        StatusPanel.setLayout(null);
-
-        JLabel IDLabel = new JLabel("New label");
-        IDLabel.setBounds(12, 60, 81, 26);
-        IDLabel.setText(user.getID());
-        StatusPanel.add(IDLabel);
-
-        JLabel MoneyLabel = new JLabel("New label");
-        MoneyLabel.setBounds(12, 129, 81, 26);
-        StatusPanel.add(MoneyLabel);
-        MoneyLabel.setText(String.valueOf(user.getGameMoney()));
-
-        JLabel IDsign = new JLabel("ID");
-        IDsign.setBounds(12, 24, 81, 26);
-        StatusPanel.add(IDsign);
-
-        JLabel GameMoneySign = new JLabel("GameMoney");
-        GameMoneySign.setBounds(12, 93, 81, 26);
-        StatusPanel.add(GameMoneySign);
         YutButton.addActionListener(e -> { //u에 대한 정보를 클라이언트로 전송을 해야 합니다.
             u = new Yut();
 
