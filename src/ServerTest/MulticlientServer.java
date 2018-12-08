@@ -66,7 +66,7 @@ public class MulticlientServer {
 
         switch (requestcommand) {
             case 100:
-                System.out.println("코드 100");
+                System.out.println("코드 100"); //서버의 상태를 확인하는 코드
                 break;
 
             case 7777:
@@ -74,13 +74,7 @@ public class MulticlientServer {
                 new Win("test");
                 break;
 
-            case 888:
-                System.out.println("코드 888");
-                break;
 
-            case 250:
-                System.out.println("코드 250");
-                break;
         }
         try {
             writeStream.reset();

@@ -162,7 +162,7 @@ public class MainGui extends JFrame {
         button26.setBounds(278, 152, 33, 23);
         panel.add(button26);
 
-        JButton YutButton = new JButton("윷던지기");
+        JButton YutButton = new JButton("윷 던지기");
         YutButton.setBounds(637, 303, 105, 49);
         getContentPane().add(YutButton);
 
@@ -171,6 +171,13 @@ public class MainGui extends JFrame {
 
         NextTurnButton.setBounds(637, 244, 105, 49);
         getContentPane().add(NextTurnButton);
+        
+        JButton state_button = new JButton("상 태");
+        state_button.setBounds(637, 185, 105, 49);
+        state_button.addActionListener(e -> {
+           new Staus();
+        });
+        getContentPane().add(state_button);
 
         YutButton.addActionListener(e -> { //u에 대한 정보를 클라이언트로 전송을 해야 합니다.
             u = new Yut();
