@@ -1,7 +1,7 @@
 package ServerTest;
 
 
-import MainTest.Command;
+import MainTest.CommandTest.Command;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -66,18 +66,20 @@ public class MulticlientServer {
 
         switch (requestcommand) {
             case 100:
-                //
-                //
                 System.out.println("코드 100");
                 break;
 
             case 7777:
-
-                //
-                //
-                //
                 System.out.println("코드 7777");
                 new Win("test");
+                break;
+
+            case 888:
+                System.out.println("코드 888");
+                break;
+
+            case 250:
+                System.out.println("코드 250");
                 break;
         }
         try {

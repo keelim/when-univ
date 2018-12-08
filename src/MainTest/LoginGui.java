@@ -91,7 +91,6 @@ public class LoginGui extends JFrame implements ActionListener {
 				// 로그인 성공일 경우
 				user.setID(id);
 				user.setGameMoney(Login.getMoney(id));
-				ServerStaus.connect(); //connect 만을 이용을 하여 서버의 상태를 체크 한다. connect static
 				JOptionPane.showMessageDialog(null, "로그인 성공");
 				System.out.println(id);
 				if(id.equals("GM")){
@@ -100,11 +99,10 @@ public class LoginGui extends JFrame implements ActionListener {
 				} else{
 					setVisible(false);
 					new MainGui();
-					new ServerStaus();
+					new Staus();
 				}
 			} else {
 				// 로그인 실패일 경우
-				ServerStaus.connect(); //실패를 했을 경우에도 서버의 커넥트를 확인을 한다.
 				JOptionPane.showMessageDialog(null, "로그인 실패");
 				loginField.setText(""); // 로그인 실패시 --> 모든 칸 빈칸으로
 				passwordField.setText("");
