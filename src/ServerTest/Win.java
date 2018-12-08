@@ -4,14 +4,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-class Win implements Runnable {
+class Win  {
     private final String DRIVER = "org.gjt.mm.mysql.Driver";
     private final String URL = "jdbc:mysql://localhost:3306/comp2";
     private final String USER = "root"; //DB ID
     private final String PASS = "kimjaehyun"; //DB 패스워드
 
+    public Win(String id) {
+        WinMember(id);
+    }
 
-    public Connection getConn() { //DB 접속
+    public Connection getConnnection() { //DB 접속
         Connection con = null;
 
         try {
@@ -27,12 +30,12 @@ class Win implements Runnable {
 
 
 
-    public boolean updateMember(String id) { /*회원 정보를 수정을 하는 메소드*/ // id를 가치 보내야 한다.
+    public boolean WinMember(String id) { /*회원 정보를 수정을 하는 메소드*/ // id를 가치 보내야 한다.
         boolean ok = false;
         Connection con = null;
         PreparedStatement ps = null;
         try {
-            con = getConn();
+            con = getConnnection();
             String sql = "update  user set win=win+1 where ID=? ";
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
@@ -46,10 +49,7 @@ class Win implements Runnable {
         return ok;
     }
 
-    @Override
-    public void run() {
 
-    }
 }
 
 
