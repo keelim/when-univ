@@ -1,7 +1,5 @@
 package MainTest;
 
-import AssetTest.DBConnectionMgr;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +10,7 @@ public class Login {
     private static ResultSet rs = null;
     private static String sql = null;
 
-    static boolean loginTest(String ID, String PW) {
+    public static boolean loginTest(String ID, String PW) {
         boolean flag = false;
         String getPass;
         DBConnectionMgr pool = DBConnectionMgr.getInstance();
