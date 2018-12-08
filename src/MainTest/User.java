@@ -6,6 +6,7 @@ public class User {
     private String PW;
     private int GameMoney;
     private int level;
+    private int win;
 
     public static User getInstance() {
         if (instance == null) {
@@ -35,4 +36,20 @@ public class User {
         ID = iD;
     }
 
+    public int getWin() {
+        return win;
+    }
+
+    public void setWin(int win) {
+        this.win = win;
+    }
+
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }

@@ -156,7 +156,10 @@ public class MemberDB {
         return ok;
     }
 
-    //회원 정보 삭제
+    /**
+     * 회원정보 삭제 :
+     * tip: 실무에서는 회원정보를 Delete 하지 않고 탈퇴여부만 체크한다.
+     */
     public boolean deleteMember(String id, String pwd) {
         boolean ok = false;
         Connection con;

@@ -11,7 +11,7 @@ public class LoginGui extends JFrame implements ActionListener {
     private User user = User.getInstance(); // 유저 인스턴스에 저장을 한다.
 
     //	서버 체크하기
-    public LoginGui() throws IOException {
+    public LoginGui() {
 
         setTitle("로그인 화면");
         setSize(450, 200);
@@ -40,11 +40,7 @@ public class LoginGui extends JFrame implements ActionListener {
         getContentPane().add(SigninButton);
 
         JButton Signupbutton = new JButton("Sign up");
-        Signupbutton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new MemberGui();
-            }
-        });
+        Signupbutton.addActionListener(e -> new MemberGui());
         Signupbutton.setBounds(316, 83, 85, 21);
         getContentPane().add(Signupbutton);
         setLocationRelativeTo(null);
@@ -57,7 +53,7 @@ public class LoginGui extends JFrame implements ActionListener {
 
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { // 유저 객체에 저장을 한다.
         String id = loginField.getText();
         char[] pass = passwordField.getPassword();
         String password = new String(pass);
@@ -68,10 +64,12 @@ public class LoginGui extends JFrame implements ActionListener {
         } else {
 
             boolean existLogin = Login.loginTest(id, password);
-            if (existLogin) {
+            if (existLogin) { // 로그인시 데이터 베이스에서 승리, 포인트, 레벨을 불러온다.
                 // 로그인 성공일 경우
                 user.setID(id);
                 user.setGameMoney(Login.getMoney(id));
+                user.setWin(Login.getWin(id));
+                user.setLevel(Login.getlevel(id));
                 JOptionPane.showMessageDialog(null, "로그인 성공");
                 System.out.println(id);
                 if (id.equals("GM")) {

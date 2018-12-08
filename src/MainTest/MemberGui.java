@@ -146,7 +146,6 @@ public class MemberGui extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "비밀번호를 꼭 입력하세요!");
             return; //메소드 끝
         }
-        //System.out.println(mList);
         MemberDB db = new MemberDB();
         boolean ok = db.deleteMember(id, pwd);
 

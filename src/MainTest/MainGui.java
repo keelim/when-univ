@@ -4,7 +4,6 @@ import javax.swing.*;
 
 public class MainGui extends JFrame {
     private Yut u;
-    private User user = User.getInstance();
 
     public MainGui() {
         setTitle("메인화면");

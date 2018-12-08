@@ -41,13 +41,14 @@ public class Login {
         return flag;
     }
 
-    static int getMoney(String ID) {
+    public static int getMoney(String ID) {
         DBConnectionMgr pool = DBConnectionMgr.getInstance();
         int gMoney = 0;
 
         try {
             con = pool.getConnection();
             sql = "select GameMoney from user where ID=?";
+
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, ID);
             rs = pstmt.executeQuery();
@@ -65,5 +66,47 @@ public class Login {
         }
         // 결과값 반납
         return gMoney;
+    }
+
+    public static int  getWin(String id){
+        DBConnectionMgr pool = DBConnectionMgr.getInstance();
+        int win = 0;
+
+        try {
+            con = pool.getConnection();
+            sql = "select win from user where ID=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if(rs.next())
+                win = rs.getInt("win");
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return win;
+    }
+
+    public static int getlevel(String id){
+        DBConnectionMgr pool = DBConnectionMgr.getInstance();
+        int level = 0;
+
+        try {
+            con = pool.getConnection();
+            sql = "select level from user where ID=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if(rs.next())
+                level = rs.getInt("level");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return level;
     }
 }
