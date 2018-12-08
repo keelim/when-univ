@@ -1,15 +1,13 @@
 package BangBang.src.bank;
 
-public class CheckingAccount extends Account
-{	
-	private static final long serialVersionUID = 1L;
+public class CheckingAccount extends Account {
+    private static final long serialVersionUID = 1L;
+    @SuppressWarnings("unused")
+    private SavingsAccount s_acct;
 
-	public CheckingAccount(String acctNo, double balance) { super(acctNo, balance); }	
-	public CheckingAccount(String acctNo, double balance, SavingsAccount account)
-	{	
-		super(acctNo, balance);
-		s_acct = account;		
-	}	
+    public CheckingAccount(String acctNo, double balance) {
+        super(acctNo, balance);
+    }
 
 	/*
 	public boolean withdraw(double amt)
@@ -28,10 +26,14 @@ public class CheckingAccount extends Account
 		else balance -= amt;		
 		return true;
 	}
-	*/	
+	*/
 
-	public String getAcctType() { return "Checkings"; }	
-		
-	@SuppressWarnings("unused")
-	private SavingsAccount s_acct;
+    public CheckingAccount(String acctNo, double balance, SavingsAccount account) {
+        super(acctNo, balance);
+        s_acct = account;
+    }
+
+    public String getAcctType() {
+        return "Checkings";
+    }
 }

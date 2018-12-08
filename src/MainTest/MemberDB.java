@@ -1,4 +1,4 @@
-package MainTest;
+package MainTest; //DB로 직접적인 접근을 하는 것이다. --> 서버를 통해서 DB를 접근을 하고 인증을 하는 것이 더 낫지 않을까?
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -22,9 +22,7 @@ public class MemberDB {
 
     }
 
-    /**
-     * DB연결 메소드
-     */
+    // DB 연결
     public Connection getConn() {
         Connection con = null;
 
@@ -40,9 +38,7 @@ public class MemberDB {
     }
 
 
-    /**
-     * 한사람의 회원 정보를 얻는 메소드
-     */
+    //회원 정보를 얻어온다.
     public MemberSave getMemberDB(String id) {
         MemberSave save = new MemberSave();
         Connection con = null;       //연결
@@ -73,9 +69,9 @@ public class MemberDB {
      */
     public Vector getMemberList() {
         Vector data = new Vector();  //Jtable에 값을 쉽게 넣는 방법 1. 2차원배열   2. Vector 에 vector추가
-        Connection con = null;       //연결
-        PreparedStatement ps = null; //명령
-        ResultSet rs = null;         //결과
+        Connection con;       //연결
+        PreparedStatement ps; //명령
+        ResultSet rs;         //결과
         try {
             con = getConn();
             String sql = "select * from user order by ID asc";
@@ -107,8 +103,8 @@ public class MemberDB {
      */
     public boolean insertMember(MemberSave save) {
         boolean flag = false;
-        Connection con = null;       //연결
-        PreparedStatement ps = null; //명령
+        Connection con;       //연결
+        PreparedStatement ps; //명령
 
         try {
             con = getConn();
@@ -134,17 +130,15 @@ public class MemberDB {
             e.printStackTrace();
         }
         return flag;
-    }//insertMmeber
+    }//
 
 
-    /**
-     * 회원정보 수정
-     */
+    // 회원 정보 수정
     public boolean updateMember(MemberSave vMem) { // 회원 승수를 올려주는 메소드
         System.out.println("dto=" + vMem.toString());
         boolean ok = false;
-        Connection con = null;
-        PreparedStatement ps = null;
+        Connection con;
+        PreparedStatement ps;
         String id = vMem.getID();
         System.out.println(id);
         try {
@@ -162,14 +156,11 @@ public class MemberDB {
         return ok;
     }
 
-    /**
-     * 회원정보 삭제 :
-     * tip: 실무에서는 회원정보를 Delete 하지 않고 탈퇴여부만 체크한다.
-     */
+    //회원 정보 삭제
     public boolean deleteMember(String id, String pwd) {
         boolean ok = false;
-        Connection con = null;
-        PreparedStatement ps = null;
+        Connection con;
+        PreparedStatement ps;
 
         try {
             con = getConn();
