@@ -1,9 +1,12 @@
 package MainTest;
 
+import MainTest.client.Client;
+
 import javax.swing.*;
 
 public class Staus extends JFrame {
     private User user;
+    private static Client client;
 
     public Staus() { // Frame 상태에서는 쓰레드를 호환을 할 수 가 없다. ? --> 버튼을 눌러서 확인을 하는 방법을 사용
         user = User.getInstance();
@@ -13,30 +16,39 @@ public class Staus extends JFrame {
         setLocation(1200, 300);
         getContentPane().setLayout(null);
 
-        JButton usersequence = new JButton("접속 순서");
-        usersequence.setBounds(153, 10, 119, 38);
+        JButton usersequence = new JButton("레  벨");
+        usersequence.setBounds(153, 21, 119, 38);
 
         usersequence.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "접속 순서를 확인 합니다.  "); //핸들러를 통하여 데이터를 받아야 한다.
+            client.resultComm = client.level(user.getID());
+
+            JOptionPane.showMessageDialog(null, "레벨을 확인 합니다. "); //핸들러를 통하여 데이터를 받아야 한다.
+            JOptionPane.showMessageDialog(null, client.resultComm.getLevel());
+
+
+
         });
         getContentPane().add(usersequence);
 
-        JButton open_user = new JButton("접속자 수");
-        open_user.setBounds(153, 61, 119, 38);
+        JButton open_user = new JButton("포 인 트");
+        open_user.setBounds(153, 80, 119, 38);
 
         open_user.addActionListener(e -> {
-            System.out.println("접속자 수를 확인 합니다. ");
-            JOptionPane.showMessageDialog(null, "접속자 수를 확인 합니다. ");
+            client.resultComm = client.point(user.getID());
+            JOptionPane.showMessageDialog(null, "포인트를 확인 합니다. ");
+            JOptionPane.showMessageDialog(null, client.resultComm.getPoint());
+
         });
         getContentPane().add(open_user);
 
 
         JButton exitbutton = new JButton("접속 종료");
-        exitbutton.setBounds(153, 205, 119, 38);
+        exitbutton.setBounds(153, 198, 119, 38);
 
         exitbutton.addActionListener(e -> {
             System.out.println("프로그램 종료"); // 프로그램 종료 버튼을 누르면 프로그램을 종료 합니다.
             JOptionPane.showMessageDialog(null, "프로그램을 종료 합니다. ");
+            client.close();
             System.exit(1);
         });
         getContentPane().add(exitbutton);
@@ -45,33 +57,25 @@ public class Staus extends JFrame {
         idlabel.setBounds(35, 22, 57, 15);
         getContentPane().add(idlabel);
 
-        JLabel Moneylabel = new JLabel(String.valueOf(user.getGameMoney()));
-        Moneylabel.setBounds(69, 73, 57, 15);
-        getContentPane().add(Moneylabel);
 
-        JLabel Winlabel = new JLabel(String.valueOf(user.getWin()));
-        Winlabel.setBounds(69, 121, 57, 15);
-        getContentPane().add(Winlabel);
+        JButton button = new JButton("승리 횟수");
+        button.addActionListener(e -> {
+            client.resultComm = client.win(user.getID());
 
-        JLabel Levellabel = new JLabel(String.valueOf(user.getLevel()));
-        Levellabel.setBounds(69, 169, 57, 15);
-        getContentPane().add(Levellabel);
+            JOptionPane.showMessageDialog(null, "승리 횟수를 확인 합니다. ");
+            JOptionPane.showMessageDialog(null, client.resultComm.getWin());
+        });
+        button.setBounds(153, 139, 119, 38);
+        getContentPane().add(button);
+        
 
-        JLabel label_1 = new JLabel("포인트");
-        label_1.setBounds(12, 73, 39, 15);
-        getContentPane().add(label_1);
 
-        JLabel label_2 = new JLabel("승리");
-        label_2.setBounds(12, 121, 39, 15);
-        getContentPane().add(label_2);
 
-        JLabel label_3 = new JLabel("레벨");
-        label_3.setBounds(12, 169, 39, 15);
-        getContentPane().add(label_3);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
     }
 
-
-
+    public static void main(String[] args) {
+        new Staus();
+    }
 }

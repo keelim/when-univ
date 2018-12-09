@@ -1,6 +1,7 @@
 package MainTest.client;
 
 import MainTest.CommandTest.Command;
+import MainTest.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,9 +11,12 @@ import java.net.Socket;
 
 public class Client implements Serializable {
     private Socket socket;
-    Command readComm, writeComm, resultComm;
+    Command readComm;
+    Command writeComm;
+    public Command resultComm;
     private ObjectInputStream readStream;
     private ObjectOutputStream writeStream;
+    private User user = User.getInstance();
 
     public Client() {
         try {
@@ -40,13 +44,21 @@ public class Client implements Serializable {
         writeComm.setArgs(args);
     }
 
-    public Command win(){
-        sendValue(Command.WIN, null);
+    public Command win(String id){
+        String[] args = {id};
+        sendValue(Command.WIN, args);
         return getResponse();
     }
 
-    public Command status(){
-        sendValue(Command.STATUS, null);
+    public Command level(String id){
+        String[] args = {id};
+        sendValue(Command.LEVEL, args);
+        return getResponse();
+    }
+
+    public Command point(String id){
+        String[] args = {id};
+        sendValue(Command.POINT, args);
         return getResponse();
     }
 

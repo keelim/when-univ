@@ -65,14 +65,27 @@ public class MulticlientServer {
         requestcommandArgs = read.getArgs();
 
         switch (requestcommand) {
-            case 100:
-                System.out.println("코드 100"); //서버의 상태를 확인하는 코드
+            case 3333:
+                System.out.println("코드 3333"); //point를 확인을 한다.
+                DBload m = new DBload();
+                writeComm.setPoint(m.point(requestcommandArgs[0]));
                 break;
 
             case 7777:
-                System.out.println("코드 7777");
-                new Win("test");
+                System.out.println("코드 7777"); //win을 받으러 온다.
+                DBload m1 = new DBload();
+               writeComm.setWin(m1.win(requestcommandArgs[0]));
                 break;
+
+            case 2222:
+                System.out.println("코드 2222"); //레벨을 확인을 한다.
+                DBload m2 = new DBload();
+                writeComm.setLevel(m2.level(requestcommandArgs[0]));
+                break;
+            case 8888:
+                System.out.println("코드 8888"); //pluswin을 실행한다.
+                DBload m3 = new DBload();
+                m3.pluswin(requestcommandArgs[0]);
 
 
         }

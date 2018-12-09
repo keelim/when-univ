@@ -22,6 +22,8 @@ public class Command implements Serializable {
     // ���� : 0
     private int status;
 
+
+
     public Command(int comm) {
         commandValue = comm;
         status = -1;
