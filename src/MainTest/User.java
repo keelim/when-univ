@@ -3,7 +3,6 @@ package MainTest;
 public class User {
     private static User instance = null;
     private String ID;
-    private String PW;
     private int GameMoney;
     private int level;
     private int win;
@@ -16,7 +15,6 @@ public class User {
                 }
             }
         }
-
         return instance;
     }
 
