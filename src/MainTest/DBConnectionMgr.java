@@ -3,9 +3,9 @@ package MainTest;
 
 /**
  * Copyright(c) 2001 iSavvix Corporation (http://www.isavvix.com/)
- *
- *                        All rights reserved
- *
+ * <p>
+ * All rights reserved
+ * <p>
  * Permission to use, copy, modify and distribute this material for
  * any purpose and without fee is hereby granted, provided that the
  * above copyright notice and this permission notice appear in all
@@ -13,7 +13,7 @@ package MainTest;
  * advertising or publicity pertaining to this material without the
  * specific, prior written permission of an authorized representative of
  * iSavvix Corporation.
- *
+ * <p>
  * ISAVVIX CORPORATION MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES,
  * EXPRESS OR IMPLIED, WITH RESPECT TO THE SOFTWARE, INCLUDING, BUT
  * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -23,7 +23,6 @@ package MainTest;
  * ANY OF ITS AFFILIATES BE LIABLE FOR ANY DAMAGES, INCLUDING ANY
  * LOST PROFITS OR OTHER INCIDENTAL OR CONSEQUENTIAL DAMAGES RELATING
  * TO THE SOFTWARE.
- *
  */
 
 
@@ -35,27 +34,26 @@ import java.util.Vector;
 /**
  * Manages a java.sql.Connection pool.
  *
- * @author  Anil Hemrajani
+ * @author Anil Hemrajani
  */
 public class DBConnectionMgr {
-    private Vector<ConnectionObject> connections = new Vector<ConnectionObject>(10);
+    private static DBConnectionMgr instance = null;
     public String _driver = "org.gjt.mm.mysql.Driver";
 
     public String _url = "jdbc:mysql://localhost:3306/comp2";
+    private Vector<ConnectionObject> connections = new Vector<ConnectionObject>(10);
     private String _user = "root";
     private String _password = "kimjaehyun";
-
-    
     private boolean _traceOn = false;
     private boolean initialized = false;
     private int _openConnections = 50;
-    private static DBConnectionMgr instance = null;
 
     public DBConnectionMgr() {
     }
 
-    /** Use this method to set the maximum number of open connections before
-     unused connections are closed.
+    /**
+     * Use this method to set the maximum number of open connections before
+     * unused connections are closed.
      */
 
     public static DBConnectionMgr getInstance() {
@@ -80,13 +78,17 @@ public class DBConnectionMgr {
     }
 
 
-    /** Returns a Vector of java.sql.Connection objects */
+    /**
+     * Returns a Vector of java.sql.Connection objects
+     */
     public Vector<ConnectionObject> getConnectionList() {
         return connections;
     }
 
 
-    /** Opens specified "count" of connections and adds them to the existing pool */
+    /**
+     * Opens specified "count" of connections and adds them to the existing pool
+     */
     public synchronized void setInitOpenConnections(int count)
             throws SQLException {
         Connection c = null;
@@ -102,13 +104,17 @@ public class DBConnectionMgr {
     }
 
 
-    /** Returns a count of open connections */
+    /**
+     * Returns a count of open connections
+     */
     public int getConnectionCount() {
         return connections.size();
     }
 
 
-    /** Returns an unused existing or new connection.  */
+    /**
+     * Returns an unused existing or new connection.
+     */
     public synchronized Connection getConnection()
             throws Exception {
         if (!initialized) {
@@ -165,7 +171,9 @@ public class DBConnectionMgr {
     }
 
 
-    /** Marks a flag in the ConnectionObject to indicate this connection is no longer in use */
+    /**
+     * Marks a flag in the ConnectionObject to indicate this connection is no longer in use
+     */
     public synchronized void freeConnection(Connection c) {
         if (c == null)
             return;
@@ -226,7 +234,9 @@ public class DBConnectionMgr {
     }
 
 
-    /** Marks a flag in the ConnectionObject to indicate this connection is no longer in use */
+    /**
+     * Marks a flag in the ConnectionObject to indicate this connection is no longer in use
+     */
     public synchronized void removeConnection(Connection c) {
         if (c == null)
             return;
@@ -272,12 +282,14 @@ public class DBConnectionMgr {
     }
 
 
-    /** Closes all connections and clears out the connection pool */
+    /**
+     * Closes all connections and clears out the connection pool
+     */
     public void releaseFreeConnections() {
         trace("ConnectionPoolManager.releaseFreeConnections()");
 
         @SuppressWarnings("unused")
-		Connection c = null;
+        Connection c = null;
         ConnectionObject co = null;
 
         for (int i = 0; i < connections.size(); i++) {
@@ -288,12 +300,14 @@ public class DBConnectionMgr {
     }
 
 
-    /** Closes all connections and clears out the connection pool */
+    /**
+     * Closes all connections and clears out the connection pool
+     */
     public void finalize() {
         trace("ConnectionPoolManager.finalize()");
 
-       @SuppressWarnings("unused")
-		Connection c = null;
+        @SuppressWarnings("unused")
+        Connection c = null;
         ConnectionObject co = null;
 
         for (int i = 0; i < connections.size(); i++) {

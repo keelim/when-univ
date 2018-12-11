@@ -1,12 +1,11 @@
 package MainTest;
 
-import MainTest.client.Client;
-
 import javax.swing.*;
 
 public class Staus extends JFrame {
     private User user;
-    private static Client client;
+
+    private static Client client = new Client();
 
     public Staus() { // Frame 상태에서는 쓰레드를 호환을 할 수 가 없다. ? --> 버튼을 눌러서 확인을 하는 방법을 사용
         user = User.getInstance();
@@ -20,12 +19,11 @@ public class Staus extends JFrame {
         usersequence.setBounds(153, 21, 119, 38);
 
         usersequence.addActionListener(e -> {
-            client.resultComm = client.level(user.getID());
-
+            System.out.println(user.getID());
+            String id = user.getID();
+            client.resultComm = client.level(id);
             JOptionPane.showMessageDialog(null, "레벨을 확인 합니다. "); //핸들러를 통하여 데이터를 받아야 한다.
-            JOptionPane.showMessageDialog(null, client.resultComm.getLevel());
-
-
+            JOptionPane.showMessageDialog(null, "당신의 레벨은 " + client.resultComm.getLevel());
 
         });
         getContentPane().add(usersequence);
@@ -34,9 +32,10 @@ public class Staus extends JFrame {
         open_user.setBounds(153, 80, 119, 38);
 
         open_user.addActionListener(e -> {
-            client.resultComm = client.point(user.getID());
+            String id = user.getID();
+            client.resultComm = client.point(id);
             JOptionPane.showMessageDialog(null, "포인트를 확인 합니다. ");
-            JOptionPane.showMessageDialog(null, client.resultComm.getPoint());
+            JOptionPane.showMessageDialog(null, "당신의 포인트는 " + client.resultComm.getPoint());
 
         });
         getContentPane().add(open_user);
@@ -60,10 +59,12 @@ public class Staus extends JFrame {
 
         JButton button = new JButton("승리 횟수");
         button.addActionListener(e -> {
-            client.resultComm = client.win(user.getID());
+            System.out.println(user.getID());
+            String id = user.getID();
+            client.resultComm = client.win(id);
 
             JOptionPane.showMessageDialog(null, "승리 횟수를 확인 합니다. ");
-            JOptionPane.showMessageDialog(null, client.resultComm.getWin());
+            JOptionPane.showMessageDialog(null, "당신의 승리 횟수는 " + client.resultComm.getWin());
         });
         button.setBounds(153, 139, 119, 38);
         getContentPane().add(button);
@@ -75,7 +76,4 @@ public class Staus extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new Staus();
-    }
 }

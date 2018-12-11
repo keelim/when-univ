@@ -1,9 +1,6 @@
 package ServerTest;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 class DBload {
     private final String DRIVER = "org.gjt.mm.mysql.Driver";
@@ -12,8 +9,6 @@ class DBload {
     private final String PASS = "kimjaehyun"; //DB 패스워드
 
     //237 레포윈 //1111 winplus
-
-
 
 
     public Connection getConnnection() { //DB 접속
@@ -29,7 +24,6 @@ class DBload {
 
         return con;
     }
-
 
 
     public boolean pluswin(String id) { /*회원 정보를 수정을 하는 메소드*/ // id를 가치 보내야 한다.
@@ -62,11 +56,12 @@ class DBload {
             String sql = "select * from user where ID = ? ";
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
-            win = rs.getInt("win");
-            int r = ps.executeUpdate(); //실행 -> 수정
-            // 1~n: 성공 , 0 : 실패
-            if (r > 0) ok = true; //수정이 성공되면 ok값을 true로 변경
-        } catch (Exception e) {
+            rs = ps.executeQuery(); //실행 -> 수정
+            while (rs.next()) {
+                win = rs.getInt("win");
+
+            }//while
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -85,10 +80,12 @@ class DBload {
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
 
-            int r = ps.executeUpdate(); //실행 -> 수정
-            point = rs.getInt("GameMoney");
+            rs = ps.executeQuery(); //실행 -> 수정
+            while (rs.next()) {
+                point = rs.getInt("GameMoney");
+
+            }
             // 1~n: 성공 , 0 : 실패
-            if (r > 0) ok = true; //수정이 성공되면 ok값을 true로 변경
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,10 +104,13 @@ class DBload {
             String sql = "select * from user where ID = ? ";
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
-            int r = ps.executeUpdate(); //실행 -> 수정
+            rs = ps.executeQuery(); //실행 -> 수정
             // 1~n: 성공 , 0 : 실패
-            level = rs.getInt("level");
-            if (r > 0) ok = true; //수정이 성공되면 ok값을 true로 변경
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                level = rs.getInt("level");
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

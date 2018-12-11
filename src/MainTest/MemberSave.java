@@ -30,7 +30,7 @@ public class MemberSave {
 
     @Override
     public String toString() {
-        return "ServerMemberSave [ID=" + ID + ", PW=" + PW + ", GameMoney=" + GameMoney
+        return "MemberSave [ID=" + ID + ", PW=" + PW + ", GameMoney=" + GameMoney
                 + ", level=" + level + ", win= "+ win+ "]";
     }
     public int getLevel() {

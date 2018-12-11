@@ -5,7 +5,9 @@ import javax.swing.*;
 public class MainGui extends JFrame {
     private Yut u;
 
+
     public MainGui() {
+
         setTitle("메인화면");
         setSize(770, 400);
         setResizable(false);
@@ -171,11 +173,11 @@ public class MainGui extends JFrame {
 
         NextTurnButton.setBounds(637, 244, 105, 49);
         getContentPane().add(NextTurnButton);
-        
+
         JButton state_button = new JButton("상 태");
         state_button.setBounds(637, 185, 105, 49);
         state_button.addActionListener(e -> {
-           new Staus();
+            new Staus();
         });
         getContentPane().add(state_button);
 
@@ -186,4 +188,6 @@ public class MainGui extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
+
 }

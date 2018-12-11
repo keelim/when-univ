@@ -13,6 +13,7 @@ public class LoginGui extends JFrame implements ActionListener {
     //	서버 체크하기
     public LoginGui() {
 
+
         setTitle("로그인 화면");
         setSize(450, 200);
         getContentPane().setLayout(null);

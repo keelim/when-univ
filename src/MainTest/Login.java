@@ -68,7 +68,7 @@ public class Login {
         return gMoney;
     }
 
-    public static int  getWin(String id){
+    public static int getWin(String id) {
         DBConnectionMgr pool = DBConnectionMgr.getInstance();
         int win = 0;
 
@@ -78,7 +78,7 @@ public class Login {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
-            if(rs.next())
+            if (rs.next())
                 win = rs.getInt("win");
 
 
@@ -90,7 +90,7 @@ public class Login {
         return win;
     }
 
-    public static int getlevel(String id){
+    public static int getlevel(String id) {
         DBConnectionMgr pool = DBConnectionMgr.getInstance();
         int level = 0;
 
@@ -100,7 +100,7 @@ public class Login {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
-            if(rs.next())
+            if (rs.next())
                 level = rs.getInt("level");
         } catch (Exception e) {
             e.printStackTrace();
