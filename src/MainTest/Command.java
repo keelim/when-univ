@@ -11,7 +11,7 @@ public class Command implements Serializable { // 공통적으로 서버와 클�
 
 
     private int commandValue; //어떤 한 명령이 들어오는지를 판단한다.
-    private int status;
+    private int status = 0;
     private String[] args = null;
 
 
@@ -63,5 +63,13 @@ public class Command implements Serializable { // 공통적으로 서버와 클�
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

@@ -71,15 +71,12 @@ public class LoginGui extends JFrame implements ActionListener {
                 user.setGameMoney(Login.getMoney(id));
                 user.setWin(Login.getWin(id));
                 user.setLevel(Login.getlevel(id));
-                JOptionPane.showMessageDialog(null, "로그인 성공");
-                System.out.println(id);
                 if (id.equals("GM")) {
                     setVisible(false);
                     new Member_List();
                 } else {
                     setVisible(false);
                     new MainGui();
-                    new Staus();
                 }
             } else {
                 // 로그인 실패일 경우

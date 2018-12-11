@@ -19,7 +19,7 @@ import java.util.List;
 public class MulticlientServer {
     static int requestcommand;
     static String[] requestcommandArgs;
-    List id_list = Collections.synchronizedList(new ArrayList<String>());
+    List<String> id_list = Collections.synchronizedList(new ArrayList<>());
     // 각각의 유저들에게 소켓과 일을 부여를 해야 한다. 데이터를 받고 구분을 하는 것으로 하자
     // 멀티 룸을 가지는 서버는 무리이다.
     private ObjectInputStream readStream;
@@ -30,23 +30,23 @@ public class MulticlientServer {
 
     public MulticlientServer() {
         try {
-            ServerSocket s = new ServerSocket(18069);
+            ServerSocket s = new ServerSocket(18069); // 서버 모니터링을 구현을 한다.
             JFrame frame = new JFrame();
-            frame.add( new JLabel(" Server Monitoring" ), BorderLayout.NORTH );
+            frame.add(new JLabel(" Server Monitoring"), BorderLayout.NORTH);
 
             JTextArea ta = new JTextArea();
-            TextAreaOutputStream taos = new TextAreaOutputStream( ta, 60 );
-            PrintStream ps = new PrintStream( taos );
-            System.setOut( ps );
-            System.setErr( ps );
+            TextAreaOutputStream taos = new TextAreaOutputStream(ta, 60);
+            PrintStream ps = new PrintStream(taos);
+            System.setOut(ps);
+            System.setErr(ps);
 
 
-            frame.add( new JScrollPane( ta )  );
+            frame.add(new JScrollPane(ta));
 
             frame.pack();
-            frame.setVisible( true );
-            frame.setSize(800,600);
-
+            frame.setVisible(true);
+            frame.setSize(800, 600);
+            frame.setDefaultCloseOperation(3);
 
 
             while (true) {
@@ -59,24 +59,18 @@ public class MulticlientServer {
                 writeStream = new ObjectOutputStream(incoming.getOutputStream());
                 System.out.println("스트림 셋팅을 완료하였습니다. ");
 
-
-                while (true) {
-                    System.out.println("handling 을 시작합니다. ");
-                    readComm = (Command) readStream.readObject();
-                    System.out.println(readComm.getCommandValue() + "를 받았습니다. ");
-                    handling(readComm);
-                    Thread.sleep(1);
-                }
+                Handling h = new Handling();
+                new Thread(h).start();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("소켓 연결이 끊어졌습니다. ");
         }
     }
 
     public static void main(String[] args) {
         new MulticlientServer();
     }
-
 
     public synchronized void handling(Command read) {
         System.out.println("커맨드를 실행을 합니다. ");
@@ -115,6 +109,14 @@ public class MulticlientServer {
 
             case 4444:
                 System.out.println("코드 4444"); // 서버의 아이디 추가 실행 중복 아이디 방지
+                if (id_list.indexOf(requestcommandArgs[0]) == -1) {
+                    System.out.println("코드 4444 실행");
+                    writeComm.setStatus(1);
+                } else {
+                    System.out.println("코드 4444 실행");
+                    writeComm.setStatus(-1);
+                }
+
                 id_list.add(requestcommandArgs[0]);
                 System.out.println("현재 접속되어 있는  아이디 입니다. " + id_list);
 
@@ -125,6 +127,29 @@ public class MulticlientServer {
             writeStream.writeObject(writeComm);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    class Handling implements Runnable {
+
+        @Override
+        public void run() {
+            while (true) {
+                System.out.println("handling 을 시작합니다. ");
+                try {
+                    readComm = (Command) readStream.readObject();
+                    System.out.println(readComm.getCommandValue() + "를 받았습니다. ");
+                    handling(readComm);
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
         }
     }
 }
