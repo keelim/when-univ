@@ -8,14 +8,12 @@ import java.io.Serializable;
 import java.net.Socket;
 
 public class Client implements Serializable {
-    public Command resultComm;
+    Command resultComm;
     Command readComm;
     Command writeComm;
     private Socket socket;
     private ObjectInputStream readStream;
     private ObjectOutputStream writeStream;
-
-
 
 
     public Client() { //서버에 접속한 아이디를 저장을 한다.
@@ -73,18 +71,27 @@ public class Client implements Serializable {
         return getResponse();
     }
 
-    public Command idplus(String id){
+    public Command idplus(String id) {
         String[] args = {id};
         sendValue(Command.PLUSID, args);
         return getResponse();
     }
 
+    public Command exit(String id) {
+        String[] args = {id};
+        sendValue(Command.CLOSE, args);
+        return getResponse();
+    }
 
     public void close() {
         try {
+            readStream.close();
+            writeStream.close();
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 }

@@ -11,15 +11,15 @@ import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 
-public class MulticlientServer {
+public class Server {
     static int requestcommand;
     static String[] requestcommandArgs;
-    Set<String> id_list = Collections.synchronizedSet(new HashSet<>());
+    List<String> id_list = Collections.synchronizedList(new ArrayList<>());
     // 각각의 유저들에게 소켓과 일을 부여를 해야 한다. 데이터를 받고 구분을 하는 것으로 하자
     // 멀티 룸을 가지는 서버는 무리이다.
     private ObjectInputStream readStream;
@@ -28,12 +28,11 @@ public class MulticlientServer {
     private Command writeComm;
 
 
-    public MulticlientServer() {
+    public Server() {
         try {
             ServerSocket s = new ServerSocket(18069); // 서버 모니터링을 구현을 한다.
             JFrame frame = new JFrame();
             frame.add(new JLabel(" Server Monitoring"), BorderLayout.NORTH);
-
 
             JTextArea ta = new JTextArea();
             TextAreaOutputStream taos = new TextAreaOutputStream(ta, 60);
@@ -43,10 +42,7 @@ public class MulticlientServer {
 
 
             frame.add(new JScrollPane(ta));
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception e) {
-            }
+
             frame.pack();
             frame.setVisible(true);
             frame.setSize(800, 600);
@@ -113,7 +109,7 @@ public class MulticlientServer {
 
             case 4444:
                 System.out.println("코드 4444"); // 서버의 아이디 추가 실행 중복 아이디 방지
-                if (id_list.contains(requestcommandArgs[0]) == false) {
+                if (id_list.indexOf(requestcommandArgs[0]) == -1) {
                     System.out.println("코드 4444 실행");
                     writeComm.setStatus(1);
                 } else {
@@ -123,6 +119,7 @@ public class MulticlientServer {
 
                 id_list.add(requestcommandArgs[0]);
                 System.out.println("현재 접속되어 있는  아이디 입니다. " + id_list);
+
 
         }
         try {
@@ -156,4 +153,3 @@ public class MulticlientServer {
         }
     }
 }
-

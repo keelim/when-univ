@@ -13,7 +13,6 @@ public class LoginGui extends JFrame implements ActionListener {
     //	서버 체크하기
     public LoginGui() {
 
-
         setTitle("로그인 화면");
         setSize(450, 200);
         getContentPane().setLayout(null);
@@ -76,8 +75,10 @@ public class LoginGui extends JFrame implements ActionListener {
                     new Member_List();
                 } else {
                     setVisible(false);
-                    new MainGui();
+//                    new MainGui();
+                    new MainGUIsub();
                 }
+
             } else {
                 // 로그인 실패일 경우
                 JOptionPane.showMessageDialog(null, "로그인 실패");

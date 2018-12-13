@@ -2,16 +2,15 @@ package MainTest;
 
 import javax.swing.*;
 
-public class MainGui extends JFrame {
+public class MainGUIsub extends JFrame {    /// 서버 멀티 태크스 구성을 살리는 것이 중요 최소 기능 만을 구현을 하자  커넥션 까지 관리를 하기에는 무리가 있을 것으로 예상
     private Yut u;
     private User user = User.getInstance();
     private String id = user.getID();
-    private Client client;
+    private Client client = new Client();
 
-    public MainGui() {
-
-
-
+    public MainGUIsub() {
+        JOptionPane.showMessageDialog(null, "서버 이중 로그인 방지 ");
+        client.resultComm = client.idplus(id);
         setTitle("메인화면");
         new Staus();
         setSize(770, 400);
@@ -260,7 +259,6 @@ public class MainGui extends JFrame {
             JButton button = new JButton("승리 횟수");
             button.addActionListener(e -> {
                 client.resultComm = client.win(id);
-
                 JOptionPane.showMessageDialog(null, "승리 횟수를 확인 합니다. ");
                 JOptionPane.showMessageDialog(null, "당신의 승리 횟수는 " + client.resultComm.getWin());
             });
