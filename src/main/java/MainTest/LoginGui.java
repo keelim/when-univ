@@ -45,6 +45,11 @@ public class LoginGui extends JFrame implements ActionListener {
         getContentPane().add(Signupbutton);
         setLocationRelativeTo(null);
         setVisible(true);
+
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch(Exception e) {
+        }
     }
 
     public static void main(String[] args) throws IOException {
