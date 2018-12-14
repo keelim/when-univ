@@ -15,7 +15,6 @@ public class Login {
         String getPass;
         DBConnectionMgr pool = DBConnectionMgr.getInstance();
         try {
-
             con = pool.getConnection();
             sql = "select PW from user where ID=?";
             pstmt = con.prepareStatement(sql);
