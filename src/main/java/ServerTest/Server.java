@@ -19,7 +19,7 @@ import java.util.List;
 public class Server {
     static int requestcommand;
     static String[] requestcommandArgs;
-    List<String> id_list = Collections.synchronizedList(new ArrayList<>());
+    List<String> id_list = Collections.synchronizedList(new ArrayList());
     // 각각의 유저들에게 소켓과 일을 부여를 해야 한다. 데이터를 받고 구분을 하는 것으로 하자
     // 멀티 룸을 가지는 서버는 무리이다.
     private ObjectInputStream readStream;

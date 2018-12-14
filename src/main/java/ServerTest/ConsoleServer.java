@@ -20,7 +20,7 @@ public class ConsoleServer {
     public ConsoleServer() {
         try {
             s = new ServerSocket(18069); // 서버 모니터링을 구현을 한다.
-            id_list = new HashSet<>();
+            id_list = new HashSet<String>();
 
             while (true) {
                 System.out.println("멀티 서버 구성입니다. ");
