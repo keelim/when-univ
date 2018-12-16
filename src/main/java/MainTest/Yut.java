@@ -1,74 +1,97 @@
 package MainTest;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-//어차피 클라이언트 안에서 게임을 실행 하는 것이여서 그렇게 서버 측에서는 신경을 쓸 필요가 없다.
-// 그냥 끊기면 끊긴 것을 확인하고 오류만 수정을 하면 된다.
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+
 public class Yut extends JFrame {
-    BufferedImage img = null;
+	
+	int i;
+	BufferedImage img = null;
+	public Yut() {
+		setTitle("윷");
+		
+		i = 1+(int)(Math.random()*4);
+		if(i==1) {
+			try {
+				img = ImageIO.read(new File("C:\\Users\\h0033\\Desktop\\Comp2-project\\src\\main\\java\\source\\도.png"));
+			}
+			catch (IOException e) {
+				System.out.println(e.getMessage());
+				System.exit(0);
+			}
+		}
+		if(i==2) {
+			try {
+				img = ImageIO.read(new File("C:\\Users\\h0033\\Desktop\\Comp2-project\\src\\main\\java\\source\\개.png"));
+			}
+			catch (IOException e) {
+				System.out.println(e.getMessage());
+				System.exit(0);
+			}
+		}
+		if(i==3) {
+			try {
+				img = ImageIO.read(new File("C:\\Users\\h0033\\Desktop\\Comp2-project\\src\\main\\java\\source\\걸.png"));
+			}
+			catch (IOException e) {
+				System.out.println(e.getMessage());
+				System.exit(0);
+			}
+		}
+		if(i==4) {
+			try {
+				img = ImageIO.read(new File("C:\\Users\\h0033\\Desktop\\Comp2-project\\src\\main\\java\\source\\윷.png"));
+			}
+			catch (IOException e) {
+				System.out.println(e.getMessage());
+				System.exit(0);
+			}
+		}
+		if(i==5) {
+			try {
+				img = ImageIO.read(new File("C:\\Users\\h0033\\Desktop\\Comp2-project\\src\\main\\java\\MainTest4\\Yut.java"));
+			}
+			catch (IOException e) {
+				System.out.println(e.getMessage());
+				System.exit(0);
+			}
+		}
+		
+		add(new Yut_Panel());
+		pack();
+		setVisible(true);
+		
 
-    public Yut() {
-        setTitle("윷");
-        setResizable(false);
-        int yut_num = (int) (Math.random() * 16);
-        if (yut_num < 4) {
-            try {
-                img = ImageIO.read(new File("source/도.png"));
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
+	}
+	
+	public int getI() {
+		return i;
+	}
+	
+	class Yut_Panel extends JPanel{
 
-                System.exit(0);
-            }
-        } else if (yut_num < 10) {
-            try {
-                img = ImageIO.read(new File("source/개.png"));
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                System.exit(0);
-            }
-        } else if (yut_num < 14) {
-            try {
-                img = ImageIO.read(new File("source/걸.png"));
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                System.exit(0);
-            }
-        } else if (yut_num < 15) {
-            try {
-                img = ImageIO.read(new File("source/윷.png"));
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                System.exit(0);
-            }
-        } else if (yut_num < 16) {
-            try {
-                img = ImageIO.read(new File("source/모.png"));
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                System.exit(0);
-            }
-        }
-        JPanel p = new Yut_Panel();
-        add(p);
-        pack();
-        setVisible(true);
-    }
-
-    class Yut_Panel extends JPanel {
-        public void paintComponent(Graphics g) {
-            g.drawImage(img, 0, 0, null);
-        }
-
-        public Dimension getPreferredSize() {
-            if (img == null)
-                return new Dimension(100, 100);
-            else
-                return new Dimension(img.getWidth(null), img.getHeight(null));
-        }
-    }
+		public void paintComponent(Graphics g) {
+				g.drawImage(img, 0,0,null);
+		}
+		
+		public Dimension getPreferredSize() {
+			if (img == null) {
+				return new Dimension(100,100);
+			} else {
+				return new Dimension(img.getWidth(null), img.getHeight(null));
+			}
+		}
+		
+	}
+	
+	public static void main(String [] args) {
+		new Yut();
+	}
+	
 }

@@ -6,7 +6,7 @@ public class Command implements Serializable { // 공통적으로 서버와 클�
     public static final int WIN = 7777;  // win을 작용시킨다.
     public static final int POINT = 3333;  // 서버 상태를 확인한다.
     public static final int LEVEL = 2222; //레벨을 확인을 한다.
-    public static final int PLUSWIN = 1111; // 윷놀이 하고 연관을 시키면 된다.
+    public static final int PLUSWIN = 8888; // 윷놀이 하고 연관을 시키면 된다.
     public static final int PLUSID = 4444;
     public static final int CLOSE = 5555;
     private static final long serialVersionUID = 1L;

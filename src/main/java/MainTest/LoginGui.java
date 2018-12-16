@@ -48,11 +48,11 @@ public class LoginGui extends JFrame implements ActionListener {
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch(Exception e) {
+        } catch (Exception e) {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         LoginGui m = new LoginGui();
     }
 
@@ -80,8 +80,7 @@ public class LoginGui extends JFrame implements ActionListener {
                     new Member_List();
                 } else {
                     setVisible(false);
-//                    new MainGui();
-                    new MainGUIsub();
+                    new MainFrame();
                 }
 
             } else {

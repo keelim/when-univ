@@ -78,7 +78,7 @@ public class LoginGui2 extends JFrame implements ActionListener {
                 user.setLevel(Login.getlevel(id));
 
                 setVisible(false);
-                new MainGUIsub();
+                new MainFrame();
 
             } else {
                 // 로그인 실패일 경우

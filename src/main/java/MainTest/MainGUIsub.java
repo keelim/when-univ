@@ -9,6 +9,7 @@ public class MainGUIsub extends JFrame {    /// 서버 멀티 태크스 구성�
     private String id = user.getID();
     private Client client = new Client();
 
+
     public MainGUIsub() {
         JOptionPane.showMessageDialog(null, "서버 이중 로그인 방지 ");
 
