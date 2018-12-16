@@ -1,41 +1,9 @@
 package MainTest;
 
-
-/**
- * Copyright(c) 2001 iSavvix Corporation (http://www.isavvix.com/)
- * <p>
- * All rights reserved
- * <p>
- * Permission to use, copy, modify and distribute this material for
- * any purpose and without fee is hereby granted, provided that the
- * above copyright notice and this permission notice appear in all
- * copies, and that the name of iSavvix Corporation not be used in
- * advertising or publicity pertaining to this material without the
- * specific, prior written permission of an authorized representative of
- * iSavvix Corporation.
- * <p>
- * ISAVVIX CORPORATION MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES,
- * EXPRESS OR IMPLIED, WITH RESPECT TO THE SOFTWARE, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR ANY PARTICULAR PURPOSE, AND THE WARRANTY AGAINST
- * INFRINGEMENT OF PATENTS OR OTHER INTELLECTUAL PROPERTY RIGHTS.  THE
- * SOFTWARE IS PROVIDED "AS IS", AND IN NO EVENT SHALL ISAVVIX CORPORATION OR
- * ANY OF ITS AFFILIATES BE LIABLE FOR ANY DAMAGES, INCLUDING ANY
- * LOST PROFITS OR OTHER INCIDENTAL OR CONSEQUENTIAL DAMAGES RELATING
- * TO THE SOFTWARE.
- */
-
-
 import java.sql.*;
 import java.util.Properties;
 import java.util.Vector;
 
-
-/**
- * Manages a java.sql.Connection pool.
- *
- * @author Anil Hemrajani
- */
 public class DBConnectionMgr {
     private static DBConnectionMgr instance = null;
     public String _driver = "org.gjt.mm.mysql.Driver";
@@ -47,14 +15,6 @@ public class DBConnectionMgr {
     private boolean _traceOn = false;
     private boolean initialized = false;
     private int _openConnections = 50;
-
-    public DBConnectionMgr() {
-    }
-
-    /**
-     * Use this method to set the maximum number of open connections before
-     * unused connections are closed.
-     */
 
     public static DBConnectionMgr getInstance() {
         if (instance == null) {
@@ -68,72 +28,21 @@ public class DBConnectionMgr {
         return instance;
     }
 
-    public void setOpenConnectionCount(int count) {
-        _openConnections = count;
-    }
-
-
-    public void setEnableTrace(boolean enable) {
-        _traceOn = enable;
-    }
-
-
-    /**
-     * Returns a Vector of java.sql.Connection objects
-     */
-    public Vector<ConnectionObject> getConnectionList() {
-        return connections;
-    }
-
-
-    /**
-     * Opens specified "count" of connections and adds them to the existing pool
-     */
-    public synchronized void setInitOpenConnections(int count)
-            throws SQLException {
-        Connection c = null;
-        ConnectionObject co = null;
-
-        for (int i = 0; i < count; i++) {
-            c = createConnection();
-            co = new ConnectionObject(c, false);
-
-            connections.addElement(co);
-            trace("ConnectionPoolManager: Adding new DB connection to pool (" + connections.size() + ")");
-        }
-    }
-
-
-    /**
-     * Returns a count of open connections
-     */
-    public int getConnectionCount() {
-        return connections.size();
-    }
-
-
-    /**
-     * Returns an unused existing or new connection.
-     */
     public synchronized Connection getConnection()
             throws Exception {
         if (!initialized) {
             Class<?> c = Class.forName(_driver);
             DriverManager.registerDriver((Driver) c.newInstance());
-
             initialized = true;
         }
-
 
         Connection c = null;
         ConnectionObject co = null;
         boolean badConnection = false;
 
-
         for (int i = 0; i < connections.size(); i++) {
-            co = (ConnectionObject) connections.elementAt(i);
+            co = connections.elementAt(i);
 
-            // If connection is not in use, test to ensure it's still valid!
             if (!co.inUse) {
                 try {
                     badConnection = co.connection.isClosed();
@@ -144,7 +53,6 @@ public class DBConnectionMgr {
                     e.printStackTrace();
                 }
 
-                // Connection is bad, remove from pool
                 if (badConnection) {
                     connections.removeElementAt(i);
                     trace("ConnectionPoolManager: Remove disconnected DB connection #" + i);
@@ -170,10 +78,6 @@ public class DBConnectionMgr {
         return c;
     }
 
-
-    /**
-     * Marks a flag in the ConnectionObject to indicate this connection is no longer in use
-     */
     public synchronized void freeConnection(Connection c) {
         if (c == null)
             return;
@@ -181,7 +85,7 @@ public class DBConnectionMgr {
         ConnectionObject co = null;
 
         for (int i = 0; i < connections.size(); i++) {
-            co = (ConnectionObject) connections.elementAt(i);
+            co = connections.elementAt(i);
             if (c == co.connection) {
                 co.inUse = false;
                 break;
@@ -189,7 +93,7 @@ public class DBConnectionMgr {
         }
 
         for (int i = 0; i < connections.size(); i++) {
-            co = (ConnectionObject) connections.elementAt(i);
+            co = connections.elementAt(i);
             if ((i + 1) > _openConnections && !co.inUse)
                 removeConnection(co.connection);
         }
@@ -234,16 +138,13 @@ public class DBConnectionMgr {
     }
 
 
-    /**
-     * Marks a flag in the ConnectionObject to indicate this connection is no longer in use
-     */
     public synchronized void removeConnection(Connection c) {
         if (c == null)
             return;
 
         ConnectionObject co = null;
         for (int i = 0; i < connections.size(); i++) {
-            co = (ConnectionObject) connections.elementAt(i);
+            co = connections.elementAt(i);
             if (c == co.connection) {
                 try {
                     c.close();
@@ -282,27 +183,6 @@ public class DBConnectionMgr {
     }
 
 
-    /**
-     * Closes all connections and clears out the connection pool
-     */
-    public void releaseFreeConnections() {
-        trace("ConnectionPoolManager.releaseFreeConnections()");
-
-        @SuppressWarnings("unused")
-        Connection c = null;
-        ConnectionObject co = null;
-
-        for (int i = 0; i < connections.size(); i++) {
-            co = (ConnectionObject) connections.elementAt(i);
-            if (!co.inUse)
-                removeConnection(co.connection);
-        }
-    }
-
-
-    /**
-     * Closes all connections and clears out the connection pool
-     */
     public void finalize() {
         trace("ConnectionPoolManager.finalize()");
 
@@ -311,7 +191,7 @@ public class DBConnectionMgr {
         ConnectionObject co = null;
 
         for (int i = 0; i < connections.size(); i++) {
-            co = (ConnectionObject) connections.elementAt(i);
+            co = connections.elementAt(i);
             try {
                 co.connection.close();
             } catch (Exception e) {

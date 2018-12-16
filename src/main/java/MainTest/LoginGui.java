@@ -3,7 +3,6 @@ package MainTest;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class LoginGui extends JFrame implements ActionListener {
     private JTextField loginField;
@@ -72,8 +71,11 @@ public class LoginGui extends JFrame implements ActionListener {
             if (existLogin) { // 로그인시 데이터 베이스에서 승리, 포인트, 레벨을 불러온다.
                 // 로그인 성공일 경우
                 user.setID(id);
+
                 user.setGameMoney(Login.getMoney(id));
+
                 user.setWin(Login.getWin(id));
+
                 user.setLevel(Login.getlevel(id));
                 if (id.equals("GM")) {
                     setVisible(false);

@@ -147,7 +147,6 @@ public class MemberDB {
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
             int r = ps.executeUpdate(); //실행 -> 수정
-            // 1~n: 성공 , 0 : 실패
             if (r > 0) ok = true; //수정이 성공되면 ok값을 true로 변경
         } catch (Exception e) {
             e.printStackTrace();

@@ -7,7 +7,7 @@ public class User {
     private int level;
     private int win;
 
-    public static User getInstance() {
+    public static User getInstance() {   //메모리에 있는 객체를 다른 클래스에서도 사용을 할 수 있게 하는 것
         if (instance == null) {
             synchronized (User.class) {
                 if (instance == null) {

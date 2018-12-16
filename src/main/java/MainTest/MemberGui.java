@@ -167,6 +167,7 @@ public class MemberGui extends JFrame implements ActionListener {
         if (ok) {
             JOptionPane.showMessageDialog(this, "수정되었습니다.");
             this.dispose();
+
         } else {
             JOptionPane.showMessageDialog(this, "수정실패: 값을 확인하세요");
         }
@@ -174,10 +175,9 @@ public class MemberGui extends JFrame implements ActionListener {
 
     private void insertMember() {
         //화면에서 사용자가 입력한 내용을 얻는다.
-        MemberSave dto = getViewData();
-        MemberDB dao = new MemberDB();
-        boolean ok = dao.insertMember(dto);
-
+        MemberSave memberSave = getViewData();
+        MemberDB memberDB = new MemberDB();
+        boolean ok = memberDB.insertMember(memberSave);
         if (ok) {
             JOptionPane.showMessageDialog(this, "가입이 완료되었습니다.");
             dispose();
@@ -188,11 +188,10 @@ public class MemberGui extends JFrame implements ActionListener {
     }
 
     public MemberSave getViewData() {
-        //화면에서 사용자가 입력한 내용을 얻는다.
+
         MemberSave save = new MemberSave();
         String id = IDField.getText();
         String pwd = PWField.getText();
-        //dto에 담는다.
         save.setID(id);
         save.setPW(pwd);
         return save;

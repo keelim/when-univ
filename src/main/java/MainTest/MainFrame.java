@@ -31,15 +31,13 @@ public class MainFrame extends JFrame {
     private int win = 0; // 승패를 확인하는 용도, 승리시:1 패:0
 
     public MainFrame() {
-
         JOptionPane.showMessageDialog(null, "서버 이중 로그인 방지 ");
-
         client.resultComm = client.idplus(id); // 서버 이중 로그인 방지 하는 것을 만들기
+
         if (client.resultComm.getStatus() == -1) {
             JOptionPane.showMessageDialog(null, "접속 되어진 아이디가 있습니다. ");
             JOptionPane.showMessageDialog(null, "프로그램을 종료 합니다. ");
             System.exit(1);
-
         }
 
         setTitle("메인화면");
@@ -52,8 +50,8 @@ public class MainFrame extends JFrame {
         state_button.addActionListener(e -> {
             new Staus();
         });
-        getContentPane().add(state_button);
 
+        getContentPane().add(state_button);
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 10, 625, 342);
@@ -901,10 +899,10 @@ public class MainFrame extends JFrame {
         private int win = 1;
 
         public Win() {
-            client.resultComm = client.pluswin(user.getID());
+            client.resultComm = client.pluswin(user.getID()); //서버에 승리를 보내어 DB에 넣도록 한다
+
             JLabel label = new JLabel("WIN!");
             label.setFont(new Font("Serif", Font.BOLD, 100));
-
             setTitle("승");
             setSize(300, 300);
             add(label);
@@ -913,18 +911,15 @@ public class MainFrame extends JFrame {
 
         }
 
-
         int get_win() {
             return win;
         }
-
     }
 
     class Lose extends JFrame {
         private int win = 0;
 
         public Lose() {
-
             JLabel label = new JLabel("LOSE");
             label.setFont(new Font("Serif", Font.BOLD, 100));
 
@@ -935,12 +930,9 @@ public class MainFrame extends JFrame {
             setVisible(true);
 
         }
-
-
         int get_win() {
             return win;
         }
-
     }
 
     class Staus extends JFrame {
@@ -959,10 +951,8 @@ public class MainFrame extends JFrame {
             usersequence.addActionListener(e -> {
                 System.out.println(id);
                 client.resultComm = client.level(id);
-                JOptionPane.showMessageDialog(null, "레벨을 확인 합니다. "); //핸들러로 보낸다.
-
+                JOptionPane.showMessageDialog(null, "레벨 확인 "); //핸들러로 보낸다.
                 JOptionPane.showMessageDialog(null, "당신의 레벨은 " + client.resultComm.getLevel());
-
             });
 
             getContentPane().add(usersequence);
@@ -984,8 +974,6 @@ public class MainFrame extends JFrame {
 
             exitbutton.addActionListener(e -> {
                 System.out.println("프로그램을 종료 합니다. "); // 프로그램 종료 버튼을 누르면 프로그램을 종료 합니다.
-
-
                 JOptionPane.showMessageDialog(null, "프로그램을 종료");
                 client.close();
                 System.exit(1);

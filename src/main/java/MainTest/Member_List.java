@@ -51,6 +51,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
         col.add("GameMoney");
         col.add("level");
         col.add("win");
+        
         return col;
     }//getColumn
 

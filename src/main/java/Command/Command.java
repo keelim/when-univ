@@ -8,24 +8,15 @@ public class Command implements Serializable { // 공통적으로 서버와 클�
     public static final int LEVEL = 2222; //레벨을 확인을 한다.
     public static final int PLUSWIN = 8888; // 윷놀이 하고 연관을 시키면 된다.
     public static final int PLUSID = 4444;
-    public static final int CLOSE = 5555;
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = 1L;
 
     private int commandValue; //어떤 한 명령이 들어오는지를 판단한다.
     private int status = 0;
     private String[] args = null;
-
-
     private int win;
     private int point;
     private int level;
-    private int exit_point = 0;
-
-    // 명령 상수들
-    // 1. 현재 접속 자 수를 확인을 하는 명령
-    // 2. 승리를 추가하는 명령
-    // 3. 특별하게 떠오르는 명령이 없다. --> 후에 추가를 하는 것이 현명할 것으로 판단
 
     public Command(int comm) {
         commandValue = comm;

@@ -14,6 +14,7 @@ public class Login {
         boolean flag = false;
         String getPass;
         DBConnectionMgr pool = DBConnectionMgr.getInstance();
+
         try {
             con = pool.getConnection();
             sql = "select PW from user where ID=?";
@@ -30,14 +31,13 @@ public class Login {
                 }
             }
         } catch (Exception e) {
-            // 원래 예외처리는 크게 잡으면 안되고, 따로 처리가 되어야 합니다.
+            
             e.printStackTrace();
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
         }
-        // 결과값 반납
-        return flag;
+        return flag; //결과값 리터
     }
 
     public static int getMoney(String ID) {

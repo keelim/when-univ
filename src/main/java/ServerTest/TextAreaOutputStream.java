@@ -3,29 +3,25 @@ package ServerTest;
 import javax.swing.*;
 import java.awt.*;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class TextAreaOutputStream extends OutputStream {
-    private byte[] oneByte;                                                    // array for write(int val);
-    private Appender appender;                                                   // most recent action
+    private byte[] bytes;
+    private Appender appender;
 
     public TextAreaOutputStream(JTextArea txtara, int maxlin) {
         if (maxlin < 1) {
             throw new IllegalArgumentException("TextAreaOutputStream maximum lines must be positive (value=" + maxlin + ")");
         }
-        oneByte = new byte[1];
+        bytes = new byte[1];
         appender = new Appender(txtara, maxlin);
     }
 
     static private String bytesToString(byte[] ba, int str, int len) {
-        try {
-            return new String(ba, str, len, "UTF-8");
-        } catch (UnsupportedEncodingException thr) {
-            return new String(ba, str, len);
-        } // all JVMs are required to support UTF-8
+        return new String(ba, str, len, StandardCharsets.UTF_8);
     }
 
     public synchronized void clear() {
@@ -42,8 +38,8 @@ public class TextAreaOutputStream extends OutputStream {
     }
 
     public synchronized void write(int val) {
-        oneByte[0] = (byte) val;
-        write(oneByte, 0, 1);
+        bytes[0] = (byte) val;
+        write(bytes, 0, 1);
     }
 
     public synchronized void write(byte[] ba) {
@@ -60,20 +56,21 @@ public class TextAreaOutputStream extends OutputStream {
     static class Appender implements Runnable {
         static private final String EOL1 = "\n";
         static private final String EOL2 = System.getProperty("line.separator", EOL1);
+
         private final JTextArea textArea;
-        private final int maxLines;                                                   // maximum lines allowed in text area
-        private final LinkedList<Integer> lengths;                                                    // length of lines within text area
-        private final List<String> values;                                                     // values waiting to be appended
-        private int curLength;                                                  // length of current line
+        private final int maxLines;
+        private final LinkedList<Integer> lengths;
+        private final List<String> values;
+        private int curLength;
         private boolean clear;
         private boolean queue;
 
         Appender(JTextArea txtara, int maxlin) {
             textArea = txtara;
             maxLines = maxlin;
+
             lengths = new LinkedList<Integer>();
             values = new ArrayList<String>();
-
             curLength = 0;
             clear = false;
             queue = true;
@@ -98,7 +95,6 @@ public class TextAreaOutputStream extends OutputStream {
             }
         }
 
-        // MUST BE THE ONLY METHOD THAT TOUCHES textArea!
         public synchronized void run() {
             if (clear) {
                 textArea.setText("");
