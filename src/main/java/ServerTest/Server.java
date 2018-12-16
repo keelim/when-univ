@@ -1,78 +1,65 @@
 package ServerTest;
 
 
-import MainTest.Command;
+import Command.Command;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 
-public class Server {
+public class Server implements Serializable {
+    private static final long serialVersionUID = 1L;
     static int requestcommand;
     static String[] requestcommandArgs;
-    List<String> id_list = Collections.synchronizedList(new ArrayList());
-    // 각각의 유저들에게 소켓과 일을 부여를 해야 한다. 데이터를 받고 구분을 하는 것으로 하자
-    // 멀티 룸을 가지는 서버는 무리이다.
-    private ObjectInputStream readStream;
-    private ObjectOutputStream writeStream;
+    List<String> id_list;
     private Command readComm;
     private Command writeComm;
 
 
     public Server() {
-        try {
-            ServerSocket s = new ServerSocket(18069); // 서버 모니터링을 구현을 한다.
+        id_list = new LinkedList<>();
+        try (ServerSocket socket = new ServerSocket(8080)) {
             JFrame frame = new JFrame();
-            frame.add(new JLabel(" Server Monitoring"), BorderLayout.NORTH);
+            frame.add(new JLabel(" Server Monitoring"), BorderLayout.CENTER);
+            JTextArea textArea = new JTextArea();
+            TextAreaOutputStream toutputStream = new TextAreaOutputStream(textArea, 60);
+            PrintStream outputStream = new PrintStream(toutputStream);
+            System.setOut(outputStream);
+            System.setErr(outputStream);
 
-            JTextArea ta = new JTextArea();
-            TextAreaOutputStream taos = new TextAreaOutputStream(ta, 60);
-            PrintStream ps = new PrintStream(taos);
-            System.setOut(ps);
-            System.setErr(ps);
-
-
-            frame.add(new JScrollPane(ta));
-
+            frame.add(new JScrollPane(textArea));
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
+            frame.setSize(600, 400);
             frame.setVisible(true);
-            frame.setSize(800, 600);
-            frame.setDefaultCloseOperation(3);
-
-
             while (true) {
                 System.out.println("멀티 서버 구성입니다. ");
                 System.out.println("서버를 시작을 합니다. ");
                 System.out.println("접속을 기다리고 있습니다.");
-                Socket incoming = s.accept(); // 접속을 기다린다.
-                // 서버가 그냥 살아있는지 확인 하는 것 이후 쓰레드 부터 진짜할일을 구성 하는 것이다.
-                readStream = new ObjectInputStream(incoming.getInputStream());
-                writeStream = new ObjectOutputStream(incoming.getOutputStream());
-                System.out.println("스트림 셋팅을 완료하였습니다. ");
 
-                Handling h = new Handling();
+                Socket incoming = socket.accept(); // 소켓을 듣는다.
+                Handling h = new Handling(incoming); // --> 접속 커넥션 마다 쓰레드를 부여를 한다.
                 new Thread(h).start();
+
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("소켓 연결이 끊어졌습니다. ");
         }
+
+
     }
 
     public static void main(String[] args) {
-        new MulticlientServer();
+        new Server();
     }
 
-    public synchronized void handling(Command read) {
+    public synchronized void handling(Command read, ObjectOutputStream writeStream) {
+
         System.out.println("커맨드를 실행을 합니다. ");
         writeComm = new Command(0);
         requestcommand = read.getCommandValue();
@@ -96,7 +83,7 @@ public class Server {
                 break;
 
             case 2222:
-                System.out.println("코드 2222"); //레벨을 확인을 한다.
+                System.out.println("코드 2222"); //레벨을 확인을 한다. level를 확인을 한다.
                 DBload m2 = new DBload();
                 System.out.println(requestcommandArgs[0]);
                 System.out.println(m2.level(requestcommandArgs[0]));
@@ -110,10 +97,10 @@ public class Server {
             case 4444:
                 System.out.println("코드 4444"); // 서버의 아이디 추가 실행 중복 아이디 방지
                 if (id_list.indexOf(requestcommandArgs[0]) == -1) {
-                    System.out.println("코드 4444 실행");
+                    System.out.println("코드 4444 1 실행 중복 아이디 없음");
                     writeComm.setStatus(1);
                 } else {
-                    System.out.println("코드 4444 실행");
+                    System.out.println("코드 4444 2 실행 중복 아이디 있음");
                     writeComm.setStatus(-1);
                 }
 
@@ -131,25 +118,47 @@ public class Server {
     }
 
     class Handling implements Runnable {
+        private Socket socket;
+        private ObjectInputStream readStream; // 공유된 스트림이라 전송이 되지 않았던 것 --> 선언 부분을 쓰레드 차원으로 내리는 것
+        private ObjectOutputStream writeStream;
+        private String user_id;
+
+        public Handling(Socket socket) throws IOException {
+            this.socket = socket;
+            readStream = new ObjectInputStream(socket.getInputStream()); // 이 스트림은 소켓에 들어가야 한다.
+            writeStream = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("스트림 셋팅을 완료하였습니다. ");
+        }
+
 
         @Override
-        public void run() {
+        public synchronized void run() {
             while (true) {
                 System.out.println("handling 을 시작합니다. ");
                 try {
                     readComm = (Command) readStream.readObject();
+                    String[] user = readComm.getArgs();
+                    this.user_id = user[0];
                     System.out.println(readComm.getCommandValue() + "를 받았습니다. ");
-                    handling(readComm);
+                    handling(readComm, writeStream);
                 } catch (IOException e) {
-
-                    e.printStackTrace();
+                    e.getMessage();
+                    break;
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
 
-
+            }
+            try {
+                System.out.println("커넥션이 끊어진 id 입니다. " + user_id);
+                id_list.remove(user_id);
+                System.out.println(id_list);
+                socket.close();
+            } catch (IOException e) {
+                e.getMessage();
             }
 
         }
+
     }
 }

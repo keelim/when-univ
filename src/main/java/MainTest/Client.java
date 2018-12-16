@@ -1,5 +1,7 @@
 package MainTest;
 
+import Command.Command;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,9 +10,10 @@ import java.io.Serializable;
 import java.net.Socket;
 
 public class Client implements Serializable {
-    Command resultComm;
-    Command readComm;
-    Command writeComm;
+    private static final long serialVersionUID = 1L;
+    public Command resultComm;
+    public Command readComm;
+    public Command writeComm;
     private Socket socket;
     private ObjectInputStream readStream;
     private ObjectOutputStream writeStream;
@@ -18,7 +21,7 @@ public class Client implements Serializable {
 
     public Client() { //서버에 접속한 아이디를 저장을 한다.
         try {
-            socket = new Socket("127.0.0.1", 18069);
+            socket = new Socket("127.0.0.1", 8080);
             writeStream = new ObjectOutputStream((socket.getOutputStream()));
             readStream = new ObjectInputStream((socket.getInputStream()));
 
@@ -50,6 +53,9 @@ public class Client implements Serializable {
             writeStream.writeObject(writeComm);
         } catch (IOException e) {
             e.printStackTrace();
+            close();
+            JOptionPane.showMessageDialog(null, "스트림과 소켓을 닫고 종료 합니다. ");
+            System.exit(1);
         }
     }
 
@@ -77,9 +83,10 @@ public class Client implements Serializable {
         return getResponse();
     }
 
-    public Command exit(String id) {
+
+    public Command pluswin(String id) {
         String[] args = {id};
-        sendValue(Command.CLOSE, args);
+        sendValue(Command.PLUSWIN, args);
         return getResponse();
     }
 

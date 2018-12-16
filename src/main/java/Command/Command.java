@@ -1,4 +1,4 @@
-package MainTest;
+package Command;
 
 import java.io.Serializable;
 
@@ -9,6 +9,7 @@ public class Command implements Serializable { // 공통적으로 서버와 클�
     public static final int PLUSWIN = 1111; // 윷놀이 하고 연관을 시키면 된다.
     public static final int PLUSID = 4444;
     public static final int CLOSE = 5555;
+    private static final long serialVersionUID = 1L;
 
 
     private int commandValue; //어떤 한 명령이 들어오는지를 판단한다.
@@ -75,11 +76,5 @@ public class Command implements Serializable { // 공통적으로 서버와 클�
         this.status = status;
     }
 
-    public int getExit_point() {
-        return exit_point;
-    }
 
-    public void setExit_point(int exit_point) {
-        this.exit_point = exit_point;
-    }
 }

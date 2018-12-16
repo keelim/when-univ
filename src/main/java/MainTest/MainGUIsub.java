@@ -1,6 +1,7 @@
 package MainTest;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainGUIsub extends JFrame {    /// 서버 멀티 태크스 구성을 살리는 것이 중요 최소 기능 만을 구현을 하자  커넥션 까지 관리를 하기에는 무리가 있을 것으로 예상
     private Yut u;
@@ -10,7 +11,16 @@ public class MainGUIsub extends JFrame {    /// 서버 멀티 태크스 구성�
 
     public MainGUIsub() {
         JOptionPane.showMessageDialog(null, "서버 이중 로그인 방지 ");
-        client.resultComm = client.idplus(id);
+
+        client.resultComm = client.idplus(id); // 서버 이중 로그인 방지 하는 것을 만들기
+        if(client.resultComm.getStatus() == -1){
+            JOptionPane.showMessageDialog(null, "접속 되어진 아이디가 있습니다. ");
+            JOptionPane.showMessageDialog(null, "프로그램을 종료 합니다. ");
+            System.exit(1);
+
+        }
+        // 커넥션 관리 서버
+
         setTitle("메인화면");
         new Staus();
         setSize(770, 400);
@@ -192,14 +202,12 @@ public class MainGUIsub extends JFrame {    /// 서버 멀티 태크스 구성�
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch(Exception e) {
+        } catch (Exception e) {
         }
 
         setLocationRelativeTo(null);
         setVisible(true);
     }
-
-
 
 
     class Staus extends JFrame {
@@ -241,13 +249,12 @@ public class MainGUIsub extends JFrame {    /// 서버 멀티 태크스 구성�
 
             exitbutton.addActionListener(e -> {
                 System.out.println("프로그램을 종료 합니다. "); // 프로그램 종료 버튼을 누르면 프로그램을 종료 합니다.
-                client.resultComm = client.exit(id);
-                int i = client.resultComm.getExit_point();
-                if(i == 1){
-                    JOptionPane.showMessageDialog(null, "프로그램을 종료");
-                    client.close();
-                    System.exit(1);
-                }
+
+
+                JOptionPane.showMessageDialog(null, "프로그램을 종료");
+                client.close();
+                System.exit(1);
+
             });
             getContentPane().add(exitbutton);
 
