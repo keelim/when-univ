@@ -34,6 +34,7 @@ public class Server implements Serializable {
 
             frame.add(new JScrollPane(textArea));
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setTitle("Server Monitoring");
             frame.pack();
             frame.setSize(600, 400);
             frame.setVisible(true);
@@ -93,6 +94,7 @@ public class Server implements Serializable {
                 System.out.println("코드 8888"); //pluswin을 실행한다.
                 DBload m3 = new DBload();
                 m3.pluswin(requestcommandArgs[0]);
+
 
             case 4444:
                 System.out.println("코드 4444"); // 서버의 아이디 추가 실행 중복 아이디 방지

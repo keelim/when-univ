@@ -2,6 +2,7 @@ package ServerTest;
 
 import java.sql.*;
 
+@SuppressWarnings("ALL")
 class DBload {
     private final String DRIVER = "org.gjt.mm.mysql.Driver";
     private final String URL = "jdbc:mysql://localhost:3306/comp2";
