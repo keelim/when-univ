@@ -8,5 +8,10 @@
 ## 2019 02 08
 1. `pointer` 
     - 포인터의 사용법
-2. 
-3. 
+
+## 2019 02 11
+1. 함수의 형태
+2. prameter, nonparmeter
+3. returnvalue, unreturn value
+    - c language  를 정의를 할때 function은 main 앞에서 define
+    
