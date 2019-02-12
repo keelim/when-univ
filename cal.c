@@ -7,7 +7,7 @@ void showQuestion(int i, int num1, int num2);
 
 int getRandomNumber(int i);
 
-int main(void) {
+int main_cal(void) {
 
     srand(time(NULL));
     int count = 0;
