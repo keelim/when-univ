@@ -18,6 +18,8 @@ int main(void) {
 
         showQuestion(i, num1, num2);
 
+        int answer = -1;
+        scanf_s("%d", &answer);
         if(answer == -1){
             printf("program exit");
             break;
