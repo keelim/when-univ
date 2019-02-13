@@ -9,25 +9,28 @@ int getRandomNumber(int i);
 
 int main_cal(void) {
 
-    srand(time(NULL));
-    int count = 0;
-    for (int i = 1; i <5 ; ++i) {
+//    srand(time(NULL));
+//    int count = 0;
+//    for (int i = 1; i <5 ; ++i) {
+//
+//        int num1 = getRandomNumber(i);
+//        int num2 = getRandomNumber(i);
+//
+//        showQuestion(i, num1, num2);
+//
+//        int answer = -1;
+//        scanf_s("%d", &answer);
+//        if(answer == -1){
+//            printf("program exit");
+//            break;
+//        } else {}
+//
+//
+//
+//    }
 
-        int num1 = getRandomNumber(i);
-        int num2 = getRandomNumber(i);
-
-        showQuestion(i, num1, num2);
-
-        int answer = -1;
-        scanf_s("%d", &answer);
-        if(answer == -1){
-            printf("program exit");
-            break;
-        } else {}
-
-
-
-    }
+    char c_array[7]={'c', 'o', 'd', 'i', 'n', 'g'};
+    printf("%s", c_array);
 
     return 0;
 
