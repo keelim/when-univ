@@ -7,5 +7,9 @@ cmake-build-debug
 .gitattributes
 Projectpractice/Debug/
 Projectpractice/Projectpractice.sln
-Projectpractice/Projectpractice/
+Projectpractice/Projectpractice/Debug
+Projectpractice/Projectpractice/x64
+Projectpractice.vcxproj
+Projectpractice.vcxproj.user
+Projectpractice.vcxproj.filters
 Projectpractice/x64/
