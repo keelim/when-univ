@@ -49,5 +49,13 @@
     - 메모리에 직접적인 접근이 가능한 언어
     - 포인터를 사용하기 위해서는 메모리 할당
     - malloc(), alloc() > free()
-2. 
+2. `Recursion`
+    - 함수 탈출 조건을 명시
+3. main
+    - ANSI 표준은 int 를 사용을 하는 것
+        - 정상적 종료 `return 0` > 비정상 1=0
+4. `function pointer`
+    -         
+
+        
 
