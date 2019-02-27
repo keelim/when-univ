@@ -55,7 +55,9 @@
     - ANSI 표준은 int 를 사용을 하는 것
         - 정상적 종료 `return 0` > 비정상 1=0
 4. `function pointer`
-    -         
+    - 
+5. `enum`
+    - 사용되어야 할 변수를 열거해 놓은 것        
 
         
 
