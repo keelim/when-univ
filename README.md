@@ -62,3 +62,20 @@
 2. 절차 지향 언어 
     - OOP 구현 가능 > 하지만 언어적 도움 X 
 3. 포인터 배열 관계
+
+## 2019 03 07
+1. 자료형은 집합의 관점 해석 가능
+    - tydef --> Boolean 을 정의하여 쓴다. 
+    - 자료형을 집합의 형태 
+    - 순서가 있는 집합의 의미
+    - enum --> 순서가 의미가 있다.
+    - compiler 순서 배정
+    - TRUE, FALSE 를 바꾸어서는 안된다. 
+    - C > 0 FALSE 나머디 TRUE
+2. scanf --> scanf_s로 변경하여 사용
+
+- java --> 클래스를 사용을 한다.
+- scanf 는 한 줄 밖에 받지를 못한다.  
+
+<code>tydef enum {FALSE, TRUE} Boolean;<br>
+MACRO STRING replace</code>
