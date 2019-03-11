@@ -17,7 +17,7 @@ Boolean AppView_in_solvingIsRequested() {
 	printf("방정식을 풀려면 'y', 풀이를 종료하려면 다른 아무 키나 치시오: ");
 
 	char inputLine[255]; //충분한 공간을 할당 하여 대비
-	scanf_s("%s", inputLine); // “return” key 로 입력 완료된 한 줄을 가져온다.
+	scanf_s("%s", inputLine, sizeof(inputLine)); // “return” key 로 입력 완료된 한 줄을 가져온다.
 	answer = inputLine[0]; // 문자열의 첫번째 문자를 입력값으로 받는다
 
 	if (answer == 'y') {
@@ -53,7 +53,7 @@ void AppView_out_root(float root) {
 
 
 float LinearEquation_solve(float c0, float c1) {
-	if (fabsf(c1) < 0.000001) {  // 1차항의 계수가 0 인지를 검사
+	if (FloatValueIsZero(c1)) {  // 1차항의 계수가 0 인지를 검사
 		if (c1 * c0 >= 0.0) {   // 두 계수의 부호가 같다
 			return -MAXFLOAT;  // 1차항의 계수가 0 이면, 결과는 -∞
 		}

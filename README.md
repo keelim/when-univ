@@ -79,3 +79,6 @@
 
 <code>tydef enum {FALSE, TRUE} Boolean;<br>
 MACRO STRING replace</code>
+
+## 2019 03 10
+1.homework debug
