@@ -27,4 +27,3 @@ void main() {
 	}
 	AppView_out_msg_endSolvingLinearEquation(); // 종료 메시지 출력
 }
-
