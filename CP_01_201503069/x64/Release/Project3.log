@@ -1,0 +1,8 @@
+﻿  AppView.c
+c:\users\h0033\desktop\comp3\cp_01_201503069\appview.c(20): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'unsigned int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'size_t'입니다.
+  c:\users\h0033\desktop\comp3\cp_01_201503069\appview.c(20): note: 이 인수는 버퍼 크기로 사용됩니다.
+  Main.c
+  코드를 생성하고 있습니다.
+  All 16 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  Project3.vcxproj -> C:\Users\h0033\Desktop\Comp3\CP_01_201503069\x64\Release\Project3.exe
