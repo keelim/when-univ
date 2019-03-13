@@ -1,0 +1,3 @@
+#include "QuadEquationProblem.h"
+
+
