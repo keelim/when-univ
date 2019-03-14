@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d26ede25-c807-46ca-9c5a-ab700ab98901" name="Default Changelist" comment="" />
+    <list default="true" id="d26ede25-c807-46ca-9c5a-ab700ab98901" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DataStructure/src/_DS01_Main_201503069_kim.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -70,11 +73,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataStructure/src/OrderValidity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
               <caret line="17" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -111,12 +123,13 @@
         <option value="$PROJECT_DIR$/DataStructure/src/Board.java" />
         <option value="$PROJECT_DIR$/DataStructure/src/AppView.java" />
         <option value="$PROJECT_DIR$/DataStructure/src/OrderValidity.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="190" />
-    <option name="y" value="84" />
+    <option name="x" value="1025" />
+    <option name="y" value="75" />
     <option name="width" value="974" />
     <option name="height" value="1037" />
   </component>
@@ -125,6 +138,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -148,7 +162,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -224,11 +237,13 @@
       <workItem from="1552040318574" duration="2336000" />
       <workItem from="1552054543084" duration="616000" />
       <workItem from="1552196760654" duration="78000" />
+      <workItem from="1552529012052" duration="772000" />
+      <workItem from="1552535995713" duration="18000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22821000" />
+    <option name="totallyTimeSpent" value="23611000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -240,10 +255,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="190" y="84" width="974" height="1037" extended-state="0" />
+    <frame x="1025" y="75" width="974" height="1037" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37555555" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.39222223" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -327,6 +342,138 @@
     <entry file="file://$PROJECT_DIR$/DataStructure/DataStructure/DS01_Main_201503069_김재현.java" />
     <entry file="file://$PROJECT_DIR$/DataStructure/DataStructure/MagicSquare.java" />
     <entry file="file://$PROJECT_DIR$/DataStructure/DataStructure/OrderValidity.java" />
+    <entry file="uml://JAVA/">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement />
+          <nodes>
+            <node x="352.0" y="1235.0">com</node>
+            <node x="613.0" y="536.0">AppView</node>
+            <node x="768.0" y="1119.0">netscape</node>
+            <node x="1154.0" y="1119.0">oracle</node>
+            <node x="854.0" y="1235.0">org</node>
+            <node x="229.0213541666666" y="797.0">AppController</node>
+            <node x="644.9996704931973" y="294.18367346938777">CellLocation</node>
+            <node x="689.0" y="1235.0">sun</node>
+            <node x="561.0" y="1119.0">META-INF</node>
+            <node x="1018.0" y="1235.0">jdk</node>
+            <node x="308.5213541666666" y="1013.0">_DS01_Main_201503069_kim</node>
+            <node x="194.14687499999997" y="548.5">MagicSquare</node>
+            <node x="320.0" y="1119.0">groovyjarjarasm</node>
+            <node x="522.0" y="1235.0">java</node>
+            <node x="968.0" y="1119.0">groovy</node>
+            <node x="283.0" y="242.0">Board</node>
+            <node x="178.0" y="1235.0">javax</node>
+            <node x="0.0" y="333.5">OrderValidity</node>
+            <node x="30.0" y="1119.0">groovyjarjarcommonscli</node>
+            <node x="0.0" y="1235.0">javafx</node>
+            <node x="969.0" y="14.867838541666664">groovyjarjarantlr</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="AppController" target="Board">
+              <point x="25.1875" y="-83.0" />
+              <point x="455.7088541666666" y="747.0" />
+              <point x="529.8151041666666" y="747.0" />
+              <point x="529.8151041666666" y="511.0" />
+              <point x="531.3333333333333" y="511.0" />
+              <point x="99.33333333333326" y="122.0" />
+            </edge>
+            <edge source="MagicSquare" target="OrderValidity">
+              <point x="-88.0" y="-83.0" />
+              <point x="216.14687499999997" y="511.0" />
+              <point x="209.16666666666669" y="511.0" />
+              <point x="83.66666666666669" y="30.5" />
+            </edge>
+            <edge source="AppController" target="MagicSquare">
+              <point x="-25.1875" y="-83.0" />
+              <point x="405.3338541666666" y="747.0" />
+              <point x="359.14687499999997" y="747.0" />
+              <point x="55.0" y="83.0" />
+            </edge>
+            <edge source="groovyjarjarantlr" target="groovyjarjarantlr">
+              <point x="-66.33333333333333" y="17.5" />
+              <point x="1002.1666666666666" y="69.86783854166666" />
+              <point x="949.0" y="69.86783854166666" />
+              <point x="949.0" y="44.03450520833333" />
+              <point x="-99.5" y="11.666666666666666" />
+            </edge>
+            <edge source="AppController" target="OrderValidity">
+              <point x="-176.3125" y="-83.0" />
+              <point x="254.2088541666666" y="777.0" />
+              <point x="88.3984375" y="777.0" />
+              <point x="88.3984375" y="511.0" />
+              <point x="41.833333333333314" y="511.0" />
+              <point x="-83.66666666666669" y="30.5" />
+            </edge>
+            <edge source="AppController" target="CellLocation">
+              <point x="125.9375" y="-83.0" />
+              <point x="556.4588541666666" y="767.0" />
+              <point x="602.5" y="767.0" />
+              <point x="602.5" y="212.0" />
+              <point x="511.19218749999993" y="212.0" />
+              <point x="84.39999999999998" y="96.0" />
+            </edge>
+            <edge source="MagicSquare" target="Board">
+              <point x="88.0" y="-83.0" />
+              <point x="392.14687499999997" y="511.0" />
+              <point x="432.0" y="511.0" />
+              <point x="0.0" y="122.0" />
+            </edge>
+            <edge source="_DS01_Main_201503069_kim" target="AppController">
+              <point x="-61.0" y="-30.5" />
+              <point x="369.5213541666666" y="988.0" />
+              <point x="329.7713541666666" y="988.0" />
+              <point x="-100.75" y="83.0" />
+            </edge>
+            <edge source="MagicSquare" target="CellLocation">
+              <point x="0.0" y="-83.0" />
+              <point x="304.14687499999997" y="511.0" />
+              <point x="272.5" y="511.0" />
+              <point x="272.5" y="222.0" />
+              <point x="384.59218749999997" y="222.0" />
+              <point x="-42.19999999999999" y="96.0" />
+            </edge>
+            <edge source="AppController" target="AppView">
+              <point x="176.3125" y="-83.0" />
+              <point x="606.8338541666666" y="777.0" />
+              <point x="748.5" y="777.0" />
+              <point x="0.0" y="95.5" />
+            </edge>
+            <edge source="OrderValidity" target="AppController">
+              <point x="0.0" y="30.5" />
+              <point x="125.5" y="511.0" />
+              <point x="99.3984375" y="511.0" />
+              <point x="99.3984375" y="767.0" />
+              <point x="304.5838541666666" y="767.0" />
+              <point x="-125.9375" y="-83.0" />
+            </edge>
+            <edge source="Board" target="CellLocation">
+              <point x="0.0" y="-122.0" />
+              <point x="432.0" y="222.0" />
+              <point x="426.79218749999995" y="222.0" />
+              <point x="0.0" y="96.0" />
+            </edge>
+            <edge source="groovyjarjarcommonscli" target="groovyjarjarcommonscli">
+              <point x="-61.25" y="17.5" />
+              <point x="91.25" y="1174.0" />
+              <point x="10.0" y="1174.0" />
+              <point x="10.0" y="1145.25" />
+              <point x="-122.5" y="8.75" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.9483870967741934" x="528.0" y="659.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DataStructure/src/_DS01_Main_201503069_kim.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -367,7 +514,9 @@
         <state relative-caret-position="54">
           <caret line="3" column="93" selection-start-line="3" selection-start-column="93" selection-end-line="3" selection-end-column="93" />
           <folding>
+            <element signature="e#599#600#0" expanded="true" />
             <element signature="e#649#650#0" expanded="true" />
+            <element signature="e#801#802#0" expanded="true" />
             <element signature="e#841#842#0" expanded="true" />
           </folding>
         </state>
@@ -377,6 +526,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
