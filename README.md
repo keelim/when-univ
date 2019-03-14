@@ -82,3 +82,14 @@ MACRO STRING replace</code>
 
 ## 2019 03 10
 1.homework debug
+
+## 2019 03 14
+1. Call by value 호출에 의한 값 참조
+    - Call by value --> pointer
+    - Call by reference 
+2. MACRO 활용
+    - <code>typedef enum {FALSE, TRUE} Boolean</code>
+    - <code>typedef struct {float _root1; float _root2; } Solution</code>
+3. 헤더와 소스의 관리
+4. visual studio --> C1069 compile --> build
+5. write the report
