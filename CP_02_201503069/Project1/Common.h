@@ -1,3 +1,4 @@
+#pragma once
 typedef enum {FALSE, TRUE} Boolean;
 
 #include <math.h>
@@ -8,10 +9,12 @@ typedef enum {FALSE, TRUE} Boolean;
 typedef struct {
 	float _root1;
 	float _root2;
+
 } Solution;
 
 typedef struct {
 	float _c0;
 	float _c1;
 	float _c2;
+
 } QuadEquation;
