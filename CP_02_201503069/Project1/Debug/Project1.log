@@ -1,4 +1,2 @@
-﻿  QuadEquationProblem.c
-c:\users\h0033\desktop\[cp3]02_201503069_김재현\프로그램\project1\quadequationproblem.c(65): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\h0033\desktop\[cp3]02_201503069_김재현\프로그램\project1\quadequationproblem.c(69): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  main.c
   Project1.vcxproj -> C:\Users\h0033\Desktop\[CP3]02_201503069_김재현\프로그램\Project1\Debug\Project1.exe

@@ -1,8 +1,7 @@
-
 #include "Common.h"
 
 
-typedef struct{ 
+typedef struct{ //QuadEquationProblem struct 정의
 	QuadEquation _equation;
 } QuadEquationProblem;
 

@@ -2,10 +2,10 @@
 #include "QuadEquationProblem.h"
 
 int main() {
-	QuadEquationProblem qeProblem;
-	Boolean solvingIsRequested;
-	QuadEquation equation;
-	Solution solution;
+	QuadEquationProblem qeProblem; //문제 정의
+	Boolean solvingIsRequested;   // 입력값 정의
+	QuadEquation equation;       // 이차 방정식 정의
+	Solution solution;          // 정답 정의
 
 	AppView_out_msg_startSolvingQuadEquation();            //시작 메시지 출력
 	solvingIsRequested = AppView_in_solvingIsRequested(); //응답확인

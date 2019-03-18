@@ -1,6 +1,6 @@
 #include "AppView.h"
 
-Boolean AppView_in_solvingIsRequested(void) {
+Boolean AppView_in_solvingIsRequested(void) { 
 	char answer;
 	printf("방정식을 풀려면'y', 풀이를 종료하려면 아무 키나 치시오: ");
 
@@ -40,7 +40,7 @@ void AppView_out_msg_secondOederTermCoefficientIsZero() {
 	printf("2차 항의 계수가 0이서 이차 방정식이 아닙니다. \n");
 }
 
-void AppVIew_out_msg_determinantsIsNegative(float aDterminant) {// 재확인 필요
+void AppVIew_out_msg_determinantsIsNegative(float aDterminant) {
 	if ( aDterminant < 0 ) {
 		printf("> 판별식의 값이 음수이어서, 해가 존재하지 않습니다.\n ");
 		printf("-판별식의 값은 %.1f\n\n", aDterminant);
