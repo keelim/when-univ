@@ -27,3 +27,7 @@ Model - Controller - View
     - ex> Math Class 는 전부 static 으로 이루어짐
     - 객체 생성 없이 사용하려는 
 8. 모든 게터/세터가 public/private 일 이유가 없다.       
+
+## 2019 03 19
+1. 모든 자료구조의 코드들은 손으로 외울 수 있는 수준이 가장 좋은 것 같다. 
+    - LinkedList
