@@ -59,21 +59,22 @@ void MagicSquare_solve(int anOrder, int aBoard[MAX_ORDER][MAX_ORDER]) {
 
 		if (next_loc._row < 0) {
 			next_loc._row = anOrder - 1;
+
 		}
 		next_loc._col = cu_loc._col + 1;
 
 		if (cu_loc._col >= anOrder) {
 			next_loc._col = 0;
+
 		}
 
 		
-
 		if (aBoard[next_loc._row][next_loc._col] != EMPTY_CELL) { //채워져 있느지를 확인
 			next_loc._row = cu_loc._row + 1;
 			next_loc._col = cu_loc._col;
+
 		}
-		aBoard[cu_loc._col][cu_loc._row] = CellValue;
-			   		 
+					   		 
 		cu_loc = next_loc;
 	}
 
