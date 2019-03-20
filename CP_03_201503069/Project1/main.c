@@ -9,26 +9,29 @@
 void Main_showBoard(int anOrder, int aBoard[MAX_ORDER][MAX_ORDER]) {
 	char messageBuffer[255];
 
-	sprintf_s(messageBuffer,sizeof(messageBuffer), "> Magic Square Board: ORder %2d\n", anOrder);
+	sprintf_s(messageBuffer, sizeof(messageBuffer), "> Magic Square Board: ORder %2d\n", anOrder);
 	AppView_out(messageBuffer);
 	AppView_out("    ");
 
 	for (int col = 0; col < anOrder; col++) {
-		sprintf_s(messageBuffer,sizeof(messageBuffer), "[%2d]", col);
+		sprintf_s(messageBuffer, sizeof(messageBuffer), "[%2d]", col);
 		AppView_out(messageBuffer);
 	}
 
 	AppView_out("\n");
 
 	for (int row = 0; row < anOrder; row++) {
-		//ìˆ˜ì •í•´ì•¼ í•¨
+		printf("[%2d]", row);//¼öÁ¤ ÇØ¾ß ÇÔ
 		for (int col = 0; col < anOrder; col++) {
-			//ìˆ˜ì •í•´ì•¼ í•¨
+			//¼öÁ¤ÇØ¾ß ÇÔ
+			printf(" %d", aBoard[row][col]);
+
 		}
+		printf("\n");
 	}
 
 	AppView_out("\n");
-	
+
 
 
 
@@ -39,8 +42,20 @@ int main() {
 	int inputOrder;
 	int board[MAX_ORDER][MAX_ORDER];
 
-	AppView_out("<<< ë§ˆë°©ì§„ í’€ì´ë¥¼ ì‹œì‘í•©ë‹ˆë‹¤. >>>\n");
-	inputOrder = AppView_in_order();
+	AppView_out("<<< ¸¶¹æÁø Ç®ÀÌ¸¦ ½ÃÀÛÇÕ´Ï´Ù. >>>\n");
+	inputOrder = AppView_in_order(); //scanf ¸¦ ÅëÇÏ¿© ÀÔ·ÂÀ» ¹Ş´Â´Ù. 
+	while (inputOrder != END_OF_RUN) { //À½¼öÀÌ¸é Á¾·á
+
+		if (MagicSquare_ordersVaild(inputOrder)) { //À¯È¿°ªÀÎÁö¸¦ È®ÀÎ
+			MagicSquare_solve(inputOrder, board); //°ªÀÇ ÇØ°á
+
+			Main_showBoard(inputOrder, board);    //¸¶¹æÁø ³ªÅ¸³»±â
+		}
+
+		inputOrder = AppView_in_order(); //ÀçÀÔ·Â
+	}
+	AppView_out("\n <<< ¸¶¹æÁø Ç®ÀÌ¸¦ Á¾·áÇÕ´Ï´Ù. >>>\n");
+
 
 	return 0;
-}
+} //main Á¾·á
