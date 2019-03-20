@@ -1,0 +1,7 @@
+﻿  MagicSquare.c
+C:\Users\h0033\Desktop\CP3_03_201503069_김재현\프로그램\Project1\Project1\MagicSquare.c(42): warning C4101: 'next_loc' :참조되지 않은 지역 변수입니다.
+C:\Users\h0033\Desktop\CP3_03_201503069_김재현\프로그램\Project1\Project1\MagicSquare.c(41): warning C4101: 'cu_loc' :참조되지 않은 지역 변수입니다.
+  main.c
+C:\Users\h0033\Desktop\CP3_03_201503069_김재현\프로그램\Project1\Project1\main.c(40): warning C4101: 'board' :참조되지 않은 지역 변수입니다.
+  코드를 생성하고 있습니다...
+  Project1.vcxproj -> C:\Users\h0033\Desktop\CP3_03_201503069_김재현\프로그램\Project1\Debug\Project1.exe
