@@ -1,4 +1,4 @@
-// 201503069 ê¹€ìž¬í˜„
+// 201503069 ±èÀçÇö
 #include "Common.h"
 #include<stdio.h>
 
