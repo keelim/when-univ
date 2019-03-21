@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+      <FILENAME>magicsquare.c</FILENAME>
+      <LINE>76</LINE>
+      <COLUMN>43</COLUMN>
+    </SFA>
+    <DEFECTCODE>6385</DEFECTCODE>
+    <DESCRIPTION>'aBoard[next_loc._row]'에서 잘못된 데이터를 읽고 있습니다.  읽기 가능한 크기는 '396'바이트인데 실제로는 '-4'바이트만 읽을 수 있습니다.</DESCRIPTION>
+    <FUNCTION>MagicSquare_solve</FUNCTION>
+    <DECORATED>MagicSquare_solve</DECORATED>
+    <FUNCLINE>35</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>36</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>36</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>분기</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>이 루프 건너뛰기, ('row&lt;anOrder'이(가) false라고 가정)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>44</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>45</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>47</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>48</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>49</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>50</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>53</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>54</LINE>
+        <COLUMN>34</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>56</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>57</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>60</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>60</LINE>
+        <COLUMN>31</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>분기</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>이 루프 시작, ('CellValue&lt;=lastCellValue' 가정)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>62</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>64</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>분기</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>이 분기 시작, ('next_loc._row&lt;0' 가정)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>65</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>68</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>70</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>76</LINE>
+        <COLUMN>43</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>사용법</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'aBoard[next_loc._row][-1]'에서 읽기가 잘못됨, (읽기 가능한 범위는 0에서 98 사이임)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+      <FILENAME>magicsquare.c</FILENAME>
+      <LINE>81</LINE>
+      <COLUMN>39</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>'aBoard[next_loc._row]'에 쓰는 동안 버퍼 오버런이 발생했습니다.  쓰기 가능한 크기는 '396'바이트인데 실제로는 '-4'바이트만 쓸 수 있습니다.</DESCRIPTION>
+    <FUNCTION>MagicSquare_solve</FUNCTION>
+    <DECORATED>MagicSquare_solve</DECORATED>
+    <FUNCLINE>35</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>36</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>36</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>분기</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>이 루프 건너뛰기, ('row&lt;anOrder'이(가) false라고 가정)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>44</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>45</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>47</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>48</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>49</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>50</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>53</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>54</LINE>
+        <COLUMN>34</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>56</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>57</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>60</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>60</LINE>
+        <COLUMN>31</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>분기</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>이 루프 시작, ('CellValue&lt;=lastCellValue' 가정)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>62</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>64</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>분기</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>이 분기 시작, ('next_loc._row&lt;0' 가정)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>65</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>68</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>70</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>76</LINE>
+        <COLUMN>43</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\h0033\desktop\comp3\cp_03_201503069 (2)\project1</FILEPATH>
+        <FILENAME>magicsquare.c</FILENAME>
+        <LINE>81</LINE>
+        <COLUMN>39</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>사용법</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'aBoard[next_loc._row][-1]'에 쓰기가 잘못됨, (쓰기 가능한 범위는 0에서 98 사이임)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>
