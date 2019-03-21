@@ -1,3 +1,4 @@
+// 2015030699 ê¹€ìž¬í˜„
 #include"AppView.h"
 
 void AppView_out(char* aMessage) {
@@ -7,7 +8,7 @@ void AppView_out(char* aMessage) {
 
 int AppView_in_order() {
 	int inputOrder = 0;
-	printf("? ¸¶¹æÁø Â÷¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+	printf("? ë§ˆë°©ì§„ ì°¨ìˆ˜ë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 	scanf_s("%d", &inputOrder);
 
 	return inputOrder;

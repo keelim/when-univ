@@ -1,3 +1,4 @@
+// 201503069 김재현
 #include "Common.h"
 
 Boolean MagicSquare_ordersVaild(int anOrder);
