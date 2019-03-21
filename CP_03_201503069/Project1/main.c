@@ -24,7 +24,7 @@ void Main_showBoard(int anOrder, int aBoard[MAX_ORDER][MAX_ORDER]) {
 		printf("[%2d]", row);//수정 해야 함
 		for (int col = 0; col < anOrder; col++) {
 			//수정해야 함
-			printf(" %d", aBoard[row][col]);
+			printf("  %d", aBoard[row][col]);
 
 		}
 		printf("\n");

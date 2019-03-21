@@ -11,7 +11,7 @@ typedef struct {
 
 Boolean MagicSquare_ordersVaild(int anOrder) {
 	if (anOrder < 3) {
-		AppView_out("오류 차수가 너무 작습니다. 3보다 크거나 같아야 한다. \n");
+		AppView_out("오류 차수가 너무 작습니다. 3보다 크거나 같아야 합니다. \n");
 		return FALSE;
 
 	} else if (anOrder > MAX_ORDER) {
@@ -45,36 +45,40 @@ void MagicSquare_solve(int anOrder, int aBoard[MAX_ORDER][MAX_ORDER]) {
 
 	cu_loc._row = 0;
 	cu_loc._col = anOrder / 2;
+	next_loc._row = 0;
+	next_loc._col = anOrder / 2;
+
 
 	int CellValue = 1;
 	aBoard[cu_loc._row][cu_loc._col] = CellValue;
 
-	int lastCellValue = anOrder * anOrder;
-	CellValue = 2;
-	next_loc = cu_loc;
+	int lastCellValue = anOrder * anOrder; // 제곱수로 돌아가야 하니까
+	CellValue = 2; //1은 채웠으니까
+
 
 	for (CellValue = 2; CellValue <= lastCellValue; CellValue++) {
 
-		next_loc._row = cu_loc._row - 1;
+		next_loc._row -= 1;
 
 		if (next_loc._row < 0) {
 			next_loc._row = anOrder - 1;
 
 		}
-		next_loc._col = cu_loc._col + 1;
+		next_loc._col += 1;
 
-		if (cu_loc._col >= anOrder) {
+		if (next_loc._col >= anOrder) {
 			next_loc._col = 0;
 
 		}
 
-		
-		if (aBoard[next_loc._row][next_loc._col] != EMPTY_CELL) { //채워져 있느지를 확인
+
+		if (aBoard[next_loc._row][next_loc._col] != EMPTY_CELL) { //-1이 아닌수로 채워져 있는지를 확인
 			next_loc._row = cu_loc._row + 1;
 			next_loc._col = cu_loc._col;
 
 		}
-					   		 
+		aBoard[next_loc._row][next_loc._col] = CellValue; //cellValue 로 정의
+
 		cu_loc = next_loc;
 	}
 
