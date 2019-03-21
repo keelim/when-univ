@@ -1,4 +1,4 @@
-// 201503069 ê¹€ì¬í˜„
+// 201503069 ±èÀçÇö
 #include "Common.h"
 
 Boolean MagicSquare_ordersVaild(int anOrder);
