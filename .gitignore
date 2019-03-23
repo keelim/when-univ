@@ -13,3 +13,5 @@ Projectpractice.vcxproj
 Projectpractice.vcxproj.user
 Projectpractice.vcxproj.filters
 Projectpractice/x64/
+./Debug
+./Release
