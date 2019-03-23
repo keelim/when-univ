@@ -1,4 +1,4 @@
-// 201503069 ±èÀçÇö
+// 201503069 ê¹€ì¬í˜„
 #pragma once
-typedef enum {FALSE, TRUE} Boolean;
-#define MAX_ORDER 99
+typedef enum {FALSE, TRUE} Boolean; //Boolean íƒ€ì… ì •ì˜
+#define MAX_ORDER 99               //AMX_ORDER ì •ì˜

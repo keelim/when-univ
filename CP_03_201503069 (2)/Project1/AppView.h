@@ -1,8 +1,8 @@
-// 201503069 ±èÀçÇö
+// 201503069 ê¹€ìž¬í˜„
 #include "Common.h"
 #include<stdio.h>
 
-void AppView_out(char* aMessage);
+void AppView_out(char* aMessage); //header AppView_out
 
-int AppView_in_order();
+int AppView_in_order(); //header AppView_in_order
 

@@ -1,13 +1,10 @@
-// 201503069 ±èÀçÇö
+// 201503069 ê¹€ì¬í˜„
 #include"Common.h"
 #include"MagicSquare.h"
 #include"AppView.h"
+#define END_OF_RUN -1 //-1ì„ MACRO ì •ì˜
 
-
-
-#define END_OF_RUN -1
-
-void Main_showBoard(MagicSquare aMagicSquare) {
+void Main_showBoard(MagicSquare aMagicSquare) { //ê°œê²Œë¥¼ í†µí•˜ì—¬ Board ì¶œë ¥
 	int anOrder = aMagicSquare._order;
 	
 	char messageBuffer[255];
@@ -24,9 +21,9 @@ void Main_showBoard(MagicSquare aMagicSquare) {
 	AppView_out("\n");
 
 	for (int row = 0; row < anOrder; row++) {
-		printf("[%2d]", row);//¼öÁ¤ ÇØ¾ß ÇÔ
+		printf("[%2d]", row);
 		for (int col = 0; col < anOrder; col++) {
-			//¼öÁ¤ÇØ¾ß ÇÔ
+			
 			printf("  %d", aMagicSquare._board[row][col]);
 
 		}
@@ -41,23 +38,22 @@ void Main_showBoard(MagicSquare aMagicSquare) {
 }
 
 
-int main() {
+int main() { //main flow
 	MagicSquare magicSquare;
 	
-	AppView_out("<<< ¸¶¹æÁø Ç®ÀÌ¸¦ ½ÃÀÛÇÕ´Ï´Ù. >>>\n");
-	int inputOrder = AppView_in_order(); //scanf ¸¦ ÅëÇÏ¿© ÀÔ·ÂÀ» ¹Ş´Â´Ù. 
-	while (inputOrder != END_OF_RUN) { //À½¼öÀÌ¸é Á¾·á
+	AppView_out("<<< ë§ˆë°©ì§„ í’€ì´ë¥¼ ì‹œì‘í•©ë‹ˆë‹¤. >>>\n");
+	int inputOrder = AppView_in_order(); //scanf ë¥¼ í†µí•˜ì—¬ ì…ë ¥ì„ ë°›ëŠ”ë‹¤. 
+	while (inputOrder != END_OF_RUN) { //ìŒìˆ˜ì´ë©´ ì¢…ë£Œ
 		magicSquare._order = inputOrder;
-		if (MagicSquare_ordersVaild(magicSquare)) { //À¯È¿°ªÀÎÁö¸¦ È®ÀÎ
-			MagicSquare_solve(magicSquare, magicSquare._board); //°ªÀÇ ÇØ°á
+		if (MagicSquare_ordersVaild(magicSquare)) { //ìœ íš¨ê°’ì¸ì§€ë¥¼ í™•ì¸
+			MagicSquare_solve(magicSquare, magicSquare._board); //ê°’ì˜ í•´ê²°
 
-			Main_showBoard(magicSquare);    //¸¶¹æÁø ³ªÅ¸³»±â
+			Main_showBoard(magicSquare);    //ë§ˆë°©ì§„ ë‚˜íƒ€ë‚´ê¸°
 		}
 
-		inputOrder = AppView_in_order(); //ÀçÀÔ·Â
+		inputOrder = AppView_in_order(); //ì¬ì…ë ¥ì„ ë°›ëŠ”ë‹¤. 
 	}
-	AppView_out("\n <<< ¸¶¹æÁø Ç®ÀÌ¸¦ Á¾·áÇÕ´Ï´Ù. >>>\n");
-
+	AppView_out("\n <<< ë§ˆë°©ì§„ í’€ì´ë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤. >>>\n");
 
 	return 0;
 }

@@ -1,13 +1,10 @@
-// 201503069 ±èÀçÇö
+// 201503069 ê¹€ì¬í˜„
 #include"Common.h"
 #include"MagicSquare.h"
 #include"AppView.h"
+#define END_OF_RUN -1 //-1ì„ MACRO ë¡œ ì •ì˜
 
-
-
-#define END_OF_RUN -1
-
-void Main_showBoard(int anOrder, int aBoard[MAX_ORDER][MAX_ORDER]) {
+void Main_showBoard(int anOrder, int aBoard[MAX_ORDER][MAX_ORDER]) { //Board ë¥¼ ì¶œë ¥
 	char messageBuffer[255];
 
 	sprintf_s(messageBuffer, sizeof(messageBuffer), "> Magic Square Board: ORder %2d\n", anOrder);
@@ -22,9 +19,9 @@ void Main_showBoard(int anOrder, int aBoard[MAX_ORDER][MAX_ORDER]) {
 	AppView_out("\n");
 
 	for (int row = 0; row < anOrder; row++) {
-		printf("[%2d]", row);//¼öÁ¤ ÇØ¾ß ÇÔ
+		printf("[%2d]", row);
 		for (int col = 0; col < anOrder; col++) {
-			//¼öÁ¤ÇØ¾ß ÇÔ
+			
 			printf("  %d", aBoard[row][col]);
 
 		}
@@ -33,29 +30,26 @@ void Main_showBoard(int anOrder, int aBoard[MAX_ORDER][MAX_ORDER]) {
 
 	AppView_out("\n");
 
-
-
-
 }
 
 
-int main() {
+int main() { //main flow
 	int inputOrder;
 	int board[MAX_ORDER][MAX_ORDER];
 
-	AppView_out("<<< ¸¶¹æÁø Ç®ÀÌ¸¦ ½ÃÀÛÇÕ´Ï´Ù. >>>\n");
-	inputOrder = AppView_in_order(); //scanf ¸¦ ÅëÇÏ¿© ÀÔ·ÂÀ» ¹Ş´Â´Ù. 
-	while (inputOrder != END_OF_RUN) { //À½¼öÀÌ¸é Á¾·á
+	AppView_out("<<< ë§ˆë°©ì§„ í’€ì´ë¥¼ ì‹œì‘í•©ë‹ˆë‹¤. >>>\n");
+	inputOrder = AppView_in_order(); //scanf ë¥¼ í†µí•˜ì—¬ ì…ë ¥ì„ ë°›ëŠ”ë‹¤. 
+	while (inputOrder != END_OF_RUN) { //ìŒìˆ˜ì´ë©´ ì¢…ë£Œ
 
-		if (MagicSquare_ordersVaild(inputOrder)) { //À¯È¿°ªÀÎÁö¸¦ È®ÀÎ
-			MagicSquare_solve(inputOrder, board); //°ªÀÇ ÇØ°á
+		if (MagicSquare_ordersVaild(inputOrder)) { //ìœ íš¨ê°’ì¸ì§€ë¥¼ í™•ì¸
+			MagicSquare_solve(inputOrder, board); //ê°’ì˜ í•´ê²°
 
-			Main_showBoard(inputOrder, board);    //¸¶¹æÁø ³ªÅ¸³»±â
+			Main_showBoard(inputOrder, board);    //ë§ˆë°©ì§„ ë‚˜íƒ€ë‚´ê¸°
 		}
 
-		inputOrder = AppView_in_order(); //ÀçÀÔ·Â
+		inputOrder = AppView_in_order(); //ì¬ì…ë ¥ì„ ë°›ëŠ”ë‹¤. 
 	}
-	AppView_out("\n <<< ¸¶¹æÁø Ç®ÀÌ¸¦ Á¾·áÇÕ´Ï´Ù. >>>\n");
+	AppView_out("\n <<< ë§ˆë°©ì§„ í’€ì´ë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤. >>>\n");
 
 
 	return 0;

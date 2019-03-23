@@ -1,13 +1,13 @@
-// 201503069 ±èÀçÇö
+// 201503069 ê¹€ì¬í˜„
 #include "Common.h"
 
 typedef struct {
 	int _order;
 	int _board[MAX_ORDER][MAX_ORDER];
-} MagicSquare //Çì´õÀÇ À§Ä¡°¡ Áß¿äÇÏ´Ù. 
+} MagicSquare; //ê°ì²´ ì •ì˜;
 
-Boolean MagicSquare_ordersVaild(MagicSquare);
-void MagicSquare_solve(MagicSquare , int aBoard[MAX_ORDER][MAX_ORDER]);
+Boolean MagicSquare_ordersVaild(MagicSquare); //header MagicSquare_ordersValid
+void MagicSquare_solve(MagicSquare , int aBoard[MAX_ORDER][MAX_ORDER]); //header MagicSquare_solve
 
 
 
