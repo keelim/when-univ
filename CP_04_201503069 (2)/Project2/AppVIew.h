@@ -1,4 +1,4 @@
 #include <stdio.h>
 
-void AppView_out(char* aMessage); //ìˆ˜ì •
-int AppView_in_order();  //ìˆ˜ì •
+void AppView_out(char* aMessage); //¼öÁ¤
+int AppView_in_order();  //¼öÁ¤

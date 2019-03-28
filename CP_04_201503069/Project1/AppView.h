@@ -1,5 +1,8 @@
 #pragma once
 #include"Common.h"
+#include <stdio.h>
+#include<math.h>
+
 void AppView_out_msg_secondOrderTermCoefficientIsZero(void);
 void AppView_out_msg_determinantIsNegative(float aDeterminant);
 

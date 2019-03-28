@@ -9,26 +9,31 @@ typedef struct {
 
 #define EMPTY_CELL -1
 
+void MagicSquare_setOrder(MagicSquare* _this, int anOrder)
+{
+	_this->_anOrder = anOrder;
+}
+
 Boolean MagicSquare_orderIsValid(MagicSquare* _this)
 {
 	int anOrder = _this->_anOrder;
 	
 
 	if (anOrder < 3) {
-		AppView_out("ì˜¤ë¥˜ ì°¨ìˆ˜ê°€ ë„ˆë¬´ ì‘ìŠµë‹ˆë‹¤. 3ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ì•„ì•¼ í•©ë‹ˆë‹¤. \n");
+		AppView_out("¿À·ù Â÷¼ö°¡ ³Ê¹« ÀÛ½À´Ï´Ù. 3º¸´Ù Å©°Å³ª °°¾Æ¾ß ÇÕ´Ï´Ù. \n");
 		return FALSE;
 
 	}
-	else if (anOrder > MAX_ORDER) { //99ë³´ë‹¤ í°ì§€ë¥¼ í™•ì¸
+	else if (anOrder > MAX_ORDER) { //99º¸´Ù Å«Áö¸¦ È®ÀÎ
 		char messageBuffer[255];
-		sprintf_s(messageBuffer, sizeof(messageBuffer), "ì˜¤ë¥˜: ì°¨ìˆ˜ê°€ ë„ˆë¬´ í½ë‹ˆë‹¤. %d ë³´ë‹¤ ì‘ì•„ì•¼ í•©ë‹ˆë‹¤. \n", MAX_ORDER);
+		sprintf_s(messageBuffer, sizeof(messageBuffer), "¿À·ù: Â÷¼ö°¡ ³Ê¹« Å®´Ï´Ù. %d º¸´Ù ÀÛ¾Æ¾ß ÇÕ´Ï´Ù. \n", MAX_ORDER);
 		AppView_out(messageBuffer);
 		return FALSE;
 
 	}
 	else if ((anOrder % 2) == 0) {
 
-		AppView_out("ì˜¤ë¥˜: ì°¨ìˆ˜ê°€ ì§ìˆ˜ ì…ë‹ˆë‹¤. í™€ìˆ˜ì´ì–´ì•¼ í•©ë‹ˆë‹¤. \n");
+		AppView_out("¿À·ù: Â÷¼ö°¡ Â¦¼ö ÀÔ´Ï´Ù. È¦¼öÀÌ¾î¾ß ÇÕ´Ï´Ù. \n");
 		return FALSE;
 
 	}
@@ -40,18 +45,20 @@ Boolean MagicSquare_orderIsValid(MagicSquare* _this)
 void MagicSquare_solve(MagicSquare* _this)
 {
 	int row, col;
-	int anOrder = _this->_anOrder; //?
+	int anOrder = _this->_anOrder; //
+	
+
 	
 
 	int* aBoard = _this->_board;
-	for (row = 0; row < anOrder; row++) { //ì²˜ìŒì—ëŠ” -1ì„ ëŒ€ì…í•œë‹¤.
+	for (row = 0; row < anOrder; row++) { //Ã³À½¿¡´Â -1À» ´ëÀÔÇÑ´Ù.
 		for (col = 0; col < anOrder; col++) {
-			aBoard[row][col] = EMPTY_CELL;
+			_this->_board[row][col] =  EMPTY_CELL;
 		}
 	}
 
-	CellLocation cu_loc;   //í˜„ì¬ ìœ„ì¹˜ë¥¼ ì •ì˜
-	CellLocation next_loc;//ë‹¤ìŒ ìœ„ì¹˜ë¥¼ ì •ì˜
+	CellLocation cu_loc;   //ÇöÀç À§Ä¡¸¦ Á¤ÀÇ
+	CellLocation next_loc;//´ÙÀ½ À§Ä¡¸¦ Á¤ÀÇ
 
 	cu_loc._row = 0;
 	cu_loc._col = anOrder / 2;
@@ -60,13 +67,13 @@ void MagicSquare_solve(MagicSquare* _this)
 
 
 	int CellValue = 1;
-	aBoard[cu_loc._row][cu_loc._col] = CellValue;
+	_this->_board[cu_loc._row][cu_loc._col] = CellValue;
 
-	int lastCellValue = anOrder * anOrder;// ì œê³±ìˆ˜ë¡œ ëŒì•„ê°€ì•¼ í•˜ë‹ˆê¹Œ
+	int lastCellValue = anOrder * anOrder;// Á¦°ö¼ö·Î µ¹¾Æ°¡¾ß ÇÏ´Ï±î
 	CellValue = 2;
 
 
-	for (CellValue = 2; CellValue <= lastCellValue; CellValue++) { //CellValue  ê°€ ì»¤ì§€ë©´ì„œ í™•ì¸.
+	for (CellValue = 2; CellValue <= lastCellValue; CellValue++) { //CellValue  °¡ Ä¿Áö¸é¼­ È®ÀÎ.
 
 		next_loc._row -= 1;
 
@@ -82,12 +89,12 @@ void MagicSquare_solve(MagicSquare* _this)
 		}
 
 
-		if (aBoard[next_loc._row][next_loc._col] != EMPTY_CELL) { //-1ì´ ì•„ë‹Œìˆ˜ë¡œ ì±„ì›Œì ¸ ìˆëŠ”ì§€ë¥¼ í™•ì¸
+		if (_this->_board[next_loc._row][next_loc._col] != EMPTY_CELL) { //-1ÀÌ ¾Æ´Ñ¼ö·Î Ã¤¿öÁ® ÀÖ´ÂÁö¸¦ È®ÀÎ
 			next_loc._row = cu_loc._row + 1;
 			next_loc._col = cu_loc._col;
 
 		}
-		aBoard[next_loc._row][next_loc._col] = CellValue; //cellValue ë¡œ ì •ì˜
+		_this->_board[next_loc._row][next_loc._col] = CellValue; //cellValue ·Î Á¤ÀÇ
 
 		cu_loc = next_loc;
 	}

@@ -4,6 +4,6 @@ typedef struct {
 	int _board[MAX_ORDER][MAX_ORDER];
 } MagicSquare;
 
-void MagicSquare_setOrder(MagicSquare *, int);   //ì •ì˜
-Boolean MagicSquare_orderIsValid(MagicSquare* _this); //ì •ì˜
-void MagicSquare_solve(MagicSquare* _this);		   //ì •ì˜
+void MagicSquare_setOrder(MagicSquare* _this, int anOrder);   //Á¤ÀÇ
+Boolean MagicSquare_orderIsValid(MagicSquare* _this); //Á¤ÀÇ
+void MagicSquare_solve(MagicSquare* _this);		   //Á¤ÀÇ

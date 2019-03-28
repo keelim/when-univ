@@ -1,4 +1,4 @@
-#include"QuadEqationProblem.h"
+#include "QuadEquationproblem.h"
 #include"AppView.h"
 
 int main() {
@@ -21,7 +21,7 @@ int main() {
 				AppView_out_msg_determinantIsNegative(determinant);
 			}
 			else {
-				solution = QuadEquationProblem_solve(&qeProblem);				
+				solution = QuadEquationProblem_solve(&qeProblem);
 				AppView_out_solution(solution._root1, solution._root2);
 			}
 		}

@@ -2,21 +2,21 @@
 
 void AppView_out_msg_secondOrderTermCoefficientIsZero(void)
 {
-	printf("2ì°¨ í•­ì˜ ê³„ìˆ˜ê°€ 0ì´ì–´ì„œ ì´ì°¨ ë°©ì •ì‹ì´ ì•„ë‹™ë‹ˆë‹¤. \n");
+	printf("2Â÷ Ç×ÀÇ °è¼ö°¡ 0ÀÌ¾î¼­ ÀÌÂ÷ ¹æÁ¤½ÄÀÌ ¾Æ´Õ´Ï´Ù. \n");
 }
 
 void AppView_out_msg_determinantIsNegative(float aDeterminant)
 {
 	if (aDeterminant < EPSILON) {
-		printf("> íŒë³„ì‹ì˜ ê°’ì´ ìŒìˆ˜ì´ì–´ì„œ, í•´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ");
-		printf("- íŒë³„ì‹ì˜ ê°’ì€ %.1f\n\n", aDeterminant);
+		printf("> ÆÇº°½ÄÀÇ °ªÀÌ À½¼öÀÌ¾î¼­, ÇØ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. ");
+		printf("- ÆÇº°½ÄÀÇ °ªÀº %.1f\n\n", aDeterminant);
 	}
 }
 
 Boolean AppView_in_SolvingIsRequested(void)
 {
 	char answer;
-	printf("ë°©ì •ì‹ì„ í’€ë ¤ë©´ 'y', í’€ì´ë¥¼ ì¢…ë£Œí•˜ë ¤ë©´ ì•„ë¬´ í‚¤ë‚˜ ì¹˜ì‹œì˜¤: ");
+	printf("¹æÁ¤½ÄÀ» Ç®·Á¸é 'y', Ç®ÀÌ¸¦ Á¾·áÇÏ·Á¸é ¾Æ¹« Å°³ª Ä¡½Ã¿À: ");
 
 	char inputLine[255];
 	scanf_s("%s", inputLine, sizeof(inputLine));
@@ -34,20 +34,20 @@ Boolean AppView_in_SolvingIsRequested(void)
 
 void AppView_in_quadEquation(float* p_c0, float* p_c1, float* p_c2)
 {
-	printf("2ì°¨í•­ì˜ ê³„ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
-	scanf("%f", p_c2);
+	printf("2Â÷Ç×ÀÇ °è¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+	scanf_s("%f", p_c2);
 
-	printf("1ì°¨í•­ì˜ ê³„ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
-	scanf("%f", p_c1);
+	printf("1Â÷Ç×ÀÇ °è¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+	scanf_s("%f", p_c1);
 
-	printf("ìƒìˆ˜í•­ì˜ ê³„ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
-	scanf("%f", p_c0);
+	printf("»ó¼öÇ×ÀÇ °è¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+	scanf_s("%f", p_c0);
 }
 
 void AppView_out_quadEquation(float c0, float c1, float c2)
 {
 	Boolean aNonZeroTermDoesExist = FALSE;
-	print("ì£¼ì–´ì§„ ë°©ì •ì‹: ");
+	printf("ÁÖ¾îÁø ¹æÁ¤½Ä: ");
 	if (!(FloatValueIsZero(c2))) {
 		aNonZeroTermDoesExist = TRUE;
 		printf("(%.1f)x*x", c2);
@@ -78,21 +78,21 @@ void AppView_out_quadEquation(float c0, float c1, float c2)
 void AppView_out_solution(float root1, float root2)
 {
 	if (root1 == root2) {
-		printf("ì¤‘ê·¼ ì…ë‹ˆë‹¤. \n");
+		printf("Áß±Ù ÀÔ´Ï´Ù. \n");
 		printf("x=%.2f\n", root1);
 	}
 	else {
-		printf("ë°©ì •ì‹ì˜ í•´ëŠ” ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤. \n");
+		printf("¹æÁ¤½ÄÀÇ ÇØ´Â ´ÙÀ½°ú °°½À´Ï´Ù. \n");
 		printf("x1 = %.2f \n x2 = %.2f\n\n", root1, root2);
 	}
 }
 
 void AppView_out_msg_startSolvingQuadEquation()
 {
-	printf("ì´ì°¨ ë°©ì •ì‹ í’€ì´ë¥¼ ì‹œì‘ í•©ë‹ˆë‹¤. ");
+	printf("ÀÌÂ÷ ¹æÁ¤½Ä Ç®ÀÌ¸¦ ½ÃÀÛ ÇÕ´Ï´Ù. ");
 }
 
 void AppView_out_msg_endSolvingQuadEquation()
 {
-	printf("ì´ì°¨ ë°©ì •ì‹ í’€ì´ë¥¼ ì¢…ë£Œ í•©ë‹ˆë‹¤. ");
+	printf("ÀÌÂ÷ ¹æÁ¤½Ä Ç®ÀÌ¸¦ Á¾·á ÇÕ´Ï´Ù. ");
 }

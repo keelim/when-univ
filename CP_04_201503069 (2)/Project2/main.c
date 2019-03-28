@@ -2,7 +2,7 @@
 #include"MagicSquare.h"
 #include"AppVIew.h"
 
-void Main_showBoard(MagicSquare* aMagicSquare) { //Ï†ïÏùò
+void Main_showBoard(MagicSquare* aMagicSquare) { //¡§¿«
 	int anOrder = aMagicSquare->_anOrder;
 
 	char messageBuffer[255];
@@ -12,16 +12,17 @@ void Main_showBoard(MagicSquare* aMagicSquare) { //Ï†ïÏùò
 	AppView_out("      ");
 
 	for (int col = 0; col < anOrder; col++) {
-		sprintf_s(messageBuffer, sizeof(messageBuffer), "[%2d]", col);
+		sprintf_s(messageBuffer, sizeof(messageBuffer), "[%2d] ", col);
 		AppView_out(messageBuffer);
 	}
 	AppView_out("\n");
 
 	for (int row = 0; row < anOrder; row++) {
-		printf("[%2d]", row);
+		printf("[%2d]  ", row);
 		for (int col = 0; col < anOrder; col++) {
-			printf("  %d", aMagicSquare->_board[row][col]);
+			printf("  %d ", aMagicSquare->_board[row][col]);
 		}
+		AppView_out("\n");
 	}
 	printf("\n");
 }
@@ -30,7 +31,7 @@ int main() {
 	MagicSquare magicSquare;
 	int inputOrder;
 
-	AppView_out("<<< ÎßàÎ∞©ÏßÑ ÌíÄÏù¥Î•º ÏãúÏûëÌï©ÎãàÎã§. >>>\n");
+	AppView_out("<<< ∏∂πÊ¡¯ «Æ¿Ã∏¶ Ω√¿€«’¥œ¥Ÿ. >>>\n");
 	inputOrder = AppView_in_order();
 
 	while (inputOrder != END_OF_RUN) {
@@ -41,7 +42,7 @@ int main() {
 		}
 		inputOrder = AppView_in_order();
 	}
-	AppView_out("\n <<< ÎßàÎ∞©ÏßÑ ÌíÄÏù¥Î•º Ï¢ÖÎ£åÌï©ÎãàÎã§. >>> \n");
+	AppView_out("\n <<< ∏∂πÊ¡¯ «Æ¿Ã∏¶ ¡æ∑·«’¥œ¥Ÿ. >>> \n");
 
 	return 0;
 }
