@@ -17,7 +17,7 @@ public class AppController {
         this._coinBag = newCoinBag;
     }
 
-    public AppController() { //생성자
+    public AppController() { //Appcontroller constructor
 
     }
 
@@ -35,7 +35,7 @@ public class AppController {
         while (menuNumber != MENU_END_OF_RUN) {
             switch (menuNumber) {
                 case MENU_ADD:       //입력 값의 따라 다르게 실행도록 한다.
-                    this.addCoin(); // 코인을 추가하낟.
+                    this.addCoin(); // 코인을 추가한다. 
                     break;
 
                 case MENU_REMOVE:
