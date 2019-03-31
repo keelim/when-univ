@@ -28,21 +28,21 @@ void Main_showBoard(MagicSquare* aMagicSquare) { //정의
 }
 
 int main() {
-	MagicSquare magicSquare;
-	int inputOrder;
+	MagicSquare magicSquare; //MagicSqaure 객체 생성
+	int inputOrder;         //inputOrder 
 
-	AppView_out("<<< 마방진 풀이를 시작합니다. >>>\n");
-	inputOrder = AppView_in_order();
+	AppView_out("<<< 마방진 풀이를 시작합니다. >>>\n"); //마방진 시작 메시지 출력
+	inputOrder = AppView_in_order(); //차수의 입력을 받는다. 
 
-	while (inputOrder != END_OF_RUN) {
-		MagicSquare_setOrder(&magicSquare, inputOrder);
-		if (MagicSquare_orderIsValid(&magicSquare)) {
-			MagicSquare_solve(&magicSquare);
-			Main_showBoard(&magicSquare);
+	while (inputOrder != END_OF_RUN) { //차수 입력이 -1일 경우 종료
+		MagicSquare_setOrder(&magicSquare, inputOrder); //객체를 전달하여 차수를 정의
+		if (MagicSquare_orderIsValid(&magicSquare)) { // 마방진의 값이 유효한지를 확인
+			MagicSquare_solve(&magicSquare);	     //마방진 풀이
+			Main_showBoard(&magicSquare);           //Main 을 통하여 마방진 출력 
 		}
-		inputOrder = AppView_in_order();
+		inputOrder = AppView_in_order();          //차수 재입력
 	}
-	AppView_out("\n <<< 마방진 풀이를 종료합니다. >>> \n");
+	AppView_out("\n <<< 마방진 풀이를 종료합니다. >>> \n"); //마방진종료 메시지 출력
 
 	return 0;
 }
