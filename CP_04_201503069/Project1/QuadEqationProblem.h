@@ -16,10 +16,10 @@ typedef struct {
 	QuadEquation _equation;
 } QuadEquationProblem;
 
-Boolean QuadEquationProblem_secondOrderTermCoefficientIsZero(QuadEquationProblem* _this); //ì •ì˜
-Boolean QuadEquationProblem_determinantIsNegative(QuadEquationProblem* _this);  //ì •ì˜
+Boolean QuadEquationProblem_secondOrderTermCoefficientIsZero(QuadEquationProblem* _this); //Á¤ÀÇ
+Boolean QuadEquationProblem_determinantIsNegative(QuadEquationProblem* _this);  //Á¤ÀÇ
 
-void QuadEquationProblem_setEquation(); //ì •ì˜ ìƒˆë¡œì´ í•´ì•¼ í•¨
+void QuadEquationProblem_setEquation(); //Á¤ÀÇ »õ·ÎÀÌ ÇØ¾ß ÇÔ
 
-float QuadEquationProblem_determinant(QuadEquationProblem* _this); //ì •ì˜
-Solution QuadEquationProblem_solve(QuadEquationProblem* _this); //ì •ì˜
+float QuadEquationProblem_determinant(QuadEquationProblem* _this); //Á¤ÀÇ
+Solution QuadEquationProblem_solve(QuadEquationProblem* _this); //Á¤ÀÇ

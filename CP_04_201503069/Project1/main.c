@@ -2,30 +2,30 @@
 #include"AppView.h"
 
 int main() {
-	QuadEquationProblem qeProblem; //QuadEqautionProblem ê°ì²´ ìƒì„±
-	QuadEquation equation;        //QuadEquation ê°ì²´ ìƒì„±
-	Solution solution;           //Solution ê°ì²´ ìƒì„±
+	QuadEquationProblem qeProblem; //QuadEqautionProblem °´Ã¼ »ı¼º
+	QuadEquation equation;        //QuadEquation °´Ã¼ »ı¼º
+	Solution solution;           //Solution °´Ã¼ »ı¼º
 
-	AppView_out_msg_startSolvingQuadEquation(); //ì‹œì‘ ë©”ì‹œì§€ ì¶œë ¥
-	while (AppView_in_SolvingIsRequested()) {  //'y'ì˜ ì…ë ¥ì¸ì§€ë¥¼ í™•ì¸ í•œë‹¤. 
-		AppView_in_quadEquation(&equation._c0, &equation._c1, &equation._c2); //quadEuqationì˜ íŒŒë¼ë¯¸í„° ì „ë‹¬
-		QuadEquationProblem_setEquation(&qeProblem, equation); //setEquation ê°ì²´ ì „ë‹¬
-		AppView_out_quadEquation(equation._c0, equation._c1, equation._c2); //ì‹ì˜ í‘œí˜„ì„ í•œë‹¤. 
+	AppView_out_msg_startSolvingQuadEquation(); //½ÃÀÛ ¸Ş½ÃÁö Ãâ·Â
+	while (AppView_in_SolvingIsRequested()) {  //'y'ÀÇ ÀÔ·ÂÀÎÁö¸¦ È®ÀÎ ÇÑ´Ù. 
+		AppView_in_quadEquation(&equation._c0, &equation._c1, &equation._c2); //quadEuqationÀÇ ÆÄ¶ó¹ÌÅÍ Àü´Ş
+		QuadEquationProblem_setEquation(&qeProblem, equation); //setEquation °´Ã¼ Àü´Ş
+		AppView_out_quadEquation(equation._c0, equation._c1, equation._c2); //½ÄÀÇ Ç¥ÇöÀ» ÇÑ´Ù. 
 
-		if (QuadEquationProblem_secondOrderTermCoefficientIsZero(&qeProblem)) { //ì´ì°¨í•­ì´ ìœ íš¨í•œì§€ ê°ì²´ë¥¼ í†µí•˜ì—¬ í™•ì¸
-			AppView_out_msg_secondOrderTermCoefficientIsZero(); //ì´ì°¨í•­ì´ ì œë¡œ ë©”ì‹œì§€ë¥¼ ì¶œë ¥
+		if (QuadEquationProblem_secondOrderTermCoefficientIsZero(&qeProblem)) { //ÀÌÂ÷Ç×ÀÌ À¯È¿ÇÑÁö °´Ã¼¸¦ ÅëÇÏ¿© È®ÀÎ
+			AppView_out_msg_secondOrderTermCoefficientIsZero(); //ÀÌÂ÷Ç×ÀÌ Á¦·Î ¸Ş½ÃÁö¸¦ Ãâ·Â
 		}
 		else {
-			if (QuadEquationProblem_determinantIsNegative(&qeProblem)) { //íŒë³„ì‹ì´ 0ì´í•˜ì¸ì§€ë¥¼ ê°ì²´ë¡œ í™•ì¸
-				float determinant = QuadEquationProblem_determinant(&qeProblem); //íŒë³„ì‹ í™•ì¸
-				AppView_out_msg_determinantIsNegative(determinant); //íŒë³„ì‹ 0ì´í•˜ ë©”ì‹œì§€ ì¶œë ¥
+			if (QuadEquationProblem_determinantIsNegative(&qeProblem)) { //ÆÇº°½ÄÀÌ 0ÀÌÇÏÀÎÁö¸¦ °´Ã¼·Î È®ÀÎ
+				float determinant = QuadEquationProblem_determinant(&qeProblem); //ÆÇº°½Ä È®ÀÎ
+				AppView_out_msg_determinantIsNegative(determinant); //ÆÇº°½Ä 0ÀÌÇÏ ¸Ş½ÃÁö Ãâ·Â
 			}
 			else {
-				solution = QuadEquationProblem_solve(&qeProblem); 		//ê°ì²´ë¥¼ í†µí•˜ì—¬ ì´ì°¨ ë°©ì •ì‹ í’€ê¸°
-				AppView_out_solution(solution._root1, solution._root2);//ì´ì°¨ ë°©ì •ì‹ ì¶œë ¥
+				solution = QuadEquationProblem_solve(&qeProblem); 		//°´Ã¼¸¦ ÅëÇÏ¿© ÀÌÂ÷ ¹æÁ¤½Ä Ç®±â
+				AppView_out_solution(solution._root1, solution._root2);//ÀÌÂ÷ ¹æÁ¤½Ä Ãâ·Â
 			}
 		}
-		AppView_out_msg_endSolvingQuadEquation(); //ì¬ì…ë ¥ì„ ë°›ëŠ”ë‹¤. 
+		AppView_out_msg_endSolvingQuadEquation(); //ÀçÀÔ·ÂÀ» ¹Ş´Â´Ù. 
 	}
 	return 0;
 }

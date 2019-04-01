@@ -1,4 +1,4 @@
-#include"QuadEqationProblem.h"
+#include "QuadEqationProblem.h"
 #include<math.h>
 
 
@@ -20,13 +20,13 @@ Boolean QuadEquationProblem_determinantIsNegative(QuadEquationProblem* _this)
 	
 	float determinant = b * b - 4 * a * c;
 
-	if (determinant < EPSILON) { //determinantï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 
+	if (determinant < EPSILON) { //determinantÀÇ 0ÀÇ °ªÀ» ÇÑÁ¤ÇÑ´Ù. 
 
-		if (determinant < -EPSILON) { //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ FALSE ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. ï¿½Çºï¿½ï¿½ï¿½ <0
+		if (determinant < -EPSILON) { //ÇÑÁ¤ °ª¿¡¼­ ´õ ÀÛÀº ¼ö¸¦ FALSE ¸¦ ¸®ÅÏÇÑ´Ù. ÆÇº°½Ä <0
 			return TRUE;
 
 		}
-		else { //else ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½ï¿½ï¿½ == 0 ï¿½ï¿½ ï¿½ï¿½ï¿½
+		else { //else ÀÇ °æ¿ì´Â ÆÇº°½Ä == 0 ÀÎ °æ¿ì
 			return FALSE;
 
 		}
@@ -36,13 +36,6 @@ Boolean QuadEquationProblem_determinantIsNegative(QuadEquationProblem* _this)
 		return FALSE;
 
 	}
-}
-
-void QuadEquationProblem_setEquation(QuadEquationProblem* _this, QuadEquation anEquation)
-{
-	_this->_equation._c0 = anEquation._c0;
-	_this->_equation._c1 = anEquation._c1;
-	_this->_equation._c2 = anEquation._c2;
 }
 
 float QuadEquationProblem_determinant(QuadEquationProblem* _this)
@@ -63,7 +56,7 @@ Solution QuadEquationProblem_solve(QuadEquationProblem* _this)
 	float determinant = QuadEquationProblem_determinant(_this);
 	float sqrtDeterminant = (float)sqrt(determinant);
 
-	if (determinant < EPSILON) { //determinant < EPSILON d=0 ï¿½ï¿½ ï¿½ß±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. 
+	if (determinant < EPSILON) { //determinant < EPSILON d=0 Àº Áß±ÙÀÓÀ¸·Î °ªÀ» ÇÏ³ª¸¸ Ãâ·ÂÀ» ÇÑ´Ù. 
 		solution._root1 = (-_this->_equation._c1 + sqrtDeterminant) / (2.0f * _this->_equation._c2);
 		solution._root2 = solution._root1;
 	}
@@ -72,11 +65,11 @@ Solution QuadEquationProblem_solve(QuadEquationProblem* _this)
 	solution._root1 = (-_this->_equation._c1 + sqrtDeterminant) / (2.0f * _this->_equation._c2);
 	solution._root2 = (-_this->_equation._c1 - sqrtDeterminant) / (2.0f * _this->_equation._c2);
 
-	if (fabs(solution._root1) < EPSILON) { //-0.0 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	if (fabs(solution._root1) < EPSILON) { //-0.0 ÀÌ Ãâ·ÂÀÌ µÉ ¼ö ÀÖÀ½À¸·Î ¹æÁö.
 		solution._root1 = (float)fabs(solution._root1);
 	}
 
-	if (fabs(solution._root2) < EPSILON) { //-0.0 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	if (fabs(solution._root2) < EPSILON) { //-0.0 ÀÌ Ãâ·ÂÀÌ µÉ ¼ö ÀÖÀ½À¸·Î ¹æÁö.
 		solution._root2 = (float)fabs(solution._root2);
 	}
 
