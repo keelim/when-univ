@@ -17,7 +17,7 @@ public class AppController {
         this._coinBag = newCoinBag;
     }
 
-    public AppController() { //Appcontroller constructor
+    public AppController() { //생성자
 
     }
 
@@ -35,7 +35,7 @@ public class AppController {
         while (menuNumber != MENU_END_OF_RUN) {
             switch (menuNumber) {
                 case MENU_ADD:       //입력 값의 따라 다르게 실행도록 한다.
-                    this.addCoin(); // 코인을 추가한다. 
+                    this.addCoin(); // 코인을 추가하낟.
                     break;
 
                 case MENU_REMOVE:
@@ -80,6 +80,8 @@ public class AppController {
 
 
     private void showStatistics() { //통계 값을 출력
+        AppView.outputLine("가방에 대한 수행을 종료합니다. ");
+        AppView.outputLine(" ");
         AppView.outputLine("가방에 들어 있는 동전의 개수: " + this.coinBag().size());
         AppView.outputLine("동전 중 가장 큰 값: " + this.maxCoinValue());
         AppView.outputLine("모든 동전 값의 합: " + this.sumOfValues());
