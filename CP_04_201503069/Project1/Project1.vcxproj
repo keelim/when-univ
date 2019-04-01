@@ -125,12 +125,12 @@
   <ItemGroup>
     <ClCompile Include="AppView.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="QuadEquationProblem.c" />
+    <ClCompile Include="QuadEqationProblem.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppView.h" />
     <ClInclude Include="Common.h" />
-    <ClInclude Include="QuadEquationProblem.h" />
+    <ClInclude Include="QuadEqationProblem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-#include "QuadEquationproblem.h"
+#include "QuadEqationProblem.h"
 #include"AppView.h"
 
 int main() {

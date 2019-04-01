@@ -21,7 +21,7 @@
     <ClCompile Include="AppView.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="QuadEquationProblem.c">
+    <ClCompile Include="QuadEqationProblem.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,7 +32,7 @@
     <ClInclude Include="Common.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="QuadEquationProblem.h">
+    <ClInclude Include="QuadEqationProblem.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -38,6 +38,13 @@ Boolean QuadEquationProblem_determinantIsNegative(QuadEquationProblem* _this)
 	}
 }
 
+void QuadEquationProblem_setEquation(QuadEquationProblem* _this, QuadEquation _problem)
+{
+	_this->_equation._c0 = _problem._c0;
+	_this->_equation._c1 = _problem._c1;
+	_this->_equation._c2 = _problem._c2;
+}
+
 float QuadEquationProblem_determinant(QuadEquationProblem* _this)
 {
 	float a = _this->_equation._c2;
