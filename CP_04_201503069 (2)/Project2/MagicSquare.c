@@ -20,20 +20,20 @@ Boolean MagicSquare_orderIsValid(MagicSquare* _this)
 	
 
 	if (anOrder < 3) {
-		AppView_out("<<< ¸¶¹æÁø Ç®ÀÌ¸¦ ½ÃÀÛÇÕ´Ï´Ù. >>>  \n");
+		AppView_out("<<< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. >>>  \n");
 		return FALSE;
 
 	}
 	else if (anOrder > MAX_ORDER) { //99 ??? ????
 		char messageBuffer[255];
-		sprintf_s(messageBuffer, sizeof(messageBuffer), "> Â÷¼ö°¡ ³Ê¹« Å®´Ï´Ù. %d º¸´Ù ÀÛ¾Æ¾ß ÇÕ´Ï´Ù. \n", MAX_ORDER);
+		sprintf_s(messageBuffer, sizeof(messageBuffer), "> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ Å®ï¿½Ï´ï¿½. %d ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾Æ¾ï¿½ ï¿½Õ´Ï´ï¿½. \n", MAX_ORDER);
 		AppView_out(messageBuffer);
 		return FALSE;
 
 	}
 	else if ((anOrder % 2) == 0) {
 
-		AppView_out("¿À·ù: Ä¡¼ö°¡ Â¦¼ö ÀÔ´Ï´Ù. È¦¼öÀÌ¾î¾ß ÇÕ´Ï´Ù. . \n");
+		AppView_out("ï¿½ï¿½ï¿½ï¿½: Ä¡ï¿½ï¿½ï¿½ï¿½ Â¦ï¿½ï¿½ ï¿½Ô´Ï´ï¿½. È¦ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½. . \n");
 		return FALSE;
 
 	}

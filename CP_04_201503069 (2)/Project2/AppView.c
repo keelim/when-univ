@@ -8,7 +8,7 @@ void AppView_out(char* aMessage)
 int AppView_in_order()
 {
 	int inputOrder = 0;
-	printf("? ¸¶¹æÁø Â÷¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+	printf("? ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½: ");
 	scanf_s("%d", &inputOrder);
 
 	return inputOrder;
