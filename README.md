@@ -93,3 +93,9 @@ MACRO STRING replace</code>
 3. 헤더와 소스의 관리
 4. visual studio --> C1069 compile --> build
 5. write the report
+
+
+## 2019 04 04
+1. MagicSquare like oop 
+2. MagicSquare_new() like constructor
+3. 
