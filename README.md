@@ -21,5 +21,8 @@
 1. 클라이언트 사이드 하고 서버 사이드 맞물리게 할 것
  --> 클라이언트 사이드의 결과를 서버로 보내주기만 하면 된다. 
 
- 
-
+- - -
+ ### complete project 
+1. Server side developing
+2. DB connection managing
+3. Developing Test

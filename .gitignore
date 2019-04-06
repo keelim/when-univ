@@ -5,3 +5,8 @@
 Comp2.iml
 .classpath
 buildpath
+/out
+/bin
+
+
+
