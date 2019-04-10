@@ -1,4 +1,4 @@
-#include"AppController.h"
+﻿#include"AppController.h"
 
 int main() {
 	AppController* appController = AppController_new();

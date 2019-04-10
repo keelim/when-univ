@@ -1,4 +1,4 @@
-#include"Common.h"
+﻿#include"Common.h"
 #include"GradeCounter.h"
 typedef struct _Ban Ban;
 
@@ -9,7 +9,7 @@ Ban* Ban_new();
 Ban* Ban_newWidthCapacity(int givenCapacity);
 Boolean Ban_isEmpty(Ban* _this);
 Boolean Ban_isFull(Ban* _this);
-Boolean Ban_scoreIsVaild(int aScore);
+Boolean Ban_scoreIsValid(int aScore);
 void Ban_delete(Ban* _this);
 Boolean Ban_add(Ban* _this, int aScore);
 int Ban_elementAt(Ban* _this, int anOrder);

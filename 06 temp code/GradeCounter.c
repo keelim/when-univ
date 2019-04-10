@@ -1,4 +1,4 @@
-#include "GradeCounter.h"
+﻿#include "GradeCounter.h"
 struct _GradeCounter {
 	int numberOfA;
 	int numberOfB;

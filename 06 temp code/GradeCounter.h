@@ -1,4 +1,4 @@
-#include"Common.h"
+﻿#include"Common.h"
 typedef struct _GradeCounter GradeCounter;
 
 GradeCounter* GradeCounter_new();

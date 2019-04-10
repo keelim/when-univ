@@ -1,4 +1,4 @@
-#include "AppController.h"
+﻿#include "AppController.h"
 #include "Ban.h"
 #include"GradeCounter.h"
 
@@ -28,19 +28,15 @@ void AppController_run(AppController* _this)
 		}
 		else {
 			AppController_showStatics(_this);
-
 			Ban_sortStudentsByScore(_this->ban);
 			AppController_showStudentsSortedByScore(_this);
+
 		}
 	}
 	else {
 		AppView_out("[오류] 성적이 정상적으로 저장되지 않았습니다. ");
 	}
-
-
-
 	AppView_out("<<< 성적 처리를 종료합니다. >>>");
-
 }
 
 void AppController_delete(AppController* _this)
@@ -78,6 +74,8 @@ void AppController_showStatics(AppController* _this)
 
 
 	GradeCounter* gradeCounter = GradeCounter_new();
+	gradeCounter = Ban_countGrades(_this->ban);
+
 	AppView_out_gradeCountFor('A', GradeCounter_numberOfA(gradeCounter));
 	AppView_out_gradeCountFor('B', GradeCounter_numberOfB(gradeCounter));
 	AppView_out_gradeCountFor('C', GradeCounter_numberOfC(gradeCounter));

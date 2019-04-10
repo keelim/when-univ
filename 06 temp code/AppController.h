@@ -1,5 +1,6 @@
-#include"AppView.h"
+﻿#include"AppView.h"
 #include"Common.h"
+#include"Ban.h"
 typedef struct _AppController AppController;
 AppController* AppController_new();
 
