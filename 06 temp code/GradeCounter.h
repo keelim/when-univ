@@ -2,8 +2,8 @@
 typedef struct _GradeCounter GradeCounter;
 
 GradeCounter* GradeCounter_new();
-void GradeCounter_delete(GradeCounter* _this);
 
+void GradeCounter_delete(GradeCounter* _this);
 void GradeCounter_count(GradeCounter* _this, char aGrade);
 
 int GradeCounter_numberOfA(GradeCounter* _this);
