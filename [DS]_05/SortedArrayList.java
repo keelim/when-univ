@@ -36,20 +36,16 @@ public class SortedArrayList<E extends Comparable<E>> {
     }
 
     public boolean add(E newData) { //todo add 만 순서에 맞게 자동으로 넣는 코드만 넣으면 된다.
-        if (this.isFull()) {
+        if (this.isFull()) { //꽉 차 있으면 false
             return false;
+        } else if (this.isEmpty()) {
+            this.addToFirst(newData);
         } else {
-            if (isEmpty()) {
-                this.addToFirst(newData);
-            } else {
-                int i = 0;
+            for (int i = 0; i < this.size(); i++) {
+                if (this.elements()[i].compareTo(newData) <= 0) {
 
-                while (i == this.size() - 1) {
-                    if (this.elements()[i].compareTo(newData) > 0) {
-                        this.addTo(newData, i);
-                    }
-
-                    i++;
+                } else {
+                    this.addTo(newData, i);
                 }
             }
         }
@@ -66,7 +62,7 @@ public class SortedArrayList<E extends Comparable<E>> {
             if ((anOrder >= 0) && (anOrder <= this._size)) {
                 this.makeRoomAt(anOrder);
                 this._elements[anOrder] = anElement;
-                this._size++;
+
                 return true;
             } else {
                 return false; // 잘못된 삽입 위치
