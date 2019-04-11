@@ -41,13 +41,21 @@ public class SortedArrayList<E extends Comparable<E>> {
         } else if (this.isEmpty()) {
             this.addToFirst(newData);
         } else {
-            for (int i = 0; i < this.size(); i++) {
-                if (this.elements()[i].compareTo(newData) <= 0) {
+            boolean flag = true;
+            int i = 0;
 
-                } else {
+            while (flag) {
+                if(this.elements()[i] == null){
                     this.addTo(newData, i);
+                    flag = false;
                 }
+                if (this.elements()[i].compareTo(newData) > 0) {//기존에가 크면
+                    this.addTo(newData, i);
+                    flag = false;
+                }
+                i++;
             }
+            return true;
         }
 
 
@@ -62,7 +70,7 @@ public class SortedArrayList<E extends Comparable<E>> {
             if ((anOrder >= 0) && (anOrder <= this._size)) {
                 this.makeRoomAt(anOrder);
                 this._elements[anOrder] = anElement;
-
+                this._size++;
                 return true;
             } else {
                 return false; // 잘못된 삽입 위치

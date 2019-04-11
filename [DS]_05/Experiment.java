@@ -212,6 +212,6 @@ public class Experiment {
 
             dataSize += this.sizeIncrement();
         }
-        
+
     }
 }
