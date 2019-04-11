@@ -1,4 +1,4 @@
-#include<conio.h>
+﻿#include<conio.h>
 #include"Common.h"
 void AppView_out(char* aString);
 void AppView_out_averageScore(float anAverageScore);//
