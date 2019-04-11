@@ -110,7 +110,7 @@ void Ban_sortStudentsByScore(Ban * _this)
 			}
 		}
 
-		SWAP(int, _this->_elements[minPosition], _this->_elements[size - 1]); //todo swap 의 구현
+		SWAP(int, _this->_elements[minPosition], _this->_elements[size - 1]); 
 
 		Ban_quickSortRecursively(_this, 0, size - 2);
 	}
