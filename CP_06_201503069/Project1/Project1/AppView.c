@@ -6,7 +6,9 @@ void AppView_out(char* message)
 
 void AppView_out_averageScore(float anAverageScore)
 {
-	//todo
+
+	printf("평균 점수는 %.2f 입니다. ", anAverageScore);
+
 }
 
 Boolean AppView_in_doesContinueToInputNextStudent() {
@@ -19,7 +21,11 @@ Boolean AppView_in_doesContinueToInputNextStudent() {
 }
 
 int AppView_in_score() {
-	return 0; //todo
+	int score;
+	printf("점수를 입력하여 주세요: ");//todo
+	scanf_s("%d", &score);
+
+	return score;
 }
 
 char getcharDirectlyFromKeyBoard()
@@ -36,10 +42,14 @@ void AppView_out_numberOfStudentsAboveAverage(int aNumber) {
 }
 //
 void AppView_out_maxScore(int aMaxScore) {
-	//todo
+
+	printf("학생들의 최고점은 %d 입니다. ", aMaxScore);
+
 }
 void AppView_out_minScore(int aMinScore) {
-	//todo
+
+	printf("학생들의 최저점은 %d 입니다. ", aMinScore);
+
 }
 void AppView_out_gradeCountFor(char aGrade, int aCount) {
 	//todo
