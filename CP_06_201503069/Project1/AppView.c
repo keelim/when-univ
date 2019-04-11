@@ -9,11 +9,11 @@ void AppView_out_averageScore(float anAverageScore)
 	//todo
 }
 
-Boolean AppView_in_doesContinueToInputNextStudent()
-{
+Boolean AppView_in_doesContinueToInputNextStudent() {
 	printf("? 성적 입력하려면 'Y' , 입력을 종료하려면 다른 아무키나 치시오");
 
-	char answer = getcharDirectlyFromKeyBoard();
+	char answer;
+	answer = getcharDirectlyFromKeyBoard();
 
 	return (answer == 'Y' || answer == 'y');
 }

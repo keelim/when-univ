@@ -127,7 +127,6 @@
     <ClCompile Include="AppView.c" />
     <ClCompile Include="Ban.c" />
     <ClCompile Include="GradeCounter.c" />
-    <ClCompile Include="GradeCounter.cpp" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>

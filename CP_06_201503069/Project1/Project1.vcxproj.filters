@@ -21,9 +21,6 @@
     <ClCompile Include="AppController.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="GradeCounter.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Ban.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
