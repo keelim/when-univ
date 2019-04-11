@@ -10,6 +10,7 @@ public class Coin implements Comparable<Coin> {
     }
 
     public Coin(int randomCoinValue) {
+        setValue(randomCoinValue);
     }
 
     @Override

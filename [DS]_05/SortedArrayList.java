@@ -35,9 +35,27 @@ public class SortedArrayList<E extends Comparable<E>> {
         this.setElements((E[]) new Comparable[this.capacity()]); //todo 얘는 이해를 할 필요가 있다. 중요 코드
     }
 
-    public boolean add(E newData) { //add 만 순서에 맞게 자동으로 넣는 코드만 넣으면 된다.
+    public boolean add(E newData) { //todo add 만 순서에 맞게 자동으로 넣는 코드만 넣으면 된다.
+        if (this.isFull()) {
+            return false;
+        } else {
+            if (isEmpty()) {
+                this.addToFirst(newData);
+            } else {
+                int i = 0;
 
-        return this.addTo(newData, this.size());
+                while (i == this.size() - 1) {
+                    if (this.elements()[i].compareTo(newData) > 0) {
+                        this.addTo(newData, i);
+                    }
+
+                    i++;
+                }
+            }
+        }
+
+
+        return true;
 
     }
 
@@ -54,6 +72,21 @@ public class SortedArrayList<E extends Comparable<E>> {
                 return false; // 잘못된 삽입 위치
             }
         }
+    }
+
+    public boolean addToFirst(E anElement) {
+        if (this.isFull()) {
+            return false;
+        } else {
+            this.makeRoomAt(0);
+            this._elements[0] = anElement;
+            this._size++;
+            return true;
+        }
+    }
+
+    public boolean addToLast(E anElement) {
+        return this.addTo(anElement, this.size());
     }
 
     private void makeRoomAt(int aPosition) {
