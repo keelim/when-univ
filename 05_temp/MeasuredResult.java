@@ -1,4 +1,4 @@
-public class MeasuredResult { //결과 측정
+public class MeasuredResult { //결과 측정을 위한 클래스
     private int _size;
     private long _durationForAdd;
     private long _durationForMax;

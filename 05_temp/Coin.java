@@ -3,15 +3,15 @@ public class Coin implements Comparable<Coin> {
 
     public int value() {
         return _value;
-    }
+    } //value getter
 
     public void setValue(int newValue) {
         this._value = newValue;
-    }
+    } //value setter
 
     public Coin(int randomCoinValue) {
         setValue(randomCoinValue);
-    }
+    } //Coin constructor
 
     @Override
     public int compareTo(Coin aCoin) { //Comparable 을 구현을 위한 메소드

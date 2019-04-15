@@ -53,12 +53,11 @@ public class Experiment { //데이터 측정을 위한 메소드
         this._measuredResults = _measuredReuslts;
     }
 
-    public int maxSize() {
-
+    public int maxSize() { //최대 사이즈를 출력한다.
         return this.firstSize() + this.sizeIncrement() * (this.numberOfIteration() - 1);
     }
 
-    public Experiment(int givenNuberOfIteration, int ivenFristSize, int givebSizeIncrement) {
+    public Experiment(int givenNuberOfIteration, int ivenFristSize, int givebSizeIncrement) { //parameter constructor
         this._numberOfIteration = givenNuberOfIteration;
         this._firstSize = ivenFristSize;
         this._sizeIncrement = givebSizeIncrement;
@@ -74,12 +73,10 @@ public class Experiment { //데이터 측정을 위한 메소드
     public void generateData() { //데이터를 생성을 한다.
         Random random = new Random();
         for (int i = 0; i < this.maxSize(); i++) { //maxSize = first Size() + this.sizeIncrement() * (this.numberOfIteration() - 1)
-
             int randomCoinValue = random.nextInt(this.maxSize()); //랜덤으로 값을 부여한다.
             this.data()[i] = new Coin(randomCoinValue); //데이터를 추가한다.
 
         }
-
     }
 
     public void measureForSortedArrayList() { //각 자료구조 별 걸린 시간을 측정을 하는 메소드

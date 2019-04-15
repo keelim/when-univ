@@ -18,7 +18,7 @@ public class UnSortedLinkedList<E extends Comparable<E>> {
         this._head = newHead;
     }
 
-    private boolean anElementDoesExistAt(int anOrder) {
+    private boolean anElementDoesExistAt(int anOrder) { //차수 유효성 확인
         return ((anOrder >= 0) && (anOrder < this._size));
     }
 
@@ -34,50 +34,6 @@ public class UnSortedLinkedList<E extends Comparable<E>> {
 
     public boolean isFull() {
         return false; // 언제나 full 이 아니다
-    }
-
-
-    public E elementAt(int anOrder) {
-        if (this.anElementDoesExistAt(anOrder)) {
-            LinkedNode<E> currentNode = this._head;
-            int nodeCount = 0;
-            while (nodeCount < anOrder) {
-                currentNode = currentNode.next();
-                nodeCount++;
-            }
-            return currentNode.element();
-        } else {
-            return null;
-        }
-    }
-
-
-    public E first() {
-        if (this.isEmpty()) {
-            return null; // 마지막 원소가 존재할 수 없으므로
-        } else {
-            return elementAt(0);
-            // 또는 이렇게: return this._head.element();
-        }
-    }
-
-    public E last() {
-        if (this.isEmpty()) {
-            return null; // 마지막 원소가 존재할 수 없으므로
-        } else {
-            return elementAt(this._size - 1);
-        }
-    }
-
-    public boolean doesContain(E anElement) { // Version 3
-        LinkedNode<E> current = this._head;
-        while (current != null) {
-            if (current.element().equals(anElement)) {
-                return true;
-            }
-            current = current.next();
-        }
-        return false;
     }
 
     public boolean addTo(E anElement, int anOrder) {
