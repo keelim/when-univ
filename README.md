@@ -31,3 +31,6 @@ Model - Controller - View
 ## 2019 03 19
 1. 모든 자료구조의 코드들은 손으로 외울 수 있는 수준이 가장 좋은 것 같다. 
     - LinkedList
+- - -
+## 2019 04 15
+1. structure modify
