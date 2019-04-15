@@ -98,4 +98,8 @@ MACRO STRING replace</code>
 ## 2019 04 04
 1. MagicSquare like oop 
 2. MagicSquare_new() like constructor
-3. 
+
+- - -
+## 2019 04 15
+1. modify structure
+
