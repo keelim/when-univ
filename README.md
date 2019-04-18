@@ -103,3 +103,5 @@ MACRO STRING replace</code>
 ## 2019 04 15
 1. modify structure
 
+## 2019 04 18
+CRT_NO_warings 추가 할 것
