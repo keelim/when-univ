@@ -55,8 +55,9 @@ Boolean Ban_scoreIsValid(int aScore) //점수의 유효성을 확인
     return (aScore >= 0 && aScore <= 100);
 }
 
-void Ban_delete(Ban *_this) { //todo 전체 적인 수정을 어떻게 할 것인가
+void Ban_delete(Ban *_this) { //ytodo 전체 적인 수정을 어떻게 할 것인가
     free(_this);
+
 }
 
 Boolean Ban_add(Ban *_this, Student *aStudnet) //Ban의 점수를 추가
@@ -171,7 +172,7 @@ int Ban_minOfScoresRecurively(Ban *_this, int left, int right) { //재귀적으�
         return score;
     } else {
         minPart = Ban_minOfScoresRecurively(_this, left + 1, right); //다시 call
-        if (Student_score(_this->_elements[left]) >= minPart) { //todo 일단 다시 확인
+        if (Student_score(_this->_elements[left]) >= minPart) {
             return minPart; //적은 파트 리턴
         } else {
             score = Student_score(_this->_elements[left]);

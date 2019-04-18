@@ -65,7 +65,6 @@ Boolean AppController_inputAndStoreStudents(AppController *_this) //학생 입�
     char studentID[100];
     Student *student;
 
-
     while (storingAStudentWasSucessful && AppView_in_doesContinueToInputNextStudent()) { //학생 입력 점수 와 flag while
 
         AppView_in_StudentID(studentID);
@@ -80,32 +79,30 @@ Boolean AppController_inputAndStoreStudents(AppController *_this) //학생 입�
 }
 
 
-void AppController_showStatics(AppController *_this) //통계함수를 출력
-{
+void AppController_showStatics(AppController *_this) {//통계함수를 출력
+    AppView_out_averageScore(Ban_averageScore(_this->ban));
+    AppView_out_numberOfStudentsAboveAverage(Ban_numberOfStudentsAboveAverage(_this->ban));
+    AppView_out_maxScore(Ban_maxScore(_this->ban));
+    AppView_out_minScore(Ban_minScore(_this->ban));
 
-    Student *student;
-    AppView_out_titleForSortedStudentList(); //todo 애는 어떻게 수정을 해야 하냐...
-    for (int i = 0; i < Ban_size(_this->ban); i++) {
-        student = Ban_elementAt(_this->ban, i);
-        int score = Student_score(student);
 
-        AppView_out_studentinfo(
-                Student_studentID(student),
-                score,
-                Ban_scoreToGrade(score) //
-        );
-    }
+    GradeCounter *gradeCounter = Ban_countGrades(_this->ban);
+    AppView_out_gradeCountFor('A', GradeCounter_numberOfA(gradeCounter));
+    AppView_out_gradeCountFor('B', GradeCounter_numberOfB(gradeCounter));
+    AppView_out_gradeCountFor('C', GradeCounter_numberOfC(gradeCounter));
+    AppView_out_gradeCountFor('D', GradeCounter_numberOfD(gradeCounter));
+    AppView_out_gradeCountFor('F', GradeCounter_numberOfF(gradeCounter));
+    GradeCounter_delete(gradeCounter);
 
 }
 
 void AppController_showStudentsSortedByScore(AppController *_this) //정렬된 순으로의 함수 출력
 {
-    AppView_out("학생들의 성적 순 목록입니다. \n");
+    AppView_out_titleForSortedStudentList();
 
     int score;
     char grade;
     char *id;
-
 
     for (int order = 0; order < Ban_size(_this->ban); order++) {
         score = Student_score(Ban_elementAt(_this->ban, order));

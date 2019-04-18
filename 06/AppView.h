@@ -16,8 +16,10 @@ char getcharDirectlyFromKeyBoard(); //direct 입력
 
 void AppView_out_msg_invaildStudentID(char* aStudentID, int maxLength);
 
-AppView_out_msg_inValidScore(int aScore);
+void AppView_out_msg_inValidScore(int aScore);
 
 void AppView_in_StudentID(char* aStudentID);
+
+void AppView_out_titleForSortedStudentList();
 
 
