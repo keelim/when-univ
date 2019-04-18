@@ -143,18 +143,14 @@ int Ban_maxOfScoresRecursively(Ban *_this, int left, int right) { //재귀적으
     if (left == right) { //초항을 정한다. 
         score = Student_score(_this->_elements[left]);
         return score;
-
     } else {
         mid = (right + left) / 2;
         maxOfLeftPart = Ban_maxOfScoresRecursively(_this, left, mid); //재귀적 call 반에서의 최댓값
         maxOfRightPart = Ban_maxOfScoresRecursively(_this, mid + 1, right);
-
         if (maxOfLeftPart >= maxOfRightPart) { //더 큰 값을 선택
             return maxOfLeftPart;
-
         } else {
             return maxOfRightPart;
-
         }
     }
 }
@@ -162,21 +158,16 @@ int Ban_maxOfScoresRecursively(Ban *_this, int left, int right) { //재귀적으
 int Ban_minOfScoresRecurively(Ban *_this, int left, int right) { //재귀적으로 Ban에서 하나씩 줄여 나가는 생각으로 최솟값을 찾는다.
     int minPart;
     int score;
-
     if (left == right) { //초항을 정한다. 
         score = Student_score(_this->_elements[left]);
         return score;
-
     } else {
         minPart = Ban_minOfScoresRecurively(_this, left + 1, right); //다시 call
-
         if (Student_score(_this->_elements[left]) >= minPart) {
             return minPart; //적은 파트 리턴
-
         } else {
             score = Student_score(_this->_elements[left]);
             return score; //적은 값을 리턴
-
         }
     }
 }
