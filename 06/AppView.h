@@ -7,9 +7,17 @@ void AppView_out_maxScore(int aMaxScore);  //최고점
 void AppView_out_minScore(int aMinScore); //최저점
 void AppView_out_gradeCountFor(char aGrade, int aCount); //학점 명수 센다.
 
-void AppView_out_studentinfo(int score, char grade); //학생 정보 출력
+void AppView_out_studentinfo(char* studentID, int score, char grade); //학생 정보 출력
 
 Boolean AppView_in_doesContinueToInputNextStudent(); //입력 확인
 int AppView_in_score(); //점수 입력
 
 char getcharDirectlyFromKeyBoard(); //direct 입력
+
+void AppView_out_msg_invaildStudentID(char* aStudentID, int maxLength);
+
+AppView_out_msg_inValidScore(int aScore);
+
+void AppView_in_StudentID(char* aStudentID);
+
+
