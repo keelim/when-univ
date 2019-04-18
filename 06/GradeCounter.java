@@ -1,4 +1,5 @@
-public class GradeCounter {
+public class
+GradeCounter {
     private int _numberOfA;
     private int _numberOfB;
     private int _numberOfC;
@@ -65,7 +66,6 @@ public class GradeCounter {
             case 'C':
                 this.setNumberOfC(this.numberOfC() + 1);
                 break;
-
             case 'D':
                 this.setNumberOfD(this.numberOfD() + 1);
                 break;

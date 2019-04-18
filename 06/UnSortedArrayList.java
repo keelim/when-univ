@@ -1,5 +1,5 @@
 
-public class UnSortedArrayList<E> {
+public class UnSortedArrayList<E> { //Ban의 원형
     private static final int DEFAULT_CAPACITY = 1000;
 
     private int _size;
@@ -38,9 +38,9 @@ public class UnSortedArrayList<E> {
 
 
     public UnSortedArrayList() {
-        this(DEFAULT_CAPACITY); //??? ????? ???
+        this(DEFAULT_CAPACITY); //constructor
 
-    }  //constructor
+    }
 
     public boolean isEmpty() {
         return (this.size() == 0);
@@ -227,16 +227,13 @@ public class UnSortedArrayList<E> {
         @Override
         public boolean hasNext() {
             return (this.nextPosition() < UnSortedArrayList.this.size());
-        } //???????? ???
+        } //nextposition 이 작으면  boolean
 
         @Override
-        public E next() { //???? ???? ??????? ???? ?????? ?????? ???
-            E nextElement = null;
-            if (this.hasNext()) {
-                nextElement = UnSortedArrayList.this.elements()[this.nextPosition()];
-                this.setNextPosition(this.nextPosition() + 1);
-            }
-
+        public E next() {
+            //임시 변수를 생성을 한다.
+            E nextElement = UnSortedArrayList.this.elements()[this.nextPosition()];
+            this.setNextPosition(this.nextPosition() + 1);
             return nextElement;
         }
     }
