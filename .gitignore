@@ -1,7 +1,6 @@
 .idea
 cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/tmp/
 cmake-build-debug/CMakeFiles/CMakeTmp/
-CMakeLists.txt
 cmake-build-debug
 .vs
 .gitattributes
