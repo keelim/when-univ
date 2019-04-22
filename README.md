@@ -105,6 +105,21 @@ MACRO STRING replace</code>
 
 ## 2019 04 18
 CRT_NO_warings 추가 할 것
-
+- - - 
 ## 2019 04 23
-file 설정
+- pointer
+- &, * 
+- structure
+- Call by value
+- MACRO
+- malloc(), free() --> #include<stdlib.h>
+- recursive
+    - max1, 2, 3
+    - reverseString
+    - quickSort
+    - Hanoi?
+- Android native code ndk --> c++?
+- 실습
+    - quadEquation -> 1, 2 
+    - MagicSquare
+    - 성적 처리
