@@ -47,7 +47,7 @@ GradeCounter {
         this._numberOfF = newNumberOfF;
     }
 
-    public GradeCounter() {
+    public GradeCounter() { //grade counter setting
         this.setNumberOfA(0);
         this.setNumberOfB(0);
         this.setNumberOfC(0);

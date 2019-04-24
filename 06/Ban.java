@@ -14,7 +14,6 @@ public class Ban extends UnSortedArrayList<Student> {
         }
     }
 
-
     public Ban(int givenCapacity) {
         super(givenCapacity);
     } //constructor
@@ -23,7 +22,7 @@ public class Ban extends UnSortedArrayList<Student> {
         super();
     }
 
-    public Student lowest() { //가장 낮은 점수
+    public Student lowest() { //가장 낮은 점수를 재귀적으로 구현
         if (this.isEmpty()) {
             return null;
         } else {
@@ -68,7 +67,7 @@ public class Ban extends UnSortedArrayList<Student> {
         }
     }
 
-    //성적이 가장 높은 학생을 얻는다.
+
     public int sum() { //재귀적 구현
         if (this.isEmpty()) {
             return 0;
@@ -79,9 +78,12 @@ public class Ban extends UnSortedArrayList<Student> {
 
     private int sumOfScoresRecursively(int left, int right) { //반으로 나누어서 계산
         int mid = (left + right) / 2;
+
         if (left == right) {
             return this.elementAt(left).score();
+
         } else {
+
             int leftSum = this.sumOfScoresRecursively(left, mid);
             int rightSum = this.sumOfScoresRecursively(mid + 1, right);
             return (leftSum + rightSum);
@@ -104,7 +106,6 @@ public class Ban extends UnSortedArrayList<Student> {
                 if (this.elementAt(i).score() > this.elementAt(maxLoc).score()) {
                     maxLoc = i;
                 }
-
             }
             this.swap(maxLoc, this.size() - 1);
             this.quicksortRecursively(0, this.size() - 2);
@@ -113,30 +114,30 @@ public class Ban extends UnSortedArrayList<Student> {
 
     private void quicksortRecursively(int left, int right) {
         if (left < right) {
-            int mid = this.partition(left, right - 1);
-            this.quicksortRecursively(left, mid - 1);
-            this.quicksortRecursively(mid + 1, right);
+            int mid = this.partition(left, right - 1); //partition method를 통하여 중간 값 결정
+            this.quicksortRecursively(left, mid - 1); //중간 이전
+            this.quicksortRecursively(mid + 1, right); //중간 이후
         }
 
     }
 
     private int partition(int left, int right) {
-        int pivot = left;
+        int pivot = left; //피봇 값을 정한다.
         int toRight = left;
         int toLeft = right + 1;
         do {
             do {
                 toRight++;
-            } while (this.elementAt(toRight).score() < this.elementAt(pivot).score());
+            } while (this.elementAt(toRight).score() < this.elementAt(pivot).score()); //피봇값을 기준으로 움직인다.
             do {
                 toLeft--;
-            } while (this.elementAt(toLeft).score() > this.elementAt(pivot).score());
+            } while (this.elementAt(toLeft).score() > this.elementAt(pivot).score()); //피봇값을 기준으로 움직인다.
 
-            if (toRight < toLeft) {
+            if (toRight < toLeft) { //toLeft 가 크면 swap
                 this.swap(toRight, toLeft);
             }
         } while (toRight < toLeft);
-        this.swap(left, toLeft);
+        this.swap(left, toLeft); //left 와 toleft swap
         return toLeft;
     }
 

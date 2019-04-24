@@ -16,12 +16,13 @@ public class AppView {
 
     }
 
-    private static int inputInt() throws NumberFormatException { //정수 입력
+    private static int inputInt() throws NumberFormatException { //정수 입력 --> inputScore 로 넘긴다.
         return Integer.parseInt(AppView.sc.nextLine());
     }
 
     public static void output(String aMessage) {
         System.out.println(aMessage);
+
     } //메시지 출력
 
     public static void outputLine(String aMessage) { //메시지 출력

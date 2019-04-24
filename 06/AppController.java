@@ -75,7 +75,7 @@ public class AppController {
         AppView.outputLine("");
         AppView.outputLine("[학점 별 학생 수]");
 
-        this.setGradeCounter(this.ban().countGrade());
+        this.setGradeCounter(this.ban().countGrade()); //grade를 count 한다.
         AppView.outputNumberOfStudentsForGrade('A', this.gradeCounter().numberOfA());
         AppView.outputNumberOfStudentsForGrade('B', this.gradeCounter().numberOfB());
         AppView.outputNumberOfStudentsForGrade('C', this.gradeCounter().numberOfC());
@@ -87,7 +87,7 @@ public class AppController {
         AppView.outputLine("");
         AppView.outputLine("[학생들의 성적 순 목록]");
 
-        this.ban().sortByScore();
+        this.ban().sortByScore(); //성적 순으로 정렬
 
         Iterator<Student> iterator = this.ban().iterator(); //Iterator 를 사용을 하여 출력을 한다.
         Student student = null;
@@ -104,6 +104,7 @@ public class AppController {
 
         this.setBan(new Ban(AppController.BAN_CAPACITY)); //ban을 생성
         this.inputAndStoreStudents(); //학생들의 점수 입력
+
         if (this.ban().isEmpty()) {  // 비어있는지 확인
             AppView.outputLine("");
             AppView.outputLine("(경고) 입력된 성적이 없습니다. ");
@@ -112,9 +113,10 @@ public class AppController {
             this.showStatistics(); //통계함수 출력
             this.showGradeCounts(); //학점 별 학생 수 출력
             this.showStudensSortedByScore(); //학생들의 성적 순 목록
+
         }
         AppView.outputLine("");
-        AppView.outputLine("<<< 학급 성적 처리를 종료합니다. ");
+        AppView.outputLine("<<< 학급 성적 처리를 종료합니다. >>>");
 
 
     }
