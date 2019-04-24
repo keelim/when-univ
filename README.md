@@ -123,3 +123,4 @@ CRT_NO_warings 추가 할 것
     - quadEquation -> 1, 2 
     - MagicSquare
     - 성적 처리
+

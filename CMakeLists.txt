@@ -1,1 +1,1 @@
-add_executable(practice.c)
+add_executable(project sum.c)
