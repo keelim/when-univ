@@ -34,3 +34,8 @@ Model - Controller - View
 - - -
 ## 2019 04 15
 1. structure modify
+
+## 2019 04 25 
+1. Stack의 응용을 학습 
+2. ArrayList를 활용하여 구현
+3. Stack의 인터페이스 처리
