@@ -1,70 +1,72 @@
 public class AppController {
-    private static final int STACK_CAPACITY = 10; // ë¹„ê³µê°œ ë³€ìˆ˜ë“¤
+    private static final int STACK_CAPACITY = 10; // ºñ°ø°³ º¯¼öµé
     private ArrayList<Character> _stack;
-    private int _inputChars;   // ì…ë ¥ëœ ë¬¸ìì˜ ê°œìˆ˜
-    private int _pushedChars; // ì‚½ì…ëœ ë¬¸ìì˜ ê°œìˆ˜
-    private int _ignoredChars; // ë¬´ì‹œëœ ë¬¸ìì˜ ê°œìˆ˜
+    private int _inputChars;   // ÀÔ·ÂµÈ ¹®ÀÚÀÇ °³¼ö
+    private int _pushedChars; // »ğÀÔµÈ ¹®ÀÚÀÇ °³¼ö
+    private int _ignoredChars; // ¹«½ÃµÈ ¹®ÀÚÀÇ °³¼ö
 
 
-    public ArrayList<Character> stack() {
+    public ArrayList<Character> stack() { //constructor
         return _stack;
     }
 
-    public void setStack(ArrayList<Character> _stack) {
+    public void setStack(ArrayList<Character> _stack) { //setter
         this._stack = _stack;
     }
 
-    public int inputChars() {
+    public int inputChars() { //getter
         return _inputChars;
     }
 
-    public void setInputChars(int _inputChars) {
+    public void setInputChars(int _inputChars) {//setter
         this._inputChars = _inputChars;
     }
 
-    public int pushedChars() {
+    public int pushedChars() { //getter
         return _pushedChars;
     }
 
-    public void setPushedChars(int _pushedChars) {
+    public void setPushedChars(int _pushedChars) { //setter
         this._pushedChars = _pushedChars;
     }
 
-    public int ignoredChars() {
+    public int ignoredChars() { //getter
         return _ignoredChars;
     }
 
-    public void setIgnoredChars(int _ignoredChars) {
+    public void setIgnoredChars(int _ignoredChars) { //setter
         this._ignoredChars = _ignoredChars;
     }
 
-    public AppController() {
+    public AppController() { //constructor
         this.setStack(new ArrayList<Character>(AppController.STACK_CAPACITY));
         this.setInputChars(0);
         this.setPushedChars(0);
         this.setIgnoredChars(0);
     }
 
-    // íšŸìˆ˜ ê³„ì‚°
+    // È½¼ö °è»ê
     private void countInputChar() {
-
+        this.setInputChars(this.inputChars() + 1);
     }
 
     private void countIgnoredChar() {
+        this.setIgnoredChars(this.ignoredChars() + 1);
     }
 
     private void countPushedChar() {
+        this.setPushedChars(this.pushedChars() + 1);
     }
 
-    // ìŠ¤íƒ ìˆ˜í–‰ ê´€ë ¨
+    // ½ºÅÃ ¼öÇà °ü·Ã
     private void pushToStack(char aCharForPush) {
         if (this.stack().isFull()) {
-            AppView.outputLine("(ì˜¤ë¥˜) ìŠ¤íƒì´ ê½‰ì°¨ì„œ ë” ì´ìƒ ë„£ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ");
+            AppView.outputLine("(¿À·ù) ½ºÅÃÀÌ ²ËÂ÷¼­ ´õ ÀÌ»ó ³ÖÀ» ¼ö ¾ø½À´Ï´Ù. ");
         } else {
             if (this.stack().push(Character.valueOf(aCharForPush))) {
-                AppView.outputLine("[Push]  ì‚½ì…ëœ ì›ì†ŒëŠ” " + aCharForPush + "ì…ë‹ˆë‹¤. ");
+                AppView.outputLine("[Push]  »ğÀÔµÈ ¿ø¼Ò´Â " + aCharForPush + "ÀÔ´Ï´Ù. ");
             } else {
-                AppView.outputLine("(ì˜¤ë¥˜) ìŠ¤íƒì— ë„£ëŠ” ë™ì•ˆ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤. ");
+                AppView.outputLine("(¿À·ù) ½ºÅÃ¿¡ ³Ö´Â µ¿¾È ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù. ");
             }
 
         }
@@ -72,100 +74,107 @@ public class AppController {
 
     private void popOne() {
         if (this.stack().isEmpty()) {
-            AppView.outputLine("[Pop.Empty] ìŠ¤íƒì— ì‚­ì œí•  ì›ì†Œê°€ ì—†ìŠµë‹ˆë‹¤. ");
+            AppView.outputLine("[Pop.Empty] ½ºÅÃ¿¡ »èÁ¦ÇÒ ¿ø¼Ò°¡ ¾ø½À´Ï´Ù. ");
 
         } else {
             Character poppedChar = this.stack().pop();
             if (poppedChar == null) {
-                AppView.outputLine("(ì˜¤ë¥˜) ìŠ¤íƒì—ì„œ ì‚­ì œí•˜ëŠ” ë™ì•ˆì— ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤. ");
+                AppView.outputLine("(¿À·ù) ½ºÅÃ¿¡¼­ »èÁ¦ÇÏ´Â µ¿¾È¿¡ ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù. ");
             } else {
-                AppView.outputLine("[Pop] ì‚­ì œëœ ì›ì†ŒëŠ” '" + poppedChar + "' ì…ë‹ˆë‹¤. ");
+                AppView.outputLine("[Pop] »èÁ¦µÈ ¿ø¼Ò´Â '" + poppedChar + "' ÀÔ´Ï´Ù. ");
             }
         }
     }
 
     private void popN(int numberOfCharsToBePopped) {
         if (numberOfCharsToBePopped == 0) {
-            AppView.outputLine("[Pops] ì‚­ì œí•  ì›ì†Œì˜ ê°œìˆ˜ê°€ 0 ê°œ ì…ë‹ˆë‹¤. ");
+            AppView.outputLine("[Pops] »èÁ¦ÇÒ ¿ø¼ÒÀÇ °³¼ö°¡ 0 °³ ÀÔ´Ï´Ù. ");
         } else {
             int count = 0;
             while (count < numberOfCharsToBePopped && (!this.stack().isEmpty())) {
                 Character poppedChar = this.stack().pop();
                 if (poppedChar == null) {
-                    AppView.outputLine("(ì˜¤ë¥˜) ìŠ¤íƒì—ì„œ ì‚­ì œí•˜ëŠ” ë™ì•ˆì— ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤. ");
+                    AppView.outputLine("(¿À·ù) ½ºÅÃ¿¡¼­ »èÁ¦ÇÏ´Â µ¿¾È¿¡ ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù. ");
 
                 } else {
-                    AppView.outputLine("[Pops] ì‚­ì œëœ ì›ì†ŒëŠ” '" + poppedChar + "' ì…ë‹ˆë‹¤. ");
+                    AppView.outputLine("[Pops] »èÁ¦µÈ ¿ø¼Ò´Â '" + poppedChar + "' ÀÔ´Ï´Ù. ");
                 }
                 count++;
             }
             if (count < numberOfCharsToBePopped) {
-                AppView.outputLine("[Pops.Empty] ìŠ¤íƒì— ë”ì´ìƒ ì‚­ì œí•  ì›ì†Œê°€ ì—†ìŠµë‹ˆë‹¤. ");
+                AppView.outputLine("[Pops.Empty] ½ºÅÃ¿¡ ´õÀÌ»ó »èÁ¦ÇÒ ¿ø¼Ò°¡ ¾ø½À´Ï´Ù. ");
             }
         }
     }
 
     private void quitStackProcessing() {
         AppView.outputLine("");
-        AppView.outputLine("<ìŠ¤íƒì„ ë¹„ìš°ê³  ì‚¬ìš©ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.>");
+        AppView.outputLine("<½ºÅÃÀ» ºñ¿ì°í »ç¿ëÀ» Á¾·áÇÕ´Ï´Ù.>");
         this.showAllFromBottom();
         this.popN(this.stack().size());
     }
 
-    // ì¶œë ¥ ê´€ë ¨
+    // Ãâ·Â °ü·Ã
     private void showAllFromBottom() {
-        AppView.output("[Stack] <Bottom>");
+        AppView.output("[Stack] <Bottom> ");
         for (int order = 0; order < this.stack().size(); order++) {
             AppView.output(this.stack().elementAt(order).toString() + " ");
         }
+        AppView.outputLine(" <Top>");
     }
 
-    private void showAllFromTop() { //todo êµ¬í˜„ì€ ì™„ë£Œ ì •ìƒì ìœ¼ë¡œ ì‘ë™ì„ í•˜ëŠ”ì§€ëŠ” í™•ì¸ì´ í•„ìš”
-        AppView.output("[Stack] <Top>");
-        for (int order = this.stack().size() - 1; order >= 0; order++) {
+    private void showAllFromTop() {
+        AppView.output("[Stack] <Top> ");
+        for (int order = this.stack().size() - 1; order >= 0; order--) {
             AppView.output(this.stack().elementAt(order).toString() + " ");
+        }
+        AppView.outputLine(" <Bottom>");
+
+    }
+
+    private void showTopElement() { //Top ElementÃâ·Â
+        if (this.stack().isEmpty()) {
+            AppView.outputLine("[Pop.Empty] ½ºÅÃ¿¡ »èÁ¦ÇÒ ¿ø¼Ò°¡ ¾ø½À´Ï´Ù. ");
+        } else{
+            AppView.outputLine("[Top] ½ºÅÃÀÇ Top ¿ø¼Ò´Â '" + this.stack().peek() + "' ÀÔ´Ï´Ù. ");
         }
     }
 
-    private void showTopElement() { //ìˆ˜ì •ì€ í•„ìš”í•´ ë³´ì¸ë‹¤.
-        AppView.output("[Stack] Top Element ì…ë‹ˆë‹¤. ");
-        AppView.output("top element" + this.stack().peek());
-    }
-
     private void showStackSize() {
-        AppView.output("Stackì˜ ì‚¬ì´ì¦ˆëŠ”" + this.stack().size() + "ì…ë‹ˆë‹¤. ");
+        AppView.outputLine("Stack¿¡´Â ÇöÀç " + this.stack().size() + " °³ÀÇ ¿ø¼Ò°¡ ÀÖ½À´Ï´Ù.");
     }
 
-    private void showStatistics() {
+    private void showStatistics() { //Åë°èÇÔ¼ö Ãâ·Â
         AppView.outputLine("");
-        AppView.outputLine("<ìŠ¤íƒ ì‚¬ìš© í†µê³„>");
-        AppView.outputLine("- ì…ë ¥ëœ ë¬¸ìëŠ” " + this.inputChars() + "ê°œ ì…ë‹ˆë‹¤.");
+        AppView.outputLine("<½ºÅÃ »ç¿ë Åë°è>");
+        AppView.outputLine("- ÀÔ·ÂµÈ ¹®ÀÚ´Â " + this.inputChars() + "°³ ÀÔ´Ï´Ù.");
 
-        AppView.outputLine("- ì •ìƒ ì²˜ë¦¬ëœ ë¬¸ìëŠ” " + (this.inputChars() - this.ignoredChars()) + "ê°œ ì…ë‹ˆë‹¤.");
-        AppView.outputLine("- ë¬´ì‹œëœ ë¬¸ìëŠ”" + this.ignoredChars() + "ê°œ ì…ë‹ˆë‹¤. ");
-        AppView.outputLine("- ì‚½ì…ëœ ë¬¸ìëŠ”  " + this.pushedChars() + "ê°œ ì…ë‹ˆë‹¤. ");
+        AppView.outputLine("- Á¤»ó Ã³¸®µÈ ¹®ÀÚ´Â " + (this.inputChars() - this.ignoredChars()) + "°³ ÀÔ´Ï´Ù.");
+        AppView.outputLine("- ¹«½ÃµÈ ¹®ÀÚ´Â" + this.ignoredChars() + "°³ ÀÔ´Ï´Ù. ");
+        AppView.outputLine("- »ğÀÔµÈ ¹®ÀÚ´Â  " + this.pushedChars() + "°³ ÀÔ´Ï´Ù. ");
 
 
     }
 
-    // ì…ë ¥ ê´€ë ¨
+    // ÀÔ·Â °ü·Ã
     private char inputChar() {
-        AppView.output("? ë¬¸ìë¥¼ ì…ë ¥í•˜ì‹œì˜¤: ");
+        AppView.outputLine("? ¹®ÀÚ¸¦ ÀÔ·ÂÇÏ½Ã¿À: ");
         return AppView.inputChar();
     }
 
 
     public void run() {
-        AppView.outputLine("<<< ìŠ¤íƒ ê¸°ëŠ¥ í™•ì¸ í”„ë¡œê·¸ë¨ì„ ì‹œì‘í•©ë‹ˆë‹¤. >>>");
+        AppView.outputLine("<<< ½ºÅÃ ±â´É È®ÀÎ ÇÁ·Î±×·¥À» ½ÃÀÛÇÕ´Ï´Ù. >>>");
         AppView.outputLine("");
 
         char input = this.inputChar();
+
         while (input != '!') {
             this.countInputChar();
-            if (Character.isAlphabetic(input)) {//ì•ŒíŒŒë²³ ê²€ì‚¬
+            if (Character.isAlphabetic(input)) {//¾ËÆÄºª °Ë»ç
                 this.pushToStack(input);
                 this.countPushedChar();
-            } else if (Character.isDigit(input)) { //ìˆ«ì ë¬¸ì ê²€ì‚¬
+            } else if (Character.isDigit(input)) { //¼ıÀÚ ¹®ÀÚ °Ë»ç
                 this.popN(Character.getNumericValue(input));
             } else if (input == '-') {
                 this.popOne();
@@ -178,7 +187,7 @@ public class AppController {
             } else if (input == '^') {
                 this.showTopElement();
             } else {
-                AppView.outputLine("[ignore] ì˜ë¯¸ ì—†ëŠ” ë¬¸ìê°€ ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤. ");
+                AppView.outputLine("[ignore] ÀÇ¹Ì ¾ø´Â ¹®ÀÚ°¡ ÀÔ·ÂµÇ¾ú½À´Ï´Ù. ");
                 this.countIgnoredChar();
             }
             input = this.inputChar();
@@ -188,7 +197,7 @@ public class AppController {
 
         this.showStatistics();
         AppView.outputLine("");
-        AppView.outputLine("<<< ìŠ¤íƒ ê¸°ëŠ¥ í™•ì¸ í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤. >>>");
+        AppView.outputLine("<<< ½ºÅÃ ±â´É È®ÀÎ ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù. >>>");
 
     }
 }

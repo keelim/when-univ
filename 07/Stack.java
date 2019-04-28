@@ -1,4 +1,4 @@
-public interface Stack<E> {
+public interface Stack<E> { //StackInterface
     public int size();
 
     public boolean isFull();

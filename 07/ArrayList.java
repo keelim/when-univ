@@ -41,12 +41,10 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
 
     @SuppressWarnings("unchecked")
-
     public ArrayList(int givenCapacity) { //parameter constructor
         this.setCapacity(givenCapacity);
         this.setElements((E[]) new Comparable[this.capacity()]);
     }
-
 
     public ArrayList() {
         this(DEFAULT_CAPACITY); //constructor
@@ -100,7 +98,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         return false;
     }
 
-
     public int frequencyOf(E anElement) {
 
         int frequencyCount = 0;
@@ -112,7 +109,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
         return frequencyCount;
     }
-
 
     public int orderOf(E anElement) {
 
@@ -130,14 +126,12 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
     }
 
-
     private boolean anElementDoesExistAt(int anOrder) {
 
         return ((anOrder >= 0) && (anOrder < this.size()));
 
 
     }
-
 
     public E elementAt(int anOrder) {
 
@@ -158,8 +152,7 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
     }
 
-
-    protected void setElementAt(int anOrder, E anElement) {
+    private void setElementAt(int anOrder, E anElement) {
 
         if (anOrder < 0 || anOrder > this.size()) {
 
@@ -173,7 +166,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
     }
 
-
     public E last() {
 
         if (this.isEmpty()) {
@@ -185,7 +177,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         }
     }
 
-
     public E first() {
         if (this.isEmpty()) {
             return null;
@@ -193,7 +184,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
             return this._elements[0];
         }
     }
-
 
     public boolean addTo(E anElement, int anOrder) {
 
@@ -211,13 +201,11 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         }
     }
 
-
     private void makeRoomAt(int aPosition) {
         for (int i = this.size(); i > aPosition; i--) {
-            this.elements()[i] = this.elements()[i - 1]; //????? ?Îº??? ?????.
+            this.elements()[i] = this.elements()[i - 1]; //????? ?¥ê??? ?????.
         }
     }
-
 
     public boolean addToFirst(E anElement) {
         if (this.isFull()) {
@@ -232,16 +220,13 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         }
     }
 
-
     public boolean addToLast(E anElement) {
         return this.addTo(anElement, this.size());
     }
 
-
     public boolean add(E anElement) {
         return this.addToLast(anElement);
     }
-
 
     public E removeFrom(int anOrder) {
         if (anOrder < 0 || anOrder >= this.size()) {
@@ -256,7 +241,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         }
     }
 
-
     private void removeGapAt(int aPositon) {
         for (int i = aPositon + 1; i < this.size(); i++) {
             this.elements()[i - 1] = this.elements()[i];
@@ -265,21 +249,17 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         this.elements()[this.size() - 1] = null;
     }
 
-
     public E removeFirst() {
         return removeFrom(0);
     }
-
 
     public E removeLast() {
         return removeFrom(this.size() - 1);
     }
 
-
     public E removeAny() {
         return removeLast();
     }
-
 
     public boolean replaceAt(E anElement, int anOrder) {
 

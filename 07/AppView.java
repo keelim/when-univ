@@ -1,21 +1,21 @@
 import java.util.Scanner;
 
 public class AppView {
-    private static Scanner sc = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in); //Scanner
 
-    public static void output(String aMessage) {
+    public static void output(String aMessage) { //AppView.print
         System.out.print(aMessage);
     }
 
-    public static void outputLine(String aMessage) {
+    public static void outputLine(String aMessage) { //AppView.println
         System.out.println(aMessage);
     }
 
     public static char inputChar() {
-        String line = AppView.sc.nextLine().trim(); //ë¬¸ì ì•ë’¤ ê³µë°± ë¬¸ìë¥¼ ì œê±°í•´ ì¤€ë‹¤.
+        String line = AppView.scanner.nextLine().trim(); //¹®ÀÚ ¾ÕµÚ °ø¹é ¹®ÀÚ¸¦ Á¦°Å
 
-        while (line.equals("")) { //ì…ë ¥ëœ ë¬¸ìì—´ì´ ë¹„ì–´ìˆë‹¤. ?
-            line = AppView.sc.nextLine().trim();
+        while (line.equals("")) { //ÀÔ·ÂµÈ ¹®ÀÚ¿­
+            line = AppView.scanner.nextLine().trim();
         }
 
         return line.charAt(0);
