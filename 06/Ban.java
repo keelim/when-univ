@@ -1,5 +1,13 @@
 public class Ban extends UnSortedArrayList<Student> {
 
+    public Ban(int givenCapacity) {
+        super(givenCapacity);
+    } //constructor
+
+    public Ban() {
+        super();
+    }
+
     private static char scoreToGrade(int aScore) {//주어진 aScore 에 해당하는 학점을 얻는다.
         if (aScore >= 90) {
             return 'A';
@@ -12,14 +20,6 @@ public class Ban extends UnSortedArrayList<Student> {
         } else {
             return 'F';
         }
-    }
-
-    public Ban(int givenCapacity) {
-        super(givenCapacity);
-    } //constructor
-
-    public Ban() {
-        super();
     }
 
     public Student lowest() { //가장 낮은 점수를 재귀적으로 구현
@@ -44,7 +44,7 @@ public class Ban extends UnSortedArrayList<Student> {
 
     }
 
-    //성적이 가장 낮은 학생을 얻는다.
+    //성적이 가장 높은 학생을 얻는다.
     public Student highest() {
         if (this.isEmpty()) {
             return null;

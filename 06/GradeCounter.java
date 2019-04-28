@@ -1,5 +1,4 @@
-public class
-GradeCounter {
+public class GradeCounter {
     private int _numberOfA;
     private int _numberOfB;
     private int _numberOfC;
