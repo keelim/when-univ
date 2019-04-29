@@ -40,7 +40,7 @@ Model - Controller - View
 2. ArrayList를 활용하여 구현
 3. Stack의 인터페이스 처리
 
-## 2019 04 29 
+## 2019 04 29 -> 2weeks?
 1. Double-endedpriority
 2. Priority Queue
 3. Tree
