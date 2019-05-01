@@ -63,6 +63,7 @@ void AppController_pop1(AppController *_this) {
 
 void AppController_showSize(AppController *_this) {
     //getter
+    //todo size getter
 }
 
 void AppController_showAllFromBottom(AppController *_this) {
@@ -143,8 +144,8 @@ void AppController_run(AppController *_this) {
         AppController_countInputChars(_this);
         if (isAlpha(c)) {
             AppController_push(_this, c);
-        } else if (isDigit(c)) {
-            int digitValue = c – '0';
+        } else if (isDigit(c)) { //todo MACRO
+            int digitValue = c - '0';
             AppController_pops(_this, digitValue);
         } else if (c == '-') {
             AppController_pop1(_this);
@@ -167,6 +168,6 @@ void AppController_run(AppController *_this) {
     AppView_out_endProgram();
 }
 
-//todo 65 부터 처리 시작을 할 것
+
 
 

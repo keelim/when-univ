@@ -1,7 +1,6 @@
 #include "AppView.h"
 
 
-
 char AppView_in_charDirectlyFromKeyboard() {
     char charFromKeyboard;
     charFromKeyboard = _getch();
@@ -74,4 +73,17 @@ void AppView_out_endProgram() {
     AppView_out_newLine();
     printf("<<< 스택 처리 프로그램을 종료합니다 >> >\n ");
 }
+
+void AppView_out_topOfStack() {
+    printf("<Top of Stack> ");
+}
+
+void AppView_out_bottomOfStack() {
+    printf("<Bottom of Stack> ");
+}
+
+void AppView_out_element(char anElement) {
+    printf("%c", anElement);
+}
+
 

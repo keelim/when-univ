@@ -1,7 +1,7 @@
 #include "Common.h"
 
 #define Esc 27
-#define isDigit(CHAR) (('0' <= CHAR) && CHAR <= '9'));
+#define isDigit(CHAR) ('0' <= CHAR) && CHAR <= '9')
 #define isAlpha(CHAR)   ();//todo 여기 채울것
 
 typedef struct _AppController AppController;

@@ -21,6 +21,8 @@ void AppView_out_topElement(char anElement);
 
 void AppView_out_noTopElement();
 
+void AppView_out_topOfStack();
+
 void AppView_out_newLine();
 
 void AppView_out_numberOfInputChars(int numberOfChars);
@@ -34,3 +36,7 @@ void AppView_out_numberOfPushedChars(int numberOfChars);
 void AppView_out_startProgram();
 
 void AppView_out_endProgram();
+
+void AppView_out_bottomOfStack();
+
+void AppView_out_element(char anElement);
