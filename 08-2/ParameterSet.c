@@ -1,49 +1,75 @@
 #include "ParameterSet.h"
+#include "Common.h"
+#include "AppController.h"
 
 struct _ParameterSet {
-    int _minTestSize;
-    int _intervalSize;
-    int _numberOfTests;
+	int _minTestSize;
+	int _intervalSize;
+	int _numberOfTests;
 };
 
-ParameterSet *ParameterSet_new(void) { // 생성자 ……
-    // 여기를 채우시오
+ParameterSet* ParameterSet_new(void)
+{
+	ParameterSet* _this = NewObject(ParameterSet);
+	_this->_minTestSize = MIN_TEST_SIZE;
+	_this->_intervalSize = INTERVAL_SIZE;
+	_this->_numberOfTests = NUMBER_OF_TESTS;
+	
+	return _this;
 }
 
-ParameterSet *ParameterSet_newWith(givenMinTestSize, givenIntervalSize, givenNumberOfTests) {// 초기화 값이 주어지는 생성자
-    // 여기를 채우시오
-}
 
-void ParameterSet_delete(ParameterSet *_this) {
-    // 소멸자 …… // 여기를 채우시오
-}
+ParameterSet* ParameterSet_newWith(int givenMinTestSize, int givenIntervalSize, int givenNumberOfTests)
+{
+	ParameterSet* _this = NewObject(ParameterSet);
+	_this->_minTestSize = givenMinTestSize;
+	_this->_intervalSize = givenIntervalSize;
+	_this->_numberOfTests = givenNumberOfTests;
 
-void ParameterSet_setMinTestSize(ParameterSet *_this, int newMinTestSize) {
-
-}
-
-int ParameterSet_minTestSize(ParameterSet *_this) {
-    return 0;
-}
-
-void ParameterSet_setIntervalSize(ParameterSet *_this, int newIntervalSize) {
-
-}
-
-int ParameterSet_intervalSize(ParameterSet *_this) {
-    return 0;
-}
-
-void ParameterSet_setNumberOfTests(ParameterSet *_this, int newNumberOfTests) {
+	return _this;
 
 }
 
-int ParameterSet_numberOfTests(ParameterSet *_this) {
-    return 0;
+void ParameterSet_delete(ParameterSet* _this)
+{
+	free(_this);
 }
 
-int ParameterSet_maxTestSize(ParameterSet *_this) {
-    return (_this->_minTestSize + (_this->_intervalSize * (_this->_numberOfTests - 1)));
+
+// Getters & Setters
+
+void ParameterSet_setMinTestSize(ParameterSet* _this, int newMinTestSize)
+{
+	_this->_minTestSize = newMinTestSize;
+}
+
+int ParameterSet_minTestSize(ParameterSet* _this)
+{
+	return _this->_minTestSize;
+}
+
+void ParameterSet_setIntervalSize(ParameterSet* _this, int newIntervalSize)
+{
+	_this->_intervalSize = newIntervalSize;
+}
+
+int ParameterSet_intervalSize(ParameterSet* _this)
+{
+	return _this->_intervalSize;
+}
+
+void ParameterSet_setNumberOfTests(ParameterSet* _this, int newNumberOfTests)
+{
+	_this->_numberOfTests = newNumberOfTests;
 
 }
 
+int ParameterSet_numberOfTests(ParameterSet* _this)
+{
+	return _this->_numberOfTests;
+}
+
+int ParameterSet_maxTestSize(ParameterSet* _this)
+{
+	return (_this->_minTestSize + (_this->_intervalSize * (_this->_numberOfTests - 1)));
+}
