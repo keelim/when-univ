@@ -124,3 +124,7 @@ CRT_NO_warings 추가 할 것
     - MagicSquare
     - 성적 처리
 
+## 2019 05 01
+1. Stack application
+2. 
+
