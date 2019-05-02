@@ -9,11 +9,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
     private E[] _elements;
 
-    @Override
-    public int size() {
-        return _size;
-    } //size getter
-
 
     public void setSize(int newSize) {
         this._size = newSize;
@@ -50,10 +45,20 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         this(DEFAULT_CAPACITY); //constructor
     }
 
+    @Override
+    public boolean isFull() {
+        return (this.size() == this.capacity());
+    }
 
+    @Override
     public boolean isEmpty() {
         return (this.size() == 0);
     }
+
+    @Override
+    public int size() {
+        return _size;
+    } //size getter
 
     @Override
     public boolean push(E anElement) {
@@ -80,11 +85,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
             this.elements()[i] = null;
             this.setSize(this.size() - 1);
         }
-    }
-
-
-    public boolean isFull() {
-        return (this.size() == this.capacity());
     }
 
 

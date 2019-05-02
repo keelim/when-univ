@@ -5,11 +5,11 @@ public class AppView {
 
     public static void output(String aMessage) { //AppView.print
         System.out.print(aMessage);
-    }
+    } //문자열 출력
 
     public static void outputLine(String aMessage) { //AppView.println
         System.out.println(aMessage);
-    }
+    } //문자열 출력
 
     public static char inputChar() {
         String line = AppView.scanner.nextLine().trim(); //문자 앞뒤 공백 문자를 제거
