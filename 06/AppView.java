@@ -3,82 +3,75 @@ import java.util.Scanner;
 public class AppView {
     private static Scanner sc = new Scanner(System.in);
 
-    public static int inputScore() { //Á¡¼ö ÀÔ·Â
+    public static int inputScore() { //ì ìˆ˜ ì…ë ¥
         while (true) {
             try {
-                AppView.output("- Á¡¼ö¸¦ ÀÔ·ÂÇÏ½Ã¿À (0..100): ");
+                AppView.output("- ì ìˆ˜ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ (0..100): ");
                 int score = AppView.inputInt();
                 return score;
             } catch (NumberFormatException e) {
-                AppView.outputLine("(¿À·ù) Á¤¼ö°¡ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+                AppView.outputLine("(ì˜¤ë¥˜) ì •ìˆ˜ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
             }
         }
 
     }
 
-    private static int inputInt() throws NumberFormatException { //Á¤¼ö ÀÔ·Â --> inputScore ·Î ³Ñ±ä´Ù.
+    private static int inputInt() throws NumberFormatException { //ì •ìˆ˜ ì…ë ¥ --> inputScore ë¡œ ë„˜ê¸´ë‹¤.
         return Integer.parseInt(AppView.sc.nextLine());
     }
 
     public static void output(String aMessage) {
         System.out.println(aMessage);
 
-    } //¸Ş½ÃÁö Ãâ·Â
+    } //ë©”ì‹œì§€ ì¶œë ¥
 
-    public static void outputLine(String aMessage) { //¸Ş½ÃÁö Ãâ·Â
+    public static void outputLine(String aMessage) { //ë©”ì‹œì§€ ì¶œë ¥
         System.out.println(aMessage);
 
     }
 
 
     public static void outputScore(int aScore) {
-        System.out.println("Á¡¼ö " + aScore + "ÀÔ´Ï´Ù. ");
-    } //Á¡¼ö Ãâ·Â
+        System.out.println("ì ìˆ˜ " + aScore + "ì…ë‹ˆë‹¤. ");
+    } //ì ìˆ˜ ì¶œë ¥
 
 
     public static void outputNumberOfStudents(int aNumberOfStudents) {
-        //ÇĞ±Ş ÇĞ»ı ¼ö Ãâ·Â
-        System.out.println("ÇĞ±Ş ÇĞ»ı ¼ö: " + aNumberOfStudents);
+        //í•™ê¸‰ í•™ìƒ ìˆ˜ ì¶œë ¥
+        System.out.println("í•™ê¸‰ í•™ìƒ ìˆ˜: " + aNumberOfStudents);
     }
 
     public static void outputHighestScore(int aScore) {
-        //ÇĞ±Ş ÃÖ°í Á¡¼ö Ãâ·Â
-        System.out.println("ÇĞ±Ş ÃÖ°í Á¡¼ö : " + aScore);
+        //í•™ê¸‰ ìµœê³  ì ìˆ˜ ì¶œë ¥
+        System.out.println("í•™ê¸‰ ìµœê³  ì ìˆ˜ : " + aScore);
     }
 
     public static void outputLowestScore(int aScore) {
-        //ÃÖÀúÁ¡ Ãâ·Â
-        System.out.println("ÇĞ±Ş ÃÖÀú Á¡¼ö: " + aScore);
+        //ìµœì €ì  ì¶œë ¥
+        System.out.println("í•™ê¸‰ ìµœì € ì ìˆ˜: " + aScore);
     }
 
 
     public static void outputAverageScore(double anAverageScore) {
-        //Æò±Õ°ªÀ» Ãâ·Â
-        System.out.println("ÇĞ±Ş Æò±Õ: " + anAverageScore);
+        //í‰ê· ê°’ì„ ì¶œë ¥
+        System.out.println("í•™ê¸‰ í‰ê· : " + anAverageScore);
     }
 
 
     public static void outputNumberOfStudentsAboveAverage(int aNumberOfStudents) {
-        //Æò±Õ ÀÌ»óÀÎ ÇĞ»ı ¼ö Ãâ·Â
-        System.out.println("Æò±Õ ÀÌ»óÀÎ ÇĞ»ı ¼ö : " + aNumberOfStudents);
+        //í‰ê·  ì´ìƒì¸ í•™ìƒ ìˆ˜ ì¶œë ¥
+        System.out.println("í‰ê·  ì´ìƒì¸ í•™ìƒ ìˆ˜ : " + aNumberOfStudents);
 
     }
 
 
-    public static void outputNumberOfStudentsForGrade(char aGrade, int aNumberOfStudents) { //ÇĞÁ¡ÀÇ ÇĞ»ı ¼ö Ãâ·Â
-        System.out.println(aGrade + " ÇĞÁ¡ÀÇ ÇĞ»ı ¼ö´Â " + aNumberOfStudents + "ÀÔ´Ï´Ù. ");
+    public static void outputNumberOfStudentsForGrade(char aGrade, int aNumberOfStudents) { //í•™ì ì˜ í•™ìƒ ìˆ˜ ì¶œë ¥
+        System.out.println(aGrade + " í•™ì ì˜ í•™ìƒ ìˆ˜ëŠ” " + aNumberOfStudents + "ì…ë‹ˆë‹¤. ");
 
     }
-
-
-    public static void outputStudentInfo(int aScore) {
-        //ÇĞ»ıµéÀÇ Á¡¼ö Ãâ·Â
-        System.out.println("Á¡¼ö:  " + aScore);
-    }
-
 
     public static boolean doesContinueToInputStudent() {
-        AppView.output("¼ºÀûÀ» ÀÔ·ÂÇÏ·Á¸é 'Y¡® ¶Ç´Â ¡®y¡¯ ¸¦, Á¾·áÇÏ·Á¸é ´Ù¸¥ ¾Æ¹« Å°³ª Ä¡½Ã¿À: ");
+        AppView.output("ì„±ì ì„ ì…ë ¥í•˜ë ¤ë©´ 'Yâ€˜ ë˜ëŠ” â€˜yâ€™ ë¥¼, ì¢…ë£Œí•˜ë ¤ë©´ ë‹¤ë¥¸ ì•„ë¬´ í‚¤ë‚˜ ì¹˜ì‹œì˜¤: ");
 
         String line = null;
         do {

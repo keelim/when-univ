@@ -19,10 +19,10 @@ public class Student implements Comparable<Student> {
     } //constructor
 
     @Override
-    public int compareTo(Student other) { //comparable À» ±¸ÇöÇÑ ÇÔ¼ö
+    public int compareTo(Student other) { //comparable ì„ êµ¬í˜„í•œ í•¨ìˆ˜
         if (this.score() < other.score()) {
             return -1;
-        } else if (this.score() == other.score()) {
+        } else if (this.score() == other.score()) { //ê°™ì„ ê²½ìš° 0
             return 0;
         } else {
             return +1;

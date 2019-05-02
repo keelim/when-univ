@@ -1,5 +1,5 @@
 
-public class UnSortedArrayList<E> { //BanÀÇ ¿øÇü
+public class UnSortedArrayList<E> { //Banì˜ ì›í˜•
     private static final int DEFAULT_CAPACITY = 1000;
 
     private int _size;
@@ -139,7 +139,7 @@ public class UnSortedArrayList<E> { //BanÀÇ ¿øÇü
 
     private void makeRoomAt(int aPosition) {
         for (int i = this.size(); i > aPosition; i--) {
-            this.elements()[i] = this.elements()[i - 1]; //????? ?¥ê??? ?????.
+            this.elements()[i] = this.elements()[i - 1]; //????? ?Îº??? ?????.
         }
     }
 
@@ -227,11 +227,11 @@ public class UnSortedArrayList<E> { //BanÀÇ ¿øÇü
         @Override
         public boolean hasNext() {
             return (this.nextPosition() < UnSortedArrayList.this.size());
-        } //nextposition ÀÌ ÀÛÀ¸¸é  boolean
+        } //nextposition ì´ ì‘ìœ¼ë©´  boolean
 
         @Override
         public E next() {
-            //ÀÓ½Ã º¯¼ö¸¦ »ı¼ºÀ» ÇÑ´Ù.
+            //ì„ì‹œ ë³€ìˆ˜ë¥¼ ìƒì„±ì„ í•œë‹¤.
             E nextElement = UnSortedArrayList.this.elements()[this.nextPosition()];
             this.setNextPosition(this.nextPosition() + 1);
             return nextElement;

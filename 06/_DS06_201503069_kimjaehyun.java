@@ -1,6 +1,6 @@
 public class _DS06_201503069_kimjaehyun {
     public static void main(String[] args) {
-        AppController appController = new AppController(); //AppController ª˝º∫
-        appController.run(); //AppController  Ω««‡
+        AppController appController = new AppController(); //AppController ÏÉùÏÑ±
+        appController.run(); //AppController  Ïã§Ìñâ
     }
 }

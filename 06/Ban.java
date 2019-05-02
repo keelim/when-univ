@@ -8,7 +8,7 @@ public class Ban extends UnSortedArrayList<Student> {
         super();
     }
 
-    private static char scoreToGrade(int aScore) {//ÁÖ¾îÁø aScore ¿¡ ÇØ´çÇÏ´Â ÇĞÁ¡À» ¾ò´Â´Ù.
+    private static char scoreToGrade(int aScore) {//ì£¼ì–´ì§„ aScore ì— í•´ë‹¹í•˜ëŠ” í•™ì ì„ ì–»ëŠ”ë‹¤.
         if (aScore >= 90) {
             return 'A';
         } else if (aScore >= 80) {
@@ -22,20 +22,20 @@ public class Ban extends UnSortedArrayList<Student> {
         }
     }
 
-    public Student lowest() { //°¡Àå ³·Àº Á¡¼ö¸¦ Àç±ÍÀûÀ¸·Î ±¸Çö
+    public Student lowest() { //ê°€ì¥ ë‚®ì€ ì ìˆ˜ë¥¼ ì¬ê·€ì ìœ¼ë¡œ êµ¬í˜„
         if (this.isEmpty()) {
             return null;
         } else {
-            return this.lowestRecursively(0, this.size() - 1); //recursion
+            return this.lowestRecursively(0, this.size() - 1); //recursion call
         }
     }
 
     private Student lowestRecursively(int left, int right) {
-        if (left == right) { //ÃÊÇ×
+        if (left == right) { //ì´ˆí•­
             return this.elementAt(left);
         } else {
             Student lowestFromRight = lowestRecursively(left + 1, right);
-            if (lowestFromRight.compareTo(this.elementAt(left)) <= 0) {
+            if (lowestFromRight.compareTo(this.elementAt(left)) <= 0) { //í•˜ë‚˜ì”© ì¤„ì—¬ë‚˜ê°„ë‹¤.
                 return lowestFromRight;
             } else {
                 return this.elementAt(left);
@@ -44,22 +44,22 @@ public class Ban extends UnSortedArrayList<Student> {
 
     }
 
-    //¼ºÀûÀÌ °¡Àå ³ôÀº ÇĞ»ıÀ» ¾ò´Â´Ù.
+    //ì„±ì ì´ ê°€ì¥ ë†’ì€ í•™ìƒì„ ì–»ëŠ”ë‹¤.
     public Student highest() {
         if (this.isEmpty()) {
             return null;
         } else {
-            return this.highestRecursively(0, this.size() - 1);
+            return this.highestRecursively(0, this.size() - 1); //recursion call
         }
 
     }
 
     private Student highestRecursively(int left, int right) {
-        if (left == right) { //ÃÊÇ×
+        if (left == right) { //ì´ˆí•­
             return this.elementAt(left);
         } else {
-            Student rightFromRights = highestRecursively(left + 1, right);
-            if (rightFromRights.compareTo(this.elementAt(left)) > 0) {
+            Student rightFromRights = highestRecursively(left + 1, right); //í•˜ë‚˜ ì”© ì¤„ì—¬ë‚˜ê°„ë‹¤.
+            if (rightFromRights.compareTo(this.elementAt(left)) > 0) { //ë¹„êµ
                 return rightFromRights;
             } else {
                 return this.elementAt(left);
@@ -68,7 +68,7 @@ public class Ban extends UnSortedArrayList<Student> {
     }
 
 
-    public int sum() { //Àç±ÍÀû ±¸Çö
+    public int sum() { //ì¬ê·€ì  êµ¬í˜„
         if (this.isEmpty()) {
             return 0;
         } else {
@@ -76,7 +76,7 @@ public class Ban extends UnSortedArrayList<Student> {
         }
     }
 
-    private int sumOfScoresRecursively(int left, int right) { //¹İÀ¸·Î ³ª´©¾î¼­ °è»ê
+    private int sumOfScoresRecursively(int left, int right) { //ë°˜ìœ¼ë¡œ ë‚˜ëˆ„ì–´ì„œ ê³„ì‚°
         int mid = (left + right) / 2;
 
         if (left == right) {
@@ -88,10 +88,10 @@ public class Ban extends UnSortedArrayList<Student> {
             int rightSum = this.sumOfScoresRecursively(mid + 1, right);
             return (leftSum + rightSum);
         }
-    }//ÇĞ±ŞÀÇ ÇĞ»ıµéÀÇ ¼ºÀûÀÇ ÇÕ°è¸¦ ¾ò´Â´Ù.
+    }//í•™ê¸‰ì˜ í•™ìƒë“¤ì˜ ì„±ì ì˜ í•©ê³„ë¥¼ ì–»ëŠ”ë‹¤.
 
 
-    public double average() {     //ÇĞ±ŞÀÇ ¼ºÀû Æò±Õ Á¡¼ö¸¦ ¾ò´Â´Ù
+    public double average() {     //í•™ê¸‰ì˜ ì„±ì  í‰ê·  ì ìˆ˜ë¥¼ ì–»ëŠ”ë‹¤
         if (this.isEmpty()) {
             return 0;
         } else {
@@ -114,30 +114,30 @@ public class Ban extends UnSortedArrayList<Student> {
 
     private void quicksortRecursively(int left, int right) {
         if (left < right) {
-            int mid = this.partition(left, right - 1); //partition method¸¦ ÅëÇÏ¿© Áß°£ °ª °áÁ¤
-            this.quicksortRecursively(left, mid - 1); //Áß°£ ÀÌÀü
-            this.quicksortRecursively(mid + 1, right); //Áß°£ ÀÌÈÄ
+            int mid = this.partition(left, right - 1); //partition methodë¥¼ í†µí•˜ì—¬ ì¤‘ê°„ ê°’ ê²°ì •
+            this.quicksortRecursively(left, mid - 1); //ì¤‘ê°„ ì´ì „
+            this.quicksortRecursively(mid + 1, right); //ì¤‘ê°„ ì´í›„
         }
 
     }
 
     private int partition(int left, int right) {
-        int pivot = left; //ÇÇº¿ °ªÀ» Á¤ÇÑ´Ù.
+        int pivot = left; //í”¼ë´‡ ê°’ì„ ì •í•œë‹¤.
         int toRight = left;
         int toLeft = right + 1;
         do {
             do {
                 toRight++;
-            } while (this.elementAt(toRight).score() < this.elementAt(pivot).score()); //ÇÇº¿°ªÀ» ±âÁØÀ¸·Î ¿òÁ÷ÀÎ´Ù.
+            } while (this.elementAt(toRight).score() < this.elementAt(pivot).score()); //í”¼ë´‡ê°’ì„ ê¸°ì¤€ìœ¼ë¡œ ì›€ì§ì¸ë‹¤.
             do {
                 toLeft--;
-            } while (this.elementAt(toLeft).score() > this.elementAt(pivot).score()); //ÇÇº¿°ªÀ» ±âÁØÀ¸·Î ¿òÁ÷ÀÎ´Ù.
+            } while (this.elementAt(toLeft).score() > this.elementAt(pivot).score()); //í”¼ë´‡ê°’ì„ ê¸°ì¤€ìœ¼ë¡œ ì›€ì§ì¸ë‹¤.
 
-            if (toRight < toLeft) { //toLeft °¡ Å©¸é swap
+            if (toRight < toLeft) { //toLeft ê°€ í¬ë©´ swap
                 this.swap(toRight, toLeft);
             }
         } while (toRight < toLeft);
-        this.swap(left, toLeft); //left ¿Í toleft swap
+        this.swap(left, toLeft); //left ì™€ toleft swap
         return toLeft;
     }
 
@@ -147,15 +147,12 @@ public class Ban extends UnSortedArrayList<Student> {
         this.setElementAt(q, temp);
 
     }
-
-    //ÇĞ±ŞÀÇ ÇĞ»ıµéÀ» ¼ºÀû ¼øÀ¸·Î Á¤·ÄÇÑ´Ù.
-
-
+    //í•™ê¸‰ì˜ í•™ìƒë“¤ì„ ì„±ì  ìˆœìœ¼ë¡œ ì •ë ¬í•œë‹¤.
     public int numberOfStudentsAboveAverage() {
         double average = this.average();
         int numberOfStudentAboveAverage = 0;
 
-        Iterator<Student> iterator = this.iterator(); //iterator¸¦ »ç¿ëÇÏ¿© ±¸Çö
+        Iterator<Student> iterator = this.iterator(); //iteratorë¥¼ ì‚¬ìš©í•˜ì—¬ êµ¬í˜„
         while (iterator.hasNext()) {
             Student student = iterator.next();
             if (student.score() >= average) {
@@ -164,9 +161,8 @@ public class Ban extends UnSortedArrayList<Student> {
         }
         return numberOfStudentAboveAverage;
     }
-
-    public GradeCounter countGrade() { //ÇĞ»ıµéÀÇ ¼ö¸¦ ¼¾´Ù.
-        // ÇĞ±ŞÀÇ ÇĞÁ¡º° ÇĞ»ı¼ö¸¦ ¼¼°Ô ÇÏ°í, ±× °á°ú¸¦ °¡Áö°í ÀÖ´Â GradeCounter °´Ã¼¸¦ ¾ò´Â´Ù
+    public GradeCounter countGrade() { //í•™ìƒë“¤ì˜ ìˆ˜ë¥¼ ì„¼ë‹¤.
+        // í•™ê¸‰ì˜ í•™ì ë³„ í•™ìƒìˆ˜ë¥¼ ì„¸ê²Œ í•˜ê³ , ê·¸ ê²°ê³¼ë¥¼ ê°€ì§€ê³  ìˆëŠ” GradeCounter ê°ì²´ë¥¼ ì–»ëŠ”ë‹¤
         GradeCounter counter = new GradeCounter();
         for (int i = 0; i < this.size(); i++) {
             char count = Ban.scoreToGrade(this.elementAt(i).score());

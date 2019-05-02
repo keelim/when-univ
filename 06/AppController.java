@@ -25,98 +25,97 @@ public class AppController {
     }
 
 
-    private static boolean scoreIsValid(int aScore) { //À¯È¿¼º È®ÀÎ
+    private static boolean scoreIsValid(int aScore) { //ìœ íš¨ì„± í™•ì¸
         return (aScore >= AppController.VALID_MIN_SCORE && aScore <= AppController.VALID_MAX_SCORE);
     }
 
-    private static Student inputStudent() { //¿À·ù ¸Ş½ÃÁö Ãâ·Â ¹× student Á¡¼ö ÀÔ·Â
-        int score = AppView.inputScore();
-        while (!AppController.scoreIsValid(score)) {
-            AppView.outputLine("[¿À·ù]" +
-                    AppController.VALID_MIN_SCORE + "º¸´Ù ÀÛ°Å³ª" +
-                    AppController.VALID_MAX_SCORE + "º¸´Ù Ä¿¼­ , Á¤»óÀûÀÎ Á¡¼ö°¡ ¾Æ´Õ´Ï´Ù. ");
-            score = AppView.inputScore();
+    private static Student inputStudent() { //ì˜¤ë¥˜ ë©”ì‹œì§€ ì¶œë ¥ ë° student ì ìˆ˜ ì…ë ¥
+        int score = AppView.inputScore();  //ì ìˆ˜ ì…ë ¥
+        while (!AppController.scoreIsValid(score)) { //ìœ íš¨ì„± í™•ì¸
+            AppView.outputLine("[ì˜¤ë¥˜]" +
+                    AppController.VALID_MIN_SCORE + "ë³´ë‹¤ ì‘ê±°ë‚˜" +
+                    AppController.VALID_MAX_SCORE + "ë³´ë‹¤ ì»¤ì„œ , ì •ìƒì ì¸ ì ìˆ˜ê°€ ì•„ë‹™ë‹ˆë‹¤. ");
+            score = AppView.inputScore(); //ì˜¤ë¥˜ ì‹œ ë‹¤ì‹œ ì¬ì…ë ¥
         }
 
         Student student = new Student();
-        student.setScore(score);
+        student.setScore(score); //ì ìˆ˜ ì„¤ì • í›„ ë¦¬í„´
         return student;
 
     }
 
-    private void inputAndStoreStudents() { //ÇĞ»ıÀ» ÀÚ·á±¸Á¶ÀÇ ³Ö´Â´Ù.
+    private void inputAndStoreStudents() { //í•™ìƒì„ Stackì— ë„£ëŠ”ë‹¤.
         AppView.outputLine("");
         boolean storingAStudentWasSucessful = true;
 
         while (storingAStudentWasSucessful && AppView.doesContinueToInputStudent()) {
             Student student = this.inputStudent();
-            if (!this.ban().add(student)) {
-                AppView.outputLine("(°æ°í) ÀÔ·Â¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù. ÇĞ±Ş¿¡ ´õÀÌ»ó ÇĞ»ıÀ» ³ÖÀ» °ø°£ÀÌ ¾ø½À´Ï´Ù. ");
+            if (!this.ban().add(student)) { //í•™ìƒì„ banì— ë„£ëŠ”ë‹¤.
+                AppView.outputLine("(ê²½ê³ ) ì…ë ¥ì— ì˜¤ë¥˜ê°€ ìˆìŠµë‹ˆë‹¤. í•™ê¸‰ì— ë”ì´ìƒ í•™ìƒì„ ë„£ì„ ê³µê°„ì´ ì—†ìŠµë‹ˆë‹¤. "); //ì˜¤ë¥˜ ë©”ì‹œì§€ ì¶œë ¥
                 storingAStudentWasSucessful = false;
             }
-
         }
-        AppView.outputLine("! ¼ºÀû ÀÔ·ÂÀ» ¸¶Ä¨´Ï´Ù. ");
+        AppView.outputLine("! ì„±ì  ì…ë ¥ì„ ë§ˆì¹©ë‹ˆë‹¤. ");
     }
 
-    private void showStatistics() { //Åë°èÇÔ¼ö Ãâ·Â
+    private void showStatistics() { //í†µê³„í•¨ìˆ˜ ì¶œë ¥
         AppView.outputLine("");
-        AppView.outputLine("[ÇĞ±Ş ¼ºÀû Åë°è]");
+        AppView.outputLine("[í•™ê¸‰ ì„±ì  í†µê³„]");
 
-        AppView.outputNumberOfStudents(this.ban().size()); //ÇĞ»ı¼ö
-        AppView.outputHighestScore(this.ban().highest().score()); //ÃÖ°íÁ¡
-        AppView.outputLowestScore(this.ban().lowest().score());  //ÃÖÀúÁ¡
-        AppView.outputAverageScore(this.ban().average());       //Æò±Õ Á¡¼ö
-        AppView.outputNumberOfStudentsAboveAverage(this.ban().numberOfStudentsAboveAverage()); //Æò±Õ Á¡¼ö ÀÌ»ó
+        AppView.outputNumberOfStudents(this.ban().size()); //í•™ìƒìˆ˜
+        AppView.outputHighestScore(this.ban().highest().score()); //ìµœê³ ì 
+        AppView.outputLowestScore(this.ban().lowest().score());  //ìµœì €ì 
+        AppView.outputAverageScore(this.ban().average());       //í‰ê·  ì ìˆ˜
+        AppView.outputNumberOfStudentsAboveAverage(this.ban().numberOfStudentsAboveAverage()); //í‰ê·  ì ìˆ˜ ì´ìƒ
 
     }
 
-    private void showGradeCounts() { //ÇĞÁ¡ º° ÇĞ»ıÀÇ Á¡¼ö¸¦ Ãâ·ÂÇÑ´Ù.
+    private void showGradeCounts() { //í•™ì  ë³„ í•™ìƒì˜ ì ìˆ˜ë¥¼ ì¶œë ¥í•œë‹¤.
         AppView.outputLine("");
-        AppView.outputLine("[ÇĞÁ¡ º° ÇĞ»ı ¼ö]");
+        AppView.outputLine("[í•™ì  ë³„ í•™ìƒ ìˆ˜]");
 
-        this.setGradeCounter(this.ban().countGrade()); //grade¸¦ count ÇÑ´Ù.
-        AppView.outputNumberOfStudentsForGrade('A', this.gradeCounter().numberOfA());
-        AppView.outputNumberOfStudentsForGrade('B', this.gradeCounter().numberOfB());
-        AppView.outputNumberOfStudentsForGrade('C', this.gradeCounter().numberOfC());
-        AppView.outputNumberOfStudentsForGrade('D', this.gradeCounter().numberOfD());
-        AppView.outputNumberOfStudentsForGrade('F', this.gradeCounter().numberOfF());
+        this.setGradeCounter(this.ban().countGrade()); //gradeë¥¼ count í•œë‹¤.
+        AppView.outputNumberOfStudentsForGrade('A', this.gradeCounter().numberOfA()); //number a
+        AppView.outputNumberOfStudentsForGrade('B', this.gradeCounter().numberOfB()); //number b
+        AppView.outputNumberOfStudentsForGrade('C', this.gradeCounter().numberOfC()); //number c
+        AppView.outputNumberOfStudentsForGrade('D', this.gradeCounter().numberOfD()); //number d
+        AppView.outputNumberOfStudentsForGrade('F', this.gradeCounter().numberOfF()); //number f
     }
 
-    private void showStudensSortedByScore() { //ÇĞ»ıµéÀ» ¼ºÀû¼ø À¸·Î Ãâ·ÂÀ» ÇÑ´Ù.
+    private void showStudensSortedByScore() { //í•™ìƒë“¤ì„ ì„±ì ìˆœ ìœ¼ë¡œ ì¶œë ¥ì„ í•œë‹¤.
         AppView.outputLine("");
-        AppView.outputLine("[ÇĞ»ıµéÀÇ ¼ºÀû ¼ø ¸ñ·Ï]");
+        AppView.outputLine("[í•™ìƒë“¤ì˜ ì„±ì  ìˆœ ëª©ë¡]");
 
-        this.ban().sortByScore(); //¼ºÀû ¼øÀ¸·Î Á¤·Ä
+        this.ban().sortByScore(); //ì„±ì  ìˆœìœ¼ë¡œ ì •ë ¬
 
-        Iterator<Student> iterator = this.ban().iterator(); //Iterator ¸¦ »ç¿ëÀ» ÇÏ¿© Ãâ·ÂÀ» ÇÑ´Ù.
+        Iterator<Student> iterator = this.ban().iterator(); //Iterator ë¥¼ ì‚¬ìš©ì„ í•˜ì—¬ ì¶œë ¥ì„ í•œë‹¤.
         Student student = null;
-        while (iterator.hasNext()) {
+        while (iterator.hasNext()) { //iterator ë°˜ë³µ
             student = iterator.next();
-            AppView.outputScore(student.score());
+            AppView.outputScore(student.score()); //í•™ìƒ ì ìˆ˜ ì¶œë ¥
         }
     }
 
 
-    public void run() { //½ÇÇà
+    public void run() { //ì‹¤í–‰
         AppView.outputLine("");
-        AppView.outputLine("<<< ÇĞ±Ş ¼ºÀû Ã³¸®¸¦ ½ÃÀÛÇÕ´Ï´Ù. >>>");
+        AppView.outputLine("<<< í•™ê¸‰ ì„±ì  ì²˜ë¦¬ë¥¼ ì‹œì‘í•©ë‹ˆë‹¤. >>>");
 
-        this.setBan(new Ban(AppController.BAN_CAPACITY)); //banÀ» »ı¼º
-        this.inputAndStoreStudents(); //ÇĞ»ıµéÀÇ Á¡¼ö ÀÔ·Â
+        this.setBan(new Ban(AppController.BAN_CAPACITY)); //banì„ ìƒì„±
+        this.inputAndStoreStudents(); //í•™ìƒë“¤ì˜ ì ìˆ˜ ì…ë ¥
 
-        if (this.ban().isEmpty()) {  // ºñ¾îÀÖ´ÂÁö È®ÀÎ
+        if (this.ban().isEmpty()) {  // ë¹„ì–´ìˆëŠ”ì§€ í™•ì¸
             AppView.outputLine("");
-            AppView.outputLine("(°æ°í) ÀÔ·ÂµÈ ¼ºÀûÀÌ ¾ø½À´Ï´Ù. ");
+            AppView.outputLine("(ê²½ê³ ) ì…ë ¥ëœ ì„±ì ì´ ì—†ìŠµë‹ˆë‹¤. ");
 
         } else {
-            this.showStatistics(); //Åë°èÇÔ¼ö Ãâ·Â
-            this.showGradeCounts(); //ÇĞÁ¡ º° ÇĞ»ı ¼ö Ãâ·Â
-            this.showStudensSortedByScore(); //ÇĞ»ıµéÀÇ ¼ºÀû ¼ø ¸ñ·Ï
+            this.showStatistics(); //í†µê³„í•¨ìˆ˜ ì¶œë ¥
+            this.showGradeCounts(); //í•™ì  ë³„ í•™ìƒ ìˆ˜ ì¶œë ¥
+            this.showStudensSortedByScore(); //í•™ìƒë“¤ì˜ ì„±ì  ìˆœ ëª©ë¡
 
         }
         AppView.outputLine("");
-        AppView.outputLine("<<< ÇĞ±Ş ¼ºÀû Ã³¸®¸¦ Á¾·áÇÕ´Ï´Ù. >>>");
+        AppView.outputLine("<<< í•™ê¸‰ ì„±ì  ì²˜ë¦¬ë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤. >>>");
 
 
     }
