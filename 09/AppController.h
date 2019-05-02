@@ -1,8 +1,11 @@
+#pragma once
+#include "AppView.h"
+#include "Stack.h"
 #include "Common.h"
 
 #define Esc 27
-#define isDigit(CHAR) ('0' <= CHAR) && CHAR <= '9')
-#define isAlpha(CHAR)   ();//todo 여기 채울것
+#define isDigit(CHAR) (('0' <= CHAR) && (CHAR <='9'))
+#define isAlpha(CHAR)   ((('A' <= CHAR) && (CHAR <= 'Z')) || (('a' <= CHAR) && (CHAR <= 'z')))
 
 typedef struct _AppController AppController;
 

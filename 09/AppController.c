@@ -1,6 +1,6 @@
+#pragma once
 #include "AppController.h"
-#include "AppView.h"
-#include "Stack.h"
+
 
 struct _AppController {
     Stack *_stack;
@@ -22,9 +22,8 @@ void AppController_delete(AppController *_this) {
 }
 
 void AppController_countPushedChars(AppController *_this) {
-    //todo
+    _this->_pushedChars++;
 }
-
 
 
 void AppController_push(AppController *_this, char aChar) {
@@ -63,7 +62,8 @@ void AppController_pop1(AppController *_this) {
 
 void AppController_showSize(AppController *_this) {
     //getter
-    //todo size getter
+    \
+
 }
 
 void AppController_showAllFromBottom(AppController *_this) {
@@ -79,14 +79,28 @@ void AppController_showAllFromBottom(AppController *_this) {
 }
 
 void AppController_showAllFromTop(AppController *_this) {
-    //todo 채워야 한다.
+    char stackElement;
+    AppView_out_topOfStack();
+    for (int i = Stack_size(_this->_stack); i >= 0; i--) {
+        stackElement = Stack_elementAt(_this->_stack, i);
+        AppView_out_element(stackElement);
+    }
+    AppView_out_bottomOfStack();
+    AppView_out_newLine();
 }
 
-void AppController_showTopElement(AppController *_this) {}
+void AppController_showTopElement(AppController *_this) {
+    char element = Stack_elementAt(_this->_stack, Stack_size(_this->_stack) - 1);
+    AppView_out_topElement(element);
+}
 
-void AppController_ignore(AppController *_this) {}
+void AppController_ignore(AppController *_this) {
+    //todo
+}
 
-void AppController_endInput(AppController *_this) {}
+void AppController_endInput(AppController *_this) {
+    //todo
+}
 
 //각 행위 실행 횟수 세기
 void AppController_initCountingChars(AppController *_this) {
@@ -100,7 +114,7 @@ void AppController_countInputChars(AppController *_this) {
 }
 
 void AppController_countIgnoredChars(AppController *_this) {
-    //todo
+    _this->_ignoredChars++;
 }
 
 
@@ -111,7 +125,7 @@ int AppController_numberOfInputChars(AppController *_this) {
 }
 
 int AppController_numberOfIgnoredChars(AppController *_this) {
-    //todo
+    return _this->_ignoredChars;
 
 }
 
@@ -120,7 +134,7 @@ int AppController_numberOfNormallyProcessedChars(AppController *_this) {
 }
 
 int AppController_numberOfPushedChars(AppController *_this) {
-    //todo
+    return _this->_pushedChars;
 }
 
 void AppController_showStatistics(AppController *_this) {
@@ -144,7 +158,7 @@ void AppController_run(AppController *_this) {
         AppController_countInputChars(_this);
         if (isAlpha(c)) {
             AppController_push(_this, c);
-        } else if (isDigit(c)) { //todo MACRO
+        } else if (isDigit(c)) {
             int digitValue = c - '0';
             AppController_pops(_this, digitValue);
         } else if (c == '-') {

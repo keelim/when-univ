@@ -1,3 +1,4 @@
+#pragma once
 #include "Stack.h"
 
 struct _Stack {
@@ -53,7 +54,7 @@ Element Stack_topElement(Stack *_this) {
     return (_this->_elements[_this->_top]);
 }
 
-Element Stack_elementAt(Stack *_this, int anOrder) {
-    return 0; //todo
+Element Stack_elementAt(Stack *_this, int anOrder) { // elementAt 구현
+    return _this->_elements[anOrder];
 }
 

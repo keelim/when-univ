@@ -1,4 +1,7 @@
+#pragma once
 #include "AppView.h"
+
+
 
 
 char AppView_in_charDirectlyFromKeyboard() {
@@ -8,11 +11,11 @@ char AppView_in_charDirectlyFromKeyboard() {
 }
 
 void AppView_out_stackIsFullAgainstPush(char anElementForPush) {
-    printf("[Push: Full] 스택이 꽉 차서 원소 \'%c\' 는 삽입이 불가능합니다.\n", anElementForPush);
+    printf("[Push: Full] 스택이 꽉 차서 원소 %c 는 삽입이 불가능합니다.\n", anElementForPush);
 }
 
 void AppView_out_pushedElement(char anElement) {
-    printf("[Push] 삽입된 원소는 ‘%c’ 입니다.\n", anElement);
+    printf("[Push] 삽입된 원소는 %c 입니다.\n", anElement);
 }
 
 void AppView_out_stackIsEmptyAgainstPop1() {
@@ -20,7 +23,7 @@ void AppView_out_stackIsEmptyAgainstPop1() {
 }
 
 void AppView_out_poppedElementByPop1(char anElement) {
-    printf("[Pop1] 삭제된 원소는 ‘%c’ 입니다.\n", anElement);
+    printf("[Pop1] 삭제된 원소는 %c 입니다.\n", anElement);
 }
 
 void AppView_out_beginPops(int numberOfElements) {

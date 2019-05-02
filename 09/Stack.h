@@ -1,3 +1,4 @@
+#pragma once
 #include "Common.h"
 
 #define DEFAULT_STACK_CAPACITY 100

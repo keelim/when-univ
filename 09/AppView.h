@@ -1,5 +1,7 @@
+#pragma once
 #include <conio.h>
-#include "Common.h"
+#include <stdio.h>
+
 
 char AppView_in_charDirectlyFromKeyboard();
 
@@ -18,8 +20,6 @@ void AppView_out_endPops();
 void AppView_out_stackIsEmptyAgainstPops();
 
 void AppView_out_topElement(char anElement);
-
-void AppView_out_noTopElement();
 
 void AppView_out_topOfStack();
 
