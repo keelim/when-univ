@@ -3,7 +3,7 @@
 
 
 typedef enum {
-    FALSE, TRUE
+	FALSE, TRUE
 } Boolean;
 
 #define NewObject(TYPE) (TYPE*)malloc(sizeof(TYPE))
