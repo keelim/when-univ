@@ -6,58 +6,58 @@ public class AppController {
 
     public Calculator calculator() {
         return _calculator;
-    }
+    } //getter
 
     public void setCalculator(Calculator newCalculator) {
         this._calculator = newCalculator;
-    }
+    } //setter
 
-    public AppController() {
+    public AppController() { //constructor
         this.setCalculator(new Calculator());
         AppView.setDebugMode(AppController.DEBUG_MODE);
     }
 
-    private String inputExpression() {
+    private String inputExpression() { //ê³„ì‚° ìˆ˜ì‹ ì…ë ¥ ë©”ì‹œì§€
         AppView.outputLine("");
-        AppView.output("?°è»êÇÒ ¼ö½ÄÀ» ÀÔ·ÂÇÏ½Ã¿À (Á¾·áÇÏ·Á¸é " +
-                END_OF_CALCULATION + " ¸¦ ÀÔ·ÂÇÏ½Ã¿À): ");
-        return AppView.inputLine();
+        AppView.output("?ê³„ì‚°í•  ìˆ˜ì‹ì„ ì…ë ¥í•˜ì‹œì˜¤ (ì¢…ë£Œí•˜ë ¤ë©´ " +
+                END_OF_CALCULATION + " ë¥¼ ì…ë ¥í•˜ì‹œì˜¤): ");
+        return AppView.inputLine(); // ë©”ì‹œì§€ ì…ë ¥
     }
 
-    private void showCalculatorErrorMessage(CalculatorError anError) {
-        switch (anError) {
+    private void showCalculatorErrorMessage(CalculatorError anError) { //ì—ëŸ¬ í•¸ë“¤ë§
+        switch (anError) { //íŒŒë¼ë¯¸í„°ì˜ ê°’ì— ë”°ë¼ ì˜¤ë¥˜ ë©”ì‹œì§€ê°€ ë‹¬ë¼ì§„ë‹¤.
             case InfixError_NoExpression:
-                AppView.outputLine("[¿À·ù] ÁßÀ§ °è»ê½ÄÀÌ ÁÖ¾îÁöÁö ¾Ê¾Ò½À´Ï´Ù ");
+                AppView.outputLine("[ì˜¤ë¥˜] ì¤‘ìœ„ ê³„ì‚°ì‹ì´ ì£¼ì–´ì§€ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤ ");
                 break;
             case InfixError_TooLongExpression:
-                AppView.outputLine("[¿À·ù] ÁßÀ§ °è»ê½ÄÀÌ ³Ê¹« ±æ¾î Ã³¸®ÇÒ ¼ö ¾ø½À´Ï´Ù.  ");
+                AppView.outputLine("[ì˜¤ë¥˜] ì¤‘ìœ„ ê³„ì‚°ì‹ì´ ë„ˆë¬´ ê¸¸ì–´ ì²˜ë¦¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.  ");
                 break;
             case InfixError_MissingLeftParen:
-                AppView.outputLine("[¿À·ù] ¿ŞÂÊ °ıÈ£°¡ ºüÁ³½À´Ï´Ù.  ");
+                AppView.outputLine("[ì˜¤ë¥˜] ì™¼ìª½ ê´„í˜¸ê°€ ë¹ ì¡ŒìŠµë‹ˆë‹¤.  ");
                 break;
             case InfixError_MissingRightParen:
-                AppView.outputLine("[¿À·ù] ¿À¸¥ÂÊ °ıÈ£°¡ ºüÁ³½À´Ï´Ù.  ");
+                AppView.outputLine("[ì˜¤ë¥˜] ì˜¤ë¥¸ìª½ ê´„í˜¸ê°€ ë¹ ì¡ŒìŠµë‹ˆë‹¤.  ");
                 break;
             case InfixError_UnknownOperator:
-                AppView.outputLine("[¿À·ù] ÁßÀ§ °è»ê½Ä¿¡ ¾Ë ¼ö ¾ø´Â ¿¬»êÀÚ°¡ ÀÖ½À´Ï´Ù.  ");
+                AppView.outputLine("[ì˜¤ë¥˜] ì¤‘ìœ„ ê³„ì‚°ì‹ì— ì•Œ ìˆ˜ ì—†ëŠ” ì—°ì‚°ìê°€ ìˆìŠµë‹ˆë‹¤.  ");
                 break;
             case PostfixError_NoExpression:
-                AppView.outputLine("[¿À·ù] ÈÄÀ§ °è»ê½ÄÀÌ ÁÖ¾îÁöÁö ¾Ê¾Ò½À´Ï´Ù.  ");
+                AppView.outputLine("[ì˜¤ë¥˜] í›„ìœ„ ê³„ì‚°ì‹ì´ ì£¼ì–´ì§€ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.  ");
                 break;
             case PostfixError_TooLongExpression:
-                AppView.outputLine("[¿À·ù] ÈÄÀ§ °è»ê½ÄÀÌ ³Ê¹« ±æ¾î Ã³¸®ÇÒ ¼ö ¾ø½À´Ï´Ù.  ");
+                AppView.outputLine("[ì˜¤ë¥˜] í›„ìœ„ ê³„ì‚°ì‹ì´ ë„ˆë¬´ ê¸¸ì–´ ì²˜ë¦¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.  ");
                 break;
             case PostfixError_TooFewValues:
-                AppView.outputLine("[¿À·ù] ¿¬»êÀÚ¿¡ ºñÇØ ¿¬»ê°ªÀÇ ¼ö°¡ Àû½À´Ï´Ù.   ");
+                AppView.outputLine("[ì˜¤ë¥˜] ì—°ì‚°ìì— ë¹„í•´ ì—°ì‚°ê°’ì˜ ìˆ˜ê°€ ì ìŠµë‹ˆë‹¤.   ");
                 break;
             case PostfixError_TooManyValues:
-                AppView.outputLine("[¿À·ù] ¿¬»êÀÚ¿¡ ºñÇØ ¿¬»ê°ªÀÇ ¼ö°¡ ¸¹½À´Ï´Ù.   ");
+                AppView.outputLine("[ì˜¤ë¥˜] ì—°ì‚°ìì— ë¹„í•´ ì—°ì‚°ê°’ì˜ ìˆ˜ê°€ ë§ìŠµë‹ˆë‹¤.   ");
                 break;
             case PostfixError_DivideByZero:
-                AppView.outputLine("[¿À·ù] ³ª´°¼ÀÀÇ ºĞ¸ğ°¡ 0 ÀÔ´Ï´Ù. ");
+                AppView.outputLine("[ì˜¤ë¥˜] ë‚˜ëˆ—ì…ˆì˜ ë¶„ëª¨ê°€ 0 ì…ë‹ˆë‹¤. ");
                 break;
-            case PostfixError_UnnknownOperator:
-                AppView.outputLine("[¿À·ù] ÈÄÀ§ °è»ê½Ä¿¡ ¾Ë ¼ö ¾ø´Â ¿¬»êÀÚ°¡ ÀÖ½À´Ï´Ù.");
+            case PostfixError_UnknownOperator:
+                AppView.outputLine("[ì˜¤ë¥˜] í›„ìœ„ ê³„ì‚°ì‹ì— ì•Œ ìˆ˜ ì—†ëŠ” ì—°ì‚°ìê°€ ìˆìŠµë‹ˆë‹¤.");
                 break;
             default:
                 break;
@@ -65,23 +65,23 @@ public class AppController {
         }
     }
 
-    public void run() {
+    public void run() { //ì‹¤í–‰
 
-        AppView.outputLine("<<< °è»ê±â ÇÁ·Î±×·¥À» ½ÃÀÛÇÕ´Ï´Ù. >>>");
-        String infixExpression = this.inputExpression();
+        AppView.outputLine("<<< ê³„ì‚°ê¸° í”„ë¡œê·¸ë¨ì„ ì‹œì‘í•©ë‹ˆë‹¤. >>>");
+        String infixExpression = this.inputExpression(); //ìˆ˜ì‹ ì…ë ¥
         while (infixExpression.charAt(0) != AppController.END_OF_CALCULATION) {
             try {
-                int result = this.calculator().evaluate(infixExpression);
-                AppView.outputLine("> °è»ê°ª: " + result);
+                int result = this.calculator().evaluate(infixExpression); //ê³„ì‚°
+                AppView.outputLine("> ê³„ì‚°ê°’: " + result); //ê³„ì‚°ì„ í•˜ì—¬ ê°’ì„ ì¶œë ¥
             } catch (CalculatorException exception) {
-                this.showCalculatorErrorMessage(exception.error()); //ExceptionÀ» ¸¸µé¾î¼­ °ü¸®?
+                this.showCalculatorErrorMessage(exception.error()); //ì—ëŸ¬ ê°’ì„ í™•ì¸
             }
-            infixExpression = this.inputExpression(); //ÀçÀÔ·Â
+            infixExpression = this.inputExpression(); //ì¬ì…ë ¥ì„ ë°›ëŠ”ë‹¤.
 
         }
 
         AppView.outputLine("");
-        AppView.outputLine("<<< °è»ê±â ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù. >>>");
+        AppView.outputLine("<<< ê³„ì‚°ê¸° í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤. >>>");
 
     }
 }

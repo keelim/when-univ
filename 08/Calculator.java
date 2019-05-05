@@ -11,47 +11,47 @@ public class Calculator {
 
     public Stack<Character> operatorStack() {
         return _operatorStack;
-    }
+    }//getter
 
     public void setOperatorStack(Stack<Character> _operatorStack) {
         this._operatorStack = _operatorStack;
-    }
+    }//setter
 
     public String infixExpression() {
         return _infixExpression;
-    }
+    }//getter
 
     public void setInfixExpression(String _infixExpression) {
         this._infixExpression = _infixExpression;
-    }
+    }//setter
 
     public String postfixExpression() {
         return _postfixExpression;
-    }
+    } //getter
 
     public void setPostfixExpression(String _postfixExpression) {
         this._postfixExpression = _postfixExpression;
-    }
+    } //setter
 
     public PostfixCalculator postfixCalculator() {
         return _postfixCalculator;
-    }
+    } //getter
 
     public void setPostfixCalculator(PostfixCalculator _postfixCalculator) {
         this._postfixCalculator = _postfixCalculator;
-    }
+    } //setter
 
-    public Calculator() {
+    public Calculator() { //constructor
         this.setOperatorStack(new ArrayList<Character>(Calculator.MAX_EXPRESSION_LENGTH));
         this.setPostfixCalculator(new PostfixCalculator(Calculator.MAX_EXPRESSION_LENGTH));
     }
 
-    private void showTokenPostfixExpression(char aToken, char[] aPostfixExpressionArray) {
+    private void showTokenPostfixExpression(char aToken, char[] aPostfixExpressionArray) { //í›„ìœ„ì‹ í† í°ì„ ë³´ì—¬ì¤€ë‹¤.
         AppView.outputDebugMessage(aToken + " :(Postfix) ");
         AppView.outputLineDebugMessage(new String(aPostfixExpressionArray));
     }
 
-    private int inComingPrecedence(Character aToken) {
+    private int inComingPrecedence(Character aToken) { //ìš°ì„  ìˆœìœ„ ì²˜ë¦¬
         switch (aToken.charValue()) {
             case '(':
                 return 20;
@@ -74,7 +74,7 @@ public class Calculator {
         }
     }
 
-    private int inStackPrecedence(Character aToken) {
+    private int inStackPrecedence(Character aToken) { //Stack ì•ˆì—ì„œ ìš°ì„ ìˆœìœ„ ì²˜ë¦¬
         switch (aToken.charValue()) {
             case '(':
                 return 0;
@@ -100,19 +100,23 @@ public class Calculator {
 
     private CalculatorError infixToPostfix() {
         char[] postfixExpressionArray = new char[this.infixExpression().length()];
-        Arrays.fill(postfixExpressionArray, ' '); //¹è¿­À» Ã¤¿ö³Ö´Â ÇÔ¼ö°¡ ÀÖ³×?
+        Arrays.fill(postfixExpressionArray, ' '); //ë°°ì—´ì„ ë¹ˆê°’ìœ¼ë¡œ ì´ˆê¸°í™”
 
         Character currentToken, poppedToken, topToken;
         this.operatorStack().clear();
         int p = 0;
+
         for (int i = 0; i < this.infixExpression().length(); i++) {
             currentToken = this.infixExpression().charAt(i);
+
             if (Character.isDigit(currentToken.charValue())) {
                 postfixExpressionArray[p++] = currentToken;
                 this.showTokenPostfixExpression(currentToken, postfixExpressionArray);
+
             } else {
+
                 if (currentToken == ')') {
-                    this.showTokenAndMessage(currentToken, "¿ŞÂÊ °ıÈ£°¡ ³ªÅ¸³¯ ±îÁö ½ºÅÃ¿¡¼­ ²¨³»¾î Ãâ·Â");
+                    this.showTokenAndMessage(currentToken, "ì™¼ìª½ ê´„í˜¸ê°€ ë‚˜íƒ€ë‚  ê¹Œì§€ ìŠ¤íƒì—ì„œ êº¼ë‚´ì–´ ì¶œë ¥");
                     poppedToken = this.operatorStack().pop();
                     while (poppedToken != null && poppedToken.charValue() != '(') {
                         postfixExpressionArray[p++] = poppedToken.charValue();
@@ -120,19 +124,23 @@ public class Calculator {
                         this.showTokenPostfixExpression(poppedToken, postfixExpressionArray);
                         poppedToken = this.operatorStack().pop();
                     }
+
                     if (poppedToken == null) {
                         return CalculatorError.InfixError_MissingLeftParen;
                     }
+
                     this.showOperatorStack("Popped");
                 } else {
                     int inComingPrecedence = this.inComingPrecedence(currentToken.charValue());
+
                     if (inComingPrecedence < 0) {
                         AppView.outputLineDebugMessage(currentToken + " : (Unknown Operator)");
                         return CalculatorError.InfixError_UnknownOperator;
                     }
                     this.showTokenAndMessage(
-                            currentToken, "ÀÔ·Â ¿¬»êÀÚº¸´Ù ¼øÀ§°¡ ³ôÁö ¾ÊÀº ¿¬»êÀÚ¸¦ ½ºÅÃ¿¡¼­ ²¨³»¾î Ãâ·Â");
+                            currentToken, "ì…ë ¥ ì—°ì‚°ìë³´ë‹¤ ìˆœìœ„ê°€ ë†’ì§€ ì•Šì€ ì—°ì‚°ìë¥¼ ìŠ¤íƒì—ì„œ êº¼ë‚´ì–´ ì¶œë ¥");
                     topToken = this.operatorStack().peek();
+
                     while (topToken != null && this.inStackPrecedence(topToken) >= inComingPrecedence) {
                         poppedToken = this.operatorStack().pop();
                         postfixExpressionArray[p++] = poppedToken;
@@ -140,21 +148,24 @@ public class Calculator {
                         this.showTokenPostfixExpression(poppedToken, postfixExpressionArray);
                         topToken = this.operatorStack().peek();
                     }
+
                     if (this.operatorStack().isFull()) {
                         this.showOperatorStack("Fulled");
                         return CalculatorError.InfixError_TooLongExpression;
                     }
+
                     this.operatorStack().push(currentToken);
                     this.showOperatorStack("Pushed");
                 }
             }
 
         }
-        AppView.outputLineDebugMessage("(End of infix expression: ½ºÅÃ¿¡¼­ ¸ğµç ¿¬»êÀÚ¸¦ ²¨³»¾î Ãâ·Â");
+        AppView.outputLineDebugMessage("(End of infix expression: ìŠ¤íƒì—ì„œ ëª¨ë“  ì—°ì‚°ìë¥¼ êº¼ë‚´ì–´ ì¶œë ¥");
 
         while (!this.operatorStack().isEmpty()) {
             poppedToken = this.operatorStack().pop();
-            this.showOperatorStack("Popped");
+            this.showOperatorStack("Popped"); //todo
+
             if (poppedToken == '(') {
                 return CalculatorError.InfixError_MissingRightParen;
             }
@@ -162,13 +173,16 @@ public class Calculator {
             this.showTokenPostfixExpression(poppedToken, postfixExpressionArray);
         }
         this.setPostfixExpression(new String(postfixExpressionArray).trim());
+
         return CalculatorError.InfixError_None;
     }
 
     private void showOperatorStack(String popped) {
+        //todo ë­˜ ì±„ì›Œì•¼ í•˜ëŠ” ê±°ì§€?
     }
 
-    private void showTokenAndMessage(Character currentToken, String s) {
+    private void showTokenAndMessage(Character currentToken, String message) {
+        //todo ë¬´ìŠ¨ í† í° ë©”ì‹œì§€ì§€?
     }
 
     public int evaluate(String anInfixExpression) throws CalculatorException {

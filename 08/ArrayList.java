@@ -1,12 +1,8 @@
 public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
     private static final int DEFAULT_CAPACITY = 1000;
-
-
     private int _size;
-
     private int _capacity;
-
     private E[] _elements;
 
     @Override
@@ -14,31 +10,25 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         return _size;
     } //size getter
 
-
     public void setSize(int newSize) {
         this._size = newSize;
     } //size setter
-
 
     public int capacity() {
         return _capacity;
     } //capacity getter
 
-
     public void setCapacity(int newCapacity) {
         this._capacity = newCapacity;
     } //capacity setter
-
 
     public E[] elements() {
         return _elements;
     } //elements getter
 
-
     public void setElements(E[] newElements) {
         this._elements = newElements;
     } //elements setter
-
 
     @SuppressWarnings("unchecked")
     public ArrayList(int givenCapacity) { //parameter constructor
@@ -49,7 +39,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
     public ArrayList() {
         this(DEFAULT_CAPACITY); //constructor
     }
-
 
     public boolean isEmpty() {
         return (this.size() == 0);
@@ -82,11 +71,9 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         }
     }
 
-
     public boolean isFull() {
         return (this.size() == this.capacity());
     }
-
 
     public boolean doesContain(E anElement) {
 
@@ -153,23 +140,15 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
     }
 
     private void setElementAt(int anOrder, E anElement) {
-
         if (anOrder < 0 || anOrder > this.size()) {
 
-            return;
-
         } else {
-
             this.elements()[anOrder] = anElement;
-
         }
-
     }
 
     public E last() {
-
         if (this.isEmpty()) {
-
             return null;
 
         } else {
@@ -203,7 +182,7 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
     private void makeRoomAt(int aPosition) {
         for (int i = this.size(); i > aPosition; i--) {
-            this.elements()[i] = this.elements()[i - 1]; //????? ?¥ê??? ?????.
+            this.elements()[i] = this.elements()[i - 1]; //????? ?Îº??? ?????.
         }
     }
 
@@ -236,8 +215,8 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
             E removedElement = this.elements()[anOrder];
             this.removeGapAt(anOrder);
             this.setSize(this.size() - 1);
-
             return removedElement;
+
         }
     }
 
@@ -245,7 +224,6 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         for (int i = aPositon + 1; i < this.size(); i++) {
             this.elements()[i - 1] = this.elements()[i];
         }
-
         this.elements()[this.size() - 1] = null;
     }
 
@@ -266,9 +244,9 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
         if (this.anElementDoesExistAt(anOrder)) {
             this._elements[anOrder] = anElement;
             return true;
-
         } else {
             return false;
+
         }
 
     }

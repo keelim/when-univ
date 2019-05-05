@@ -1,4 +1,4 @@
-public enum CalculatorError {
+public enum CalculatorError {//에러를 정의하는 enum 클래스
     InfixError_NoExpression,
     InfixError_TooLongExpression,
     InfixError_MissingLeftParen,
@@ -11,7 +11,7 @@ public enum CalculatorError {
     PostfixError_TooFewValues,
     PostfixError_TooManyValues,
     PostfixError_DivideByZero,
-    PostfixError_UnnknownOperator,
+    PostfixError_UnknownOperator,
     PostfixError_None,
 
     Undefined
