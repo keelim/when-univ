@@ -1,3 +1,5 @@
+
+
 public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
     private static final int DEFAULT_CAPACITY = 1000;

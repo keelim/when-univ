@@ -1,3 +1,5 @@
+
+
 public class AppController {
     private static final char END_OF_CALCULATION = '!';
     private static final boolean DEBUG_MODE = true;
@@ -72,7 +74,7 @@ public class AppController {
         while (infixExpression.charAt(0) != AppController.END_OF_CALCULATION) {
             try {
                 int result = this.calculator().evaluate(infixExpression); //계산
-                AppView.outputLine("> 계산값: " + result); //계산을 하여 값을 출력
+                AppView.outputLine("\n> 계산값: " + result); //계산을 하여 값을 출력
             } catch (CalculatorException exception) {
                 this.showCalculatorErrorMessage(exception.error()); //에러 값을 확인
             }

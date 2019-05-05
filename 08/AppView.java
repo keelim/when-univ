@@ -1,3 +1,5 @@
+
+
 import java.util.Scanner;
 
 public class AppView {
@@ -19,7 +21,9 @@ public class AppView {
     }
 
     public static void outputLineDebugMessage(String aMessage) { //메시지 출력
-        System.out.println(aMessage);
+        if (AppView.debugMode()) {
+            System.out.println(aMessage);
+        }
     }
 
     public static void output(String aMessage) { //메시지 출력

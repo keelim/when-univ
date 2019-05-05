@@ -1,3 +1,5 @@
+
+
 public enum CalculatorError {//에러를 정의하는 enum 클래스
     InfixError_NoExpression,
     InfixError_TooLongExpression,

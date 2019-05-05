@@ -1,3 +1,5 @@
+
+
 public class PostfixCalculator {
     private Stack<Integer> _valueStack;
 
@@ -51,12 +53,12 @@ public class PostfixCalculator {
     }
 
     private void showTokenAndValueStack(char aToken) { //Bottom - Top 까지 value 스택 안에 원소들을 출력
-        AppView.outputDebugMessage(aToken + " :ValueStack <Bottom> ");
+        AppView.outputDebugMessage("\n"+aToken + " :ValueStack <Bottom> ");
         for (int i = 0; i < this.valueStack().size(); i++) {
             AppView.outputDebugMessage(
                     ((ArrayList<Integer>) this.valueStack()).elementAt(i).intValue() + " ");
         }
-        AppView.outputLineDebugMessage("<Top>");
+        AppView.outputDebugMessage("<Top>");
     }
 
     private CalculatorError executeBinaryOperator(char anOperator) {

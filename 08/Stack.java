@@ -1,3 +1,5 @@
+
+
 public interface Stack<E> { //StackInterface
     public int size();
 

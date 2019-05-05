@@ -1,3 +1,5 @@
+
+
 import java.util.Arrays;
 
 public class Calculator {
@@ -8,6 +10,7 @@ public class Calculator {
     private String _infixExpression;
     private String _postfixExpression;
     private PostfixCalculator _postfixCalculator;
+
 
     public Stack<Character> operatorStack() {
         return _operatorStack;
@@ -164,7 +167,7 @@ public class Calculator {
 
         while (!this.operatorStack().isEmpty()) {
             poppedToken = this.operatorStack().pop();
-            this.showOperatorStack("Popped"); //todo
+            this.showOperatorStack("Popped");
 
             if (poppedToken == '(') {
                 return CalculatorError.InfixError_MissingRightParen;
@@ -177,24 +180,28 @@ public class Calculator {
         return CalculatorError.InfixError_None;
     }
 
-    private void showOperatorStack(String popped) {
-        //todo 뭘 채워야 하는 거지?
+    private void showOperatorStack(String operator) {
+        Character peek = this.operatorStack().peek();
+        if(peek == null){
+            peek  = ' ';
+        }
+        AppView.outputLine("   :" + operator + " OperatorStack <Bottom> " + peek +" <Top>");
     }
 
     private void showTokenAndMessage(Character currentToken, String message) {
-        //todo 무슨 토큰 메시지지?
+        AppView.outputLineDebugMessage(currentToken + " : (입력 연산자보다 순위가 높지 않은 연산자를 스택에서 꺼내어 출력)");
     }
 
     public int evaluate(String anInfixExpression) throws CalculatorException {
         this.setInfixExpression(anInfixExpression);
-        AppView.outputLineDebugMessage("[Infix to Postfix] " + anInfixExpression);
+        AppView.outputLineDebugMessage("\n[Infix to Postfix] " + anInfixExpression);
         if (this.infixExpression() == null || this.infixExpression().length() == 0) {
             throw new CalculatorException(CalculatorError.InfixError_NoExpression);
         }
 
         CalculatorError infixError = this.infixToPostfix();
         if (infixError == CalculatorError.InfixError_None) {
-            AppView.outputDebugMessage("[Evaluate Postfix] " + this.postfixExpression());
+            AppView.outputDebugMessage("\n[Evaluate Postfix] " + this.postfixExpression());
             return this.postfixCalculator().evaluate(this.postfixExpression());
         } else {
             throw new CalculatorException((infixError));
