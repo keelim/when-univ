@@ -1,5 +1,4 @@
 
-
 public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
     private static final int DEFAULT_CAPACITY = 1000;
@@ -67,9 +66,10 @@ public class ArrayList<E extends Comparable<E>> implements Stack<E> {
 
     @Override
     public void clear() {
-        for (int i = 0; i < this.size(); i++) {
+    	int loop = this.size();
+        for (int i = 0; i < loop; i++) {
             this.elements()[i] = null;
-            this.setSize(this.size() - 1);
+            this.setSize(this.size()-1);
         }
     }
 
