@@ -1,5 +1,3 @@
-
-
 import java.util.Arrays;
 
 public class Calculator {
@@ -50,7 +48,7 @@ public class Calculator {
     }
 
     private void showTokenPostfixExpression(char aToken, char[] aPostfixExpressionArray) { //후위식 토큰을 보여준다.
-        AppView.outputDebugMessage(aToken + " :(Postfix) ");
+        AppView.outputDebugMessage(aToken + " :(Postfix) "); //후위식 토큰 출력
         AppView.outputLineDebugMessage(new String(aPostfixExpressionArray));
     }
 
@@ -102,17 +100,17 @@ public class Calculator {
     }
 
     private CalculatorError infixToPostfix() {
-        char[] postfixExpressionArray = new char[this.infixExpression().length()];
+        char[] postfixExpressionArray = new char[this.infixExpression().length()]; //배열 생성
         Arrays.fill(postfixExpressionArray, ' '); //배열을 빈값으로 초기화
 
         Character currentToken, poppedToken, topToken;
-        this.operatorStack().clear();
+        this.operatorStack().clear(); //초기화
         int p = 0;
 
-        for (int i = 0; i < this.infixExpression().length(); i++) {
+        for (int i = 0; i < this.infixExpression().length(); i++) { //반복을 통하여 토큰 get
             currentToken = this.infixExpression().charAt(i);
 
-            if (Character.isDigit(currentToken.charValue())) {
+            if (Character.isDigit(currentToken.charValue())) { //isDigit() 메소드로 문자 숫자 구분
                 postfixExpressionArray[p++] = currentToken;
                 this.showTokenPostfixExpression(currentToken, postfixExpressionArray);
 
@@ -121,14 +119,14 @@ public class Calculator {
                 if (currentToken == ')') {
                     this.showTokenAndMessage(currentToken, "왼쪽 괄호가 나타날 까지 스택에서 꺼내어 출력");
                     poppedToken = this.operatorStack().pop();
-                    while (poppedToken != null && poppedToken.charValue() != '(') {
+                    while (poppedToken != null && poppedToken.charValue() != '(') { //반복을 통하여 pop 처리
                         postfixExpressionArray[p++] = poppedToken.charValue();
                         this.showOperatorStack("Popped");
                         this.showTokenPostfixExpression(poppedToken, postfixExpressionArray);
                         poppedToken = this.operatorStack().pop();
                     }
 
-                    if (poppedToken == null) {
+                    if (poppedToken == null) { //오류 핸들링
                         return CalculatorError.InfixError_MissingLeftParen;
                     }
 
@@ -140,49 +138,50 @@ public class Calculator {
                         AppView.outputLineDebugMessage(currentToken + " : (Unknown Operator)");
                         return CalculatorError.InfixError_UnknownOperator;
                     }
-                    this.showTokenAndMessage(
+                    this.showTokenAndMessage( //토큰에 따른 메시지 출력
                             currentToken, "입력 연산자보다 순위가 높지 않은 연산자를 스택에서 꺼내어 출력");
                     topToken = this.operatorStack().peek();
 
-                    while (topToken != null && this.inStackPrecedence(topToken) >= inComingPrecedence) {
-                        poppedToken = this.operatorStack().pop();
-                        postfixExpressionArray[p++] = poppedToken;
+                    while (topToken != null && this.inStackPrecedence(topToken) >= inComingPrecedence) { //우선 순위 확인을 하고 반복 실행
+                        poppedToken = this.operatorStack().pop(); //pop
+                        postfixExpressionArray[p++] = poppedToken; //배열에 토큰을 넣는다.
                         this.showOperatorStack("Popped");
-                        this.showTokenPostfixExpression(poppedToken, postfixExpressionArray);
-                        topToken = this.operatorStack().peek();
+                        this.showTokenPostfixExpression(poppedToken, postfixExpressionArray); //토큰 출력
+                        topToken = this.operatorStack().peek(); //top 확인
                     }
 
-                    if (this.operatorStack().isFull()) {
+                    if (this.operatorStack().isFull()) { //꽉차 있는지 확인
                         this.showOperatorStack("Fulled");
                         return CalculatorError.InfixError_TooLongExpression;
                     }
 
-                    this.operatorStack().push(currentToken);
-                    this.showOperatorStack("Pushed");
+                    this.operatorStack().push(currentToken); //push
+                    this.showOperatorStack("Pushed"); //pushed 관련 메시지 출력
                 }
             }
 
         }
+        //////////////////////////////////////////// infix의 처리//////////////////////////////////////////////////////
         AppView.outputLineDebugMessage("(End of infix expression: 스택에서 모든 연산자를 꺼내어 출력");
 
-        while (!this.operatorStack().isEmpty()) {
-            poppedToken = this.operatorStack().pop();
+        while (!this.operatorStack().isEmpty()) { //비어 있는지 확인
+            poppedToken = this.operatorStack().pop(); //popped 관련 메시지 출력
             this.showOperatorStack("Popped");
 
-            if (poppedToken == '(') {
+            if (poppedToken == '(') { //괄호 확인
                 return CalculatorError.InfixError_MissingRightParen;
             }
             postfixExpressionArray[p++] = poppedToken;
-            this.showTokenPostfixExpression(poppedToken, postfixExpressionArray);
+            this.showTokenPostfixExpression(poppedToken, postfixExpressionArray); //후위식 출력
         }
-        this.setPostfixExpression(new String(postfixExpressionArray).trim());
+        this.setPostfixExpression(new String(postfixExpressionArray).trim()); //후위식 설정
 
-        return CalculatorError.InfixError_None;
+        return CalculatorError.InfixError_None; // enum 값 리턴
     }
 
     private void showOperatorStack(String operator) {
         AppView.outputDebugMessage(" : " + operator + "OperatorStack <Bottom> ");
-        for (int i = 0; i < this.operatorStack().size(); i++) {
+        for (int i = 0; i < this.operatorStack().size(); i++) { //반복을 통하여 연산자 스택 확인
             AppView.outputDebugMessage(
                     ((ArrayList<Character>) this.operatorStack()).elementAt(i) + " ");
         }
@@ -193,17 +192,17 @@ public class Calculator {
         AppView.outputLineDebugMessage(currentToken + " : (입력 연산자보다 순위가 높지 않은 연산자를 스택에서 꺼내어 출력)");
     }
 
-    public int evaluate(String anInfixExpression) throws CalculatorException {
-        this.setInfixExpression(anInfixExpression);
-        AppView.outputLineDebugMessage("\n[Infix to Postfix] " + anInfixExpression);
-        if (this.infixExpression() == null || this.infixExpression().length() == 0) {
+    public int evaluate(String anInfixExpression) throws CalculatorException { //결과값
+        this.setInfixExpression(anInfixExpression); //파라미터로 전달된 infix 설정
+        AppView.outputLineDebugMessage("\n[Infix to Postfix] " + anInfixExpression); //infix 출력
+        if (this.infixExpression() == null || this.infixExpression().length() == 0) { //해당 시 enum 값 throw
             throw new CalculatorException(CalculatorError.InfixError_NoExpression);
         }
 
-        CalculatorError infixError = this.infixToPostfix();
-        if (infixError == CalculatorError.InfixError_None) {
-            AppView.outputDebugMessage("\n[Evaluate Postfix] " + this.postfixExpression());
-            return this.postfixCalculator().evaluate(this.postfixExpression());
+        CalculatorError infixError = this.infixToPostfix(); //에러 설정
+        if (infixError == CalculatorError.InfixError_None) { //에러가 없는지 확인
+            AppView.outputDebugMessage("\n[Evaluate Postfix] " + this.postfixExpression()); //후위식 ㅣ설정 및 출력
+            return this.postfixCalculator().evaluate(this.postfixExpression()); //결과 값 리턴
         } else {
             throw new CalculatorException((infixError));
         }

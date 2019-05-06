@@ -1,5 +1,3 @@
-
-
 public class PostfixCalculator {
     private Stack<Integer> _valueStack;
 
