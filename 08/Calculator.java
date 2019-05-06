@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Calculator {
 
-    private static final int MAX_EXPRESSION_LENGTH = 100;
+    private static final int MAX_EXPRESSION_LENGTH = 10;
 
     private Stack<Character> _operatorStack;
     private String _infixExpression;
@@ -181,11 +181,12 @@ public class Calculator {
     }
 
     private void showOperatorStack(String operator) {
-        Character peek = this.operatorStack().peek();
-        if(peek == null){
-            peek  = ' ';
+        AppView.outputDebugMessage(" : " + operator + "OperatorStack <Bottom> ");
+        for (int i = 0; i < this.operatorStack().size(); i++) {
+            AppView.outputDebugMessage(
+                    ((ArrayList<Character>) this.operatorStack()).elementAt(i) + " ");
         }
-        AppView.outputLine("   :" + operator + " OperatorStack <Bottom> " + peek +" <Top>");
+        AppView.outputLineDebugMessage("<Top>");
     }
 
     private void showTokenAndMessage(Character currentToken, String message) {
