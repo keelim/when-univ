@@ -1,8 +1,8 @@
+#pragma once
 #include "Common.h"
 #include "Stack.h"
 #include <string.h>
 #include "AppView.h"
-
 
 typedef struct _Postfix Postfix;
 
@@ -20,4 +20,4 @@ Boolean Postfix_evaluate(Postfix *_this);
 int Postfix_evaluatedValue(Postfix *_this);
 //계산된 결과 값을 Postifx 객체로부터 얻는다.
 
-Postfix_showTokenAndStack(Postfix* _this, char currentToken);
+void Postfix_showTokenAndStack(Postfix* _this, char currentToken);

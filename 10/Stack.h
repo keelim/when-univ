@@ -1,3 +1,4 @@
+#pragma once
 #include "Common.h"
 
 #define DEFAULT_STACK_CAPACITY 100
@@ -24,7 +25,7 @@ Element Stack_topElement(Stack *_this); //스택의 Top 원소를 얻는다
 
 Element Stack_elementAt(Stack *_this, int anOrder);
 
-void Stack_reset (Stack* _this);
+void Stack_reset(Stack *_this);
 
 //스택 리스트의 anOrder 번째 원소를 얻는다
 

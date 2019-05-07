@@ -1,3 +1,4 @@
+#pragma once
 #include <stdlib.h>
 
 typedef enum {
@@ -10,8 +11,8 @@ typedef enum {
 typedef enum {
     PostfixError_None,
     PostfixError_ExpressionTooLong,
-    PostfoxError_OperandsTooMany,
+    PostfixError_OperandsTooMany,
     PostfixError_OperandsTooFew,
     PostfixError_UnknownOperator,
-    PostfixError_DividedByZero
+    PostfixError_DivideByZero
 } PostfixError;

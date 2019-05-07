@@ -1,3 +1,4 @@
+#pragma once
 #include "Postfix.h"
 
 struct _Postfix {
@@ -8,7 +9,7 @@ struct _Postfix {
 };
 
 Postfix *Postfix_new(int givenMaxNumberOfTokens) {
-    Postfix * _this = NewObject(Postfix);
+    Postfix *_this = NewObject(Postfix);
     _this->_maxNumberOfTokens = givenMaxNumberOfTokens;
     _this->_expression = NewVector(char, givenMaxNumberOfTokens);
     _this->_operandStack = Stack_new(givenMaxNumberOfTokens);
@@ -26,10 +27,7 @@ void Postfix_setExpression(Postfix *_this, char *anExpression) {
     strcpy(_this->_expression, anExpression);
 }
 
-Postfix_showTokenAndStack(Postfix
-* _this,
-char currentToken
-){ //todo 채워야 하는 곳이다.
+void Postfix_showTokenAndStack(Postfix *_this, char currentToken) { //todo 채워야 하는 곳이다.
 //AppView.outputDebugMessage(" : " + operator + "OperatorStack <Bottom> ");
 //for (int i = 0; i < this.operatorStack().size(); i++) { //반복을 통하여 연산자 스택 확인
 //AppView.outputDebugMessage(
@@ -88,7 +86,7 @@ Boolean Postfix_evaluate(Postfix *_this) {
                     operand2 = Stack_pop(_this->_operandStack);
                     operand1 = Stack_pop(_this->_operandStack);
                     if (operand2 == 0) {
-                        return PostfixError_DividedByZero;
+                        return PostfixError_DivideByZero;
                     }
                     calculated = operand1 / operand2;
                     Stack_push(_this->_operandStack, calculated);
@@ -101,7 +99,7 @@ Boolean Postfix_evaluate(Postfix *_this) {
                     operand2 = Stack_pop(_this->_operandStack);
                     operand1 = Stack_pop(_this->_operandStack);
                     if (operand2 == 0) {
-                        return PostfixError_DividedByZero;
+                        return PostfixError_DivideByZero;
                     }
                     calculated = operand1 % operand2;
                     Stack_push(_this->_operandStack, calculated);
@@ -121,7 +119,7 @@ Boolean Postfix_evaluate(Postfix *_this) {
     if (Stack_size(_this->_operandStack) == 1) {
         _this->_evaluatedValue = Stack_pop(_this->_operandStack);
     } else if (Stack_size(_this->_operandStack) > 1) {
-        return PostfoxError_OperandsTooMany;//[오류] 연산자에 비해 연산값의 수가 많습니다.
+        return PostfixError_OperandsTooMany;//[오류] 연산자에 비해 연산값의 수가 많습니다.
     }
     return TRUE;
 }

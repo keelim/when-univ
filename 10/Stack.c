@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Stack.h"
 
 struct _Stack {
