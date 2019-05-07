@@ -128,7 +128,11 @@ CRT_NO_warings 추가 할 것
 1. Stack application
 
 ## 2019 05 03
-1. stack project 진행
+1. stack 프로그램 진행
 2. tree, priority queue, queue
 3. making the report
+
+## 2019 05 07
+1. 후위식 계산기 진행 - 실습 1 완료
+2. 
 
