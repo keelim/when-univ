@@ -100,12 +100,12 @@ public class AppController {
         } else {
             int count = 0;
             while (count < numberOfCharsToBeRemoved && (!this.queue().isEmpty())) {
-                Character dequeCharcter = this.queue().deQueue();
+                Character dequeCharacter = this.queue().deQueue();
                 //“deQueue()” 를 삭제하는 횟수만큼 실행하여, 매번 다음과 같이 출력한다: (삭제된 원소가 'X' 라면)
-                if (dequeCharcter == null) {
+                if (dequeCharacter == null) {
                     AppView.outputLine("(오류) 큐에서 삭제하는 동안에 오류가 발생하였습니다. ");
                 } else {
-                    AppView.outputLine("[DeQs] 삭제된 원소는 'X' 입니다."); //삭제를 반복하는 동안에, 큐가 비게 되어 더 이상 삭제가 불가능하게 되면 다음과 같은 메시지를 출력한다
+                    AppView.outputLine("[DeQs] 삭제된 원소는 "+dequeCharacter+" 입니다."); //삭제를 반복하는 동안에, 큐가 비게 되어 더 이상 삭제가 불가능하게 되면 다음과 같은 메시지를 출력한다
                 }
                 count++;
             }
@@ -179,10 +179,10 @@ public class AppController {
     private void showStatistics() {
         AppView.outputLine("");
         AppView.outputLine("<큐 사용 통계>");
-        AppView.outputLine(" - 입력된 문자는" + inputChar() + " 개 입니다. ");
-        AppView.outputLine(" - 정상 처리된 문자는" + (this.inputChar() - this.ignoredChars()) + " 개 입니다.");
-        AppView.outputLine(" - 무시된 문자는" + this.ignoredChars() + " 개 입니다.");
-        AppView.outputLine(" - 삽입된 문자는" + this.addedChars() + " 개 입니다.");
+        AppView.outputLine(" - 입력된 문자는 " + this.inputChars() + " 개 입니다. ");
+        AppView.outputLine(" - 정상 처리된 문자는" + (this.inputChars() - this.ignoredChars()) + " 개 입니다.");
+        AppView.outputLine(" - 무시된 문자는 " + this.ignoredChars() + " 개 입니다.");
+        AppView.outputLine(" - 삽입된 문자는 " + this.addedChars() + " 개 입니다.");
     }
 
     // 입력 관련
@@ -195,7 +195,7 @@ public class AppController {
         AppView.outputLine("<<<큐 기능 확인 프로그램을 시작합니다 >>>");
         AppView.outputLine("");
         char input = this.inputChar();
-        while (input == '!') {
+        while (input != '!') {
             this.countInputChar();
             if (Character.isAlphabetic(input)) {
                 this.addToQueue(Character.valueOf(input));

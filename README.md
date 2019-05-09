@@ -47,3 +47,6 @@ Model - Controller - View
 4. Hash
 5. Multi way search tree
 6. Hegith-balanced binary tree
+
+## 2019 05 09
+1. rearNode를 어디에서 처리를 해야 하는가?

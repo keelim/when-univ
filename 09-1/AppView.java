@@ -17,7 +17,6 @@ public class AppView {
         while (line.equals("")) { //입력된 문자열
             line = AppView.scanner.nextLine().trim();
         }
-
         return line.charAt(0);
     }
 }

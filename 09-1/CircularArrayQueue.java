@@ -158,12 +158,12 @@ public class CircularArrayQueue<E> implements Queue<E> {
         }
 
         public CircularArrayQueueIterator() {
-            this.setNextOrder(0);
+            this.setNextOrder(1);
         }
 
         @Override
         public boolean hasNext() {
-            return (this.nextOrder() < CircularArrayQueue.this.size());
+            return (this.nextOrder() < CircularArrayQueue.this.size()+1);
         }
 
         @Override
