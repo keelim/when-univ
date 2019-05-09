@@ -19,14 +19,15 @@ public class LinkedNode<E> {
         this._next = _next;
     }
 
-    public  LinkedNode (E givenElement, LinkedNode<E> givenNext){
+    public LinkedNode(E givenElement, LinkedNode<E> givenNext) {
         this.setElement(givenElement);
         this.setNext(givenNext);
 
     }
 
-    public LinkedNode(){
-        //todo
+    public LinkedNode() {
+        this._element = null;
+        this._next = null;
     }
 
 

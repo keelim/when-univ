@@ -1,6 +1,18 @@
 public class CircularlyLinkedQueue<E> implements Queue<E> {
+
+    private static final int DEFAULT_CAPACITY = 100;
     private int _size;
+    private int _capacity;
+
     private LinkedNode<E> _rearNode;
+
+    public int capacity() {
+        return _capacity;
+    }
+
+    public void setCapacity(int _capacity) {
+        this._capacity = _capacity;
+    }
 
 
     public void setSize(int _size) {
@@ -15,17 +27,18 @@ public class CircularlyLinkedQueue<E> implements Queue<E> {
         this._rearNode = _rearNode;
     }
 
-    public int capacity() {
-        //todo 애는 만들어야 한다. 22
-        return 0;
-    }
+
 
     public CircularlyLinkedQueue() {
         this.setSize(0);
+        this.setCapacity(DEFAULT_CAPACITY);
         this.setRearNode(null);
     }
 
     public CircularlyLinkedQueue(int queueCapacity) {
+        this.setSize(0);
+        this.setCapacity(queueCapacity);
+        this.setRearNode(null);
     }
 
     @Override
@@ -34,7 +47,7 @@ public class CircularlyLinkedQueue<E> implements Queue<E> {
     }
 
     @Override
-    public boolean isFull() { //메모리 무한정으로 가정 todo capacity가 있을 시 고려를 할 것은
+    public boolean isFull() { //메모리 무한정으로 가정 //capacity 값을 일단 생성
         return (this.size() == this.capacity()); //사이즈하고 허용수가 같으가?
     }
 
@@ -86,7 +99,7 @@ public class CircularlyLinkedQueue<E> implements Queue<E> {
     }
 
     @Override
-    public E deQueue() { //todo? 확인
+    public E deQueue() {
 //        비어 있으면: null 을 돌려준다.
 //        만약 비어 있지 않으면: front element 를 삭제하여 돌려 준다.
         E frontElement = null;

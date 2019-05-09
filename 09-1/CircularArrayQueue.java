@@ -114,7 +114,7 @@ public class CircularArrayQueue<E> implements Queue<E> {
     }
 
     @Override
-    public E deQueue() { //todo 애는 새로이 이해를 하는 것이 필요
+    public E deQueue() {
         E frontElement = null;
         if (!this.isEmpty()) {
             this._frontPosition = (this._frontPosition + 1) % this._maxLength;
@@ -136,7 +136,7 @@ public class CircularArrayQueue<E> implements Queue<E> {
     }
 
     @Override
-    public E elementAt(int anOrder) { //todo 이 코드가 맞는지 확인
+    public E elementAt(int anOrder) {
         return this.elements()[((this.frontPosition() + 1 + anOrder) % this.maxLength())];
     }
 
