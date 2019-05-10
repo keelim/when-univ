@@ -89,7 +89,7 @@ public class CircularlyLinkedQueue<E> implements Queue<E> {
         if (this.isEmpty()) {
             newRearNode.setNext(newRearNode);
         } else {
-            newRearNode.setNext(this._rearNode.next());
+            newRearNode.setNext(this.rearNode().next());
             this._rearNode.setNext(newRearNode);
         }
         this._rearNode = newRearNode;
@@ -181,4 +181,8 @@ public class CircularlyLinkedQueue<E> implements Queue<E> {
 
         }
     }
+
+    //todo 1. 오류가 생긴다면 이 클래스만 처리하면 된다.
+    //todo 2. 모델이 잘 못 되어 있나?
+    //todo 3  CircularlyQueue의 특징은 무엇인가?
 }

@@ -66,6 +66,7 @@ public class AppController {
             AppView.outputLine("[EnQ.Empty] 큐가 꽉 차서 더 이상 넣을 수가 없습니다.");
         } else {
             if (this.queue().enQueue(Character.valueOf(aCharForAdd))) {
+                countAddedChar();
                 AppView.outputLine("enQueue 된 원소는 " + aCharForAdd + "입니다.");
             } else {
                 AppView.outputLine("(큐)에 넣는 동안 오류가 발생했습니다. ");
@@ -195,7 +196,7 @@ public class AppController {
         AppView.outputLine("<<<큐 기능 확인 프로그램을 시작합니다 >>>");
         AppView.outputLine("");
         char input = this.inputChar();
-        while (input == '!') {
+        while (input != '!') {
             this.countInputChar();
             if (Character.isAlphabetic(input)) {
                 this.addToQueue(Character.valueOf(input));
