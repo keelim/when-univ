@@ -39,7 +39,7 @@ public class AppController {
     }
 
     public AppController() {
-        this.setQueue(new CircularlyLinkedQueue<Character>(AppController.QUEUE_CAPACITY)); // todd
+        this.setQueue(new CircularlyLinkedQueue<Character>(AppController.QUEUE_CAPACITY));
         this.setInputChars(0);
         this.setAddedChars(0);
         this.setIgnoredChars(0);
@@ -101,12 +101,12 @@ public class AppController {
         } else {
             int count = 0;
             while (count < numberOfCharsToBeRemoved && (!this.queue().isEmpty())) {
-                Character dequeCharcter = this.queue().deQueue();
+                Character dequeCharacter = this.queue().deQueue();
                 //“deQueue()” 를 삭제하는 횟수만큼 실행하여, 매번 다음과 같이 출력한다: (삭제된 원소가 'X' 라면)
-                if (dequeCharcter == null) {
+                if (dequeCharacter == null) {
                     AppView.outputLine("(오류) 큐에서 삭제하는 동안에 오류가 발생하였습니다. ");
                 } else {
-                    AppView.outputLine("[DeQs] 삭제된 원소는 'X' 입니다."); //삭제를 반복하는 동안에, 큐가 비게 되어 더 이상 삭제가 불가능하게 되면 다음과 같은 메시지를 출력한다
+                    AppView.outputLine("[DeQs] 삭제된 원소는 "+dequeCharacter+" 입니다."); //삭제를 반복하는 동안에, 큐가 비게 되어 더 이상 삭제가 불가능하게 되면 다음과 같은 메시지를 출력한다
                 }
                 count++;
             }
@@ -165,7 +165,7 @@ public class AppController {
         if (this.queue().isEmpty()) {
             AppView.outputLine("[Rear.Empty] 큐가 비어서 맨 뒤 원소가 존재하지 않습니다. ");
         } else {
-            AppView.outputLine("[Rear] 큐의 맨 뒤 원소는 " + this.queue().front() + "입니다. ");
+            AppView.outputLine("[Rear] 큐의 맨 뒤 원소는 " + this.queue().rear() + "입니다. ");
         }
 
 
@@ -180,8 +180,8 @@ public class AppController {
     private void showStatistics() {
         AppView.outputLine("");
         AppView.outputLine("<큐 사용 통계>");
-        AppView.outputLine(" - 입력된 문자는" + inputChar() + " 개 입니다. ");
-        AppView.outputLine(" - 정상 처리된 문자는" + (this.inputChar() - this.ignoredChars()) + " 개 입니다.");
+        AppView.outputLine(" - 입력된 문자는" + inputChars() + " 개 입니다. ");
+        AppView.outputLine(" - 정상 처리된 문자는" + (this.inputChars() - this.ignoredChars()) + " 개 입니다.");
         AppView.outputLine(" - 무시된 문자는" + this.ignoredChars() + " 개 입니다.");
         AppView.outputLine(" - 삽입된 문자는" + this.addedChars() + " 개 입니다.");
     }

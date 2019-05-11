@@ -165,7 +165,7 @@ public class AppController {
         if (this.queue().isEmpty()) {
             AppView.outputLine("[Rear.Empty] 큐가 비어서 맨 뒤 원소가 존재하지 않습니다. ");
         } else {
-            AppView.outputLine("[Rear] 큐의 맨 뒤 원소는 " + this.queue().front() + "입니다. ");
+            AppView.outputLine("[Rear] 큐의 맨 뒤 원소는 " + this.queue().rear() + "입니다. ");
         }
 
 
