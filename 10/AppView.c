@@ -3,7 +3,7 @@
 #include "AppView.h"
 
 void AppView_out_startingMessage () {
-	printf ("<<< Postfix 수식 계산을 시작합니다.>>>\n ");
+	printf ("<<< Postfix 수식 계산을 시작합니다.>>>\n\n ");
 }
 
 void AppView_out_errorInExpression () {
@@ -11,17 +11,11 @@ void AppView_out_errorInExpression () {
 }
 
 void AppView_out_evaluatedValue (int value) {
-	printf ("계산값 : %d\n", value);
+	printf ("계산값 : %d\n\n", value);
 }
 
-<<<<<<< HEAD
 void AppView_out_endingMessage () {
 	printf ("\n <<< Postfix 수식 계산을 종료합니다. >>>");
-=======
-Boolean AppView_in_postfixExpression (char* expression) {
-	scanf("%s", expression);
-	return TRUE;
->>>>>>> 0a8e1b0fec1b30a22f98a81d940362cc4ab26cc9
 }
 
 void AppView_out_postfixEvaluationErrorMessage (PostfixError aPostfixError) {
@@ -54,9 +48,8 @@ void AppView_out_Elemenet (int element) {
 	printf ("%d ", element);
 }
 
-<<<<<<< HEAD
 Boolean AppView_in_postfixExpression (char* s) {
-	printf ("? 문자를 입력하여 주세요: ");
+	printf ("? Postfix 수식을 입력하여 주세요: ");
 
 	scanf ("%s", s);
 
@@ -69,8 +62,4 @@ Boolean AppView_in_postfixExpression (char* s) {
 		return TRUE;
 	}
 
-=======
-void AppView_out_message(char* s) {
-    printf(s);
->>>>>>> 0a8e1b0fec1b30a22f98a81d940362cc4ab26cc9
 }

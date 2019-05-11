@@ -42,12 +42,13 @@ Element Stack_pop (Stack * _this) {  //Stack pop
 // Stack 은 empty 가 아니라고 가정한다. (위험한 코드. 이유는?)
 	Element poppedElement;
 	poppedElement=_this->_elements[_this->_top];
+	_this->_elements[_this->_top]=NULL;
 	_this->_top--;
 	return poppedElement;
 }
 
 int Stack_size (Stack * _this) {
-	return (_this->_top + 1);
+	return (_this->_top+1 );
 }
 
 Element Stack_topElement (Stack * _this) { //Stack peek

@@ -1,7 +1,7 @@
 #pragma once
 #include "Common.h"
 
-#define DEFAULT_STACK_CAPACITY 200
+#define DEFAULT_STACK_CAPACITY 5
 typedef int Element;
 
 typedef struct _Stack Stack;
