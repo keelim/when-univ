@@ -1,120 +1,123 @@
-public class CircularlyLinkedQueue<T> implements Queue<T> {
+public class CircularlyLinkedQueue<E> implements Queue<E> { //환영 큐
 
     private int _size;
-    private int _capacity;
-    private LinkedNode<T> _rearNode;
+    private int _capacity; //
+    private LinkedNode<E> _rearNode;
 
-    private void setSize(int _size) {
+    private void setSize(int _size) { //getter
         this._size = _size;
     }
 
-    public LinkedNode<T> rearNode() {
+    public LinkedNode<E> rearNode() {//getter
         return _rearNode;
     }
 
-    public void setRearNode(LinkedNode<T> _rearNode) {
+    public void setRearNode(LinkedNode<E> _rearNode) { //setter
         this._rearNode = _rearNode;
     }
 
-    public CircularlyLinkedQueue(int queueCapacity) {
+    public CircularlyLinkedQueue(int queueCapacity) { //constructor
         this._size = 0;
         this._rearNode = null;
         this._capacity = queueCapacity;
     }
 
-    public CircularlyLinkedQueue() {
+    public CircularlyLinkedQueue() { //constructor
         this._size = 0;
         this._rearNode = null;
         this._size = 100;
     }
 
     @Override
-    public int size() {
+    public int size() { //getter
         return this._size;
     }
 
     @Override
-    public boolean isFull() {
+    public boolean isFull() { //Full check 거의 false capacity 비교 시 처리를 할 것
         return false;
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean isEmpty() { //empty check
         return (this._rearNode == null);
     }
 
     @Override
-    public T front() {
-        T frontElement = null;
-        if (!this.isEmpty()) {
+    public E front() {
+        E frontElement = null;
+        if (!this.isEmpty()) { //empty check
             frontElement = this._rearNode.next().element();
         }
         return frontElement;
     }
 
     @Override
-    public T rear() {
-        //todo
+    public E rear() {
+        E rearElement = null;
+        if (!this.isEmpty()) { //empty check
+            rearElement = this._rearNode.element();
+        }
 
-        return null;
+        return rearElement;
     }
 
     @Override
-    public boolean enQueue(T anElement) {
-        LinkedNode<T> newRearNode = new LinkedNode<>(anElement, null);
-        if (this.isEmpty()) {
-            newRearNode.setNext(newRearNode);
+    public boolean enQueue(E anElement) { //enqueue
+        LinkedNode<E> newRearNode = new LinkedNode<>(anElement, null);
+        if (this.isEmpty()) { //empty check
+            newRearNode.setNext(newRearNode); //다음 노드를 정한다.
         } else {
-            newRearNode.setNext(this._rearNode.next());
-            this._rearNode.setNext(newRearNode);
+            newRearNode.setNext(this._rearNode.next()); //다음 노드를 정한다.
+            this._rearNode.setNext(newRearNode); //다음 노드를 정한다.
         }
         this._rearNode = newRearNode;
-        this._size++;
+        this._size++; //사이즈를 늘린다.
         return true;
 
     }
 
 
     @Override
-    public T deQueue() {
-        T frontElement = null;
-        if (!this.isEmpty()) {
-            frontElement = this._rearNode.next().element();
+    public E deQueue() { //dequeue
+        E frontElement = null;
+        if (!this.isEmpty()) { //emptfy check
+            frontElement = this._rearNode.next().element();  //front()//front element 확인
             if (this._rearNode == this._rearNode.next()) { // 노드가 한 개: self-loop의 경우
                 this._rearNode = null;
             } else { // 노드가 2 개 이상
-                this._rearNode.setNext(this._rearNode.next().next());
+                this._rearNode.setNext(this._rearNode.next().next()); //다음 노드를 설정
             }
-            this._size--;
+            this._size--; //사이즈를 줄인다.
         }
         return frontElement;
 
     }
 
     @Override
-    public void clear() {
+    public void clear() { //Circular queue 초기화
         this._rearNode = null;
         this._size = 0;
     }
 
     @Override
-    public T elementAt(int anOrder) {
-        LinkedNode<T> frontNode = this._rearNode.next();
+    public E elementAt(int anOrder) { //위치를 찾아낸다.
+        LinkedNode<E> anOrderNode = this._rearNode.next();
         for (int i = 0; i < anOrder; i++) {
-            frontNode = frontNode.next();
+            anOrderNode = anOrderNode.next();
         }
-        return frontNode.element();
+        return anOrderNode.element();
 
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<E> iterator() { //LinkedIterator
         return new CircularlyLinkedQueueIterator();
     }
 
-    private class CircularlyLinkedQueueIterator implements Iterator<T> {
+    private class CircularlyLinkedQueueIterator implements Iterator<E> {
         private int count;
-        private LinkedNode<T> _nextNode;
+        private LinkedNode<E> _nextNode;
 
         private int count() {
             return count;
@@ -124,11 +127,11 @@ public class CircularlyLinkedQueue<T> implements Queue<T> {
             this.count = count;
         }
 
-        private LinkedNode<T> nextNode() {
+        private LinkedNode<E> nextNode() {
             return _nextNode;
         }
 
-        private void setNextNode(LinkedNode<T> _nextNode) {
+        private void setNextNode(LinkedNode<E> _nextNode) {
             this._nextNode = _nextNode;
         }
 
@@ -143,10 +146,10 @@ public class CircularlyLinkedQueue<T> implements Queue<T> {
         }
 
         @Override
-        public T next() {
+        public E next() {
             if (this.hasNext()) {
                 this.setNextNode(this.nextNode().next());
-                T nextElement = this.nextNode().element();
+                E nextElement = this.nextNode().element();
                 this.setCount(this.count() - 1);
                 return nextElement;
             } else {

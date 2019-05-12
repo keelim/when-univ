@@ -10,49 +10,49 @@ public class CircularArrayQueue<E> implements Queue<E> {
     private int _rearPosition;
     private E[] _elements;
 
-    public int maxLength() {
+    public int maxLength() { //getter
         return _maxLength;
     }
 
-    public void setMaxLength(int _maxLength) {
+    public void setMaxLength(int _maxLength) { //setter
         this._maxLength = _maxLength;
     }
 
-    public int frontPosition() {
+    public int frontPosition() { //getter
         return _frontPosition;
     }
 
-    public void setFrontPosition(int _frontPosition) {
+    public void setFrontPosition(int _frontPosition) {  //setter
         this._frontPosition = _frontPosition;
     }
 
-    public int rearPosition() {
+    public int rearPosition() { //getter
         return _rearPosition;
     }
 
-    public void setRearPosition(int _rearPosition) {
+    public void setRearPosition(int _rearPosition) { //setter
         this._rearPosition = _rearPosition;
     }
 
-    public E[] elements() {
+    public E[] elements() { //getter
         return _elements;
     }
 
-    public void setElements(E[] _elements) {
+    public void setElements(E[] _elements) { //setter
         this._elements = _elements;
     }
 
-    public int capacity() {
+    public int capacity() { //capacity의 구현
         return (this.maxLength() - 1); //환형 큐의 특징
     }
 
     @SuppressWarnings("unchecked")
-    public CircularArrayQueue(int givenCapacity) {
+    public CircularArrayQueue(int givenCapacity) { //constructor
         this.setMaxLength(givenCapacity + 1);
         this.setElements((E[]) new Object[this.maxLength()]);
     }
 
-    public CircularArrayQueue() {
+    public CircularArrayQueue() {  //constructor
         this(CircularArrayQueue.DEFAULT_CAPACITY);
     }
 
@@ -66,7 +66,7 @@ public class CircularArrayQueue<E> implements Queue<E> {
     }
 
     @Override
-    public boolean isFull() {
+    public boolean isFull() { //full check
 //        다음 삽입될 위치가 this.frontPosition() 과 같으면 true 를, 아니면 false 를 반환.
         int nextRearPosition = (this._rearPosition + 1) % this._maxLength;
         return (nextRearPosition == this._frontPosition);
@@ -83,7 +83,7 @@ public class CircularArrayQueue<E> implements Queue<E> {
 //        비어 있는 경우 null 을 반환
 //        비어 있지 않은 경우 큐의 맨 앞에 있는 원소를 반환
         E frontElement = null;
-        if (!this.isEmpty()) {
+        if (!this.isEmpty()) { //empty check
             frontElement = this._elements[this._frontPosition + 1];
         }
         return frontElement;
@@ -95,7 +95,7 @@ public class CircularArrayQueue<E> implements Queue<E> {
 //        비어 있는 경우 null 을 반환
 //        비어 있지 않은 경우 큐의 맨 뒤에 있는 원소를 반환
         E rearElement = null;
-        if (!this.isEmpty()) {
+        if (!this.isEmpty()) { //empty check
             rearElement = this._elements[this._rearPosition];
         }
         return rearElement;
@@ -104,7 +104,7 @@ public class CircularArrayQueue<E> implements Queue<E> {
 
     @Override
     public boolean enQueue(E anElement) {
-        if (this.isFull()) {
+        if (this.isFull()) { //full check
             return false;
         } else {
             this.setRearPosition((this._rearPosition + 1) % this._maxLength);
@@ -116,7 +116,7 @@ public class CircularArrayQueue<E> implements Queue<E> {
     @Override
     public E deQueue() {
         E frontElement = null;
-        if (!this.isEmpty()) {
+        if (!this.isEmpty()) { //empty check
             this._frontPosition = (this._frontPosition + 1) % this._maxLength;
             frontElement = this._elements[this._frontPosition];
             this._elements[this._frontPosition] = null;
@@ -126,7 +126,7 @@ public class CircularArrayQueue<E> implements Queue<E> {
     }
 
     @Override
-    public void clear() {
+    public void clear() { //Circular queue 초기화 시킨다.
         this._frontPosition = 0;
         this._rearPosition = 0;
         for (int i = 0; i < this.maxLength(); i++) {
@@ -136,12 +136,12 @@ public class CircularArrayQueue<E> implements Queue<E> {
     }
 
     @Override
-    public E elementAt(int anOrder) {
+    public E elementAt(int anOrder) { //환영 큐의 특징의 맞게 elementAt 설정
         return this.elements()[((this.frontPosition() + 1 + anOrder) % this.maxLength())];
     }
 
     @Override
-    public Iterator<E> iterator() {
+    public Iterator<E> iterator() { //Iterator 구현
         return new CircularArrayQueueIterator();
     }
 

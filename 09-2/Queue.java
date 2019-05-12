@@ -1,4 +1,3 @@
-
 public interface Queue<E> {
 
     public int size();

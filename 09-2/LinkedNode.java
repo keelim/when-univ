@@ -1,4 +1,4 @@
-public class LinkedNode<E> {
+public class LinkedNode<E> { //LinkedNode 구현
 
     private E _element;
     private LinkedNode<E> _next;
