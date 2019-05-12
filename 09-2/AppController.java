@@ -106,7 +106,8 @@ public class AppController {
                 if (dequeCharacter == null) {
                     AppView.outputLine("(오류) 큐에서 삭제하는 동안에 오류가 발생하였습니다. ");
                 } else {
-                    AppView.outputLine("[DeQs] 삭제된 원소는 "+dequeCharacter+" 입니다."); //삭제를 반복하는 동안에, 큐가 비게 되어 더 이상 삭제가 불가능하게 되면 다음과 같은 메시지를 출력한다
+                    AppView.outputLine("[DeQs] 삭제된 원소는 "+dequeCharacter+" 입니다."); //삭제를 반복하는 동안에,
+                    // 큐가 비게 되어 더 이상 삭제가 불가능하게 되면 다음과 같은 메시지를 출력한다
                 }
                 count++; //count 한개를 늘린다. while condition
             }
@@ -120,6 +121,7 @@ public class AppController {
     }
 
     private void quitQueueProcessing() { //Queue 처리를 종료
+    	AppView.outputLine("\n < 큐를 비우고 사용을 종료 합니다. >");
         this.showAllFromFront(); //Front 부터 전부 출력
         removeN(this.queue().size()); //사이즈 만큼의 원소를 전부 출력
     }
@@ -167,14 +169,11 @@ public class AppController {
         } else {
             AppView.outputLine("[Rear] 큐의 맨 뒤 원소는 " + this.queue().rear() + "입니다. ");
         }
-
-
     }
 
     private void showQueueSize() {
 //Queue 객체의 size() 를 이용하여 원소의 개수를 출력
         AppView.outputLine("[Size] 큐에는 현재" + this.queue().size() + " 개의 원소가 있습니다. ");
-
     }
 
     private void showStatistics() { //통계 함수 출력
@@ -188,7 +187,7 @@ public class AppController {
 
     // 입력 관련
     private char inputChar() { //문자를 입력 한다.
-        AppView.outputLine("? 문자를 입력하시오: ");
+        AppView.output("? 문자를 입력하시오: ");
         return AppView.inputChar();
     }
 

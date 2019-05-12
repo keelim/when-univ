@@ -67,7 +67,7 @@ public class AppController {
         } else {
             if (this.queue().enQueue(Character.valueOf(aCharForAdd))) { //enQueue를 한다
                 countAddedChar();
-                AppView.outputLine("enQueue 된 원소는 " + aCharForAdd + "입니다.");
+                AppView.outputLine("enQueue 된 원소는 '" + aCharForAdd + "' 입니다.");
             } else {
                 AppView.outputLine("(큐)에 넣는 동안 오류가 발생했습니다. ");
             }
@@ -89,7 +89,7 @@ public class AppController {
                 AppView.outputLine("(오류) 큐에서 삭제하는 동안 오류가 발생하였습니다. ");
 
             } else {
-                AppView.outputLine("[Deq] 삭제된 원소는" + removedChar + "입니다.");
+                AppView.outputLine("[Deq] 삭제된 원소는 '" + removedChar + "' 입니다.");
             }
         }
     }
@@ -106,7 +106,7 @@ public class AppController {
                 if (dequeCharacter == null) {
                     AppView.outputLine("(오류) 큐에서 삭제하는 동안에 오류가 발생하였습니다. ");
                 } else {
-                    AppView.outputLine("[DeQs] 삭제된 원소는 "+dequeCharacter+" 입니다."); //삭제를 반복하는 동안에, 큐가 비게 되어 더 이상 삭제가 불가능하게 되면 다음과 같은 메시지를 출력한다
+                    AppView.outputLine("[DeQs] 삭제된 원소는 '"+dequeCharacter+"' 입니다."); //삭제를 반복하는 동안에, 큐가 비게 되어 더 이상 삭제가 불가능하게 되면 다음과 같은 메시지를 출력한다
                 }
                 count++; //count 한개를 늘린다. while condition
             }
@@ -132,7 +132,11 @@ public class AppController {
         Iterator<Character> queueIterator = this.queue().iterator(); //Iterator 를 사용
         while (queueIterator.hasNext()) { //다음 원소를 가지고 있는지 체크
             Character element = queueIterator.next();
-            AppView.output(element.toString() + " ");
+            if (element == null){
+                AppView.output(" ");
+            } else {
+                AppView.output(element.toString() + " ");
+            }
         }
         AppView.outputLine("<Rear>");
 
@@ -155,7 +159,7 @@ public class AppController {
         if (this.queue().isEmpty()) {
             AppView.outputLine("[Front.Empty] 큐가 비어서 맨 앞 원소가 존재하지 않습니다. ");
         } else {
-            AppView.outputLine("[Front] 큐의 맨 앞 원소는 " + this.queue().front() + "입니다. ");
+            AppView.outputLine("[Front] 큐의 맨 앞 원소는 '" + this.queue().front() + "' 입니다. ");
         }
     }
 
@@ -165,7 +169,7 @@ public class AppController {
         if (this.queue().isEmpty()) {
             AppView.outputLine("[Rear.Empty] 큐가 비어서 맨 뒤 원소가 존재하지 않습니다. ");
         } else {
-            AppView.outputLine("[Rear] 큐의 맨 뒤 원소는 " + this.queue().rear() + "입니다. ");
+            AppView.outputLine("[Rear] 큐의 맨 뒤 원소는 '" + this.queue().rear() + "' 입니다. ");
         }
 
 
@@ -173,7 +177,7 @@ public class AppController {
 
     private void showQueueSize() {
 //Queue 객체의 size() 를 이용하여 원소의 개수를 출력
-        AppView.outputLine("[Size] 큐에는 현재" + this.queue().size() + " 개의 원소가 있습니다. ");
+        AppView.outputLine("[Size] 큐에는 현재 " + this.queue().size() + " 개의 원소가 있습니다. ");
 
     }
 
@@ -188,7 +192,7 @@ public class AppController {
 
     // 입력 관련
     private char inputChar() { //문자를 입력 한다.
-        AppView.outputLine("? 문자를 입력하시오: ");
+        AppView.output("? 문자를 입력하시오: ");
         return AppView.inputChar();
     }
 

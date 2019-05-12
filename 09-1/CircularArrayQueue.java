@@ -50,6 +50,8 @@ public class CircularArrayQueue<E> implements Queue<E> {
     public CircularArrayQueue(int givenCapacity) { //constructor
         this.setMaxLength(givenCapacity + 1);
         this.setElements((E[]) new Object[this.maxLength()]);
+        this.setFrontPosition(0);
+        this.setRearPosition(0);
     }
 
     public CircularArrayQueue() {  //constructor
@@ -158,20 +160,22 @@ public class CircularArrayQueue<E> implements Queue<E> {
         }
 
         public CircularArrayQueueIterator() {
-            this.setNextOrder(1);
+            this.setNextOrder(CircularArrayQueue.this.frontPosition()+1);
         }
 
         @Override
         public boolean hasNext() {
-            return (this.nextOrder() < CircularArrayQueue.this.size()+1);
+            return (this.nextOrder() - CircularArrayQueue.this.frontPosition() < CircularArrayQueue.this.size()+1);
         }
+        //배열 iterator 경우 좀더 고려를 하여야 할 것 같다.
+        //기존 배열 iterator의 경우 에러 난다.
 
         @Override
         public E next() {
             E nextElement = null;
             if (this.hasNext()) {
                 nextElement = CircularArrayQueue.this.elements()[this.nextOrder()];
-                this.setNextOrder(this.nextOrder() + 1);
+                this.setNextOrder(this.nextOrder()+1);
             }
             return nextElement;
         }

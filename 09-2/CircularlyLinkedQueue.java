@@ -91,7 +91,6 @@ public class CircularlyLinkedQueue<E> implements Queue<E> { //환영 큐
             this._size--; //사이즈를 줄인다.
         }
         return frontElement;
-
     }
 
     @Override
@@ -107,7 +106,6 @@ public class CircularlyLinkedQueue<E> implements Queue<E> { //환영 큐
             anOrderNode = anOrderNode.next();
         }
         return anOrderNode.element();
-
     }
 
     @Override
