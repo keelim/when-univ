@@ -1,4 +1,4 @@
-
+#pragma once
 #include "Timer.h"
 #include "Common.h"
 #include <Windows.h>

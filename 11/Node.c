@@ -1,5 +1,5 @@
+#pragma once
 #include "Node.h"
-#include "Common.h"
 
 struct _Node {
     Element _element;

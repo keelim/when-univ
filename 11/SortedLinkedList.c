@@ -1,5 +1,6 @@
+#pragma once
 #include "SortedLinkedList.h"
-
+//todo 소스 채울 것
 
 SortedLinkedList *SortedLinkedList_new(void) {
     return NULL;

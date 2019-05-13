@@ -1,3 +1,4 @@
+#pragma once
 typedef struct _Timer Timer;
 
 Timer *Timer_new();  //타이머 생성

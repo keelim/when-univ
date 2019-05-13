@@ -1,4 +1,7 @@
+#pragma once
 #include "UnSortedLinkedList.h"
+
+//todo 소스 채울 것
 
 UnsortedLinkedList *UnsortedLinkedList_new() {
     return NULL;
