@@ -3,7 +3,7 @@
 
 typedef struct _SortedLinkedList SortedLinkedList;
 
-SortedLinkedList *SortedLinkedList_new(void);
+SortedLinkedList *SortedLinkedList_new(int givenCapacity);
 
 void SortedLinkedList_delete(SortedLinkedList *_this);
 

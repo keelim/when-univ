@@ -5,16 +5,20 @@
 
 //todo 소스 채울 것
 struct _UnsortedLinkedList {
-    int size;
+    int _size;
+    int _capacity;
     Node *_head;
 };
 
 
-UnsortedLinkedList *UnsortedLinkedList_new() {
+UnsortedLinkedList *UnsortedLinkedList_new(int givenCapacity) {
     UnsortedLinkedList *_this = NewObject(UnsortedLinkedList);
+    _this->_size = 0;
     _this->_head = Node_new();
-    Node_setElement(_this->_head, NULL);
-    _this->size = 0;
+    Node_setElement(_this->_head, 0);
+    Node_setNext(_this->_head, NULL);
+    _this->_capacity = givenCapacity;
+    return _this;
 }
 
 void UnsortedLinkedList_delete(UnsortedLinkedList *_this) {
@@ -24,7 +28,7 @@ void UnsortedLinkedList_delete(UnsortedLinkedList *_this) {
 
 Boolean UnsortedLinkedList_isEmpty(UnsortedLinkedList *_this) {
     Boolean flag = FALSE;
-    if (_this->size == 0) {
+    if (_this->_size == 0) {
         flag = TRUE;
     }
     return flag;
@@ -39,7 +43,7 @@ Boolean UnsortedLinkedList_add(UnsortedLinkedList *_this, Element anElement) {
     Node_setElement(addNode, anElement);
     Node_setNext(addNode, _this->_head);
     
-    _this->size++;
+    _this->_size++;
     return TRUE;
 }
 
@@ -48,5 +52,10 @@ Element UnsortedLinkedList_min(UnsortedLinkedList *_this) {
 }
 
 Element UnsortedLinkedList_removeMax(UnsortedLinkedList *_this) {
-    return 0;
+    if(UnsortedLinkedList_isEmpty(_this)){
+        return -1;
+    } else {
+        Element  maxElement = Node_element(_this->_head);
+
+    }
 }

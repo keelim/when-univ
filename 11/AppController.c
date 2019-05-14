@@ -3,7 +3,6 @@
 #include "Common.h"
 #include "AppController.h"
 #include "AppView.h"
-#include "Messages.h"
 #include "Time.h"
 
 #define MIN_TEST_SIZE 1000
@@ -23,6 +22,8 @@ AppController *AppController_new(void) {
 
 
 void AppController_delete(AppController *_this) {
+    free(_this->_testData);
+    Timer_delete(_this->_timer);
     free(_this);
 
 }
@@ -38,11 +39,12 @@ void AppController_run(AppController *_this) {
 
     // 유의: 사용을 종료한 후, 이것을 소멸시킬 위치는?
     AppController_generateTestDataByRandomNumbers(_this);
-    AppView_out(MSG_TitleForUnsortedArrayList);
+    AppView_out(MSG_TitleForUnsortedLinkedList);
 
+//////////////////////////////////////////////UnSortedLinkedList//////////////////////////////////////////////////////
     int testSize = MIN_TEST_SIZE;
     for (int i = 0; i < numberOfTests; i++) {
-        SortedLinkedList *listForTest = SortedLinkedList_new(maxTestSize); //todo
+        UnsortedLinkedList *listForTest = UnsortedLinkedList_new(maxTestSize); //todo
         double timeForAdd = AppController_timeForUnSortedLinkedList_add(_this, listForTest, testSize);
         double timeForRemoveMax = AppController_timeForUnSortedLinkedList_removeMax(_this, listForTest, testSize);
         AppController_showResults(_this, testSize, timeForAdd, timeForRemoveMax);
@@ -52,8 +54,9 @@ void AppController_run(AppController *_this) {
     AppView_out(MSG_EndPerformanceMeasuring);
 
 
-    AppView_out(MSG_TitleForUnsortedArrayList);
 
+    AppView_out(MSG_TitleForsortedLinkedList);
+///////////////////////////////////////////////////////SortedLinkedList////////////////////////////////////////////////
     int testSize2 = MIN_TEST_SIZE;
     for (int i = 0; i < numberOfTests; i++) {
         SortedLinkedList *listForTest = SortedLinkedList_new(maxTestSize); //todo

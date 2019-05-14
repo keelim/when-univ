@@ -3,7 +3,7 @@
 
 typedef struct _UnsortedLinkedList UnsortedLinkedList;
 
-UnsortedLinkedList *UnsortedLinkedList_new();
+UnsortedLinkedList *UnsortedLinkedList_new(int givenCapacity);
 
 void UnsortedLinkedList_delete(UnsortedLinkedList *_this);
 
