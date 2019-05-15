@@ -61,4 +61,10 @@ Model - Controller - View
 3. 배열과 Linked 구현에 있어서 차이
     - 배열 
     - Linked
-4. 
+
+## 2019 05 14
+1. Tale Recusion
+    - Dictionary
+    - recusive call 하는 곳을 잘 보자
+2. 검색 알고리즘과 traverls 는 다르다.
+3. 
