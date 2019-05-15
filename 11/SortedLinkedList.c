@@ -1,22 +1,18 @@
 #pragma once
-
 #include "SortedLinkedList.h"
 #include "Node.h"
-//todo 소스 채울 것
 
 struct _SortedLinkedList {
     int _size;
-    int _capacity;
     Node *_head;
 };
 
-SortedLinkedList *SortedLinkedList_new(int givenCapacity) {
+SortedLinkedList *SortedLinkedList_new() {
     SortedLinkedList *_this = NewObject(SortedLinkedList);
     _this->_size = 0;
     _this->_head = Node_new();
     Node_setElement(_this->_head, 0);
     Node_setNext(_this->_head, NULL);
-    _this->_capacity = givenCapacity;
     return _this;
 }
 
