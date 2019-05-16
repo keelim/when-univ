@@ -3,7 +3,6 @@
 
 typedef struct _Node Node;
 
-
 Node *Node_new();
 
 //노드 객체를 생성

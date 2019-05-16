@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.h"
+#include "Node.h"
 
 typedef struct _UnsortedLinkedList UnsortedLinkedList;
 
