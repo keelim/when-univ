@@ -1,9 +1,9 @@
 public class AppController {
-<<<<<<< HEAD
+
     private static final int TEST_SIZE = 10000;
     private static final int FIRST_PART_SIZE = 5;
-    private static final InsertionSort<Integer> INSERTION_SORT = new InsertionSort<Integer>();
-    private static final QuickSort<Integer> QUICK_SORT = new QuickSort<Integer>();
+    private static final InsertionSort<Integer> INSERTION_SORT = new InsertionSort<>();
+    private static final QuickSort<Integer> QUICK_SORT = new QuickSort<>();
 
     // 비공개 변수들
     private Integer[] _list;
@@ -65,28 +65,28 @@ public class AppController {
     private void showFirstPartOfDataList() {
         AppView.output(
                 "[" + this.listOrder().orderName() + " 리스트] 의 앞 부분: ");
-        for (int i = 0; i < 5; i++) { //todo? 맞는지는 모르겠다.
+        for (int i = 0; i < FIRST_PART_SIZE; i++) {
             int intro = this.list()[i];
             AppView.output(intro + " ");
         }
         AppView.outputLine("");
     }
 
-    private void validateSort(Sort<Integer> aSort) {
+    private void validateSort(Sort<Integer> aSort) { //정렬을 하여 사용을 한다.
         Integer[] list = this.copyList(this._list);
-// 동일한 리스트로 여러 번 (실제로는 2 번) 정렬하게 된다.
-// 매번 원본 리스트를 복사하여 정렬한다.
+        // 동일한 리스트로 여러 번 (실제로는 2 번) 정렬하게 된다.
+        // 매번 원본 리스트를 복사하여 정렬한다.
         aSort.sort(list, list.length);
         this.showValidationMessage(aSort, list);
     }
 
-    private void validateSortsAndShowResult() {
+    private void validateSortsAndShowResult() { //결과를 출력을 해준다.
         this.validateSort(AppController.INSERTION_SORT);
         this.validateSort(AppController.QUICK_SORT);
         AppView.outputLine("");
     }
 
-    private void showValidationMessage(Sort<Integer> aSort, Integer[] aList) {
+    private void showValidationMessage(Sort<Integer> aSort, Integer[] aList) { //유효한 지를 출력을 한다.
         AppView.output(
                 "[" + this.listOrder().orderName() + " 리스트]를 [" +
                         aSort.getClass().getSimpleName() + "] 한 결과는 ");
@@ -100,12 +100,12 @@ public class AppController {
 
     private Integer[] copyList(Integer[] aList) {
         // 주어진 배열 객체 aList[] 의 복사본을 만들어 돌려준다.
-// aList[] 자체는 복사하지만,
-// 배열의 원소 객체 자체는 복사하지 않고 공유한다.
-        Integer[] copiedList = new Integer[aList.length] ;
-        // 여기를 채우시오
-        System.arraycopy(aList,0, copiedList, 0, aList.length); //todo 이해가 안간다.?
-        return copiedList ;
+        // aList[] 자체는 복사하지만,
+        // 배열의 원소 객체 자체는 복사하지 않고 공유한다. ? 공유? 무슨 말이지?
+        Integer[] copiedList;
+        copiedList = aList.clone();
+//        System.arraycopy(aList, 0, copiedList, 0, aList.length); //System.arrayCopy 이용
+        return copiedList;
     }
 
     private boolean sortedListIsValid(Integer[] aList) {
@@ -119,9 +119,4 @@ public class AppController {
     }
 
 
-=======
-
-    public void run() {
-    }
->>>>>>> a605a83fe3a0453f116f29eeda148651cd47569c
 }

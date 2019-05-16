@@ -4,7 +4,7 @@ public class QuickSort<E extends Comparable<E>> extends Sort<E> {
         return left;
     }
 
-    private int partition(E[] aList, int left, int right) {
+    private int partition(E[] aList, int left, int right) { //파티션 함수 중간 값을 정해주는 것이다.
         E pivot = aList[pivot(aList, left, right)];
         int toRight = left;
         int toLeft = right + 1;
