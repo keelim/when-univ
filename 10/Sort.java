@@ -1,5 +1,6 @@
 public abstract class Sort<E extends Comparable<E>> {
-    protected void swap(E[] aList, int i, int j) {
+    //protected 의 선언?
+    protected void swap(E[] aList, int i, int j) { //swap 기본 템플릿
         E tempElement = aList[i];
         aList[i] = aList[j];
         aList[j] = tempElement;

@@ -1,6 +1,6 @@
 public class QuickSort<E extends Comparable<E>> extends Sort<E> {
 
-    private int pivot(E[] aList, int left, int right) {
+    private int pivot(E[] aList, int left, int right) { //피봇값을 리턴을 한다.
         return left;
     }
 
@@ -36,7 +36,7 @@ public class QuickSort<E extends Comparable<E>> extends Sort<E> {
 
 
     @Override
-    public boolean sort(E[] aList, int aSize) {
+    public boolean sort(E[] aList, int aSize) { //Sorting을 하고 있다.
         if ((aSize < 1) || (aSize > aList.length)) {
             return false;
         }

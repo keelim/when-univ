@@ -1,12 +1,12 @@
 public class InsertionSort<E extends Comparable<E>> extends Sort<E> {
 
-    public InsertionSort() {
+    public InsertionSort() { //삽입 정렬
     }
 
     @Override
-    public boolean sort(E[] aList, int aSize) {
+    public boolean sort(E[] aList, int aSize) { //Sorting
 
-        if ((aSize < 1) || (aSize > aList.length)) {
+        if ((aSize < 1) || (aSize > aList.length)) { //값이 없거나 리스트의 크기보다 클 경우 false
             return false;
         }
         int minLoc = 0;
