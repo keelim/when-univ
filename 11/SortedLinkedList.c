@@ -38,20 +38,20 @@ Boolean SortedLinkedList_add (SortedLinkedList* _this, Element anElement) { //�
 	Node_setNext (addedNode, NULL);
 
 
-	if (SortedLinkedList_isEmpty (_this)) {			// ���� ����Ʈ�� ����ִ� ��� - _this->_head�� �߰�
+	if (SortedLinkedList_isEmpty (_this)) {			// 
 		_this->_head=addedNode;
 		_this->_size++;
 
 		return TRUE;
 	}
-	else if (Node_element (_this->_head) >= anElement) {			// ���� ����Ʈ�� ��庸�� ���� ������� -  _this->_head �տ� �߰�
+	else if (Node_element (_this->_head) >= anElement) {//  _this->_head 
 
 		Node_setNext (addedNode, _this->_head);
 		_this->_head=addedNode;
 		_this->_size++;
 
 		return TRUE;
-	} // ���� ����Ʈ ��庸�� ū ���ΰ��(�� ��Ҹ� ã�ƾ� ��.)
+	} 
 	else {
 		Node* previous=_this->_head;
 		currentNode=Node_next (_this->_head);
@@ -60,7 +60,7 @@ Boolean SortedLinkedList_add (SortedLinkedList* _this, Element anElement) { //�
 
 			if (anElement > Node_element (currentNode)) {
 				previous=currentNode;
-				currentNode=Node_next (currentNode);// �������� �̵��Ѵ�.
+				currentNode=Node_next (currentNode);
 
 			}
 			else {
@@ -108,6 +108,11 @@ Element SortedLinkedList_removeMax (SortedLinkedList* _this) {
 
 	}
 	else {
+		Node* removedNode=_this->_head;
+		for (int i=0; i < _this->_size - 1; i++) {
+			removedNode=Node_next (removedNode);
+		}
+		return Node_element (removedNode);
 
 	}
 	_this->_size--;

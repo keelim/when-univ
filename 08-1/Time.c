@@ -1,3 +1,4 @@
+#pragma once
 #include "Common.h"
 #include <stdio.h>
 #include <Windows.h>

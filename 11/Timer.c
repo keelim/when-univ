@@ -1,33 +1,40 @@
 #pragma once
-#include "Timer.h"
 #include "Common.h"
+#include <stdio.h>
 #include <Windows.h>
 
-struct _Timer {
-    LARGE_INTEGER frequency;
-    LARGE_INTEGER startCounter;
-    LARGE_INTEGER stopCounter;
-};
+typedef struct {
+	LARGE_INTEGER _frequency;
+	LARGE_INTEGER _startCounter;
+	LARGE_INTEGER _stopCounter;
+}Timer;
 
-Timer *Timer_new() {
-    Timer *_this = NewObject(Timer);
+
+Timer* Timer_new () {
+	Timer* _this=NewObject (Timer);
+	QueryPerformanceFrequency (&(_this->_frequency));
+	return _this;
 }
 
-void Timer_delete(Timer *_this) {
-    free(_this);
+
+void Timer_delete (Timer* _this) {
+	free (_this);
 }
 
-void Timer_start(Timer *_this) {
-    QueryPerformanceCounter(&(_this->startCounter));
+
+void Timer_start (Timer* _this) {
+	QueryPerformanceCounter (&(_this->_startCounter));
 }
 
-void Timer_stop(Timer *_this) {
-    QueryPerformanceCounter(&(_this->stopCounter));
+
+void Timer_stop (Timer* _this) {
+	QueryPerformanceCounter (&(_this->_stopCounter));
 }
 
-double Timer_duration(Timer *_this) {
-	double elapsed=(double)(_this->stopCounter.QuadPart - _this->startCounter.QuadPart);
+
+double Timer_duration (Timer* _this) {
+	double elapsed=(double)(_this->_stopCounter.QuadPart - _this->_startCounter.QuadPart);
 
 
-	return elapsed * 1000000.0 / ((double)_this->frequency.QuadPart); //초로 변환한다.
+	return elapsed * 1000000.0 / ((double)_this->_frequency.QuadPart);
 }
