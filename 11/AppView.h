@@ -1,3 +1,3 @@
 #pragma once
 #include <stdio.h>
-void AppView_out(char* aString);
+void AppView_out (char* aString);

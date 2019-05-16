@@ -26,6 +26,8 @@ void Timer_stop(Timer *_this) {
 }
 
 double Timer_duration(Timer *_this) {
-    double elapsed = (double) (_this->stopCounter.QuadPart - _this->startCounter.QuadPart);
-    return elapsed * 1000000.0 / (double) _this->frequency.QuadPart; // 실행 시간을 마이크로 초로 변환한다.
+	double elapsed=(double)(_this->stopCounter.QuadPart - _this->startCounter.QuadPart);
+
+
+	return elapsed * 1000000.0 / ((double)_this->frequency.QuadPart); //초로 변환한다.
 }
