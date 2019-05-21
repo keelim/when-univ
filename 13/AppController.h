@@ -1,4 +1,12 @@
 #include "Common.h"
+#include "Node.h"
+#include "Queue.h"
+#include "AppView.h"
+
+#define Esc 27
+#define isDigit(CHAR) (('0' <= CHAR) && (CHAR <='9'))
+#define isAlpha(CHAR) ((('A' <= CHAR) && (CHAR <= 'Z')) || (('a' <= CHAR) && (CHAR <= 'z')))
+
 typedef struct _AppController AppController;
 
 //생성과 소멸

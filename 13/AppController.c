@@ -42,6 +42,7 @@ void AppController_run(AppController *_this) {
         } else if (inputChar == '^') {
             AppController_showFront(_this);
         } else {
+            AppController_countIgnored(_this);
             AppController_ignore(_this);
         }
         inputChar = AppView_in_nextInputChar();
@@ -95,4 +96,12 @@ void AppController_initCharCounts(AppController *_this) {
 
 void AppController_countInput(AppController *_this) {
     _this->_inputChars++;
+}
+
+void AppController_countIgnored(AppController *_this) {
+    _this->_ignoredChars++;
+}
+
+void AppController_countAdded(AppController *_this) {
+    _this->_addedChars++;
 }
