@@ -28,21 +28,16 @@ void AppController_delete (AppController* _this) {
 }
 
 void AppController_run (AppController* _this) {
-	AppView_out (MSG_StartPerformanceMeasuring);
-
+	AppView_out (MSG_StartPerformanceMeasuring); //메시지 출력
 	int numberOfTests=NUMBER_OF_TESTS;
 	int intervalSize=INTERVAL_SIZE;
-	int maxTestSize=MIN_TEST_SIZE + INTERVAL_SIZE * (NUMBER_OF_TESTS - 1);
-
+	int maxTestSize=MIN_TEST_SIZE + INTERVAL_SIZE * (NUMBER_OF_TESTS - 1); //데이터 값 설정
 	_this->_testData=NewVector (int, maxTestSize);
-
-	// 유의: 사용을 종료한 후, 이것을 소멸시킬 위치는?
 	AppController_generateTestDataByRandomNumbers (_this);
 	AppView_out (MSG_TitleForUnsortedLinkedList);
-
 	//////////////////////////////////////////////UnSortedLinkedList//////////////////////////////////////////////////////
 	int testSize=MIN_TEST_SIZE;
-	for (int i=0; i < numberOfTests; i++) {
+	for (int i=0; i < numberOfTests; i++) { //테스트 사이즈를 통하여 실험
 		UnsortedLinkedList* listForTest=UnsortedLinkedList_new ();
 		double timeForAdd=AppController_timeForUnSortedLinkedList_add (_this, listForTest, testSize);
 		double timeForMin=AppController_timeForUnSortedLinkedList_min (_this, listForTest, testSize);
@@ -52,14 +47,9 @@ void AppController_run (AppController* _this) {
 		testSize+=intervalSize;
 	}
 	free (_this->_testData);
-
-
-
-
 	///////////////////////////////////////////////////////SortedLinkedList////////////////////////////////////////////////
 	AppView_out (MSG_TitleForsortedLinkedList);
 	intervalSize=INTERVAL_SIZE;
-
 	_this->_testData=NewVector (int, maxTestSize);
 	AppController_generateTestDataByRandomNumbers (_this);
 	int testSize2=MIN_TEST_SIZE;
@@ -73,7 +63,6 @@ void AppController_run (AppController* _this) {
 		testSize2+=intervalSize;
 	}
 	AppView_out (MSG_EndPerformanceMeasuring);
-
 }
 
 
