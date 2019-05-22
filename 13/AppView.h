@@ -1,9 +1,14 @@
 #include <stdio.h>
+#include <conio.h>
 #include "Common.h"
 
 void AppView_out_startProgram();
 
-void AppView_out_label();
+void AppView_out_newLine();
+
+void AppView_out_label_Front();
+
+void AppView_out_label_Rear();
 
 char AppView_in_nextInputChar();
 

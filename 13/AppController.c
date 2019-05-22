@@ -65,7 +65,15 @@ void AppController_add(AppController *_this, char aChar) {
 }
 
 void AppController_removeN(AppController *_this, char aChar) {
-    //todo
+    int numberOfChars = aChar - '0';
+    for (int i = 0; (i < numberOfChars); i++) { //입력 수 만큼 반복
+        if (Queue_isEmpty(_this->_queue)) { //비어 있는지 확인
+            AppView_out_noElementInQueue();
+            return;
+        }
+        char removedChar = Queue_remove(_this->_queue); //pop
+        AppView_out_removedElementFromQueue(removedChar);
+    }
 }
 
 void AppController_remove1(AppController *_this) {
@@ -81,11 +89,11 @@ void AppController_remove1(AppController *_this) {
 }
 
 void AppController_showAllFromFront(AppController *_this) {
-    AppView_out_label(); // printf ("<Front> ") ;
+    AppView_out_label_Front(); // printf ("<Front> ") ;
     for (int i = 0; i < Queue_size(_this->_queue); i++) {
         AppView_out_elementInQueue(Queue_elementAt(_this->_queue, i));
     }
-    AppView_out_label(); // printf ("<Rear>\n") ;
+    AppView_out_label_Rear(); // printf ("<Rear>\n") ;
 }
 
 void AppController_initCharCounts(AppController *_this) {
@@ -104,4 +112,20 @@ void AppController_countIgnored(AppController *_this) {
 
 void AppController_countAdded(AppController *_this) {
     _this->_addedChars++;
+}
+
+void AppController_showSize(AppController *_this) {
+//todo
+}
+
+void AppController_showFront(AppController *_this) {
+//todo
+}
+
+void AppController_ignore(AppController *_this) {
+//todo
+}
+
+void AppController_esc(AppController *_this) {
+    //todo
 }

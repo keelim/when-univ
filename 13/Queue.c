@@ -43,18 +43,41 @@ int Queue_size(Queue *_this) {
 }
 
 Boolean Queue_add(Queue *_this, Element anElement) {
-    //todo
-    return FALSE;
+    Node *newRearNode;
+    Node_setElement(newRearNode, anElement);
+    Node_setNext(newRearNode, NULL);
+    if (Queue_isEmpty(_this)) {
+        _this->_front = newRearNode;
+    } else {
+        Node_setNext(newRearNode, Node_next(_this->_rear));
+        Node_setNext(_this->_rear, newRearNode);
+    }
+    _this->_rear = newRearNode;
+    _this->_size++;
+    return TRUE;
 }
 
 Element Queue_remove(Queue *_this) {
-    //todo
-    return 0;
+    Element frontElement = NULL;
+    frontElement = Node_element(Node_next(_this->_rear));
+    if (!Queue_isEmpty(_this)) {
+        if (_this->_rear == Node_next(_this->_rear)) {
+            _this->_rear = NULL;
+        } else {
+            Node_setNext(_this->_rear, Node_next(_this->_rear));
+        }
+        _this->_size--;
+    }
+    return frontElement;
 }
 
 Element Queue_elementAt(Queue *_this, int anOrder) {
-
-    return 0;
+    Node *anOrderNode = Node_new();
+    anOrderNode = Node_next(_this->_rear);
+    for (int i = 0; i < anOrder; i++) {
+        anOrderNode = Node_next(anOrderNode);
+    }
+    return Node_element(anOrderNode);
 }
 
 
