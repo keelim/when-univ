@@ -9,6 +9,10 @@ struct _Infix {
     OStack *_operatorStack;
 };
 
+void Infix_showTokenAndOStack(Infix *pInfix, char token);
+
+int Infix_inStackPrecedence(Element element);
+
 int Infix_inComingPrecedence(char aToken) {
 // 각 연산자의 입력 토큰 상태의 우선 순위를 돌려준다
     if (aToken == '(') {
@@ -79,5 +83,29 @@ Boolean Infix_toPostfix(Infix *_this) {
         return TRUE;
 
     }
+}
+
+Infix *Infix_new() {
+    //todo return NULL;
+}
+
+void Infix_delete(Infix *_this) {
+//todo
+}
+
+void Infix_setExpression(Infix *_this, char *newExpression) {
+//todo
+}
+
+char *Infix_postfix(Infix *_this) {
+    return NULL; //todo
+}
+
+int Infix_inStackPrecedence(Element element) {
+    return 0; //todo
+}
+
+void Infix_showTokenAndOStack(Infix *pInfix, char token) {
+//todo
 }
 
