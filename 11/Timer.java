@@ -27,7 +27,6 @@ public class Timer {
         this.setStop(System.nanoTime());
     }  //시간 측정
 
-
     public long duration() {
         return this.getStop() - this.getStart();
     } //시간 차이값 계산
