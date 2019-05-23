@@ -2,7 +2,7 @@
 #include "Common.h"
 
 #define DEFAULT_STACK_CAPACITY 5
-typedef int Element;
+
 
 typedef struct _Stack Stack;
 
@@ -14,7 +14,7 @@ Boolean Stack_isEmpty (Stack* _this);
 
 Boolean Stack_isFull (Stack* _this);
 
-Boolean Stack_push (Stack * _this, Element anElement) ;
+Boolean Stack_push (Stack* _this, Element anElement);
 
 Element Stack_pop (Stack* _this);
 

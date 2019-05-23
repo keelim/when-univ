@@ -14,7 +14,6 @@ AppController* AppController_new () { //AppController 생성
 }
 
 void AppController_delete (AppController* _this) {
-	Postfix_delete (_this->_postfix); //소멸
 	free (_this);
 }
 
