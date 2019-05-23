@@ -4,7 +4,7 @@
 typedef struct _Infix Infix;
 
 #define isDigit(CHAR) (('0' <= CHAR) && (CHAR <='9'))
-#define DEFAULT_MAX_NUMBER_OF_TOKENS 30 //todo
+#define DEFAULT_MAX_NUMBER_OF_TOKENS 100
 
 Infix *Infix_new();
 

@@ -1,6 +1,7 @@
 #include "infix.h"
 #include "Common.h"
 #include "OStack.h"
+#include "AppView.h"
 
 struct _Infix {
     char *_infixExpression; // AppController 에서 보내준다
@@ -86,26 +87,55 @@ Boolean Infix_toPostfix(Infix *_this) {
 }
 
 Infix *Infix_new() {
-
+    Infix *_this = NewObject(Infix);
+    _this->_infixExpression = NewVector(char, 100);
+    _this->_operatorStack = OStack_new();
 }
 
 void Infix_delete(Infix *_this) {
-//todo
+    OStack_delete(_this->_operatorStack);
+    free(_this->_infixExpression);
+    free(_this);
 }
 
 void Infix_setExpression(Infix *_this, char *newExpression) {
-//todo
+    strcpy(_this->_infixExpression, newExpression);
 }
 
 char *Infix_postfix(Infix *_this) {
-    return NULL; //todo
+    return _this->_postfixExpression;
 }
 
 int Infix_inStackPrecedence(Element element) {
-    return 0; //todo
+    switch (element) {
+        case '(':
+            return 0;
+        case ')':
+            return 19;
+        case '^':
+            return 16;
+        case '*':
+            return 13;
+        case '/':
+            return 13;
+        case '%':
+            return 13;
+        case '+':
+            return 12;
+        case '-':
+            return 12;
+        default:
+            return -1;
+    }
 }
 
-void Infix_showTokenAndOStack(Infix *pInfix, char token) {
-//todo
+void Infix_showTokenAndOStack(Infix *_this, char token) {
+    int i;
+    AppView_out_Token(token);
+    AppView_out_Message("<Bottom> ");
+    for (i = 0; i < OStack_size(_this->_operatorStack); i++) {
+        AppView_out_Elemenet(Stack_elementAt(_this->_operatorStack, i));
+    }
+    AppView_out_Message(" <Top>\n");
 }
 

@@ -14,6 +14,8 @@ void AppView_out_startingMessage ();
 
 Boolean AppView_in_postfixExpression(char* s);
 
+Boolean AppView_in_infixExpression(char *s);
+
 void AppView_out_errorInExpression();
 
 void AppView_out_evaluatedValue(int value);
