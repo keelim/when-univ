@@ -1,7 +1,7 @@
 #pragma once
-#include "Common.h"
-#include "Stack.h"
 #include <string.h>
+#include "Common.h"
+#include "VStack.h"
 #include "AppView.h"
 
 typedef struct _Postfix Postfix;

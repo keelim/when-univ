@@ -1,8 +1,6 @@
 #pragma once
 
 #include "VStack.h"
-#include "Node.h"
-
 
 struct _VStack {
     int _size;

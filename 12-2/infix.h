@@ -1,5 +1,7 @@
 #include "Common.h"
 #include "string.h"
+#include "OStack.h"
+#include "AppView.h"
 
 typedef struct _Infix Infix;
 

@@ -1,7 +1,6 @@
 #pragma once
-
 #include "Postfix.h"
-#include "VStack.h"
+
 
 struct _Postfix {
     int _maxNumberOfTokens;
@@ -15,7 +14,7 @@ Postfix *Postfix_new(int givenMaxNumberOfTokens) {
     Postfix *_this = NewObject (Postfix);
     _this->_maxNumberOfTokens = givenMaxNumberOfTokens;
     _this->_expression = NewVector (char, givenMaxNumberOfTokens);
-    _this->_operandStack = Stack_new();
+    _this->_operandStack = VStack_new();
     return _this;
 }
 
@@ -34,8 +33,8 @@ void Postfix_showTokenAndStack(Postfix *_this, char currentToken) { //스택에 
     int i;
     AppView_out_Token(currentToken);
     AppView_out_Message("<Bottom> ");
-    for (i = 0; i < Stack_size(_this->_operandStack); i++) {
-        AppView_out_Elemenet(Stack_elementAt(_this->_operandStack, i));
+    for (i = 0; i < VStack_size(_this->_operandStack); i++) {
+        AppView_out_Elemenet(VStack_elementAt(_this->_operandStack, i));
     }
     AppView_out_Message(" <Top>\n");
 }
@@ -45,69 +44,69 @@ Boolean Postfix_evaluate(Postfix *_this) { //값을 계산한다.
     int operand, operand1, operand2, calculated;
     char currentToken;
     int i = 0;
-    Stack_reset(_this->_operandStack); //Stack reset
+    VStack_reset(_this->_operandStack); //Stack reset
     while (_this->_expression[i] != '\0') { //종료 조건?
         currentToken = _this->_expression[i];
         if (currentToken >= '0' && currentToken <= '9') { //Toekn 0~ 9 확인
             // token is an operand. Push it into stack
             operand = (currentToken - '0');
-            if (Stack_isFull(_this->_operandStack)) {
+            if (VStack_isFull(_this->_operandStack)) {
                 return PostfixError_ExpressionTooLong; //[오류] 수식이 너무 길어 처리가 불가능 합니다.
             } else {
-                Stack_push(_this->_operandStack, operand);
+                VStack_push(_this->_operandStack, operand);
             }
         } else { // The token is an operator +, -, * / % 값 핸들링
             if (currentToken == '+') {
-                if (Stack_size(_this->_operandStack) >= 2) {
-                    operand2 = Stack_pop(_this->_operandStack);
-                    operand1 = Stack_pop(_this->_operandStack);
+                if (VStack_size(_this->_operandStack) >= 2) {
+                    operand2 = VStack_pop(_this->_operandStack);
+                    operand1 = VStack_pop(_this->_operandStack);
                     calculated = operand1 + operand2;
-                    Stack_push(_this->_operandStack, calculated);
+                    VStack_push(_this->_operandStack, calculated);
                 } else {
                     return PostfixError_OperandsTooFew;//[오류] 연산자에 비해 연산값의 수가 적습니다.
                 }
             } else if (currentToken == '-') {
-                if (Stack_size(_this->_operandStack) >= 2) {
-                    operand2 = Stack_pop(_this->_operandStack);
-                    operand1 = Stack_pop(_this->_operandStack);
+                if (VStack_size(_this->_operandStack) >= 2) {
+                    operand2 = VStack_pop(_this->_operandStack);
+                    operand1 = VStack_pop(_this->_operandStack);
                     calculated = operand1 - operand2;
-                    Stack_push(_this->_operandStack, calculated);
+                    VStack_push(_this->_operandStack, calculated);
 
                 } else {
                     return PostfixError_OperandsTooFew;//[오류] 연산자에 비해 연산값의 수가 적습니다.
                 }
             } else if (currentToken == '*') {
-                if (Stack_size(_this->_operandStack) >= 2) {
-                    operand2 = Stack_pop(_this->_operandStack);
-                    operand1 = Stack_pop(_this->_operandStack);
+                if (VStack_size(_this->_operandStack) >= 2) {
+                    operand2 = VStack_pop(_this->_operandStack);
+                    operand1 = VStack_pop(_this->_operandStack);
                     calculated = operand1 * operand2;
-                    Stack_push(_this->_operandStack, calculated);
+                    VStack_push(_this->_operandStack, calculated);
                 } else {
                     return PostfixError_OperandsTooFew;//[오류] 연산자에 비해 연산값의 수가 적습니다.
                 }
 
             } else if (currentToken == '/') {
-                if (Stack_size(_this->_operandStack) >= 2) {
-                    operand2 = Stack_pop(_this->_operandStack);
-                    operand1 = Stack_pop(_this->_operandStack);
+                if (VStack_size(_this->_operandStack) >= 2) {
+                    operand2 = VStack_pop(_this->_operandStack);
+                    operand1 = VStack_pop(_this->_operandStack);
                     if (operand2 == 0) {
                         return PostfixError_DivideByZero;
                     }
                     calculated = operand1 / operand2;
-                    Stack_push(_this->_operandStack, calculated);
+                    VStack_push(_this->_operandStack, calculated);
 
                 } else {
                     return PostfixError_OperandsTooFew;//[오류] 연산자에 비해 연산값의 수가 적습니다.
                 }
             } else if (currentToken == '%') {
-                if (Stack_size(_this->_operandStack) >= 2) {
-                    operand2 = Stack_pop(_this->_operandStack);
-                    operand1 = Stack_pop(_this->_operandStack);
+                if (VStack_size(_this->_operandStack) >= 2) {
+                    operand2 = VStack_pop(_this->_operandStack);
+                    operand1 = VStack_pop(_this->_operandStack);
                     if (operand2 == 0) {
                         return PostfixError_DivideByZero;
                     }
                     calculated = operand1 % operand2;
-                    Stack_push(_this->_operandStack, calculated);
+                    VStack_push(_this->_operandStack, calculated);
 
                 } else {
                     return PostfixError_OperandsTooFew;//[오류] 연산자에 비해 연산값의 수가 적습니다.
@@ -121,9 +120,9 @@ Boolean Postfix_evaluate(Postfix *_this) { //값을 계산한다.
     } // end of while
 // At this point, the result is on top of stack
 
-    if (Stack_size(_this->_operandStack) == 1) { //Size
-        _this->_evaluatedValue = Stack_pop(_this->_operandStack);
-    } else if (Stack_size(_this->_operandStack) > 1) {
+    if (VStack_size(_this->_operandStack) == 1) { //Size
+        _this->_evaluatedValue = VStack_pop(_this->_operandStack);
+    } else if (VStack_size(_this->_operandStack) > 1) {
         return PostfixError_OperandsTooMany;//[오류] 연산자에 비해 연산값의 수가 많습니다.
     }
     return PostfixError_None; //아무 오류 없을 시 반환값

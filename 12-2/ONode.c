@@ -1,6 +1,6 @@
 #pragma once
-#include "Node.h"
-#include "Stack.h"
+#include "ONode.h"
+
 
 struct _Node {
     Element _element;

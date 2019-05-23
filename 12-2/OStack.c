@@ -1,8 +1,5 @@
 #pragma once
-
 #include "OStack.h"
-#include "Node.h"
-
 
 struct _OStack {
 	int _size;

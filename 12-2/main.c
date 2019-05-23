@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "AppController.h"
 
 int main() {

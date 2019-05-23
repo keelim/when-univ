@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.h"
+#include "VNode.h"
 
 #define DEFAULT_STACK_CAPACITY 5
 typedef int Element;

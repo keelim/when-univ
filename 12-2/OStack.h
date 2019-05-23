@@ -1,8 +1,8 @@
 #pragma once
 #include "Common.h"
+#include "ONode.h"
 
 #define DEFAULT_STACK_CAPACITY 5
-typedef char Element;
 
 typedef struct _OStack OStack;
 
@@ -23,9 +23,9 @@ int OStack_size (OStack* _this);
 Element OStack_topElement (OStack* _this); //스택의 Top 원소를 얻는다
 //스택 자체는 변하지 않는다
 
-Element Stack_elementAt (Stack* _this, int anOrder);
+Element OStack_elementAt (OStack* _this, int anOrder);
 
-void Stack_reset (Stack* _this);
+void OStack_reset (OStack* _this);
 
 //스택 리스트의 anOrder 번째 원소를 얻는다
 

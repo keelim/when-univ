@@ -1,7 +1,5 @@
 #include "infix.h"
-#include "Common.h"
-#include "OStack.h"
-#include "AppView.h"
+
 
 struct _Infix {
     char *_infixExpression; // AppController 에서 보내준다

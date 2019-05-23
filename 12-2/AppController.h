@@ -1,8 +1,8 @@
 #pragma once
-
 #include "Common.h"
 #include "AppView.h"
 #include "Postfix.h"
+#include "infix.h"
 
 #define MAX_NUMBER_OF_TOKENS 100
 

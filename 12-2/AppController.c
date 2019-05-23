@@ -1,6 +1,6 @@
 #pragma once
 #include "AppController.h"
-#include "infix.h"
+
 
 struct _AppController {
 	char _expression[MAX_NUMBER_OF_TOKENS];

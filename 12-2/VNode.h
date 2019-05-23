@@ -2,7 +2,7 @@
 #include "Common.h"
 
 typedef struct _Node Node;
-
+typedef int Element;
 
 Node* Node_new ();
 
