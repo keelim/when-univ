@@ -103,21 +103,21 @@ Infix* Infix_new () {
 	_this->_operatorStack=OStack_new ();
 }
 
-void Infix_delete (Infix* _this) {
+void Infix_delete (Infix* _this) { //소멸 시킨다. 
 	OStack_delete (_this->_operatorStack);
 	free (_this->_infixExpression);
 	free (_this);
 }
 
 void Infix_setExpression (Infix* _this, char* newExpression) {
-	strcpy (_this->_infixExpression, newExpression);
+	strcpy (_this->_infixExpression, newExpression); //expression 설정
 }
 
-char* Infix_postfix (Infix* _this) {
+char* Infix_postfix (Infix* _this) { //postfix 반환을 한다.
 	return _this->_postfixExpression;
 }
 
-int Infix_inStackPrecedence (OElement element) {
+int Infix_inStackPrecedence (OElement element) { //우선 순위 설정
 	switch (element) {
 	case '(':
 		return 0;
@@ -140,10 +140,10 @@ int Infix_inStackPrecedence (OElement element) {
 	}
 }
 
-void Infix_showTokenAndOStack (Infix* _this, char token) {
+void Infix_showTokenAndOStack (Infix* _this, char token) { //Token 출력
 	int i;
 	AppView_out_Token (token);
-	AppView_out_Message ("<Bottom> ");
+	AppView_out_Message ("<Bottom> "); //메시지 출력
 	for (i=0; i < OStack_size (_this->_operatorStack); i++) {
 		AppView_out_Elemenet (OStack_elementAt (_this->_operatorStack, i));
 	}
