@@ -14,16 +14,16 @@ Boolean OStack_isEmpty (OStack* _this);
 
 Boolean OStack_isFull (OStack* _this);
 
-Boolean OStack_push (OStack* _this, Element anElement);
+Boolean OStack_push (OStack* _this, OElement anElement);
 
-Element OStack_pop (OStack* _this);
+OElement OStack_pop (OStack* _this);
 
 int OStack_size (OStack* _this);
 
-Element OStack_topElement (OStack* _this); //스택의 Top 원소를 얻는다
+OElement OStack_topElement (OStack* _this); //스택의 Top 원소를 얻는다
 //스택 자체는 변하지 않는다
 
-Element OStack_elementAt (OStack* _this, int anOrder);
+OElement OStack_elementAt (OStack* _this, int anOrder);
 
 void OStack_reset (OStack* _this);
 

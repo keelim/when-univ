@@ -3,7 +3,7 @@
 #include "VNode.h"
 
 #define DEFAULT_STACK_CAPACITY 5
-typedef int Element;
+
 
 typedef struct _VStack VStack;
 
@@ -15,16 +15,16 @@ Boolean VStack_isEmpty (VStack* _this);
 
 Boolean VStack_isFull (VStack* _this);
 
-Boolean VStack_push (VStack* _this, Element anElement);
+Boolean VStack_push (VStack* _this, VElement anElement);
 
-Element VStack_pop (VStack* _this);
+VElement VStack_pop (VStack* _this);
 
 int VStack_size (VStack* _this);
 
-Element VStack_topElement (VStack* _this); //스택의 Top 원소를 얻는다
+VElement VStack_topElement (VStack* _this); //스택의 Top 원소를 얻는다
 //스택 자체는 변하지 않는다
 
-Element VStack_elementAt (VStack* _this, int anOrder);
+VElement VStack_elementAt (VStack* _this, int anOrder);
 
 void VStack_reset (VStack* _this);
 

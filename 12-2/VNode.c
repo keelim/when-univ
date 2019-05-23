@@ -1,35 +1,33 @@
 #pragma once
 #include "VNode.h"
 
-
-struct _Node {
-    Element _element;
-    Node *_next;
+struct _VNode {
+	VElement _element;
+	VNode* _next;
 };
 
-Node *Node_new() {
-    Node *_this = NewObject(Node);
-    return _this;
+VNode* VNode_new () {
+	VNode* _this=NewObject (VNode);
+	return _this;
 }
 
-
-void Node_delete(Node *_this) {
-    free(_this);
+void VNode_delete (VNode* _this) {
+	free (_this);
 }
 
-void Node_setElement(Node *_this, Element newElement) {
-    _this->_element = newElement;
+void VNode_setElement (VNode* _this, VElement newElement) {
+	_this->_element=newElement;
 }
 
-Element Node_element(Node *_this) {
-    return _this->_element;
+VElement VNode_element (VNode* _this) {
+	return _this->_element;
 }
 
-void Node_setNext(Node *_this, Node *newNext) {
-    _this->_next = newNext;
+void VNode_setNext (VNode* _this, VNode* newNext) {
+	_this->_next=newNext;
 }
 
-Node *Node_next(Node *_this) {
-    return _this->_next;
+VNode* VNode_next (VNode* _this) {
+	return _this->_next;
 }
 

@@ -1,20 +1,20 @@
 #pragma once
 #include "Common.h"
 
-typedef struct _Node Node;
-typedef int Element;
+typedef struct _VNode VNode;
+typedef int VElement;
 
-Node* Node_new ();
+VNode* VNode_new ();
 
 //노드 객체를 생성
-void Node_delete (Node* _this);
+void VNode_delete (VNode* _this);
 
 //노드 객체를 소멸
 
-void Node_setElement (Node* _this, Element newElement);
+void VNode_setElement (VNode* _this, VElement newElement);
 
-Element Node_element (Node* _this);
+VElement VNode_element (VNode* _this);
 
-void Node_setNext (Node* _this, Node* newNext);
+void VNode_setNext (VNode* _this, VNode* newNext);
 
-Node* Node_next (Node* _this);
+VNode* VNode_next (VNode* _this);
