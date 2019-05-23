@@ -18,104 +18,103 @@ public class ExperimentManager {
 
     private Experiment experiment() {
         return _experiment;
-    }
+    } //getter
 
     private void setExperiment(Experiment _experiment) {
         this._experiment = _experiment;
-    }
+    } //setter
 
     public ParameterSet parameterSet() {
         return _parameterSet;
-    }
+    }//getter
 
     private void setParameterSet(ParameterSet _parameterSet) {
         this._parameterSet = _parameterSet;
-    }
+    }//setter
 
     private Integer[] ascendingList() {
         return _ascendingList;
-    }
+    }//getter
 
     private void setAscendingList(Integer[] _ascendingList) {
         this._ascendingList = _ascendingList;
-    }
+    }//setter
 
     private Integer[] descendingList() {
         return _descendingList;
-    }
+    }//getter
 
     private void setDescendingList(Integer[] _descendingList) {
         this._descendingList = _descendingList;
-    }
+    }//setter
 
     private Integer[] randomList() {
         return _randomList;
-    }
+    }//getter
 
     private void setRandomList(Integer[] _randomList) {
         this._randomList = _randomList;
-    }
+    }//setter
 
     private long[] measuredResultForInsertionSort() {
         return _measuredResultForInsertionSort;
-    }
+    }//getter
 
-    private void setMeasuredResultForInsertionSort(long[] _measuredResultForInsertionSort) {
+    private void setMeasuredResultForInsertionSort(long[] _measuredResultForInsertionSort) {//setter
         this._measuredResultForInsertionSort = _measuredResultForInsertionSort;
     }
 
     private long[] measuredResultForQuickSort() {
         return _measuredResultForQuickSort;
-    }
+    }//getter
 
-    private void seMmeasuredResultForQuickSort(long[] _measuredResultForQuickSort) {
+    private void setMeasuredResultForQuickSort(long[] _measuredResultForQuickSort) {//setter
         this._measuredResultForQuickSort = _measuredResultForQuickSort;
     }
 
     public ExperimentManager() {
         this.setParameterSetWithDefaults();
-    }
+    } //constructor
 
     // private methods
-    private void prepareExperimentLists() {
+    private void prepareExperimentLists() { //maxdata 설정
         int maxDataSize = this.parameterSet().maxDataSize();
-        this.setAscendingList(DataGenerator.ascendingList(maxDataSize));
+        this.setAscendingList(DataGenerator.ascendingList(maxDataSize)); //각 항목 별로 maxData로 설정
         this.setDescendingList(DataGenerator.descendingList(maxDataSize));
         this.setRandomList(DataGenerator.randomList(maxDataSize));
     }
 
     private void setParameterSetWithDefaults() {
-        this.setParameterSet(new ParameterSet(
-                DEFAULT_STARTING_SIZE,
-                DEFAULT_NUMBER_OF_SIZE_INCREASING_STEPS,
-                DEFAULT_INCREMENT_SIZE));
+        this.setParameterSet(new ParameterSet(DEFAULT_STARTING_SIZE, DEFAULT_NUMBER_OF_SIZE_INCREASING_STEPS, DEFAULT_INCREMENT_SIZE));
     }
 
-    private Integer[] experimentListOfOrder(ListOrder anOrder) {
+    private Integer[] experimentListOfOrder(ListOrder anOrder) { //anOrder를 통한 handling
 // 주어진 anOrder 에 해당하는 리스트를 돌려준다.
         switch (anOrder) {
             case Ascending:
                 return this.ascendingList();
+
             case Descending:
                 return this.descendingList();
+
             default:
                 return this.randomList();
         }
     }
 
     public void prepareExperiment(ParameterSet aParameterSet) {
-// 실험을 준비한다.
+        // 실험을 준비한다.
         if (aParameterSet != null) {
-// 객체 생성할 때, 매개변수 집합은 기본 값으로 설정되어 있다.
-// 실험 준비 단계에서, 이렇게 새로운 매개변수 집합을 주어 변경할 수 있다.
+            // 객체 생성할 때, 매개변수 집합은 기본 값으로 설정되어 있다.
+            // 실험 준비 단계에서, 이렇게 새로운 매개변수 집합을 주어 변경할 수 있다.
             this.setParameterSet(aParameterSet);
         }
         this.setExperiment(new Experiment(this.parameterSet()));
-// 현재 상태의 매개변수 집합을 사용하여 Experiment 객체를 생성한다.
+        // 현재 상태의 매개변수 집합을 사용하여 Experiment 객체를 생성한다.
         this.prepareExperimentLists();
-// 측정 실험에서 정렬에 사용할 데이터 리스트를 생성하여 보관한다.
-// 다음의 내용은 생략 가능한, 내용적으로는 의미가 없는 실행이다.
-// 단지 실험 측정 결과를 안정화시키기 위한 목적일 뿐이다.
+        // 측정 실험에서 정렬에 사용할 데이터 리스트를 생성하여 보관한다.
+        // 다음의 내용은 생략 가능한, 내용적으로는 의미가 없는 실행이다.
+        // 단지 실험 측정 결과를 안정화시키기 위한 목적일 뿐이다.
         this.performExperiment(ListOrder.Random);
         this.performExperiment(ListOrder.Random);
     }
@@ -129,14 +128,12 @@ public class ExperimentManager {
     }
 
     public void performExperiment(ListOrder anOrder) {
-// 측정 실험을 실행한다.
-// 주어진 anOrder 의 실험 리스트를 얻는다.
+        // 측정 실험을 실행한다.
+        // 주어진 anOrder 의 실험 리스트를 얻는다.
         Integer[] experimentList = this.experimentListOfOrder(anOrder);
-// 이 실험 리스트로 삽입과 퀵 각각의 정렬의 성능을 측정해서, 그 결과를 얻는다.
-        this.setMeasuredResultForInsertionSort(
-                this.experiment().durationsOfSort(INSERTION_SORT, experimentList));
-        this.seMmeasuredResultForQuickSort(
-                this.experiment().durationsOfSort(QUICK_SORT, experimentList));
+        // 이 실험 리스트로 삽입과 퀵 각각의 정렬의 성능을 측정해서, 그 결과를 얻는다.
+        this.setMeasuredResultForInsertionSort(this.experiment().durationsOfSort(INSERTION_SORT, experimentList));
+        this.setMeasuredResultForQuickSort(this.experiment().durationsOfSort(QUICK_SORT, experimentList));
     }
 
 
