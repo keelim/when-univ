@@ -77,9 +77,9 @@ void VStack_reset (VStack* _this) {
 	_this->_top=NULL;
 }
 
-void Stack_deleteLinkedNodesRecursively (VStack* _this, VNode* firstNode) {
+void VStack_deleteLinkedNodesRecursively (VStack* _this, VNode* firstNode) {
 	if (firstNode != NULL) {
-		Stack_deleteLinkedNodesRecursively (_this, VNode_next (firstNode));
+		VStack_deleteLinkedNodesRecursively (_this, VNode_next (firstNode));
 		VNode_delete (firstNode);
 	}
 }

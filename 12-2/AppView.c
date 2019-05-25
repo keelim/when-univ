@@ -3,7 +3,7 @@
 #include "AppView.h"
 
 void AppView_out_startingMessage () {
-	printf ("<<< Postfix 수식 계산을 시작합니다.>>>\n\n ");
+	printf ("<<< Infix 수식 계산을 시작합니다.>>>\n\n ");
 }
 
 void AppView_out_errorInExpression () {
@@ -15,7 +15,7 @@ void AppView_out_evaluatedValue (int value) {
 }
 
 void AppView_out_endingMessage () {
-	printf ("\n <<< Postfix 수식 계산을 종료합니다. >>>");
+	printf ("\n <<< Infix 수식 계산을 종료합니다. >>>");
 }
 
 void AppView_out_postfixEvaluationErrorMessage (PostfixError aPostfixError) {
@@ -48,8 +48,12 @@ void AppView_out_Elemenet (int element) {
 	printf ("%d ", element);
 }
 
+void AppView_out_change(){
+    printf("> Infix를 Postfix로 변환\n");
+}
+
 Boolean AppView_in_postfixExpression (char* s) {
-	printf ("? Postfix 수식을 입력하여 주세요: ");
+	printf ("? Infix 수식을 입력하여 주세요: \n");
 
 	scanf ("%s", s);
 

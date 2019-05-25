@@ -2,8 +2,6 @@
 
 #include "OStack.h"
 
-
-
 struct _OStack {
 	int _size;
 	ONode* _top;

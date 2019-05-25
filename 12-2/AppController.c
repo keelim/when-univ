@@ -1,9 +1,11 @@
 #pragma once
 #include "AppController.h"
 
+
 struct _AppController {
 	char _expression[MAX_NUMBER_OF_TOKENS];
 	Postfix* _postfix;
+	Infix* _infix;
 };
 
 AppController* AppController_new () { //AppController 생성
@@ -23,9 +25,12 @@ void AppController_run (AppController* _this) {
 	PostfixError evaluationError;
 	AppView_out_startingMessage (); //프로그램 시작 메시지 출력
 	_this->_postfix=Postfix_new (MAX_NUMBER_OF_TOKENS); //후위식 생성
+	_this->_infix = Infix_new();
 	expressionIsAvailable=AppView_in_postfixExpression (_this->_expression); //후위식 셋팅
 	while (expressionIsAvailable) {
-		Postfix_setExpression (_this->_postfix, _this->_expression);
+	    Infix_setExpression(_this->_infix, _this->_expression);
+	    Infix_toPostfix(_this->_infix);
+		Postfix_setExpression (_this->_postfix, Infix_postfix(_this->_infix));
 		evaluationError=Postfix_evaluate (_this->_postfix); //값을 계산을 한다.
 		if (evaluationError == PostfixError_None) { //오류가 없을 시
 			AppView_out_evaluatedValue (Postfix_evaluatedValue (_this->_postfix)); //계산 값을 출력

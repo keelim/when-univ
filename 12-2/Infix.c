@@ -21,7 +21,7 @@ Boolean Infix_toPostfix(Infix *_this) {
     int p = 0;
     char currentToken = 0, poppedToken = 0;
     int infixSize = strlen(_this->_infixExpression);
-    _this->_operatorStack = OStack_new(infixSize);
+    _this->_operatorStack = OStack_new();
     while (i < infixSize) {
         currentToken = _this->_infixExpression[i++];
         if (isDigit(currentToken)) { // operand
@@ -60,6 +60,27 @@ Boolean Infix_toPostfix(Infix *_this) {
         _this->_postfixExpression[p++] = poppedToken;
     }
     return TRUE;
+}
+
+Infix *Infix_new() {
+    Infix* _this=NewObject (Infix);
+    _this->_infixExpression=NewVector (char, DEFAULT_MAX_NUMBER_OF_TOKENS);
+    _this->_operatorStack=OStack_new ();
+    return _this;
+}
+
+void Infix_delete(Infix *_this) {
+    free(_this->_infixExpression);
+    OStack_delete(_this->_operatorStack);
+    free(_this);
+}
+
+void Infix_setExpression(Infix *_this, char *newExpression) {
+    strcpy(_this->_infixExpression, newExpression);
+}
+
+char *Infix_postfix(Infix *_this) {
+    return _this->_postfixExpression;
 }
 
 

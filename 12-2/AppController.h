@@ -3,6 +3,7 @@
 #include "Common.h"
 #include "AppView.h"
 #include "Postfix.h"
+#include "Infix.h"
 
 
 
