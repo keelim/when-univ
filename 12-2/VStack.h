@@ -1,31 +1,32 @@
 #pragma once
 #include "Common.h"
+#include "VNode.h"
 
 #define DEFAULT_STACK_CAPACITY 5
 
 
-typedef struct _Stack Stack;
+typedef struct _VStack VStack;
 
-Stack* Stack_new ();
+VStack* VStack_new ();
 
-void Stack_delete (Stack* _this);
+void VStack_delete (VStack* _this);
 
-Boolean Stack_isEmpty (Stack* _this);
+Boolean VStack_isEmpty (VStack* _this);
 
-Boolean Stack_isFull (Stack* _this);
+Boolean VStack_isFull (VStack* _this);
 
-Boolean Stack_push (Stack* _this, Element anElement);
+Boolean VStack_push (VStack* _this, ElementForVStack anElement);
 
-Element Stack_pop (Stack* _this);
+ElementForVStack VStack_pop (VStack* _this);
 
-int Stack_size (Stack* _this);
+int VStack_size (VStack* _this);
 
-Element Stack_topElement (Stack* _this); //스택의 Top 원소를 얻는다
+ElementForVStack VStack_topElement (VStack* _this); //스택의 Top 원소를 얻는다
 //스택 자체는 변하지 않는다
 
-Element Stack_elementAt (Stack* _this, int anOrder);
+ElementForVStack VStack_elementAt (VStack* _this, int anOrder);
 
-void Stack_reset (Stack* _this);
+void VStack_reset (VStack* _this);
 
 //스택 리스트의 anOrder 번째 원소를 얻는다
 
