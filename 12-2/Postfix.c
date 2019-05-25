@@ -124,7 +124,13 @@ Boolean Postfix_evaluate (Postfix* _this) { //값을 계산한다.
 				}
 			}
 			else {
-				return PostfixError_UnknownOperator;//[오류] 수식에 알 수 없는 연산자가 있습니다.
+				if (VStack_size (_this->_operandStack) == 1) {
+					break;
+				}
+				else {
+					return PostfixError_UnknownOperator;//[오류] 수식에 알 수 없는 연산자가 있습니다.
+				}
+				
 			}
 		}
 		Postfix_showTokenAndStack (_this, currentToken); // 출력을 한다.

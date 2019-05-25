@@ -30,7 +30,8 @@ void AppController_run (AppController* _this) {
 	while (expressionIsAvailable) {
 	    Infix_setExpression(_this->_infix, _this->_expression);
 	    Infix_toPostfix(_this->_infix);
-		Postfix_setExpression (_this->_postfix, Infix_postfix(_this->_infix));
+		Postfix_setExpression (_this->_postfix, Infix_postfix (_this->_infix));
+		 //변환문자 작성을 할것 ====여기까지는 문제가 없고
 		evaluationError=Postfix_evaluate (_this->_postfix); //값을 계산을 한다.
 		if (evaluationError == PostfixError_None) { //오류가 없을 시
 			AppView_out_evaluatedValue (Postfix_evaluatedValue (_this->_postfix)); //계산 값을 출력

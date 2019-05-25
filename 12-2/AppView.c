@@ -48,6 +48,9 @@ void AppView_out_Elemenet (int element) {
 	printf ("%d ", element);
 }
 
+void AppView_out_Infix_Elemenet (int element) {
+	printf ("%c ", element);
+}
 void AppView_out_change(){
     printf("> Infix를 Postfix로 변환\n");
 }

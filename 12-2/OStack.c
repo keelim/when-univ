@@ -30,7 +30,7 @@ void OStack_deleteLinkedNodes (OStack* _this) {
 }
 
 Boolean OStack_isEmpty (OStack* _this) { //Stack 비어 있는지 확인
-	return ((_this->_top) < 0);
+	return _this->_size == 0;
 }
 
 Boolean OStack_isFull (OStack* _this) { //Stack 꽉차 있는지 확인
@@ -60,7 +60,13 @@ int OStack_size (OStack* _this) {
 }
 
 ElementForOStack OStack_topElement (OStack* _this) { //Stack peek
-	return ONode_element (_this->_top);
+	if (OStack_isEmpty (_this)) {
+		return -1;
+	}
+	else {
+		return ONode_element (_this->_top);
+	}
+	
 }
 
 ElementForOStack OStack_elementAt (OStack* _this, int anOrder) { // elementAt 구현

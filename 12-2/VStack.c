@@ -30,7 +30,7 @@ void VStack_deleteLinkedNodes (VStack* _this) {
 }
 
 Boolean VStack_isEmpty (VStack* _this) { //Stack 비어 있는지 확인
-	return ((_this->_top) < 0);
+	return _this->_size == 0;
 }
 
 Boolean VStack_isFull (VStack* _this) { //Stack 꽉차 있는지 확인

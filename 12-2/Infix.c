@@ -4,7 +4,7 @@
 
 struct _Infix {
     char *_infixExpression; // AppController 에서 보내준다
-    char _postfixExpression[DEFAULT_MAX_NUMBER_OF_TOKENS];
+    char* _postfixExpression;
 // postfix로 변환된 결과는 이곳에 저장된다.
     OStack *_operatorStack;
 
@@ -19,13 +19,13 @@ void Infix_showTokenAndOStack(Infix *_this, char currentToken);
 Boolean Infix_toPostfix(Infix *_this) {
     int i = 0;
     int p = 0;
-    char currentToken = 0, poppedToken = 0;
-    int infixSize = strlen(_this->_infixExpression);
-    _this->_operatorStack = OStack_new();
-    while (i < infixSize) {
-        currentToken = _this->_infixExpression[i++];
+    char currentToken, poppedToken;
+	OStack_reset (_this->_operatorStack);
+    while (_this->_infixExpression[i] != '\0') {
+        currentToken = _this->_infixExpression[i];
         if (isDigit(currentToken)) { // operand
             _this->_postfixExpression[p++] = currentToken;
+			
         } else { // operator
             if (currentToken == ')') {
                 if (OStack_isEmpty(_this->_operatorStack)) {
@@ -34,6 +34,7 @@ Boolean Infix_toPostfix(Infix *_this) {
                     poppedToken = OStack_pop(_this->_operatorStack);
                     while (poppedToken != '(') {
                         _this->_postfixExpression[p++] = poppedToken;
+						
                         if (OStack_isEmpty(_this->_operatorStack))
                             return FALSE; // 수식 오류
                         else {
@@ -51,8 +52,11 @@ Boolean Infix_toPostfix(Infix *_this) {
                 }
                 OStack_push(_this->_operatorStack, currentToken);
                 Infix_showTokenAndOStack(_this, currentToken);
+				
             }
         }
+		i++;
+		
     }
 
     while (!OStack_isEmpty(_this->_operatorStack)) {
@@ -65,12 +69,14 @@ Boolean Infix_toPostfix(Infix *_this) {
 Infix *Infix_new() {
     Infix* _this=NewObject (Infix);
     _this->_infixExpression=NewVector (char, DEFAULT_MAX_NUMBER_OF_TOKENS);
+	_this->_postfixExpression =NewVector (char, DEFAULT_MAX_NUMBER_OF_TOKENS); 
     _this->_operatorStack=OStack_new ();
     return _this;
 }
 
 void Infix_delete(Infix *_this) {
     free(_this->_infixExpression);
+	free (_this->_postfixExpression);
     OStack_delete(_this->_operatorStack);
     free(_this);
 }
@@ -135,7 +141,7 @@ void Infix_showTokenAndOStack(Infix *_this, char currentToken) { //스택에 있
     AppView_out_Token(currentToken);
     AppView_out_Message("<Bottom> ");
     for (i = 0; i < OStack_size(_this->_operatorStack); i++) {
-        AppView_out_Elemenet(OStack_elementAt(_this->_operatorStack, i));
+		AppView_out_Infix_Elemenet (OStack_elementAt (_this->_operatorStack, i));
     }
     AppView_out_Message(" <Top>\n");
 }
