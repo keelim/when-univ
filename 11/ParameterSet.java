@@ -1,41 +1,40 @@
 public class ParameterSet {
-
     private int _startingSize;
     private int _numberOfSizeIncreasingSteps;
     private int _incrementSize;
 
     public int startingSize() {
         return _startingSize;
-    } //getter
+    }//getter
 
     public void setStartingSize(int _startingSize) {
         this._startingSize = _startingSize;
-    } //setter
+    }//setter
 
     public int numberOfSizeIncreasingSteps() {
         return _numberOfSizeIncreasingSteps;
-    } //getter
+    }//getter
 
-    public void setNumberOfSizeIncreasingSteps(int _numberOfSizeIncreasingSteps) { //setter
+    public void setNumberOfSizeIncreasingSteps(int _numberOfSizeIncreasingSteps) {//setter
         this._numberOfSizeIncreasingSteps = _numberOfSizeIncreasingSteps;
     }
 
     public int incrementSize() {
         return _incrementSize;
-    } //getter
+    }//getter
 
     public void setIncrementSize(int _incrementSize) {
         this._incrementSize = _incrementSize;
-    } //setter
+    }//setter
 
-    public ParameterSet(int _startingSize, int _numberOfSizeIncreasingSteps, int _incrementSize) { //constructor
+    public ParameterSet(int _startingSize, int _numberOfSizeIncreasingSteps, int _incrementSize) {
         this._startingSize = _startingSize;
         this._numberOfSizeIncreasingSteps = _numberOfSizeIncreasingSteps;
         this._incrementSize = _incrementSize;
-    }
+    } //constructor
 
-    public int maxDataSize() { //maxData를 출력을 하고 반환을 한다.
-        return (this.startingSize() + (this.incrementSize() * (this.numberOfSizeIncreasingSteps() - 1)));
+    public int maxDataSize() { //maxData 를 계산을 하여 반환
+        return this.startingSize() + (this.incrementSize() * (this.numberOfSizeIncreasingSteps() - 1));
     }
 
 }

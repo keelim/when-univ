@@ -1,13 +1,9 @@
 public class ExperimentManager {
-    // Constants for the parameters:
     private static final int DEFAULT_NUMBER_OF_SIZE_INCREASING_STEPS = 10;
     private static final int DEFAULT_INCREMENT_SIZE = 1000;
     private static final int DEFAULT_STARTING_SIZE = DEFAULT_INCREMENT_SIZE;
-    // Constants: 실험에서 사용할 정렬들을 상수 객체로 선언
-
-    private static final InsertionSort<Integer> INSERTION_SORT = new InsertionSort<Integer>();
-    private static final QuickSort<Integer> QUICK_SORT = new QuickSort<Integer>();
-
+    private static final InsertionSort<Integer> INSERTION_SORT = new InsertionSort<>();
+    private static final QuickSort<Integer> QUICK_SORT = new QuickSort<>();
     private Experiment _experiment;// 측정 실험을 실시할 객체
     private ParameterSet _parameterSet; // 측정 실험에 사용할 매개변수 집합
     private Integer[] _ascendingList; // 측정에서 정렬에 사용할 오름차순 데이터 리스트
@@ -18,85 +14,95 @@ public class ExperimentManager {
 
     private Experiment experiment() {
         return _experiment;
-    } //getter
-
+    }
+    //getter
     private void setExperiment(Experiment _experiment) {
         this._experiment = _experiment;
-    } //setter
+    }
 
+    //setter
     public ParameterSet parameterSet() {
         return _parameterSet;
-    }//getter
+    }
 
+    //getter
     private void setParameterSet(ParameterSet _parameterSet) {
         this._parameterSet = _parameterSet;
-    }//setter
+    }
 
+    //setter
     private Integer[] ascendingList() {
         return _ascendingList;
-    }//getter
+    }
 
+    //getter
     private void setAscendingList(Integer[] _ascendingList) {
         this._ascendingList = _ascendingList;
-    }//setter
+    }
 
+    //setter
     private Integer[] descendingList() {
         return _descendingList;
-    }//getter
+    }
 
+    //getter
     private void setDescendingList(Integer[] _descendingList) {
         this._descendingList = _descendingList;
-    }//setter
+    }
 
+    //setter
     private Integer[] randomList() {
         return _randomList;
-    }//getter
+    }
 
+    //getter
     private void setRandomList(Integer[] _randomList) {
         this._randomList = _randomList;
-    }//setter
+    }
 
+    //setter
     private long[] measuredResultForInsertionSort() {
         return _measuredResultForInsertionSort;
-    }//getter
+    }
 
-    private void setMeasuredResultForInsertionSort(long[] _measuredResultForInsertionSort) {//setter
+    //getter
+    private void setMeasuredResultForInsertionSort(long[] _measuredResultForInsertionSort) {
         this._measuredResultForInsertionSort = _measuredResultForInsertionSort;
     }
-
+    //setter
     private long[] measuredResultForQuickSort() {
         return _measuredResultForQuickSort;
-    }//getter
-
-    private void setMeasuredResultForQuickSort(long[] _measuredResultForQuickSort) {//setter
-        this._measuredResultForQuickSort = _measuredResultForQuickSort;
     }
 
+    //getter
+    private void seMmeasuredResultForQuickSort(long[] _measuredResultForQuickSort) {
+        this._measuredResultForQuickSort = _measuredResultForQuickSort;
+    }
+    //setter
     public ExperimentManager() {
         this.setParameterSetWithDefaults();
-    } //constructor
+    }
 
-    // private methods
-    private void prepareExperimentLists() { //maxdata 설정
+    //constructor
+    private void prepareExperimentLists() {
         int maxDataSize = this.parameterSet().maxDataSize();
-        this.setAscendingList(DataGenerator.ascendingList(maxDataSize)); //각 항목 별로 maxData로 설정
+        this.setAscendingList(DataGenerator.ascendingList(maxDataSize));
         this.setDescendingList(DataGenerator.descendingList(maxDataSize));
         this.setRandomList(DataGenerator.randomList(maxDataSize));
     }
 
     private void setParameterSetWithDefaults() {
-        this.setParameterSet(new ParameterSet(DEFAULT_STARTING_SIZE, DEFAULT_NUMBER_OF_SIZE_INCREASING_STEPS, DEFAULT_INCREMENT_SIZE));
+        this.setParameterSet(new ParameterSet(DEFAULT_STARTING_SIZE,
+                DEFAULT_NUMBER_OF_SIZE_INCREASING_STEPS, DEFAULT_INCREMENT_SIZE));
     }
 
-    private Integer[] experimentListOfOrder(ListOrder anOrder) { //anOrder를 통한 handling
-// 주어진 anOrder 에 해당하는 리스트를 돌려준다.
+    private Integer[] experimentListOfOrder(ListOrder anOrder) {
+        // 주어진 anOrder 에 해당하는 리스트를 돌려준다.
         switch (anOrder) {
             case Ascending:
                 return this.ascendingList();
-
             case Descending:
                 return this.descendingList();
-
             default:
                 return this.randomList();
         }
@@ -132,9 +138,9 @@ public class ExperimentManager {
         // 주어진 anOrder 의 실험 리스트를 얻는다.
         Integer[] experimentList = this.experimentListOfOrder(anOrder);
         // 이 실험 리스트로 삽입과 퀵 각각의 정렬의 성능을 측정해서, 그 결과를 얻는다.
-        this.setMeasuredResultForInsertionSort(this.experiment().durationsOfSort(INSERTION_SORT, experimentList));
-        this.setMeasuredResultForQuickSort(this.experiment().durationsOfSort(QUICK_SORT, experimentList));
+        this.setMeasuredResultForInsertionSort
+                (this.experiment().durationsOfSort(INSERTION_SORT, experimentList));
+        this.seMmeasuredResultForQuickSort(
+                this.experiment().durationsOfSort(QUICK_SORT, experimentList));
     }
-
-
 }

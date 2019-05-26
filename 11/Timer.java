@@ -1,5 +1,4 @@
 public class Timer {
-
     private long start;
     private long stop;
 
@@ -13,7 +12,7 @@ public class Timer {
 
     public long getStop() {
         return stop;
-    }//getter
+    } //getter
 
     public void setStop(long stop) {
         this.stop = stop;
@@ -21,13 +20,13 @@ public class Timer {
 
     public void start() {
         this.setStart(System.nanoTime());
-    } //시간 측정
+    } //시스템 시간 측정
 
     public void stop() {
         this.setStop(System.nanoTime());
-    }  //시간 측정
+    } //시스템 시간 측정
 
     public long duration() {
         return this.getStop() - this.getStart();
-    } //시간 차이값 계산
+    }
 }

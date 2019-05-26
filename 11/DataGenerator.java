@@ -2,8 +2,8 @@ import java.util.Random;
 
 public final class DataGenerator {
     // Static class.
-    // 더 이상 상속할 필요가 없으므로 "final" 로 선언
-    // 생성자는 private. 따라서 외부에서 객체를 만들 수 없다.
+// 더 이상 상속할 필요가 없으므로 "final" 로 선언
+// 생성자는 private. 따라서 외부에서 객체를 만들 수 없다.
     private DataGenerator() {
 
     }
