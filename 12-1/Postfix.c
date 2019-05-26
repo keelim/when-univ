@@ -2,7 +2,7 @@
 
 #include "Postfix.h"
 
-struct _Postfix {
+struct _Postfix { //struct 정의
 	int _maxNumberOfTokens;
 	char* _expression;
 	int _evaluatedValue;
@@ -10,7 +10,7 @@ struct _Postfix {
 };
 
 
-Postfix* Postfix_new (int givenMaxNumberOfTokens) {
+Postfix* Postfix_new (int givenMaxNumberOfTokens) { //생성
 	Postfix* _this=NewObject (Postfix);
 	_this->_maxNumberOfTokens=givenMaxNumberOfTokens;
 	_this->_expression=NewVector (char, givenMaxNumberOfTokens);
@@ -18,7 +18,7 @@ Postfix* Postfix_new (int givenMaxNumberOfTokens) {
 	return _this;
 }
 
-void Postfix_delete (Postfix* _this) {
+void Postfix_delete (Postfix* _this) {//소멸
 	Stack_delete (_this->_operandStack);
 	free (_this->_expression);
 	free (_this);
@@ -130,7 +130,6 @@ Boolean Postfix_evaluate (Postfix* _this) { //값을 계산한다.
 		Postfix_showTokenAndStack (_this, currentToken); // 출력을 한다.
 		i++;
 	} // end of while
-// At this point, the result is on top of stack
 
 	if (Stack_size (_this->_operandStack) == 1) { //Size
 		_this->_evaluatedValue=Stack_pop (_this->_operandStack);
@@ -141,6 +140,6 @@ Boolean Postfix_evaluate (Postfix* _this) { //값을 계산한다.
 	return PostfixError_None; //아무 오류 없을 시 반환값
 }
 
-int Postfix_evaluatedValue (Postfix* _this) {
+int Postfix_evaluatedValue (Postfix* _this) { //getter
 	return (_this->_evaluatedValue);
 }

@@ -2,7 +2,6 @@
 #include "Common.h"
 #include "VStack.h"
 #include <string.h>
-#include "AppView.h"
 
 typedef struct _Postfix Postfix;
 

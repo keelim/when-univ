@@ -25,7 +25,7 @@ Boolean Infix_toPostfix(Infix *_this) {
         currentToken = _this->_infixExpression[i];
         if (isDigit(currentToken)) { // operand
             _this->_postfixExpression[p++] = currentToken;
-			
+			Infix_showTokenAndOStack (_this, currentToken);
         } else { // operator
             if (currentToken == ')') {
                 if (OStack_isEmpty(_this->_operatorStack)) {

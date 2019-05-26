@@ -16,7 +16,7 @@ Boolean AppView_in_postfixExpression(char* s);
 
 void AppView_out_change();
 
-void AppView_out_Infix_Elemenet (int element);
+void AppView_out_Infix_Elemenet (char element);
 
 void AppView_out_errorInExpression();
 

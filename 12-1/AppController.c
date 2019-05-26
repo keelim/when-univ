@@ -1,7 +1,7 @@
 #pragma once
 #include "AppController.h"
 
-struct _AppController {
+struct _AppController { //struct 구조
 	char _expression[MAX_NUMBER_OF_TOKENS];
 	Postfix* _postfix;
 };
@@ -13,7 +13,7 @@ AppController* AppController_new () { //AppController 생성
 	return _this;
 }
 
-void AppController_delete (AppController* _this) {
+void AppController_delete (AppController* _this) { //소멸
 	free (_this);
 }
 

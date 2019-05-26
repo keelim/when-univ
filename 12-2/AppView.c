@@ -48,7 +48,7 @@ void AppView_out_Elemenet (int element) {
 	printf ("%d ", element);
 }
 
-void AppView_out_Infix_Elemenet (int element) {
+void AppView_out_Infix_Elemenet (char element) {
 	printf ("%c ", element);
 }
 void AppView_out_change(){
@@ -56,7 +56,7 @@ void AppView_out_change(){
 }
 
 Boolean AppView_in_postfixExpression (char* s) {
-	printf ("? Infix 수식을 입력하여 주세요: \n");
+	printf ("? Infix 수식을 입력하여 주세요: ");
 
 	scanf ("%s", s);
 

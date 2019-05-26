@@ -26,7 +26,7 @@ void Stack_delete (Stack* _this) { //Stack delete
 	free (_this);
 }
 
-void Stack_deleteLinkedNodes (Stack* _this) {
+void Stack_deleteLinkedNodes (Stack* _this) { //recursive로 소멸
 	Stack_deleteLinkedNodesRecursively (_this, _this->_top);
 
 }
@@ -79,7 +79,7 @@ void Stack_reset (Stack* _this) {
 	_this->_top=NULL;
 }
 
-void Stack_deleteLinkedNodesRecursively (Stack* _this, Node* firstNode) {
+void Stack_deleteLinkedNodesRecursively (Stack* _this, Node* firstNode) { //재귀적으로 소멸
 	if (firstNode != NULL) {
 		Stack_deleteLinkedNodesRecursively (_this, Node_next (firstNode));
 		Node_delete (firstNode);
