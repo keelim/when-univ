@@ -51,9 +51,6 @@ void AppView_out_Elemenet (int element) {
 void AppView_out_Infix_Elemenet (char element) {
 	printf ("%c ", element);
 }
-void AppView_out_change(){
-    printf("> Infix를 Postfix로 변환\n");
-}
 
 Boolean AppView_in_postfixExpression (char* s) {
 	printf ("? Infix 수식을 입력하여 주세요: ");
@@ -68,5 +65,13 @@ Boolean AppView_in_postfixExpression (char* s) {
 	else {
 		return TRUE;
 	}
+}
 
+void AppView_out_change (char* s, int a) {
+	printf ("> 변환된 값: ");
+	for (int i=0; i < a; i++) {
+		printf ("%c",s[i]);
+	}
+	printf ("\n\n");
+	return;
 }

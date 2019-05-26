@@ -20,3 +20,5 @@ int Postfix_evaluatedValue (Postfix* _this);
 //계산된 결과 값을 Postifx 객체로부터 얻는다.
 
 void Postfix_showTokenAndStack (Postfix* _this, char currentToken);
+
+char* Postfix_expression (Postfix* _this);

@@ -14,6 +14,9 @@ Postfix* Postfix_new (int givenMaxNumberOfTokens) {
 	Postfix* _this=NewObject (Postfix);
 	_this->_maxNumberOfTokens=givenMaxNumberOfTokens;
 	_this->_expression=NewVector (char, givenMaxNumberOfTokens);
+	for (int i=0; i < givenMaxNumberOfTokens; i++) {
+		_this->_expression[i]='\0';
+	}
 	_this->_operandStack=VStack_new ();
 	return _this;
 }
@@ -149,4 +152,8 @@ Boolean Postfix_evaluate (Postfix* _this) { //값을 계산한다.
 
 int Postfix_evaluatedValue (Postfix* _this) {
 	return (_this->_evaluatedValue);
+}
+
+char* Postfix_expression (Postfix* _this) {
+	return (_this->_expression);
 }
