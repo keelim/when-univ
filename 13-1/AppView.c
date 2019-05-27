@@ -48,7 +48,43 @@ void AppView_out_label_Front() {
 }
 
 void AppView_out_label_Rear() {
-    printf("<Rear>\n");
+    printf("<Riear>\n");
+}
+
+void AppView_out_queueSize(int numberOfSize){
+    printf("[Size] 큐에는 현재 %d 개의 원소가 있습니다.  ", numberOfSize);
+}
+
+void AppView_out_ignoredChar(){
+    printf("[Ignored] 의미 없는 문자가 입력되었습니다. \n");
+}
+
+void AppView_out_frontElement(char anElement){
+    printf("[Front] Front 원소는 %c 입니다. \n", anElement);
+}
+
+void AppView_out_endInput () {
+    printf ("[End Input] 입력을 종료하며, 스택의 모든 원소를 삭제합니다:\n");
+}
+
+void AppView_out_removedElementByEndInput(char anElement) {
+    printf ("-End Input: 삭제된 원소는 %c 입니다.\n", anElement);
+}
+
+void AppView_out_numberOfInputChars (int numberOfChars) {
+    printf ("……입력된 문자는 모두 %d 개 입니다.\n ", numberOfChars);
+}
+
+void AppView_out_numberOfNormallyProcessedChars (int numberOfChars) {
+    printf ("……정상으로 처리된 문자는 %d개 입니다.\n ", numberOfChars);
+}
+
+void AppView_out_numberOfIgnoredChars (int numberOfChars) {
+    printf ("……무시된 문자는 %d 개 입니다.\n ", numberOfChars);
+}
+
+void AppView_out_numberOfAddedChars(int numberOfChars) {
+    printf ("……큐에 넣은 문자는 %d개 입니다.\n ", numberOfChars);
 }
 
 

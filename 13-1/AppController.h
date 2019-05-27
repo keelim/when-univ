@@ -42,3 +42,15 @@ void AppController_countInput(AppController *_this);
 void AppController_countIgnored(AppController *_this);
 
 void AppController_countAdded(AppController *_this);
+
+void AppController_endInput(AppController *_this);
+
+int AppController_numberOfInputChars(AppController *_this);
+
+int AppController_numberOfIgnoredChars(AppController *_this);
+
+int AppController_numberOfNormallyProcessedChars(AppController *_this);
+
+int AppController_numberOfAddedChars(AppController *_this);
+
+void AppController_showStatistics(AppController *_this);

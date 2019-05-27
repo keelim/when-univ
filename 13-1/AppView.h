@@ -24,3 +24,20 @@ void AppView_out_removedElementFromQueue(char removedChar);
 
 void AppView_out_elementInQueue(Element element);
 
+void AppView_out_queueSize(int numberOfSize);
+
+void AppView_out_ignoredChar();
+
+void AppView_out_frontElement(char anElement);
+
+void AppView_out_endInput ();
+
+void AppView_out_removedElementByEndInput(char anElement);
+
+void AppView_out_numberOfInputChars (int numberOfChars);
+
+void AppView_out_numberOfNormallyProcessedChars (int numberOfChars);
+
+void AppView_out_numberOfIgnoredChars (int numberOfChars);
+
+void AppView_out_numberOfAddedChars(int numberOfChars);

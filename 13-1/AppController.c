@@ -115,17 +115,61 @@ void AppController_countAdded(AppController *_this) {
 }
 
 void AppController_showSize(AppController *_this) {
-//todo
+    AppView_out_queueSize(Queue_size(_this->_queue));
+    AppView_out_newLine();
 }
 
 void AppController_showFront(AppController *_this) {
-//todo
+    char element = Queue_elementAt(_this->_queue, 0);
+    AppView_out_frontElement(element);
 }
 
 void AppController_ignore(AppController *_this) {
-//todo
+    AppController_countIgnored(_this);
+    AppView_out_ignoredChar();
+}
+
+void AppController_endInput(AppController* _this){
+    AppView_out_endInput ();
+    int bound=Queue_size (_this->_queue);
+    for (int i=0; i < bound; i++) {
+        char poppedElement=Queue_remove (_this->_queue);
+        AppView_out_removedElementByEndInput(poppedElement);
+    }
+}
+
+int AppController_numberOfInputChars (AppController* _this) {
+    return (_this->_inputChars);
+
+}
+
+int AppController_numberOfIgnoredChars (AppController* _this) {
+    return _this->_ignoredChars;
+
+}
+
+int AppController_numberOfNormallyProcessedChars (AppController* _this) {
+    return (_this->_inputChars - _this->_ignoredChars);
+}
+
+int AppController_numberOfAddedChars(AppController *_this) {
+    return _this->_addedChars;
+}
+
+void AppController_showStatistics (AppController * _this) {
+    AppView_out_newLine ();
+    AppView_out_numberOfInputChars
+            (AppController_numberOfInputChars (_this));
+    AppView_out_numberOfNormallyProcessedChars
+            (AppController_numberOfNormallyProcessedChars (_this));
+    AppView_out_numberOfIgnoredChars
+            (AppController_numberOfIgnoredChars (_this));
+    AppView_out_numberOfAddedChars
+            (AppController_numberOfAddedChars(_this));
+
 }
 
 void AppController_esc(AppController *_this) {
-    //todo
+    AppController_endInput (_this); //종료 메시지 출력
+    AppController_showStatistics (_this); //통계 함수 출력
 }

@@ -15,9 +15,16 @@ Queue *Queue_new() {
     return _this; // At this point, q points an empty queue.
 }
 
+void  Queue_deleteLinkedNodesRecursively(Queue* _this, Node* firstNode){
+    if (firstNode != NULL) {
+        Queue_deleteLinkedNodesRecursively (_this, Node_next (firstNode));
+        Node_delete (firstNode);
+    }
+}
+
 void Queue_deleteLinkedChain(Queue *_this) { // linked chain 의 모든 노드를 차례로 소거한다.
     // 노드도 객체이므로 하나의 노드를 소거할 때, Node_delete() 를 사용.
-
+    Queue_deleteLinkedNodesRecursively (_this, _this->_front);
 }
 
 

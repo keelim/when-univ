@@ -7,7 +7,6 @@ Node* Node_new ();
 
 //노드 객체를 생성
 void Node_delete (Node* _this);
-
 //노드 객체를 소멸
 
 void Node_setElement (Node* _this, Element newElement);
