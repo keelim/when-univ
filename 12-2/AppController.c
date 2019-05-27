@@ -3,7 +3,7 @@
 
 
 struct _AppController {
-	char _expression[MAX_NUMBER_OF_TOKENS];
+	char* _expression;
 	Postfix* _postfix;
 	Infix* _infix;
 };
@@ -11,12 +11,14 @@ struct _AppController {
 AppController* AppController_new () { //AppController 생성
 	AppController* _this;
 	_this=NewObject (AppController); //dynamic allocation
+	_this->_expression=NewVector (char, MAX_NUMBER_OF_TOKENS);
 	_this->_postfix=Postfix_new (MAX_NUMBER_OF_TOKENS);
 	return _this;
 }
 
 void AppController_delete (AppController* _this) {
 	Postfix_delete (_this->_postfix); //소멸
+	free (_this->_expression);
 	free (_this);
 }
 
@@ -24,10 +26,10 @@ void AppController_run (AppController* _this) {
 	Boolean expressionIsAvailable;
 	PostfixError evaluationError;
 	AppView_out_startingMessage (); //프로그램 시작 메시지 출력
-	_this->_postfix=Postfix_new (MAX_NUMBER_OF_TOKENS); //후위식 생성
-	_this->_infix = Infix_new();
 	expressionIsAvailable=AppView_in_postfixExpression (_this->_expression); //후위식 셋팅
 	while (expressionIsAvailable) {
+		_this->_postfix=Postfix_new (MAX_NUMBER_OF_TOKENS); //후위식 생성
+		_this->_infix=Infix_new ();
 	    Infix_setExpression(_this->_infix, _this->_expression);
 	    Infix_toPostfix(_this->_infix);
 		Postfix_setExpression (_this->_postfix, Infix_postfix (_this->_infix));
