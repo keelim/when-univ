@@ -1,3 +1,4 @@
+#pragma once
 #include "AppController.h"
 
 int main(void) {

@@ -1,3 +1,4 @@
+#pragma once
 #include "Queue.h"
 
 struct _Queue {
@@ -50,7 +51,7 @@ int Queue_size(Queue *_this) {
 }
 
 Boolean Queue_add(Queue *_this, Element anElement) {
-    Node *newRearNode;
+    Node *newRearNode = Node_new();
     Node_setElement(newRearNode, anElement);
     Node_setNext(newRearNode, NULL);
     if (Queue_isEmpty(_this)) {
@@ -60,12 +61,12 @@ Boolean Queue_add(Queue *_this, Element anElement) {
         Node_setNext(_this->_rear, newRearNode);
     }
     _this->_rear = newRearNode;
-    _this->_size++;
+    
     return TRUE;
 }
 
 Element Queue_remove(Queue *_this) {
-    Element frontElement = NULL;
+    Element frontElement;
     frontElement = Node_element(Node_next(_this->_rear));
     if (!Queue_isEmpty(_this)) {
         if (_this->_rear == Node_next(_this->_rear)) {
@@ -74,6 +75,7 @@ Element Queue_remove(Queue *_this) {
             Node_setNext(_this->_rear, Node_next(_this->_rear));
         }
         _this->_size--;
+		
     }
     return frontElement;
 }

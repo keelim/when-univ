@@ -1,3 +1,4 @@
+#pragma once
 #include "AppView.h"
 
 void AppView_out_startProgram() {
