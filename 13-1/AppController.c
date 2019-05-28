@@ -4,12 +4,12 @@
 
 struct _AppController {
     Queue *_queue;
-    int _inputChars; // 입력된 문자의 개수
+    int _inputChars;    // 입력된 문자의 개수
     int _ignoredChars; // 무시된 문자의 개수
-    int _addedChars; // 삽입된 문자의 개수
+    int _addedChars;  // 삽입된 문자의 개수
 };
 
-AppController *AppController_new(void) {
+AppController *AppController_new() {
     AppController *_this;
     _this = NewObject(AppController);
     _this->_queue = Queue_new();
@@ -134,7 +134,7 @@ void AppController_endInput(AppController* _this){
     AppView_out_endInput ();
     int bound=Queue_size (_this->_queue);
     for (int i=0; i < bound; i++) {
-        char poppedElement=Queue_remove (_this->_queue);
+        Element poppedElement=Queue_remove (_this->_queue);
         AppView_out_removedElementByEndInput(poppedElement);
     }
 }

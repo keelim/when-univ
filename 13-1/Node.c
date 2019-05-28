@@ -6,7 +6,7 @@ struct _Node {
     Node *_next;
 };
 
-Node *Node_new() {
+Node* Node_new() {
     Node *_this = NewObject(Node);
     return _this;
 }

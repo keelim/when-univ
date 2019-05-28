@@ -5,6 +5,6 @@ typedef enum {
     FALSE, TRUE
 } Boolean;
 
-typedef int Element;
+typedef char Element;
 
 #define NewObject(TYPE) (TYPE*)malloc(sizeof(TYPE))
