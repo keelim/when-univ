@@ -4,6 +4,7 @@
 struct _Queue {
 	int _size; // 필요할 경우에만
 	Node* _rear;
+	Node* _front;
 };
 
 Queue* Queue_new () {
@@ -55,14 +56,14 @@ Boolean Queue_add (Queue* _this, Element anElement) {
 	Node_setElement (newRearNode, anElement);
 	Node_setNext (newRearNode, NULL);
 	if (Queue_isEmpty (_this)) {
-		Node_setNext (newRearNode, newRearNode);
+		_this->_rear =newRearNode;
+		_this->_front = newRearNode;
 	}
 	else {
-		Node_setNext (newRearNode, Node_next (_this->_rear));
 		Node_setNext (_this->_rear, newRearNode);
+		_this->_rear=Node_next (_this->_rear);
 	}
 
-	_this->_rear=newRearNode;
 	_this->_size++;
 	
 
@@ -71,16 +72,31 @@ Boolean Queue_add (Queue* _this, Element anElement) {
 
 Element Queue_remove (Queue* _this) {
 	Element frontElement;
-	if (!Queue_isEmpty (_this)) {
-		frontElement=Node_element (Node_next (_this->_rear));
-		if (_this->_rear == Node_next (_this->_rear)) {
-			_this->_rear=NULL;
-		}
-		else {
-			Node_setNext (_this->_rear, Node_next(Node_next (_this->_rear)));
-		}
+	if (Queue_isEmpty (_this)) {
+		return FALSE;
+	}
+	else if (Queue_size (_this) == 1) {
+		Element anElement=Node_element (_this->_front);
+
+		Node* deleteNode=_this->_front;
+		Node_delete (deleteNode);
+		_this->_front=NULL;
+		_this->_rear=NULL;
 		_this->_size--;
 
+		return anElement;
+
+			
+	}
+	else {
+		Element anElement=Node_element (_this->_front);
+
+		Node* deleteNode=_this->_front;
+		_this->_front=Node_next (_this->_front);
+		Node_delete (deleteNode);
+		_this->_size--;
+
+		return anElement;
 	}
 	return frontElement;
 }

@@ -12,7 +12,7 @@ struct _AppController {
 AppController *AppController_new(void) {
     AppController *_this;
     _this = NewObject(AppController);
-    _this->_queue = Queue_new(100);
+    _this->_queue = Queue_new(5);
     _this->_inputChars = 0;
     _this->_ignoredChars = 0;
     _this->_addedChars = 0;
