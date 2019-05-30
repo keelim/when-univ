@@ -1,15 +1,15 @@
 public interface Stack<E> { //StackInterface
-    public int size();
+    int size();
 
-    public boolean isFull();
+    boolean isFull();
 
-    public boolean isEmpty();
+    boolean isEmpty();
 
     boolean push(E anElement);
 
-    public E pop();
+    E pop();
 
-    public E peek();
+    E peek();
 
-    public void clear();
+    void clear();
 }

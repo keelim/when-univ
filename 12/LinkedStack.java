@@ -1,4 +1,4 @@
-public class LinkedStack<E> implements Stack {
+public class LinkedStack<E extends Comparable<E>> implements Stack<E> {
     private int _size;
     private LinkedNode<E> _node;
 
@@ -38,12 +38,12 @@ public class LinkedStack<E> implements Stack {
     }
 
     @Override
-    public Object pop() {
+    public E pop() {
         return null;
     }
 
     @Override
-    public Object peek() {
+    public E peek() {
         return null;
     }
 
