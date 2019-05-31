@@ -1,12 +1,15 @@
 #pragma once
 
+#include "Object.h"
+#include "Key.h"
+
 typedef struct _Traverse Traverse;
 
 Traverse *Traverse_new(void); // 생성자
 
 void Traverse_delete(Traverse *_this); // 소멸자
 
-void Traverse_visit(Traverse *_this, Key aKey, Object *anObject, int aDepth);
+void Traverse_visit(Traverse *_this, Key* aKey, Object *anObject, int aDepth);
 
 // 사전을 traverse 하는 동안,
 // Dictionary 객체 내의 노드를 visit 할 때마다의 할 일을 정의한다.

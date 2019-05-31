@@ -7,7 +7,11 @@ void Dictionary_deleteBinaryNodes(Dictionary *_this, BinaryNode *aNode);
 
 Object *Dictionary_searchTreeRecursively(Dictionary *_this, Key *aKey, BinaryNode *aNode);
 
+Object *Dictionary_removeRightmostNodeOfLeftSubtree(Dictionary *_this, BinaryNode *rootOfLeftSubtree);
+
 Boolean Dictionary_addToTree(Dictionary *_this, Key *aKey, Object *anObject, BinaryNode *parent);
+
+Object *Dictionary_removeFromTreeRecursively(Dictionary *_this, Key *aKey, BinaryNode *parent);
 
 struct _Dictionary {
     BinaryNode *_root;
@@ -52,8 +56,7 @@ Boolean Dictionary_addKeyAndObject(Dictionary *_this, Key *aKey, Object *anObjec
         _this->_size++;
         return (TRUE);
     } else {
-// _this->_size++ ;
-        return (Dictionary_addToTree(Dictionary * _this, Key * aKey, Object * anObject, _this->_root));
+        return Dictionary_addToTree(_this, aKey, anObject, _this->_root);
     }
 
 }
@@ -63,7 +66,7 @@ Object *Dictionary_removeObjectForKey(Dictionary *_this, Key *aKey) {
         return (NULL);
     } else {
         if (Key_compareTo(aKey, BinaryNode_key(_this->_root)) != 0) {
-            return (Dictionary_removeFromTreeRecursively(_this, key, _this->_root));
+            return (Dictionary_removeFromTreeRecursively(_this, aKey, _this->_root));
         } else {
             BinaryNode *removedNode = _this->_root;
             if (BinaryNode_left(_this->_root) == NULL) {
@@ -92,6 +95,10 @@ Object *Dictionary_removeObjectForKey(Dictionary *_this, Key *aKey) {
 
 void Dictionary_scanInSortedOrder(Dictionary *_this, Traverse *aTraverse) {
     Dictionary_inorderRecursively(_this, aTraverse, _this->_root, 1);
+}
+
+Boolean Dictionary_replaceObjectForKey(Dictionary *_this, Key *aKey, Object *anObject) {
+    return FALSE;
 }
 
 void Dictionary_deleteBinaryNodes(Dictionary *_this, BinaryNode *aNode) {
@@ -126,7 +133,7 @@ Boolean Dictionary_addToTree(Dictionary *_this, Key *aKey, Object *anObject, Bin
             _this->_size++;
             return (TRUE);
         } else {
-            return Dictionary_addToTree(Dictionary * _this, aKey, anObject, BinaryNode_left(parent));
+            return Dictionary_addToTree(_this, aKey, anObject, BinaryNode_left(parent));
         }
     } else if (Key_compareTo(aKey, BinaryNode_key(parent)) > 0) {
         // left의 경우를 참조하여 작성 할 것
@@ -175,8 +182,7 @@ Object *Dictionary_removeFromTreeRecursively(Dictionary *_this, Key *aKey, Binar
     }
 }
 
-Object *Dictionary_removeRightmostNodeOfLeftSubtree
-        (Dictionary *_this, BinaryNode *rootOfLeftSubtree) {
+Object *Dictionary_removeRightmostNodeOfLeftSubtree(Dictionary *_this, BinaryNode *rootOfLeftSubtree) {
 // 이 시점에 rootOfLeftSubtree 는 양쪽 자식 노드를 모두 가지고 있다.
 // 우리는 rootOfLeftSubtree 의 left subtree에서 rightmost를 찾아 삭제하여 얻는다.
     BinaryNode *rightmost = NULL;

@@ -3,6 +3,8 @@
 #include "Common.h"
 #include "BinaryNode.h"
 #include "Traverse.h"
+#include "Key.h"
+#include "Object.h"
 
 typedef struct _Dictionary Dictionary;
 

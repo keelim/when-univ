@@ -1,4 +1,6 @@
 #pragma once
+#include "Common.h"
+
 typedef struct _Object Object;
 typedef int ObjectValue;
 

@@ -1,25 +1,28 @@
 #include "Object.h"
 
-struct _Obejct{
-    ObjectValue _value ;
+struct _Object {
+    ObjectValue _value;
 };
 
 Object *Object_new(void) {
-    return NULL;
+    Object *_this = NewObject(Object);
+    _this->_value = 0;
+    return _this;
+
 }
 
 Object *Object_newWith(ObjectValue aValue) {
-    return NULL;
+    //todo
 }
 
 void Object_delete(Object *_this) {
-
+    free(_this);
 }
 
 void Object_setValue(Object *_this, ObjectValue newValue) {
-
+    _this->_value = newValue;
 }
 
 ObjectValue Object_value(Object *_this) {
-    return 0;
+    return _this->_value;
 }

@@ -1,4 +1,6 @@
 #pragma once
+#include "Common.h"
+
 typedef struct _Key Key;
 
 typedef int KeyValue;
