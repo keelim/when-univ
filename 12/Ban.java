@@ -61,13 +61,13 @@ public class Ban extends DictionarybyBinarySearchTree<String, Student> {
         DictionaryElement<String, Student> highest = aRoot.element();
         if (aRoot.left() != null) {
             DictionaryElement<String, Student> highestOfLeftSubtree = this.lowestRecursively(aRoot.left());
-            if (highestOfLeftSubtree.object().score() > highest.object().score()) {
+            if (highestOfLeftSubtree.object().score() >= highest.object().score()) {
                 highest = highestOfLeftSubtree;
             }
         }
         if (aRoot.right() != null) {
             DictionaryElement<String, Student> highestOfRightSubtree = this.lowestRecursively(aRoot.right());
-            if (highestOfRightSubtree.object().score() > highest.object().score()) {
+            if (highestOfRightSubtree.object().score() >= highest.object().score()) {
                 highest = highestOfRightSubtree;
             }
         }
@@ -132,6 +132,18 @@ public class Ban extends DictionarybyBinarySearchTree<String, Student> {
         }
         return count;
 
+    }
+
+    public GradeCounter countGrade() { //학생들의 수를 센다.
+        // 학급의 학점별 학생수를 세게 하고, 그 결과를 가지고 있는 GradeCounter 객체를 얻는다
+        GradeCounter counter = new GradeCounter();
+        Iterator<DictionaryElement<String, Student>> iterator = this.iterator();
+        while (iterator.hasNext()) {
+           DictionaryElement<String, Student> element = iterator.next();
+           char count = Ban.scoreToGrade(element.object().score());
+           counter.count(count);
+        }
+        return counter;
     }
 
 }

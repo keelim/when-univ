@@ -32,11 +32,14 @@ public class AppView {
     }
 
     public static void outputNumberOfStudentsForGrade(char aGrade, int numberOfStudents) {
-        System.out.println( aGrade+ " 이상인 학생 수 : " + numberOfStudents);
+        System.out.println(aGrade + " 이상인 학생 수 : " + numberOfStudents);
     }
 
     public static void outputStudentInfo(String aStudentID, int aScore, char aGrade) {
-        //todo
+        AppView.outputLine("학번:" + aStudentID + " 점수: " + aScore + "학점: " + aGrade);
+    }
+    public static void outputStudentlist(String aStudentID, int aScore) {
+        AppView.outputLine("학번:" + aStudentID + " 점수: " + aScore);
     }
 
     public static int inputInt() throws NumberFormatException {
@@ -55,18 +58,11 @@ public class AppView {
         return ((answer == 'y') || (answer == 'Y'));
     }
 
-    public static String inputStudentId() {
-        while (true) {
-            AppView.output("- 점수를 입력하시오 (0..100): ");
-            String studentId = sc.nextLine();
-            return studentId;
-        }
-    }
 
     public static int inputScore() {
         while (true) {
             try {
-                AppView.output("- 점수를 입력하시오 (0..100): ");
+                AppView.output("- 점수를 입력하시오: ");
                 int score = AppView.inputInt();
                 return score;
             } catch (NumberFormatException e) {
@@ -75,5 +71,9 @@ public class AppView {
         }
     }
 
+    public static String inputStudentNumber() {
+        AppView.output("- 학번을 입력하시오: ");
+        return sc.nextLine();
+    }
 
 }

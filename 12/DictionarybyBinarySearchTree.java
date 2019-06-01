@@ -82,7 +82,7 @@ public class DictionarybyBinarySearchTree<Key extends Comparable<Key>, Obj> exte
                 }
             }
 
-        } // End of while
+        }
         return false;
     }
 
