@@ -19,7 +19,7 @@ public class AppView {
         System.out.println("학급 최고 점수 : " + aScore);
     }
 
-    public static void outputLowestSore(int aScore) {
+    public static void outputLowestScore(int aScore) {
         System.out.println("학급 최저 점수: " + aScore);
     }
 

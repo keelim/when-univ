@@ -60,7 +60,7 @@ public class AppController {
         AppView.outputLine("");
         AppView.outputLine("[학급 성적 통계]");
 
-        AppView.outputNumberOfStudents(this.ban().size()); //학생수
+        AppView.outputTotalNumberOfStudents(this.ban().size()); //학생수
         AppView.outputHighestScore(this.ban().highest().score()); //최고점
         AppView.outputLowestScore(this.ban().lowest().score());  //최저점
         AppView.outputAverageScore(this.ban().average());       //평균 점수
@@ -86,7 +86,7 @@ public class AppController {
 
         this.ban().sortByScore(); //성적 순으로 정렬
 
-        Iterator<Student> iterator = this.ban().iterator(); //Iterator 를 사용을 하여 출력을 한다.
+        Iterator<DictionaryElement<String, Student>> iterator = this.ban().iterator(); //Iterator 를 사용을 하여 출력을 한다.
         Student student = null;
         while (iterator.hasNext()) { //iterator 반복
             student = iterator.next();

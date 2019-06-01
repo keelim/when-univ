@@ -1,6 +1,6 @@
-public class LinkedStack<E extends Comparable<E>> implements Stack<E> {
+public class LinkedStack<E> implements Stack<E> {
     private int _size;
-    private LinkedNode<E> _node;
+    private LinkedNode<E> _top;
 
     @Override
     public int size() {
@@ -19,15 +19,15 @@ public class LinkedStack<E extends Comparable<E>> implements Stack<E> {
 
     @Override
     public boolean push(E anElement) {
-        if(this.isFull()){
+        if (this.isFull()) {
             return false;
         } else {
             LinkedNode<E> nodeForAdd = new LinkedNode<>(anElement, null);
-            if(this.isEmpty()){
-                this._node = nodeForAdd;
+            if (this.isEmpty()) {
+                this._top = nodeForAdd;
             } else {
-                LinkedNode<E> last = this._node;
-                while(last.next() != null){
+                LinkedNode<E> last = this._top;
+                while (last.next() != null) {
                     last = last.next();
                 }
                 last.setNext(nodeForAdd);
@@ -39,16 +39,22 @@ public class LinkedStack<E extends Comparable<E>> implements Stack<E> {
 
     @Override
     public E pop() {
-        return null;
+        E poppedElement;
+        LinkedNode<E> poppedNode = this._top;
+        poppedElement = poppedNode.element();
+        this._top = poppedNode.next();
+        this._size--;
+        return poppedElement;
     }
 
     @Override
     public E peek() {
-        return null;
+        return this._top.element();
     }
 
     @Override
     public void clear() {
-
+        this._size = 0;
+        this._top = null;
     }
 }
