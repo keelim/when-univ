@@ -1,4 +1,3 @@
-#pragma once
 #include "AppController.h"
 
 
@@ -24,12 +23,12 @@ void AppController_delete(AppController *_this) {
     free(_this);
 }
 
-void AppController_run(AppController *_this) {
+void AppController_run(AppController *_this) { //실행을 한다.
     AppView_out_startProgram();
     AppController_initCharCounts(_this);
     char inputChar = AppView_in_nextInputChar();
     AppController_countInput(_this);
-    while (inputChar != Esc) {
+    while (inputChar != Esc) { //ESC 입력을 받으면 종료
         if (isAlpha(inputChar)) {
             AppController_add(_this, inputChar);
         } else if (isDigit(inputChar)) {

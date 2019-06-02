@@ -8,3 +8,4 @@ typedef enum {
 typedef char Element;
 
 #define NewObject(TYPE) (TYPE*)malloc(sizeof(TYPE))
+#define NewVector(TYPE, SIZE) (TYPE*)malloc(sizeof(TYPE)*SIZE)

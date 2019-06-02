@@ -1,8 +1,7 @@
-#pragma once
 #include "Queue.h"
 
 struct _Queue {
-	int _size; // 필요할 경우에만
+	int _size; 
 	Node* _rear;
 	Node* _front;
 };
@@ -12,18 +11,18 @@ Queue* Queue_new () {
 	_this=NewObject (Queue);
 	_this->_size=0;
 	_this->_rear=NULL;
-
-	return _this; // At this point, q points an empty queue.
+	return _this; 
 }
 
-void  Queue_deleteLinkedNodesRecursively (Queue* _this, Node* firstNode) {
+void  Queue_deleteLinkedNodesRecursively (Queue* _this, Node* firstNode) { //재귀적으로 종료를 한다.
 	if (firstNode != NULL) {
 		Queue_deleteLinkedNodesRecursively (_this, Node_next (firstNode));
 		Node_delete (firstNode);
 	}
 }
 
-void Queue_deleteLinkedChain (Queue* _this) { // linked chain 의 모든 노드를 차례로 소거한다.
+void Queue_deleteLinkedChain (Queue* _this) { 
+	// linked chain 의 모든 노드를 차례로 소거한다.
 	// 노드도 객체이므로 하나의 노드를 소거할 때, Node_delete() 를 사용.
 	Queue_deleteLinkedNodesRecursively (_this, _this->_rear);
 }
@@ -51,7 +50,7 @@ int Queue_size (Queue* _this) {
 	return _this->_size;
 }
 
-Boolean Queue_add (Queue* _this, Element anElement) {
+Boolean Queue_add (Queue* _this, Element anElement) { //노드적 add 
 	Node* newRearNode=Node_new ();
 	Node_setElement (newRearNode, anElement);
 	Node_setNext (newRearNode, NULL);
@@ -70,7 +69,7 @@ Boolean Queue_add (Queue* _this, Element anElement) {
 	return TRUE;
 }
 
-Element Queue_remove (Queue* _this) {
+Element Queue_remove (Queue* _this) { //노드적 remove
 	Element frontElement;
 	if (Queue_isEmpty (_this)) {
 		return FALSE;
