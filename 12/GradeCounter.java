@@ -8,43 +8,43 @@ public class GradeCounter {
 
     public int numberOfA() {
         return _numberOfA;
-    }
+    } //getter
 
     private void setNumberOfA(int newNumberOfA) {
         this._numberOfA = newNumberOfA;
-    }
+    } //setter
 
     public int numberOfB() {
         return _numberOfB;
-    }
+    } //getter
 
     private void setNumberOfB(int newNumberOfB) {
         this._numberOfB = newNumberOfB;
-    }
+    } //setter
 
     public int numberOfC() {
         return _numberOfC;
-    }
+    } //getter
 
     private void setNumberOfC(int newNumberOfC) {
         this._numberOfC = newNumberOfC;
-    }
+    }//setter
 
     public int numberOfD() {
         return _numberOfD;
-    }
+    } //getter
 
     private void setNumberOfD(int newNumberOfD) {
         this._numberOfD = newNumberOfD;
-    }
+    } //setter
 
     public int numberOfF() {
         return _numberOfF;
-    }
+    } //getter
 
     private void setNumberOfF(int newNumberOfF) {
         this._numberOfF = newNumberOfF;
-    }
+    } //setter
 
     public GradeCounter() { //grade counter setting
         this.setNumberOfA(0);

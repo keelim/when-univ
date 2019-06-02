@@ -16,11 +16,11 @@ public class AppController {
 
     public GradeCounter gradeCounter() {
         return _gradeCounter;
-    } //gradecounter getter
+    } //gradeCounter getter
 
     public void setGradeCounter(GradeCounter newGradeCounter) { //gradecounter stteer
         this._gradeCounter = newGradeCounter;
-    }
+    } //setter
 
 
     private static boolean scoreIsValid(int aScore) { //유효성 확인
@@ -51,7 +51,7 @@ public class AppController {
         }
     }
 
-    private void inputAndStoreStudents() { //학생을 Stack에 넣는다.
+    private void inputAndStoreStudents() { //Ban 트리에 집어 넣는다.
         AppView.outputLine("");
         boolean storingAStudentWasSucessful = true;
 
@@ -142,6 +142,8 @@ public class AppController {
         Iterator<DictionaryElement<String, Student>> iterator = this.ban().iterator(); //Iterator 를 사용을 하여 출력을 한다.
         while (iterator.hasNext()) { //iterator 반복
             DictionaryElement<String, Student> element = iterator.next();
+            //Iterator를 통하여 받은 object 엘리먼트 값을 통하여
+            //학번과 학생의 점수를 받는다.
             String studentNumber = element.key();
             int score = element.object().score();
             AppView.outputStudentlist(studentNumber, score);//학생 점수 출력

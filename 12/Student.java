@@ -4,7 +4,7 @@ public class Student implements Comparable<Student> {
 
     public int score() { //getter
         return _score;
-    }
+    } //getter
 
     public void setScore(int newScore) {
         this._score = newScore;

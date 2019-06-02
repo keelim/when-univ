@@ -3,27 +3,27 @@ public class LinkedStack<E> implements Stack<E> {
     private LinkedNode<E> _top;
 
     @Override
-    public int size() {
+    public int size() { //setter
         return this._size;
     }
 
     @Override
-    public boolean isFull() {
+    public boolean isFull() { //Full check  노드적 구현으로 항상  false
         return false;
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean isEmpty() { //empty check
         return this._size == 0;
     }
 
     @Override
     public boolean push(E anElement) {
-        if (this.isFull()) {
+        if (this.isFull()) { //full check
             return false;
         } else {
-            LinkedNode<E> nodeForAdd = new LinkedNode<>(anElement, null);
-            if (this.isEmpty()) {
+            LinkedNode<E> nodeForAdd = new LinkedNode<>(anElement, null); //임시 노드 생성
+            if (this.isEmpty()) { //empty check
                 this._top = nodeForAdd;
             } else {
                 LinkedNode<E> last = this._top;
@@ -38,22 +38,22 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     @Override
-    public E pop() {
+    public E pop() {//항상 full x
         E poppedElement;
-        LinkedNode<E> poppedNode = this._top;
-        poppedElement = poppedNode.element();
-        this._top = poppedNode.next();
+        LinkedNode<E> poppedNode = this._top; //top node 참조
+        poppedElement = poppedNode.element(); //top 엘라먼트 참조
+        this._top = poppedNode.next(); //다음으로 넘김
         this._size--;
         return poppedElement;
     }
 
     @Override
-    public E peek() {
+    public E peek() { //top 엘리먼트 반환
         return this._top.element();
     }
 
     @Override
-    public void clear() {
+    public void clear() { //clear
         this._size = 0;
         this._top = null;
     }
