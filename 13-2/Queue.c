@@ -1,4 +1,3 @@
-#pragma once
 #include "Queue.h"
 
 struct _Queue {
@@ -32,7 +31,7 @@ Boolean Queue_isFull(Queue *_this) {
     return nextRear == _this->_front;
 }
 
-int Queue_size(Queue *_this) {
+int Queue_size(Queue *_this) { //Circular queue에서의 사이즈 측정 방법
     if (_this->_rear >= _this->_front) {
         return (_this->_rear - _this->_front);
     } else {
@@ -40,7 +39,7 @@ int Queue_size(Queue *_this) {
     }
 }
 
-Boolean Queue_add(Queue *_this, Element anElement) {
+Boolean Queue_add(Queue *_this, Element anElement) { //배열을 통한 Circular queue 를 처리를 위한 반복
     if (Queue_isFull(_this)) {
         return FALSE; // Queue Full 처리
     } else {

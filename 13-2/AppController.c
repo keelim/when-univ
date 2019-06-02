@@ -1,4 +1,3 @@
-#pragma once
 #include "AppController.h"
 
 
@@ -9,7 +8,7 @@ struct _AppController {
     int _addedChars; // 삽입된 문자의 개수
 };
 
-AppController *AppController_new(void) {
+AppController *AppController_new(void) { //AppCOntroller 생성
     AppController *_this;
     _this = NewObject(AppController);
     _this->_queue = Queue_new(5);
@@ -19,17 +18,17 @@ AppController *AppController_new(void) {
     return (_this);
 }
 
-void AppController_delete(AppController *_this) {
+void AppController_delete(AppController *_this) { //AppController 소멸
     Queue_delete(_this->_queue);
     free(_this);
 }
 
-void AppController_run(AppController *_this) {
+void AppController_run(AppController *_this) { //AppController 실행
     AppView_out_startProgram();
     AppController_initCharCounts(_this);
     char inputChar = AppView_in_nextInputChar();
     AppController_countInput(_this);
-    while (inputChar != Esc) {
+    while (inputChar != Esc) { //esc 입력시 종료
         if (isAlpha(inputChar)) {
             AppController_add(_this, inputChar);
         } else if (isDigit(inputChar)) {
