@@ -1,13 +1,13 @@
 #include "AppView.h"
 
 void AppView_out_startProgram() {
-    printf("<<< 스택 처리 프로그램을 시작합니다 >> >\n ");
+    printf("<<< Queue 활용 프로그램을 시작합니다 >> >\n ");
     AppView_out_newLine();
 }
 
 void AppView_out_endProgram() {
     AppView_out_newLine();
-    printf("<<< 스택 처리 프로그램을 종료합니다 >> >\n ");
+    printf("<<< Queue 활용 프로그램을 종료합니다 >> >\n ");
 }
 
 
@@ -28,11 +28,11 @@ void AppView_out_queueIsFull(char aChar) {
 }
 
 void AppView_out_addedElementInQueue(char aChar) {
-    printf("[InQueue] 삽입된 원소는 %c 입니다.\n", aChar);
+    printf("[EnQueue] 삽입된 원소는 %c 입니다.\n", aChar);
 }
 
 void AppView_out_noElementInQueue() {
-    printf("[deQueue1:Empty] 스택에 삭제할 원소가 없습니다.\n");
+    printf("[deQueue1:Empty] 큐에 삭제할 원소가 없습니다.\n");
 }
 
 void AppView_out_removedElementFromQueue(char removedChar) {
@@ -40,7 +40,7 @@ void AppView_out_removedElementFromQueue(char removedChar) {
 }
 
 void AppView_out_elementInQueue(Element element) {
-    printf("%c", element);
+    printf("%c ", element);
 }
 
 void AppView_out_label_Front() {
@@ -64,7 +64,7 @@ void AppView_out_frontElement(char anElement){
 }
 
 void AppView_out_endInput () {
-    printf ("[End Input] 입력을 종료하며, 스택의 모든 원소를 삭제합니다:\n");
+    printf ("[End Input] 입력을 종료하며, 큐의 모든 원소를 삭제합니다:\n");
 }
 
 void AppView_out_removedElementByEndInput(char anElement) {

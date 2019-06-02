@@ -11,7 +11,7 @@ struct _AppController {
 AppController *AppController_new(void) { //AppCOntroller 생성
     AppController *_this;
     _this = NewObject(AppController);
-    _this->_queue = Queue_new(5);
+    _this->_queue = Queue_new(10);
     _this->_inputChars = 0;
     _this->_ignoredChars = 0;
     _this->_addedChars = 0;
