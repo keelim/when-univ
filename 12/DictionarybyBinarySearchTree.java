@@ -111,15 +111,18 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
 
     }
 
-    private DictionaryElement<Key, Obj> removeRightMostElementOfLeftTree(BinaryNode currentRoot) { // 현재의 currentRoot 의 원소를 대체할 원소인, // 왼쪽 트리의 가장 오른쪽 노드의 원소를 삭제하여 얻는다. // call 되는 시점에, currentRoot.left() 는 null 이 아니다
+    private DictionaryElement<Key, Obj> removeRightMostElementOfLeftTree(BinaryNode currentRoot) {
+        // 현재의 currentRoot 의 원소를 대체할 원소인,
+        // 왼쪽 트리의 가장 오른쪽 노드의 원소를 삭제하여 얻는다.
+        // call 되는 시점에, currentRoot.left() 는 null 이 아니다
         BinaryNode<DictionaryElement<Key, Obj>> leftOfCurrentRoot = currentRoot.left();
-        if (leftOfCurrentRoot.right() == null) {
+        if (leftOfCurrentRoot.right() == null) { //null check
             currentRoot.setLeft(leftOfCurrentRoot.left());
             return leftOfCurrentRoot.element();
         } else {
             BinaryNode<DictionaryElement<Key, Obj>> parentOfRightMost = leftOfCurrentRoot;
             BinaryNode<DictionaryElement<Key, Obj>> rightMost = leftOfCurrentRoot.right();
-            while (rightMost.right() != null) {
+            while (rightMost.right() != null) { //null check
                 parentOfRightMost = rightMost;
                 rightMost = rightMost.right();
             }
@@ -138,7 +141,11 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
             } else {
                 if (aKey.compareTo(child.element().key()) == 0) {
                     Obj removedObject = child.element().object();
-                    if (child.left() == null && child.right() == null) { // child가 leaf currentRoot.setLeft (null) ; } else if ( child.left() == null ) { // child 의 left tree가 없다 currentRoot.setLeft (child.right()) ; } else if ( child.right() == null ) { // child 의 right tree 가 없다
+                    if (child.left() == null && child.right() == null) { // child가 leaf
+                        currentRoot.setLeft(null);
+                    } else if (child.left() == null) { // child 의 left tree가 없다
+                        currentRoot.setLeft(child.right());
+                    } else if (child.right() == null) { // child 의 right tree 가 없다
                         currentRoot.setLeft(child.left());
                     } else { // child의 left tree, right tree가 모두 있다
                         currentRoot.setElement(removeRightMostElementOfLeftTree(child));

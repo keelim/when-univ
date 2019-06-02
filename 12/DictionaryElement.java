@@ -3,7 +3,6 @@ public class DictionaryElement<Key extends Comparable<Key>, Obj> { //Dictionaryë
     private Key _key;
     private Obj _object;
 
-
     public DictionaryElement(Key givenKey, Obj givenObject) { //constructor
         this._key = givenKey;
         this._object = givenObject;

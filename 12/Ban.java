@@ -60,13 +60,13 @@ public class Ban extends DictionaryByBinarySearchTree<String, Student> { //íŠ¸ë¦
     private DictionaryElement<String, Student> highestRecursively(BinaryNode<DictionaryElement<String, Student>> aRoot) {
         DictionaryElement<String, Student> highest = aRoot.element();
         if (aRoot.left() != null) {
-            DictionaryElement<String, Student> highestOfLeftSubtree = this.lowestRecursively(aRoot.left());
+            DictionaryElement<String, Student> highestOfLeftSubtree = this.highestRecursively(aRoot.left());
             if (highestOfLeftSubtree.object().score() >= highest.object().score()) {
                 highest = highestOfLeftSubtree;
             }
         }
         if (aRoot.right() != null) {
-            DictionaryElement<String, Student> highestOfRightSubtree = this.lowestRecursively(aRoot.right());
+            DictionaryElement<String, Student> highestOfRightSubtree = this.highestRecursively(aRoot.right());
             if (highestOfRightSubtree.object().score() >= highest.object().score()) {
                 highest = highestOfRightSubtree;
             }
@@ -84,16 +84,10 @@ public class Ban extends DictionaryByBinarySearchTree<String, Student> { //íŠ¸ë¦
         DictionaryElement<String, Student> sum = aRoot.element();
         int totalSum = sum.object().score();
         if (aRoot.left() != null) {
-            DictionaryElement<String, Student> sumOfLeftSubtree = this.lowestRecursively(aRoot.left());
-            if (sumOfLeftSubtree.object().score() > sum.object().score()) {
-                totalSum += sumOfLeftSubtree.object().score();
-            }
+            totalSum+=this.sumOfScoresRecursively(aRoot.left());
         }
         if (aRoot.right() != null) {
-            DictionaryElement<String, Student> sumOfRightSubtree = this.lowestRecursively(aRoot.right());
-            if (sumOfRightSubtree.object().score() > sum.object().score()) {
-                totalSum += sumOfRightSubtree.object().score();
-            }
+            totalSum+=this.sumOfScoresRecursively(aRoot.right());
         }
         return totalSum;
     }
@@ -113,7 +107,7 @@ public class Ban extends DictionaryByBinarySearchTree<String, Student> { //íŠ¸ë¦
         for (int i = 0; iterator.hasNext(); i++) {
             students[i] = iterator.next().object();
         }
-        Sort<Student> quicksort = new QuickSort<Student>();
+        Sort<Student> quicksort = new QuickSort<>();
         quicksort.sort(students, this.size());
         return students;
     }
