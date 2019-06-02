@@ -88,8 +88,91 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
 
     @Override
     public Obj removeObjectForKey(Key aKey) {
-        return null;
-    }//todo 구현을 할 것 제거
+        Obj removedObject = null;
+        if (this._root == null) {
+            return null;
+        } else if (aKey.compareTo(this._root.element().key()) == 0) {
+            removedObject = this._root.element().object();
+            if ((this._root.left() == null) && (this._root.right() == null)) { // root만 있는tree
+                this._root = null;
+            } else if (this._root.left() == null) { // root의 left tree 가 없다
+                this._root = this._root.right();
+            } else if (this._root.right() == null) { // root의 right tree 가 없다
+                this._root = this._root.left();
+            } else {// child의 left tree, right tree가 모두 있다
+                this._root.setElement(removeRightMostElementOfLeftTree(this._root));
+            }
+            this.setSize(this.size() + 1);
+            return removedObject;
+
+        } else {
+            return removeObjectForKeyFromSubtree(this._root, aKey);
+        }
+
+    }
+
+    private DictionaryElement<Key, Obj> removeRightMostElementOfLeftTree(BinaryNode currentRoot) { // 현재의 currentRoot 의 원소를 대체할 원소인, // 왼쪽 트리의 가장 오른쪽 노드의 원소를 삭제하여 얻는다. // call 되는 시점에, currentRoot.left() 는 null 이 아니다
+        BinaryNode<DictionaryElement<Key, Obj>> leftOfCurrentRoot = currentRoot.left();
+        if (leftOfCurrentRoot.right() == null) {
+            currentRoot.setLeft(leftOfCurrentRoot.left());
+            return leftOfCurrentRoot.element();
+        } else {
+            BinaryNode<DictionaryElement<Key, Obj>> parentOfRightMost = leftOfCurrentRoot;
+            BinaryNode<DictionaryElement<Key, Obj>> rightMost = leftOfCurrentRoot.right();
+            while (rightMost.right() != null) {
+                parentOfRightMost = rightMost;
+                rightMost = rightMost.right();
+            }
+            parentOfRightMost.setRight(rightMost.left());
+            return rightMost.element();
+        }
+    }
+
+    private Obj removeObjectForKeyFromSubtree(BinaryNode currentRoot, Key aKey) {
+        // 이 시점에, currentRoot 는 null이 아니고, currentRoot의 key는 "aKey" 와 일치하지 않는다.
+        BinaryNode<DictionaryElement<Key, Obj>> root = currentRoot;
+        if (aKey.compareTo(root.element().key()) < 0) { // left subtree에서 삭제해야 한다
+            BinaryNode<DictionaryElement<Key, Obj>> child = root.left();
+            if (child == null) {
+                return null;
+            } else {
+                if (aKey.compareTo(child.element().key()) == 0) {
+                    Obj removedObject = child.element().object();
+                    if (child.left() == null && child.right() == null) { // child가 leaf currentRoot.setLeft (null) ; } else if ( child.left() == null ) { // child 의 left tree가 없다 currentRoot.setLeft (child.right()) ; } else if ( child.right() == null ) { // child 의 right tree 가 없다
+                        currentRoot.setLeft(child.left());
+                    } else { // child의 left tree, right tree가 모두 있다
+                        currentRoot.setElement(removeRightMostElementOfLeftTree(child));
+                    }
+                    this.setSize(this.size() - 1);
+                    return removedObject;
+                } else {
+                    return removeObjectForKeyFromSubtree(child, aKey);
+                }
+            }
+        } else { // right subtree에서 삭제해야 한다
+            BinaryNode<DictionaryElement<Key, Obj>> child = currentRoot.right();
+            if (child == null) {
+                return null;
+            } else {
+                if (aKey.compareTo(child.element().key()) == 0) {
+                    Obj removedObject = child.element().object();
+                    if (child.left() == null && child.right() == null) { // child가 leaf
+                        currentRoot.setRight(null);
+                    } else if (child.left() == null) { // child 의 left tree가 없다
+                        currentRoot.setRight(child.right());
+                    } else if (child.right() == null) { // child 의 right tree 가 없다
+                        currentRoot.setRight(child.left());
+                    } else { // child의 left tree, right tree가 모두 있다
+                        currentRoot.setElement(removeRightMostElementOfLeftTree(child));
+                    }
+                    this.setSize(this.size() - 1);
+                    return removedObject;
+                } else {
+                    return removeObjectForKeyFromSubtree(child, aKey);
+                }
+            }
+        }
+    }
 
     @Override
     public void clear() { //clear
