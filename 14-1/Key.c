@@ -1,5 +1,5 @@
 #include "Key.h"
-//todo
+
 
 struct _Key {
     KeyValue _value;
@@ -12,7 +12,9 @@ Key *Key_new(void) {
 }
 
 Key *Key_newWith(KeyValue aValue) {
-    //todo
+    Key* _this = NewObject(Key);
+    _this->_value = aValue;
+    return _this;
 }
 
 void Key_delete(Key *_this) {

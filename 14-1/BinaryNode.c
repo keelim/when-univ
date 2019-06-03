@@ -7,12 +7,20 @@ struct _BinaryNode {
     BinaryNode *_right;
 };
 
-BinaryNode *BinaryNode_new(Key *key, Object *pObject, void *pVoid, void *pVoid1) {
-    //todo
+BinaryNode *BinaryNode_new() {
+    BinaryNode* _this = NewObject(BinaryNode);
+    _this->_key = Key_new();
+    _this->_object = Object_new();
+    _this->_left = NULL;
+    _this->_right= NULL;
 }
 
 BinaryNode *BinaryNode_newWith(Key *aKey, Object *anObject, BinaryNode *aLeft, BinaryNode *aRight) {
-    //todo
+    BinaryNode* _this = NewObject(BinaryNode);
+    _this->_key = aKey;
+    _this->_object = anObject;
+    _this->_left = aLeft;
+    _this->_right= aRight;
 }
 
 void BinaryNode_delete(BinaryNode *_this) {

@@ -4,7 +4,7 @@
 
 typedef struct _BinaryNode BinaryNode;
 
-BinaryNode *BinaryNode_new(Key *, Object *pObject, void *pVoid, void *pVoid1); // 기본 생성자
+BinaryNode *BinaryNode_new(); // 기본 생성자
 BinaryNode *BinaryNode_newWith(Key *aKey, Object *anObject, BinaryNode *aLeft, BinaryNode *aRight);
 
 // 속성 값이 주어지는 생성자
