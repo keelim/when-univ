@@ -12,7 +12,9 @@ Object *Object_new(void) {
 }
 
 Object *Object_newWith(ObjectValue aValue) {
-    //todo
+    Object* _this = NewObject(Object);
+    _this->_value = aValue;
+    return _this;
 }
 
 void Object_delete(Object *_this) {
