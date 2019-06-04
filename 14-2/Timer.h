@@ -2,6 +2,7 @@
 #include "Common.h"
 #include <stdio.h>
 #include <Windows.h>
+#include <time.h>
 typedef struct _Timer Timer;
 
 Timer* Timer_new ();  //타이머 생성

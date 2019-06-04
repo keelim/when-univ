@@ -23,7 +23,7 @@ void AppController_delete(AppController *_this) {
 }
 
 void AppController_run(AppController *_this) {
-
+    //todo 작성
 }
 
 void AppController_generateTestDataByRandomNumbers(AppController *_this) {

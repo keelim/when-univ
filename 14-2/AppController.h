@@ -1,6 +1,4 @@
 #pragma once
-
-#pragma once
 #include "SortedArrayDictionary.h"
 #include "SortedLinkedDictionary.h"
 #include "UnsortedArrayDictionary.h"
@@ -8,6 +6,7 @@
 #include "BinarySearchTreeDictionary.h"
 #include "Common.h"
 #include "Timer.h"
+
 
 
 typedef struct _AppController AppController;

@@ -13,6 +13,7 @@ BinaryNode *BinaryNode_new() {
     _this->_object = Object_new();
     _this->_left = NULL;
     _this->_right= NULL;
+    return _this;
 }
 
 BinaryNode *BinaryNode_newWith(Key *aKey, Object *anObject, BinaryNode *aLeft, BinaryNode *aRight) {
@@ -21,6 +22,7 @@ BinaryNode *BinaryNode_newWith(Key *aKey, Object *anObject, BinaryNode *aLeft, B
     _this->_object = anObject;
     _this->_left = aLeft;
     _this->_right= aRight;
+    return _this;
 }
 
 void BinaryNode_delete(BinaryNode *_this) {
