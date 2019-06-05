@@ -176,7 +176,7 @@ Object *Dictionary_removeFromTreeRecursively(Dictionary *_this, Key *aKey, Binar
         }
     } else {
         // 삭제할 노드는 오른쪽 트리에서 찾아야 한다
-        //todo // 왼쪽 트리를 위한 코드를 보고, 여기를 작성할 것
+
     }
 }
 
