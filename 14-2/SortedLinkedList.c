@@ -31,7 +31,7 @@ Boolean SortedLinkedList_isFull (SortedLinkedList* _this) {
 	return FALSE;
 }
 
-Boolean SortedLinkedList_add (SortedLinkedList* _this, Element anElement) { 
+Boolean SortedLinkedList_add (SortedLinkedList* _this, Element anElement) {
 	Node* currentNode; //현재 노드 설정
 	Node* addedNode=Node_new ();
 	Node_setElement (addedNode, anElement); //다음 엘리먼트 설정
