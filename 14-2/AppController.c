@@ -36,60 +36,62 @@ void AppController_generateTestDataByRandomNumbers(AppController *_this) {
 }
 
 double
-AppController_timeForArrayDictionary_add(AppController *_this, SortedArrayDictionary *aDictionary, int aTestSize) {
+AppController_timeForArrayList_add(AppController *_this, SortedArrayDictionary *aDictionary, int aTestSize) {
     return 0;
 }
 
-double AppController_timeForSortedArrayDictionary_search(AppController *_this, SortedArrayDictionary *aDictionary, int aTestSize) {
+double AppController_timeForSortedArrayList_search(AppController *_this, SortedArrayDictionary *aDictionary,
+                                                   int aTestSize) {
     return 0;
 }
 
-double AppController_timeForSortedArrayDictionary_remove(AppController *_this, SortedArrayDictionary *aDictionary, int aTestSize) {
+double AppController_timeForSortedArrayList_remove(AppController *_this, SortedArrayDictionary *aDictionary,
+                                                   int aTestSize) {
     return 0;
 }
 
-double AppController_timeForSortedLinkedDictionary_add(AppController *_this, SortedLinkedDictionary *aDictionary,
-                                                       int aTestSize) {
+double AppController_timeForSortedLinkedList_add(AppController *_this, SortedLinkedDictionary *aDictionary,
+                                                 int aTestSize) {
     return 0;
 }
 
-double AppController_timeForSortedLinkedDictionary_search(AppController *_this, SortedLinkedDictionary *aDictionary,
-                                                          int aTestSize) {
+double AppController_timeForSortedLinkedList_search(AppController *_this, SortedLinkedDictionary *aDictionary,
+                                                    int aTestSize) {
     return 0;
 }
 
-double AppController_timeForSortedLinkedDictionary_remove(AppController *_this, SortedLinkedDictionary *aDictionary,
-                                                          int aTestSize) {
+double AppController_timeForSortedLinkedList_remove(AppController *_this, SortedLinkedDictionary *aDictionary,
+                                                    int aTestSize) {
     return 0;
 }
 
-double AppController_timeForUnsortedArrayDictionary_add(AppController *_this, UnsortedArrayDictionary *aDictionary,
-                                                        int aTestSize) {
+double AppController_timeForUnsortedArrayList_add(AppController *_this, UnsortedArrayDictionary *aDictionary,
+                                                  int aTestSize) {
     return 0;
 }
 
-double AppController_timeForUnsortedArrayDictionary_search(AppController *_this, UnsortedArrayDictionary *aDictionary,
-                                                           int aTestSize) {
+double AppController_timeForUnsortedArrayList_search(AppController *_this, UnsortedArrayDictionary *aDictionary,
+                                                     int aTestSize) {
     return 0;
 }
 
-double AppController_timeForunsortedArrayDictionary_remove(AppController *_this, UnsortedArrayDictionary *aDictionary,
-                                                           int aTestSize) {
+double AppController_timeForunsortedArrayList_remove(AppController *_this, UnsortedArrayDictionary *aDictionary,
+                                                     int aTestSize) {
     return 0;
 }
 
-double AppController_timeForUnsortedLinkedDictionary_add(AppController *_this, UnsortedLinkedDictionary *aDictionary,
-                                                         int aTestSize) {
+double AppController_timeForUnsortedLinkedList_add(AppController *_this, UnsortedLinkedDictionary *aDictionary,
+                                                   int aTestSize) {
     return 0;
 }
 
-double AppController_timeForunsortedLinkedDictionary_search(AppController *_this, UnsortedLinkedDictionary *aDictionary,
-                                                            int aTestSize) {
+double AppController_timeForunsortedLinkedList_search(AppController *_this, UnsortedLinkedDictionary *aDictionary,
+                                                      int aTestSize) {
     return 0;
 }
 
-double AppController_timeForUnsortedLinkedDictionary_remove(AppController *_this, UnsortedLinkedDictionary *aDictionary,
-                                                            int aTestSize) {
+double AppController_timeForUnsortedLinkedList_remove(AppController *_this, UnsortedLinkedDictionary *aDictionary,
+                                                      int aTestSize) {
     return 0;
 }
 
