@@ -1,20 +1,19 @@
 #pragma once
 #include "Common.h"
-#include "Key.h"
-#include "Object.h"
+#include "Node.h"
 
-typedef struct _UnsortedLinkedDictionary UnsortedLinkedDictionary;
+typedef struct _UnsortedLinkedList UnsortedLinkedList;
 
-UnsortedLinkedDictionary *UnsortedLinkedDictionary_new(int maxSize);
+UnsortedLinkedList* UnsortedLinkedList_new ();
 
-void UnsortedLinkedDictionary_delete(UnsortedLinkedDictionary *_this);
+void UnsortedLinkedList_delete (UnsortedLinkedList* _this);
 
-Boolean UnsortedLinkedDictionary_isEmpty(UnsortedLinkedDictionary *_this);
+Boolean UnsortedLinkedList_isEmpty (UnsortedLinkedList* _this);
 
-Boolean UnsortedLinkedDictionary_isFull(UnsortedLinkedDictionary *_this);
+Boolean UnsortedLinkedList_isFull (UnsortedLinkedList* _this);
 
-void UnsortedLinkedDictionary_addKeyAndObject(UnsortedLinkedDictionary *_this, Key *aKey, Object *anObject);
+Boolean UnsortedLinkedList_add (UnsortedLinkedList* _this, Element anElement);
 
-Boolean UnsortedLinkedDictionary_keyDoesExist(UnsortedLinkedDictionary *_this, Key *aKey);
+Element UnsortedLinkedList_min (UnsortedLinkedList* _this);
 
-Element *UnsortedLinkedDictionary_removeObjectForKey(UnsortedLinkedDictionary *_this, Key *aKey);
+Element UnsortedLinkedList_removeMax (UnsortedLinkedList* _this);

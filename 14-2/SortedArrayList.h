@@ -1,21 +1,21 @@
 #pragma once
-
+#pragma once
 #include "Common.h"
-#include "Key.h"
-#include "Object.h"
 
-typedef struct _SortedArrayDictionary SortedArrayDictionary;
+typedef struct _SortedArrayList SortedArrayList;
 
-SortedArrayDictionary *SortedArrayDictionary_new(int maxSize);
 
-void SortedArrayDictionary_delete(SortedArrayDictionary *_this);
+SortedArrayList* SortedArrayList_new(int givenCapacity);
+void SortedArrayList_delete(SortedArrayList* _this);
+Boolean SortedArrayList_isEmpty(SortedArrayList* _this);
+Boolean SortedArrayList_isFull(SortedArrayList* _this);
+Boolean SortedArrayList_add(SortedArrayList* _this, Element anElement);
+Element SortedArrayList_removeMax(SortedArrayList* _this);
+Element SortedArrayList_min(SortedArrayList* _this);
 
-Boolean SortedArrayDictionary_isEmpty(SortedArrayDictionary *_this);
+int SortedArrayList_positionUsingBinarySearch(SortedArrayList* _this, Element anElement);
+void SortedArrayList_addAt(SortedArrayList* _this, Element anElement, int aPosition);
 
-Boolean SortedArrayDictionary_isFull(SortedArrayDictionary *_this);
 
-void SortedArrayDictionary_addKeyAndObject(SortedArrayDictionary *_this, Key *aKey, Object *anObject);
-
-Boolean SortedArrayDictionary_keyDoesExist(SortedArrayDictionary *_this, Key *aKey);
-
-Element *SortedArrayDictionary_removeObjectForKey(SortedArrayDictionary *_this, Key *aKey);
+int SortedArrayList_positionForAddUsingBinarySearch(SortedArrayList* _this, Element anElement);
+Element SortedArrayList_removeAt(SortedArrayList* _this, int aPosition);

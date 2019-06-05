@@ -1,21 +1,19 @@
 #pragma once
-
+#include "Node.h"
 #include "Common.h"
-#include "Key.h"
-#include "Object.h"
 
-typedef struct _SortedLinkedDictionary SortedLinkedDictionary;
+typedef struct _SortedLinkedList SortedLinkedList;
 
-SortedLinkedDictionary *SortedLinkedDictionary_new(int maxSize);
+SortedLinkedList* SortedLinkedList_new ();
 
-void SortedLinkedDictionary_delete(SortedLinkedDictionary *_this);
+void SortedLinkedList_delete (SortedLinkedList* _this);
 
-Boolean SortedLinkedDictionary_isEmpty(SortedLinkedDictionary *_this);
+Boolean SortedLinkedList_isEmpty (SortedLinkedList* _this);
 
-Boolean SortedLinkedDictionary_isFull(SortedLinkedDictionary *_this);
+Boolean SortedLinkedList_isFull (SortedLinkedList* _this);
 
-void SortedLinkedDictionary_addKeyAndObject(SortedLinkedDictionary *_this, Key *aKey, Object *anObject);
+Boolean SortedLinkedList_add (SortedLinkedList* _this, Element anElement);
 
-Boolean SortedLinkedDictionary_keyDoesExist(SortedLinkedDictionary *_this, Key *aKey);
+Element SortedLinkedList_min (SortedLinkedList* _this);
 
-Element *SortedLinkedDictionary_removeObjectForKey(SortedLinkedDictionary *_this, Key *aKey);
+Element SortedLinkedList_removeMax (SortedLinkedList* _this);

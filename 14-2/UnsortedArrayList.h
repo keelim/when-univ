@@ -1,21 +1,20 @@
 #pragma once
 #include "Common.h"
-#include "Key.h"
-#include "Object.h"
+
+typedef struct _UnsortedArrayList UnsortedArrayList;
 
 
-typedef struct _UnsortedArrayDictionary UnsortedArrayDictionary;
+UnsortedArrayList* UnsortedArrayList_new(int givenCapacity);
+void UnsortedArrayList_delete(UnsortedArrayList* _this);
+Boolean UnsortedArrayList_isEmpty(UnsortedArrayList* _this);
+Boolean UnsortedArrayList_isFull(UnsortedArrayList* _this);
+Boolean UnsortedArrayList_add(UnsortedArrayList* _this, Element anElement);
+Element UnsortedArrayList_min(UnsortedArrayList* _this);
 
-UnsortedArrayDictionary *UnsortedArrayDictionary_new(int maxSize);
+Element UnsortedArrayList_removeMax(UnsortedArrayList* _this);
 
-void UnsortedArrayDictionary_delete(UnsortedArrayDictionary *_this);
+int UnsortedArrayList_maxPositionRecursively(UnsortedArrayList* _this, int left, int right);
+int UnsortedArrayList_minPositionRecursively(UnsortedArrayList* _this, int left, int right);
+Element UnsortedArrayList_removeAt(UnsortedArrayList* _this, int aPosition);
 
-Boolean UnsortedArrayDictionary_isEmpty(UnsortedArrayDictionary *_this);
 
-Boolean UnsortedArrayDictionary_isFull(UnsortedArrayDictionary *_this);
-
-void UnsortedArrayDictionary_addKeyAndObject(UnsortedArrayDictionary *_this, Key *aKey, Object *anObject);
-
-Boolean UnsortedArrayDictionary_keyDoesExist(UnsortedArrayDictionary *_this, Key *aKey);
-
-Element *UnsortedArrayDictionary_removeObjectForKey(UnsortedArrayDictionary *_this, Key *aKey);
