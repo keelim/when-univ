@@ -16,7 +16,7 @@ void AppController_run(AppController* _this);
 
 void AppController_add(AppController *_this, char keyValue);
 
-void AppController_remove(AppController *_this, char inputChar);
+void AppController_remove(AppController *_this);
 
 void AppController_showSize(AppController *_this);
 

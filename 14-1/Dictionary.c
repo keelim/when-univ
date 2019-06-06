@@ -30,7 +30,7 @@ void Dictionary_delete(Dictionary *_this) {
 }
 
 Boolean Dictionary_isEmpty(Dictionary *_this) {
-    return (_this->_root == NULL);
+    return _this->_size==0;
 }
 
 Boolean Dictionary_isFull(Dictionary *_this) {
@@ -97,7 +97,9 @@ void Dictionary_scanInSortedOrder(Dictionary *_this, Traverse *aTraverse) {
 }
 
 Boolean Dictionary_replaceObjectForKey(Dictionary *_this, Key *aKey, Object *anObject) {
-    return FALSE;
+    Object* change = Dictionary_searchTreeRecursively(_this, aKey, _this->_root);
+    change = anObject;
+    return TRUE;
 }
 
 void Dictionary_deleteBinaryNodes(Dictionary *_this, BinaryNode *aNode) {
@@ -135,6 +137,14 @@ Boolean Dictionary_addToTree(Dictionary *_this, Key *aKey, Object *anObject, Bin
         }
     } else if (Key_compareTo(aKey, BinaryNode_key(parent)) > 0) {
         // left의 경우를 참조하여 작성 할 것
+		if (BinaryNode_right (parent) == NULL) {
+			BinaryNode_setRight (parent, BinaryNode_new (aKey, anObject, NULL, NULL));
+			_this->_size++;
+			return TRUE;
+		}
+		else {
+			return Dictionary_addToTree (_this, aKey, anObject, BinaryNode_right (parent));
+		}
     } else { // (Key_compareTo(aKey, BinaryNode_key(parent)) == 0 )
         // aKey가 트리에 이미 존재한다
         return (FALSE);
@@ -176,6 +186,38 @@ Object *Dictionary_removeFromTreeRecursively(Dictionary *_this, Key *aKey, Binar
         }
     } else {
         // 삭제할 노드는 오른쪽 트리에서 찾아야 한다
+		BinaryNode* rightChild=BinaryNode_right (parent);
+		if (rightChild == NULL) { // 주어진 aKey 를 갖는 원소가 존재하지 않는다.
+			return NULL;
+		}
+		if (Key_compareTo (aKey, BinaryNode_key (rightChild)) == 0) {
+			// leftChild가 삭제할 노드이다
+			BinaryNode* removedNode=rightChild;
+			if (BinaryNode_right (removedNode) == NULL) {
+				BinaryNode_setRight (parent, BinaryNode_left (removedNode));
+			}
+			else if (BinaryNode_left (removedNode) == NULL) {
+				BinaryNode_setRight (parent, BinaryNode_right (removedNode));
+			}
+			else {
+				// 삭제해야 하는 leftChild는 양쪽 자식노드를 모두 가지고 있다.
+				// leftChild의 왼쪽 부트리에서 최 우측 노드를 찾아서 새로운 leftChild 로 한다.
+				BinaryNode* rightmost=Dictionary_removeRightmostNodeOfLeftSubtree (_this, removedNode);
+				BinaryNode_setLeft (rightmost, BinaryNode_left (removedNode));
+				BinaryNode_setRight (rightmost, BinaryNode_right (removedNode));
+				BinaryNode_setLeft (parent, rightmost); // rightmost로 삭제되는 leftChild를 대체시킨다.
+			}
+			Object* removedObject=BinaryNode_object (removedNode);
+			BinaryNode_setObject (removedNode, NULL);
+			BinaryNode_setLeft (removedNode, NULL);
+			BinaryNode_setRight (removedNode, NULL);
+			BinaryNode_delete (removedNode);
+			_this->_size--;
+			return (removedObject);
+		}
+		else {
+			return (Dictionary_removeFromTreeRecursively (_this, aKey, rightChild));
+		}
 
     }
 }

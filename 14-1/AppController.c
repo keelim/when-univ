@@ -5,8 +5,6 @@ struct _AppController {
     Dictionary *_dictionary;
 };
 
-void AppView_out_doesExist(Boolean flag);
-
 AppController *AppController_new() {
     AppController *_this = NewObject(AppController);
     _this->_dictionary = Dictionary_new();
@@ -22,33 +20,46 @@ void AppController_showInternalShapeOfBinaryTree(AppController *_this, Traverse 
     Dictionary_scanInSortedOrder(_this->_dictionary, aTraverse);
 }
 
-void AppController_add(AppController *_this, char keyValue) { //todo
+void AppController_add(AppController *_this, char keyValue) {
     int objectValue = (int) keyValue;
+    Key *addKey = Key_newWith(keyValue);
+    Object *addObject = Object_newWith(objectValue);
     if (Dictionary_isFull(_this->_dictionary)) {
         AppView_out_dictionaryIsFull(keyValue);
-// printf("[Full] 큐가 꽉 차서 원소 \'%c\' 는 삽입이 불가능합니다. \n", aChar) ;
-    } else {
-        Dictionary_addKeyAndObject(_this->_dictionary, keyValue, objectValue);
-        AppView_out_addedElementInDictionary(keyValue);
+    } else if(Dictionary_keyDoesExist(_this->_dictionary, addKey)){
+        //키가 존재를 할 때
+        Dictionary_replaceObjectForKey(_this->_dictionary, addKey, addObject);
+        AppView_out_replace(keyValue, objectValue);
+    }else {
+        //키가 존재 하지 않을 때
+        Dictionary_addKeyAndObject(_this->_dictionary, addKey, addObject);
+        AppView_out_addedElementInDictionary(keyValue, objectValue);
     }
 
 }
 
-void AppController_remove(AppController *_this, char inputChar) { //todo
-    char removedChar;
+void AppController_remove(AppController *_this) { //todo 여기서 부터 새로 수정을 할 것
+    Key *removeKey = Key_newWith(AppView_int_removeKey());
+    char removedChar = (char) Key_value(removeKey);
     if (Dictionary_isEmpty(_this->_dictionary)) {
         AppView_out_noElementInDictionary();
-        // printf("[Empty] 큐에 삭제할 원소가 없습니다. \n") ;
+    } else if (Dictionary_keyDoesExist(_this->_dictionary, removeKey)) {
+        //존재 할 때
+        Dictionary_removeObjectForKey(_this->_dictionary, removeKey);
+        AppView_out_removedElementFromDictionary(removedChar, (int) removedChar);
     } else {
-        removedChar = Dictionary_removeObjectForKey(_this->_dictionary, inputChar);
-        AppView_out_removedElementFromQueue(removedChar);
-        // printf("[Remove1] 삭제된 원소는 \'%c\' 입니다. \n", removedChar ) ;
+        //존재 하지 않을 떄.
+        AppView_out_noKeyInDictionary();
     }
 }
 
-void AppController_exist(AppController *_this, char inputChar) { //todo
-    Boolean flag = Dictionary_keyDoesExist(_this->_dictionary, inputChar);
-    AppView_out_doesExist(flag);
+
+
+void AppController_exist(AppController *_this, char inputChar) {
+    char searchKey = AppView_in_searchKey();
+    Key *search = Key_newWith(searchKey);
+    Boolean flag = Dictionary_keyDoesExist(_this->_dictionary, search);
+    AppView_out_doesExist(flag, search);
 }
 
 
@@ -73,7 +84,7 @@ void AppController_run(AppController *_this) {
         if (isAlpha(inputChar)) {
             AppController_add(_this, inputChar);
         } else if (inputChar == '-') {
-            AppController_remove(_this, inputChar);
+            AppController_remove(_this);
         } else if (inputChar == '#') {
             AppController_showSize(_this);
         } else if (inputChar == '/') {

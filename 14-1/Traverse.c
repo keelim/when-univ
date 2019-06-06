@@ -22,5 +22,5 @@ void Traverse_delete(Traverse *_this) {
 }
 
 void Traverse_visit(Traverse *_this, Key* aKey, Object *anObject, int aDepth) {
-
+	//todo
 }
