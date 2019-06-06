@@ -5,7 +5,7 @@ struct _Node { //Node
     Node *_next;
 };
 
-Node* Node_new() { //Node 생성
+Node *Node_new() { //Node 생성
     Node *_this = NewObject(Node);
     return _this;
 }

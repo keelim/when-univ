@@ -12,7 +12,7 @@ Object *Object_new(void) {
 }
 
 Object *Object_newWith(ObjectValue aValue) {
-    Object* _this = NewObject(Object);
+    Object *_this = NewObject(Object);
     _this->_value = aValue;
     return _this;
 }

@@ -1,6 +1,5 @@
 #include "Key.h"
 
-
 struct _Key {
     KeyValue _value;
 };
@@ -12,7 +11,7 @@ Key *Key_new(void) {
 }
 
 Key *Key_newWith(KeyValue aValue) {
-    Key* _this = NewObject(Key);
+    Key *_this = NewObject(Key);
     _this->_value = aValue;
     return _this;
 }

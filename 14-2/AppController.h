@@ -59,13 +59,13 @@ double AppController_timeForUnsortedLinkedList_remove(AppController *_this, Unso
                                                       int aTestSize);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double AppController_timeForBinarySearchTreeDictionary_add(AppController *_this, BinarySearchTreeDictionary *aList,
+double AppController_timeForBinarySearchTreeDictionary_add(AppController *_this, BinarySearchTreeDictionary *aTree,
                                                            int aTestSize);
 
-double AppController_timeForBinarySearchTreeDictionary_search(AppController *_this, BinarySearchTreeDictionary *aList,
+double AppController_timeForBinarySearchTreeDictionary_search(AppController *_this, BinarySearchTreeDictionary *aTree,
                                                               int aTestSize);
 
-double AppController_timeForBinarySearchTreeDictionary_remove(AppController *_this, BinarySearchTreeDictionary *aList,
+double AppController_timeForBinarySearchTreeDictionary_remove(AppController *_this, BinarySearchTreeDictionary *aTree,
                                                               int aTestSize);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

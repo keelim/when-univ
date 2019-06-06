@@ -3,6 +3,7 @@
 #include "Common.h"
 #include "Key.h"
 #include "Object.h"
+#include "BinaryNode.h"
 
 typedef struct _BinarySearchTreeDictionary BinarySearchTreeDictionary;
 
@@ -14,7 +15,7 @@ Boolean BinarySearchTreeDictionary_isEmpty(BinarySearchTreeDictionary *_this);
 
 Boolean BinarySearchTreeDictionary_isFull(BinarySearchTreeDictionary *_this);
 
-void BinarySearchTreeDictionary_addKeyAndObject(BinarySearchTreeDictionary *_this, Key *aKey, Object *anObject);
+Boolean BinarySearchTreeDictionary_addKeyAndObject(BinarySearchTreeDictionary *_this, Key *aKey, Object *anObject);
 
 Boolean BinarySearchTreeDictionary_keyDoesExist(BinarySearchTreeDictionary *_this, Key *aKey);
 
