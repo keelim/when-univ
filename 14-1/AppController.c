@@ -38,7 +38,7 @@ void AppController_add(AppController *_this, char keyValue) {
 
 }
 
-void AppController_remove(AppController *_this) { //todo 여기서 부터 새로 수정을 할 것
+void AppController_remove(AppController *_this) {
     Key *removeKey = Key_newWith(AppView_int_removeKey());
     char removedChar = (char) Key_value(removeKey);
     if (Dictionary_isEmpty(_this->_dictionary)) {
@@ -55,7 +55,7 @@ void AppController_remove(AppController *_this) { //todo 여기서 부터 새로
 
 
 
-void AppController_exist(AppController *_this, char inputChar) {
+void AppController_exist(AppController *_this, char inputChar) { //키가 있는지를 확인
     char searchKey = AppView_in_searchKey();
     Key *search = Key_newWith(searchKey);
     Boolean flag = Dictionary_keyDoesExist(_this->_dictionary, search);
@@ -95,6 +95,7 @@ void AppController_run(AppController *_this) {
             AppController_ignore(_this);
         }
         inputChar = AppView_in_nextInputChar();
+        Traverse_delete(traverse);
     }
     AppController_esc(_this);
     AppView_out_endProgram();

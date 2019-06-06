@@ -36,4 +36,6 @@ void AppView_out_noKeyInDictionary();
 
 void AppView_out_replace(char keyValue, int objectValue);
 
+void AppView_out_traverseDisplay(Key *aKey, int aDepth);
+
 

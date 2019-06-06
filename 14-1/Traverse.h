@@ -2,6 +2,7 @@
 
 #include "Object.h"
 #include "Key.h"
+#include "AppView.h"
 
 typedef struct _Traverse Traverse;
 

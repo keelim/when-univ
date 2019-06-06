@@ -84,6 +84,13 @@ void AppView_out_replace(char keyValue, int objectValue) {
     printf("[Replace] key <'%c'> 의 object 를 <%d>로 대체합니다.\n", keyValue, objectValue);
 }
 
+void AppView_out_traverseDisplay(Key *aKey, int aDepth) {
+    for(int i=0; i<=aDepth; i++){
+        printf("\t");
+    }
+    printf("%c", Key_value(aKey));
+}
+
 
 
 
