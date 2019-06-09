@@ -24,4 +24,8 @@ int UnsortedArrayList_minPositionRecursively(UnsortedArrayList *_this, int left,
 
 Element UnsortedArrayList_removeAt(UnsortedArrayList *_this, int aPosition);
 
+int UnsortedArrayList_positionUsingBinarySearch(UnsortedArrayList *_this, Element anElement);
+
+Boolean UnsortedArrayList_search(UnsortedArrayList* _this, Element anElement);
+
 

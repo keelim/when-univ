@@ -1,4 +1,5 @@
 #include "AppController.h"
+
 #define MIN_TEST_SIZE 1000
 #define NUMBER_OF_TESTS 5
 #define INTERVAL_SIZE 1000
@@ -29,10 +30,9 @@ void AppController_run(AppController *_this) {
 
     _this->_testData = NewVector(int, maxTestSize);
 
-    // 유의: 사용을 종료한 후, 이것을 소멸시킬 위치는?
     AppController_generateTestDataByRandomNumbers(_this);
     AppView_out(MSG_TitleForUnsortedArrayList);
-
+    /////////////////////////////////////////////////////////UnSortedArrayList///////////////////////////////////////////////////////
     int testSize = MIN_TEST_SIZE;
     for (int i = 0; i < numberOfTests; i++) {
         UnsortedArrayList *listForTest = UnsortedArrayList_new(maxTestSize);
@@ -43,7 +43,8 @@ void AppController_run(AppController *_this) {
         UnsortedArrayList_delete(listForTest);
         testSize += intervalSize;
     }
-
+    /////////////////////////////////////////////////////////UnSortedArrayList///////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////SortedArrayList///////////////////////////////////////////////////////
     AppView_out(MSG_TitleForsortedArrayList);
 
     int testSize1 = MIN_TEST_SIZE;
@@ -56,7 +57,8 @@ void AppController_run(AppController *_this) {
         SortedArrayList_delete(listForTest);
         testSize += intervalSize;
     }
-
+    /////////////////////////////////////////////////////////SortedArrayList///////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////UnSortedLinkedList///////////////////////////////////////////////////////
     AppView_out(MSG_TitleForUnsortedLinkedList);
 
     int testSize2 = MIN_TEST_SIZE;
@@ -69,7 +71,8 @@ void AppController_run(AppController *_this) {
         UnsortedLinkedList_delete(listForTest);
         testSize += intervalSize;
     }
-
+    /////////////////////////////////////////////////////////UnSortedLinkedList///////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////SortedLinkedList///////////////////////////////////////////////////////
     AppView_out(MSG_TitleForsortedLinkedList);
 
     int testSize3 = MIN_TEST_SIZE;
@@ -82,9 +85,9 @@ void AppController_run(AppController *_this) {
         SortedLinkedList_delete(listForTest);
         testSize += intervalSize;
     }
-
+    /////////////////////////////////////////////////////////SortedLinkedList///////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////BinarySearchTreeDictionary///////////////////////////////////////////////////////
     AppView_out(MSG_TitleForBinarySearchTreeDictionary);
-
     int testSize4 = MIN_TEST_SIZE;
     for (int i = 0; i < numberOfTests; i++) {
         BinarySearchTreeDictionary *listForTest = BinarySearchTreeDictionary_new(maxTestSize);
@@ -95,6 +98,8 @@ void AppController_run(AppController *_this) {
         BinarySearchTreeDictionary_delete(listForTest);
         testSize += intervalSize;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     AppView_out(MSG_EndPerformanceMeasuring);
 }
@@ -175,7 +180,7 @@ double AppController_timeForSortedLinkedList_search(AppController *_this, Sorted
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
-//todo        SortedLinkedList_search(aList, _this->_testData[i]);
+        SortedLinkedList_search(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
     }
@@ -189,7 +194,7 @@ double AppController_timeForSortedLinkedList_remove(AppController *_this, Sorted
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
-//todo        SortedLinkedList_remove(aList, _this->_testData[i]);
+        SortedLinkedList_remove(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
     }
@@ -220,7 +225,7 @@ double AppController_timeForUnsortedArrayList_search(AppController *_this, Unsor
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
         if (!UnsortedArrayList_isFull(aList)) {
-//todo            UnsortedArrayList_search(aList, _this->_testData[i]);
+            UnsortedArrayList_search(aList, _this->_testData[i]);
         }
         Timer_stop(timer);
         duration += Timer_duration(timer);
@@ -265,7 +270,7 @@ double AppController_timeForUnsortedLinkedList_search(AppController *_this, Unso
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
-//todo        UnsortedLinkedList_search(aList, _this->_testData[i]);
+        UnsortedLinkedList_search(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
     }
@@ -279,7 +284,7 @@ double AppController_timeForUnsortedLinkedList_remove(AppController *_this, Unso
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
-//todo        UnsortedLinkedList_remove(aList, _this->_testData[i]);
+        UnsortedLinkedList_remove(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
     }

@@ -18,3 +18,7 @@ Boolean UnsortedLinkedList_add(UnsortedLinkedList *_this, Element anElement);
 Element UnsortedLinkedList_min(UnsortedLinkedList *_this);
 
 Element UnsortedLinkedList_removeMax(UnsortedLinkedList *_this);
+
+Boolean UnsortedLinkedList_search(UnsortedLinkedList* _this, Element anElement);
+
+Element UnsortedLinkedList_remove(UnsortedLinkedList* _this, Element anElement);

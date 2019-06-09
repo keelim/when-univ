@@ -18,3 +18,7 @@ Boolean SortedLinkedList_add(SortedLinkedList *_this, Element anElement);
 Element SortedLinkedList_min(SortedLinkedList *_this);
 
 Element SortedLinkedList_removeMax(SortedLinkedList *_this);
+
+Boolean SortedLinkedList_search(SortedLinkedList* _this, Element anElement);
+
+Boolean SortedLinkedList_remove(SortedLinkedList* _this, Element anElement);

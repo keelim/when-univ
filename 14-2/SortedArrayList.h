@@ -23,6 +23,4 @@ int SortedArrayList_positionUsingBinarySearch(SortedArrayList *_this, Element an
 
 void SortedArrayList_addAt(SortedArrayList *_this, Element anElement, int aPosition);
 
-int SortedArrayList_positionForAddUsingBinarySearch(SortedArrayList *_this, Element anElement);
-
 Element SortedArrayList_removeAt(SortedArrayList *_this, int aPosition);

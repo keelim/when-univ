@@ -104,8 +104,6 @@ Element SortedArrayList_min(SortedArrayList *_this) {
     return min;
 }
 
-int SortedArrayList_positionForAddUsingBinarySearch(SortedArrayList *_this, Element anElement) {
-    return 0;
-}
+
 
 

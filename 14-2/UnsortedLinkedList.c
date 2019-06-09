@@ -101,3 +101,25 @@ Element UnsortedLinkedList_removeMax(UnsortedLinkedList *_this) {
         }
     }
 }
+
+Boolean UnsortedLinkedList_search(UnsortedLinkedList *_this, Element anElement) {
+    Node* pointer = _this->_head;
+    while(pointer != NULL){
+        if(Node_element(pointer) == anElement){
+            return TRUE;
+        }
+        pointer = Node_next(pointer);
+    }
+    return FALSE;
+}
+
+Element UnsortedLinkedList_remove(UnsortedLinkedList *_this, Element anElement) {
+    //first Node delete
+    Node* pointer = _this->_head;
+    Element removeElement = Node_element(pointer);
+    _this->_head = Node_next(pointer);
+    Node_delete(pointer);
+    _this->_size--;
+
+    return removeElement;
+}

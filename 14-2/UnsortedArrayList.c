@@ -101,3 +101,17 @@ int UnsortedArrayList_minPositionRecursively(UnsortedArrayList *_this, int left,
         }
     }
 }
+
+int UnsortedArrayList_positionUsingBinarySearch(UnsortedArrayList *_this, Element anElement) {
+
+}
+
+Boolean UnsortedArrayList_search(UnsortedArrayList *_this, Element anElement) {
+    int i = 0;
+    while (i < sizeof(_this->_elements)){
+        if (_this->_elements == anElement) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}

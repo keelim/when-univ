@@ -100,3 +100,24 @@ Element SortedLinkedList_removeMax(SortedLinkedList *_this) {
     _this->_size--;
 
 }
+
+Boolean SortedLinkedList_search(SortedLinkedList *_this, Element anElement) {
+    Node* pointer = _this->_head;
+    while(Node_element(pointer) != NULL){
+        if(Node_element(pointer) == anElement){
+            return TRUE;
+        } else {
+            pointer = Node_next(pointer);
+        }
+    }
+    return FALSE;
+}
+
+Boolean SortedLinkedList_remove(SortedLinkedList *_this, Element anElement) {
+    Node* pointer = _this->_head;
+    _this->_head = Node_next(pointer);
+    Node_delete(pointer);
+    _this->_size--;
+    return TRUE;
+
+}
