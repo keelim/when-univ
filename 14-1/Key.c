@@ -1,6 +1,5 @@
 #include "Key.h"
 
-
 struct _Key {
     KeyValue _value;
 };

@@ -7,7 +7,6 @@ struct _Traverse {
     int _depth;
 };
 
-
 Traverse *Traverse_new() {
     Traverse *_this = NewObject(Traverse);
     _this->_key = Key_new();
@@ -23,8 +22,10 @@ void Traverse_delete(Traverse *_this) {
 }
 
 void Traverse_visit(Traverse *_this, Key* aKey, Object *anObject, int aDepth) {
-	_this->_key = aKey;
-	_this->_object = anObject;
-	_this->_depth = aDepth;
+
+	strcpy (_this->_key, aKey);
+	strcpy (_this->_object, anObject);
+	_this->_depth=aDepth;
+
 	AppView_out_traverseDisplay(_this->_key, _this->_depth);
 }

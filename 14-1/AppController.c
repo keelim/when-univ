@@ -17,6 +17,7 @@ void AppController_delete(AppController *_this) {
 }
 
 void AppController_showInternalShapeOfBinaryTree(AppController *_this, Traverse *aTraverse) {
+    AppView_out_treeSign();
     Dictionary_scanInSortedOrder(_this->_dictionary, aTraverse);
 }
 
@@ -26,10 +27,12 @@ void AppController_add(AppController *_this, char keyValue) {
     Object *addObject = Object_newWith(objectValue);
     if (Dictionary_isFull(_this->_dictionary)) {
         AppView_out_dictionaryIsFull(keyValue);
+
     } else if(Dictionary_keyDoesExist(_this->_dictionary, addKey)){
         //키가 존재를 할 때
         Dictionary_replaceObjectForKey(_this->_dictionary, addKey, addObject);
         AppView_out_replace(keyValue, objectValue);
+
     }else {
         //키가 존재 하지 않을 때
         Dictionary_addKeyAndObject(_this->_dictionary, addKey, addObject);
@@ -39,11 +42,14 @@ void AppController_add(AppController *_this, char keyValue) {
 }
 
 void AppController_remove(AppController *_this) {
-    Key *removeKey = Key_newWith(AppView_int_removeKey());
-    char removedChar = (char) Key_value(removeKey);
     if (Dictionary_isEmpty(_this->_dictionary)) {
         AppView_out_noElementInDictionary();
-    } else if (Dictionary_keyDoesExist(_this->_dictionary, removeKey)) {
+        return;
+    }
+    Key *removeKey = Key_newWith(AppView_int_removeKey());
+    char removedChar = (char) Key_value(removeKey);
+
+    if (Dictionary_keyDoesExist(_this->_dictionary, removeKey)) {
         //존재 할 때
         Dictionary_removeObjectForKey(_this->_dictionary, removeKey);
         AppView_out_removedElementFromDictionary(removedChar, (int) removedChar);

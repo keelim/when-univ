@@ -19,7 +19,7 @@ struct _Dictionary {
 
 Dictionary *Dictionary_new() {
     Dictionary *_this = NewObject(Dictionary);
-    _this->_root = BinaryNode_new();
+    _this->_root = NULL;
     _this->_size = 0;
     return _this;
 }
@@ -129,7 +129,7 @@ Object *Dictionary_searchTreeRecursively(Dictionary *_this, Key *aKey, BinaryNod
 Boolean Dictionary_addToTree(Dictionary *_this, Key *aKey, Object *anObject, BinaryNode *parent) {
     if (Key_compareTo(aKey, BinaryNode_key(parent)) < 0) {
         if (BinaryNode_left(parent) == NULL) {
-            BinaryNode_setLeft(parent, BinaryNode_new(aKey, anObject, NULL, NULL));
+            BinaryNode_setLeft(parent, BinaryNode_newWith(aKey, anObject, NULL, NULL));
             _this->_size++;
             return (TRUE);
         } else {
@@ -138,7 +138,7 @@ Boolean Dictionary_addToTree(Dictionary *_this, Key *aKey, Object *anObject, Bin
     } else if (Key_compareTo(aKey, BinaryNode_key(parent)) > 0) {
         // left의 경우를 참조하여 작성 할 것
 		if (BinaryNode_right (parent) == NULL) {
-			BinaryNode_setRight (parent, BinaryNode_new (aKey, anObject, NULL, NULL));
+			BinaryNode_setRight (parent, BinaryNode_newWith(aKey, anObject, NULL, NULL));
 			_this->_size++;
 			return TRUE;
 		}

@@ -5,8 +5,6 @@ typedef struct _Key Key;
 
 typedef int KeyValue;
 
-// KeyValue의 실제 자료형은 응용에 따라 달라질 것이다.
-
 Key *Key_new(void); // 기본 생성자
 
 Key *Key_newWith(KeyValue aValue); // 키 값이 주어지는 생성자

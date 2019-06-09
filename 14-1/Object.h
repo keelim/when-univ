@@ -4,7 +4,6 @@
 typedef struct _Object Object;
 typedef int ObjectValue;
 
-// ObjectValue의 실제 자료형은 응용에 따라 달라질 것이다.
 Object *Object_new(void); // 기본 생성자
 
 Object *Object_newWith(ObjectValue aValue);

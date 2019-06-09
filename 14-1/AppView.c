@@ -62,9 +62,9 @@ void AppView_out_endInput () {
 void AppView_out_doesExist(Boolean flag, Key *aKey) {
     char keyValue = Key_value(aKey);
     if(flag == FALSE){
-        printf("[검색] 주어진 키가 사전에 존재하지 않습니다.");
+        printf("[검색] 주어진 키가 사전에 존재하지 않습니다.\n");
     } else {
-        printf("[검색] < '%c', %d> 쌍이 사전에 존재합니다.", keyValue, (int)keyValue);
+        printf("[검색] < '%c', %d> 쌍이 사전에 존재합니다.\n", keyValue, (int)keyValue);
     }
 }
 
@@ -85,10 +85,14 @@ void AppView_out_replace(char keyValue, int objectValue) {
 }
 
 void AppView_out_traverseDisplay(Key *aKey, int aDepth) {
-    for(int i=0; i<=aDepth; i++){
-        printf("\t");
+    for(int i=0; i<aDepth; i++){
+        printf("   ");
     }
-    printf("%c", Key_value(aKey));
+    printf("%c\n", Key_value(aKey));
+}
+
+void AppView_out_treeSign() {
+    printf ("[Tree]\n");
 }
 
 

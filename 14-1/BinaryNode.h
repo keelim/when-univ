@@ -22,8 +22,6 @@ void BinaryNode_setLeft(BinaryNode *_this, BinaryNode *aLeft);
 
 BinaryNode *BinaryNode_left(BinaryNode *_this);
 
-void BinaryNode_setLeft(BinaryNode *_this, BinaryNode *aRight);
-
 BinaryNode *BinaryNode_right(BinaryNode *_this);
 
 void BinaryNode_setRight(BinaryNode *_this, BinaryNode *aLeft);
