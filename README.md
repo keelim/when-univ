@@ -67,4 +67,14 @@ Model - Controller - View
     - Dictionary
     - recusive call 하는 곳을 잘 보자
 2. 검색 알고리즘과 traverls 는 다르다.
-3. 
+
+## 2019 06 10
+1. Queue
+    - CircularyQueue
+2. Tree
+3. BinarySearchTree
+    - Dictionary
+4. Heap
+5. Deap
+6. AVL-Tree
+7. B-Tree
