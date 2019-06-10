@@ -17,7 +17,6 @@ AppController *AppController_new(void) {
 
 void AppController_delete(AppController *_this) {
     free(_this->_testData);
-    Timer_delete(_this->_timer);
     free(_this);
 }
 
@@ -241,7 +240,7 @@ double AppController_timeForUnsortedArrayList_remove(AppController *_this, Unsor
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
         if (!UnsortedArrayList_isFull(aList)) {
-            UnsortedArrayList_removeAt(aList, _this->_testData[i]);
+            UnsortedArrayList_removeAt(aList, i);
         }
         Timer_stop(timer);
         duration += Timer_duration(timer);
@@ -298,7 +297,9 @@ double AppController_timeForBinarySearchTreeDictionary_add(AppController *_this,
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
-        BinarySearchTreeDictionary_addKeyAndObject(aTree, _this->_testData[i], _this->_testData);
+		Key* addKey=Key_newWith(_this->_testData[i]);
+		Object* addObject=Object_newWith (_this->_testData[i]);
+        BinarySearchTreeDictionary_addKeyAndObject(aTree, addKey, addObject);
         Timer_stop(timer);
         duration += Timer_duration(timer);
     }
@@ -312,7 +313,8 @@ double AppController_timeForBinarySearchTreeDictionary_search(AppController *_th
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
-        BinarySearchTreeDictionary_keyDoesExist(aTree, _this->_testData[i]);
+		Key* search=Key_newWith (_this->_testData[i]);
+        BinarySearchTreeDictionary_keyDoesExist(aTree, search);
         Timer_stop(timer);
         duration += Timer_duration(timer);
     }
@@ -326,7 +328,8 @@ double AppController_timeForBinarySearchTreeDictionary_remove(AppController *_th
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
-        BinarySearchTreeDictionary_removeObjectForKey(aTree, _this->_testData[i]);
+		Key* remove=Key_newWith (_this->_testData[i]);
+        BinarySearchTreeDictionary_removeObjectForKey(aTree, remove);
         Timer_stop(timer);
         duration += Timer_duration(timer);
     }

@@ -102,15 +102,14 @@ Element SortedLinkedList_removeMax(SortedLinkedList *_this) {
 }
 
 Boolean SortedLinkedList_search(SortedLinkedList *_this, Element anElement) {
-    Node* pointer = _this->_head;
-    while(Node_element(pointer) != NULL){
-        if(Node_element(pointer) == anElement){
-            return TRUE;
-        } else {
-            pointer = Node_next(pointer);
-        }
-    }
-    return FALSE;
+    Node* pointer=_this->_head;
+	while (pointer != NULL) {
+		if (Node_element (pointer) == anElement) {
+			return TRUE;
+		}
+		pointer=Node_next (pointer);
+	}
+	return FALSE;
 }
 
 Boolean SortedLinkedList_remove(SortedLinkedList *_this, Element anElement) {

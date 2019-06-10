@@ -109,9 +109,10 @@ int UnsortedArrayList_positionUsingBinarySearch(UnsortedArrayList *_this, Elemen
 Boolean UnsortedArrayList_search(UnsortedArrayList *_this, Element anElement) {
     int i = 0;
     while (i < sizeof(_this->_elements)){
-        if (_this->_elements == anElement) {
+        if (_this->_elements[i] == anElement) {
             return TRUE;
         }
+		i++;
     }
     return FALSE;
 }
