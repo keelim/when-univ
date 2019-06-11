@@ -2,7 +2,7 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
 
     private BinaryNode<DictionaryElement<Key, Obj>> _root;
 
-    protected BinaryNode<DictionaryElement<Key, Obj>> root() {
+    private BinaryNode<DictionaryElement<Key, Obj>> root() {
         return _root;
     } //getter
 
@@ -14,9 +14,9 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
         this.clear();
     } //constructor 트리를 비운다.
 
-    private DictionaryElement<Key, Obj> elementForKey(Key aKey) {
+    private DictionaryElement<Key, Obj> elementForKey(Key aKey) { //키를 통하여 엘리먼트를 찾는다.
         if (aKey != null) { //null check
-            BinaryNode<DictionaryElement<Key, Obj>> current = this.root(); //root를 참조
+            BinaryNode<DictionaryElement<Key, Obj>> current = this.root(); //root 를 참조
             while (current != null) { //null 일 때 까지 반복
                 if (current.element().key().compareTo(aKey) == 0) { //같은면 반환
                     return current.element();
@@ -88,18 +88,18 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
 
     @Override
     public Obj removeObjectForKey(Key aKey) {
-        Obj removedObject = null;
+        Obj removedObject;
         if (this._root == null) {
             return null;
         } else if (aKey.compareTo(this._root.element().key()) == 0) {
             removedObject = this._root.element().object();
-            if ((this._root.left() == null) && (this._root.right() == null)) { // root만 있는tree
+            if ((this._root.left() == null) && (this._root.right() == null)) { // root 만 있는 tree
                 this._root = null;
-            } else if (this._root.left() == null) { // root의 left tree 가 없다
+            } else if (this._root.left() == null) { // root 의 left tree 가 없다
                 this._root = this._root.right();
-            } else if (this._root.right() == null) { // root의 right tree 가 없다
+            } else if (this._root.right() == null) { // root 의 right tree 가 없다
                 this._root = this._root.left();
-            } else {// child의 left tree, right tree가 모두 있다
+            } else {// child 의 left tree, right tree 가 모두 있다
                 this._root.setElement(removeRightMostElementOfLeftTree(this._root));
             }
             this.setSize(this.size() + 1);
@@ -111,7 +111,7 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
 
     }
 
-    private DictionaryElement<Key, Obj> removeRightMostElementOfLeftTree(BinaryNode currentRoot) {
+    private DictionaryElement<Key, Obj> removeRightMostElementOfLeftTree(BinaryNode<DictionaryElement<Key, Obj>> currentRoot) {
         // 현재의 currentRoot 의 원소를 대체할 원소인,
         // 왼쪽 트리의 가장 오른쪽 노드의 원소를 삭제하여 얻는다.
         // call 되는 시점에, currentRoot.left() 는 null 이 아니다
@@ -138,7 +138,7 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
         if (this.root() == null) {
             return null;
         }
-        if (aKey.compareTo(this.root().element().key()) == 0) {
+        if (aKey.compareTo(this.root().element().key()) == 0) { //Root 의 경우는 boundary condition
             Obj objectForRemove = this.root().element().object();
             if (this.root().left() == null && this.root().right() == null) {
                 this.setRoot(null);
@@ -153,7 +153,7 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
             return objectForRemove;
         }
         BinaryNode<DictionaryElement<Key, Obj>> current = this.root();
-        BinaryNode<DictionaryElement<Key, Obj>> child = null;
+        BinaryNode<DictionaryElement<Key, Obj>> child;
 
         do {
             if (aKey.compareTo(current.element().key()) < 0) {
@@ -184,10 +184,13 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
                     Obj objectForRemove = child.element().object();
                     if (child.left() == null && child.right() == null) {
                         current.setRight(null);
+
                     } else if (child.left() == null) {
                         current.setRight(child.right());
+
                     } else if (child.right() == null) {
                         current.setRight(child.left());
+
                     } else {
                         child.setElement(this.removeRightMostElementOfLeftTree(child));
                     }
@@ -200,23 +203,23 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
     }
 
 
-    private Obj removeObjectForKeyFromSubtree(BinaryNode currentRoot, Key aKey) {
-        // 이 시점에, currentRoot 는 null이 아니고, currentRoot의 key는 "aKey" 와 일치하지 않는다.
+    private Obj removeObjectForKeyFromSubtree(BinaryNode<DictionaryElement<Key, Obj>> currentRoot, Key aKey) {
+        // 이 시점에, currentRoot 는 null 이 아니고, currentRoo t의 key 는 "aKey" 와 일치하지 않는다.
         BinaryNode<DictionaryElement<Key, Obj>> root = currentRoot;
-        if (aKey.compareTo(root.element().key()) < 0) { // left subtree에서 삭제해야 한다
+        if (aKey.compareTo(root.element().key()) < 0) { // left subtree 에서 삭제해야 한다
             BinaryNode<DictionaryElement<Key, Obj>> child = root.left();
             if (child == null) {
                 return null;
             } else {
                 if (aKey.compareTo(child.element().key()) == 0) {
                     Obj removedObject = child.element().object();
-                    if (child.left() == null && child.right() == null) { // child가 leaf
+                    if (child.left() == null && child.right() == null) { // child 가 leaf
                         currentRoot.setLeft(null);
-                    } else if (child.left() == null) { // child 의 left tree가 없다
+                    } else if (child.left() == null) { // child 의 left tree 가 없다
                         currentRoot.setLeft(child.right());
                     } else if (child.right() == null) { // child 의 right tree 가 없다
                         currentRoot.setLeft(child.left());
-                    } else { // child의 left tree, right tree가 모두 있다
+                    } else { // child 의 left tree, right tree 가 모두 있다
                         currentRoot.setElement(removeRightMostElementOfLeftTree(child));
                     }
                     this.setSize(this.size() - 1);
@@ -225,20 +228,20 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
                     return removeObjectForKeyFromSubtree(child, aKey);
                 }
             }
-        } else { // right subtree에서 삭제해야 한다
+        } else { // right subtree 에서 삭제해야 한다
             BinaryNode<DictionaryElement<Key, Obj>> child = currentRoot.right();
             if (child == null) {
                 return null;
             } else {
                 if (aKey.compareTo(child.element().key()) == 0) {
                     Obj removedObject = child.element().object();
-                    if (child.left() == null && child.right() == null) { // child가 leaf
+                    if (child.left() == null && child.right() == null) { // child 가 leaf
                         currentRoot.setRight(null);
-                    } else if (child.left() == null) { // child 의 left tree가 없다
+                    } else if (child.left() == null) { // child 의 left tree 가 없다
                         currentRoot.setRight(child.right());
                     } else if (child.right() == null) { // child 의 right tree 가 없다
                         currentRoot.setRight(child.left());
-                    } else { // child의 left tree, right tree가 모두 있다
+                    } else { // child 의 left tree, right tree 가 모두 있다
                         currentRoot.setElement(removeRightMostElementOfLeftTree(child));
                     }
                     this.setSize(this.size() - 1);
@@ -266,9 +269,9 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
         this.inorderRecursively(this.root(), 1);
     }
 
-    private void inorderRecursively(BinaryNode<DictionaryElement<Key, Obj>> aRootOfSubtree, int aLevel) {
+    private void inorderRecursively(BinaryNode<DictionaryElement<Key, Obj>> aRootOfSubtree, int aLevel) { //Recursive 하게 Call
         if (aRootOfSubtree != null) {
-            this.inorderRecursively(aRootOfSubtree.left(), aLevel + 1);
+            this.inorderRecursively(aRootOfSubtree.left(), aLevel + 1); //층을 parameter 로 넘긴다.
             DictionaryElement<Key, Obj> visitedElement = aRootOfSubtree.element();
             this.visitDelegate().visitForSortedOrder(visitedElement, aLevel);
             this.inorderRecursively(aRootOfSubtree.right(), aLevel + 1);
@@ -290,28 +293,29 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
     }
 
 
-    private class DictionaryIterator implements Iterator<DictionaryElement<Key, Obj>> {
+    private class DictionaryIterator implements Iterator<DictionaryElement<Key, Obj>> { //Dictionary iterator
+        //iterator inner class  --> private
         private BinaryNode<DictionaryElement<Key, Obj>> _nextNode;
         private Stack<BinaryNode<DictionaryElement<Key, Obj>>> _stack;
 
-        public BinaryNode<DictionaryElement<Key, Obj>> nextNode() {
+        private BinaryNode<DictionaryElement<Key, Obj>> nextNode() { //getter
             return _nextNode;
         }
 
-        public void setNextNode(BinaryNode<DictionaryElement<Key, Obj>> _nextNode) {
+        private void setNextNode(BinaryNode<DictionaryElement<Key, Obj>> _nextNode) {
             this._nextNode = _nextNode;
-        }
+        } //setter
 
-        public Stack<BinaryNode<DictionaryElement<Key, Obj>>> stack() {
+        private Stack<BinaryNode<DictionaryElement<Key, Obj>>> stack() {
             return _stack;
-        }
+        }//getter
 
-        public void setStack(Stack<BinaryNode<DictionaryElement<Key, Obj>>> _stack) {
+        private void setStack(Stack<BinaryNode<DictionaryElement<Key, Obj>>> _stack) {
             this._stack = _stack;
-        }
+        }//setter
 
-        public DictionaryIterator() {
-            this.setStack(new LinkedStack<BinaryNode<DictionaryElement<Key, Obj>>>());
+        private DictionaryIterator() {
+            this.setStack(new LinkedStack<>());
             this.setNextNode(DictionaryByBinarySearchTree.this.root());
         }
 
@@ -321,16 +325,18 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
         } //현재 가지고 있는 지 확인
 
         @Override
-        public DictionaryElement<Key, Obj> next() { //다음으로 넘어간다. //스택을 이용하여 반복자를 활용을 한다.
-            if (!this.hasNext()) {
+        public DictionaryElement<Key, Obj> next() {
+            //다음으로 넘어간다.
+            // 스택을 이용하여 반복자를 활용을 한다.
+            if (!this.hasNext()) { //Element 를 가지고 있는지를 확인
                 return null;
             } else {
                 while (this.nextNode() != null) {
-                    this.stack().push(this.nextNode());
+                    this.stack().push(this.nextNode()); //Stack 을 활용을 하여 반복을 실시
                     this.setNextNode(this.nextNode().left());
                 }
-                BinaryNode<DictionaryElement<Key, Obj>> poppedNode = this.stack().pop();
-                DictionaryElement<Key, Obj> nextElement = poppedNode.element();
+                BinaryNode<DictionaryElement<Key, Obj>> poppedNode = this.stack().pop(); //pop
+                DictionaryElement<Key, Obj> nextElement = poppedNode.element(); //엘리먼트 확인
                 this.setNextNode(poppedNode.right());
                 return nextElement;
             }

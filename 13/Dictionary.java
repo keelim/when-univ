@@ -18,11 +18,11 @@ public abstract class Dictionary<Key extends Comparable<Key>, Obj> {
 
     public VisitDelegate<Key, Obj> visitDelegate() { //getter
         return _visitDelegate;
-    }
+    } //getter
 
     public void setVisitDelegate(VisitDelegate<Key, Obj> _visitDelegate) { //setter
         this._visitDelegate = _visitDelegate;
-    }
+    }//setter
 
     public Dictionary() {
         this.setSize(0);
@@ -33,6 +33,8 @@ public abstract class Dictionary<Key extends Comparable<Key>, Obj> {
     public boolean isEmpty() {
         return (_size == 0);
     }
+
+    //////////////////////////////////////////////abstract method//////////////////////////////////////////////////
 
     public abstract boolean isFull();
 
