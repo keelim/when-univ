@@ -5,7 +5,7 @@ public interface Stack<E> { //StackInterface
 
     boolean isEmpty();
 
-    boolean push(E anElement);
+    void push(E anElement);
 
     E pop();
 

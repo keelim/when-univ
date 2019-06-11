@@ -29,7 +29,7 @@ public class AppController implements VisitDelegate<Integer, Integer> {
         AppView.outputLine("<<< 이진검색트리로 구현된 사전에서의 삽입과 삭제 >>>");
         AppView.outputLine("");
 
-        this.setDictionary(new DictionaryByBinarySearchTree<Integer, Integer>()); //Dictionary 설정
+        this.setDictionary(new DictionaryByBinarySearchTree<>()); //Dictionary 설정
         this.dictionary().setVisitDelegate(this); //delegate 가 누구인지 알려주는 것 --> Dictionary (CallBack AppController <-> Dictionary)
         this.setList(DataGenerator.randomListWithoutDuplication(DEFAULT_DATA_SIZE)); //List set
         this.addToDictionaryAndShowShape(); //Dictionary 의 모양을 알려준다.
@@ -57,9 +57,9 @@ public class AppController implements VisitDelegate<Integer, Integer> {
 
         for (int i = 0; i < this.list().length; i++) {
             Integer currentKey = this.list()[i];
-            Integer currentObj = Integer.valueOf(i); //굳이 i를 valueOf를 할 필요가 있는가? --> return Integer instance
+            Integer currentObj = i; //굳이 i를 valueOf를 할 필요가 있는가? --> return Integer instance
             this.dictionary().addKeyAndObject(currentKey, currentObj);
-            this.showDictionary(String.format("Key=%d (Object=%d) 원소를 삽입한 후의", currentKey, currentObj)); //format --> printf?
+            this.showDictionary(String.format("Key=%d (Object=%d) 원소를 삽입한 후의", currentKey, currentObj)); //format
         }
 
     }

@@ -1,4 +1,4 @@
-public class LinkedNode<E> {  //Stack을 위한 노드
+public class LinkedNode<E> {  //Stack 을 위한 노드
     private E _element;
     private LinkedNode<E> _next;
 

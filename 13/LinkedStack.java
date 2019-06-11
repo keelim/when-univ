@@ -18,9 +18,8 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     @Override
-    public boolean push(E anElement) {
+    public void push(E anElement) {
         if (this.isFull()) { //full check
-            return false;
         } else {
             LinkedNode<E> nodeForAdd = new LinkedNode<>(anElement, null); //임시 노드 생성
             if (this.isEmpty()) { //empty check
@@ -33,7 +32,6 @@ public class LinkedStack<E> implements Stack<E> {
                 last.setNext(nodeForAdd);
             }
             this._size++;
-            return true;
         }
     }
 

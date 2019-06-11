@@ -1,4 +1,4 @@
-public class DictionaryElement<Key extends Comparable<Key>, Obj> { //Dictionary를 위한 클래스 Comparable을 extend를 하여
+public class DictionaryElement<Key extends Comparable<Key>, Obj> { //Dictionary 를 위한 클래스 Comparable 을 extend 를 하여
     //인스턴스 사이 값 비교 가능
     private Key _key;
     private Obj _object;

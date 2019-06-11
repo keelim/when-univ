@@ -42,7 +42,7 @@ public abstract class Dictionary<Key extends Comparable<Key>, Obj> {
 
     public abstract Obj objectForKey(Key aKey);
 
-    public abstract boolean addKeyAndObject(Key aKey, Obj anObject);
+    public abstract void addKeyAndObject(Key aKey, Obj anObject);
 
     public abstract Obj removeObjectForKey(Key aKey);
 

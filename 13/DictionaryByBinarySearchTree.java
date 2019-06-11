@@ -51,16 +51,16 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
     }
 
     @Override
-    public boolean addKeyAndObject(Key aKey, Obj anObject) {
+    public void addKeyAndObject(Key aKey, Obj anObject) {
         if (aKey == null) { //null check
-            return false;
+            return;
         }
         DictionaryElement<Key, Obj> elementForAdd = new DictionaryElement<>(aKey, anObject);
         BinaryNode<DictionaryElement<Key, Obj>> nodeForAdd = new BinaryNode<>(elementForAdd, null, null);
         if (this.root() == null) { //null 일 경우 root 로 add
             this.setRoot(nodeForAdd);
             this.setSize(1);
-            return true;
+            return;
         }
         BinaryNode<DictionaryElement<Key, Obj>> current = this.root();
         while (aKey.compareTo(current.element().key()) != 0) { //작거나 클 경우
@@ -68,7 +68,7 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
                 if (current.left() == null) { //null check
                     current.setLeft(nodeForAdd);
                     this.setSize(this.size() + 1); //size++
-                    return true;
+                    return;
                 } else {
                     current = current.left(); //왼쪽으로 넘어간다.
                 }
@@ -76,14 +76,13 @@ public class DictionaryByBinarySearchTree<Key extends Comparable<Key>, Obj> exte
                 if (current.right() == null) { //null check
                     current.setRight(nodeForAdd);
                     this.setSize(this.size() + 1); //size++
-                    return true;
+                    return;
                 } else {
                     current = current.right();   //오른쪽으로 넘어간다.
                 }
             }
 
         }
-        return false;
     }
 
     @Override
