@@ -78,3 +78,6 @@ Model - Controller - View
 5. Deap
 6. AVL-Tree
 7. B-Tree
+
+# DataStructure Final
+- 앞으로 배우는 자료구조의 경우 업데이트 하면 좋을 것 같다.
