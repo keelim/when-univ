@@ -54,7 +54,7 @@ void AppController_run(AppController *_this) {
         double timerForSearch = AppController_timeForSortedArrayList_search(_this, listForTest, testSize);
         AppController_showResults(_this, testSize1, timeForAdd, timeForRemove, timerForSearch);
         SortedArrayList_delete(listForTest);
-        testSize += intervalSize;
+        testSize1 += intervalSize;
     }
     /////////////////////////////////////////////////////////SortedArrayList///////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////UnSortedLinkedList///////////////////////////////////////////////////////
@@ -68,7 +68,7 @@ void AppController_run(AppController *_this) {
         double timerForSearch = AppController_timeForUnsortedLinkedList_search(_this, listForTest, testSize);
         AppController_showResults(_this, testSize2, timeForAdd, timeForRemove, timerForSearch);
         UnsortedLinkedList_delete(listForTest);
-        testSize += intervalSize;
+        testSize2 += intervalSize;
     }
     /////////////////////////////////////////////////////////UnSortedLinkedList///////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////SortedLinkedList///////////////////////////////////////////////////////
@@ -82,7 +82,7 @@ void AppController_run(AppController *_this) {
         double timerForSearch = AppController_timeForSortedLinkedList_search(_this, listForTest, testSize);
         AppController_showResults(_this, testSize3, timeForAdd, timeForRemove, timerForSearch);
         SortedLinkedList_delete(listForTest);
-        testSize += intervalSize;
+        testSize3 += intervalSize;
     }
     /////////////////////////////////////////////////////////SortedLinkedList///////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////BinarySearchTreeDictionary///////////////////////////////////////////////////////
@@ -95,7 +95,7 @@ void AppController_run(AppController *_this) {
         double timerForSearch = AppController_timeForBinarySearchTreeDictionary_search(_this, listForTest, testSize);
         AppController_showResults(_this, testSize4, timeForAdd, timeForRemove, timerForSearch);
         BinarySearchTreeDictionary_delete(listForTest);
-        testSize += intervalSize;
+        testSize4 += intervalSize;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,8 +115,10 @@ void AppController_generateTestDataByRandomNumbers(AppController *_this) {
 double AppController_timeForSortedArrayList_add(AppController *_this, SortedArrayList *aList, int aTestSize) {
     Timer *timer = Timer_new();
     double duration = 0;
+	
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         if (!SortedArrayList_isFull(aList)) {
             SortedArrayList_add(aList, _this->_testData[i]);
         }
@@ -133,6 +135,7 @@ double AppController_timeForSortedArrayList_search(AppController *_this, SortedA
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         if (!SortedArrayList_isFull(aList)) {
             SortedArrayList_positionUsingBinarySearch(aList, _this->_testData[i]);
         }
@@ -149,6 +152,7 @@ double AppController_timeForSortedArrayList_remove(AppController *_this, SortedA
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         if (!SortedArrayList_isFull(aList)) {
             SortedArrayList_removeAt(aList, _this->_testData[i]);
         }
@@ -165,6 +169,7 @@ double AppController_timeForSortedLinkedList_add(AppController *_this, SortedLin
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         SortedLinkedList_add(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
@@ -179,6 +184,7 @@ double AppController_timeForSortedLinkedList_search(AppController *_this, Sorted
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         SortedLinkedList_search(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
@@ -193,6 +199,7 @@ double AppController_timeForSortedLinkedList_remove(AppController *_this, Sorted
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         SortedLinkedList_remove(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
@@ -207,6 +214,7 @@ double AppController_timeForUnsortedArrayList_add(AppController *_this, Unsorted
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         if (!UnsortedArrayList_isFull(aList)) {
             UnsortedArrayList_add(aList, _this->_testData[i]);
         }
@@ -223,6 +231,7 @@ double AppController_timeForUnsortedArrayList_search(AppController *_this, Unsor
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         if (!UnsortedArrayList_isFull(aList)) {
             UnsortedArrayList_search(aList, _this->_testData[i]);
         }
@@ -239,6 +248,7 @@ double AppController_timeForUnsortedArrayList_remove(AppController *_this, Unsor
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         if (!UnsortedArrayList_isFull(aList)) {
             UnsortedArrayList_removeAt(aList, i);
         }
@@ -255,6 +265,7 @@ double AppController_timeForUnsortedLinkedList_add(AppController *_this, Unsorte
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         UnsortedLinkedList_add(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
@@ -269,6 +280,7 @@ double AppController_timeForUnsortedLinkedList_search(AppController *_this, Unso
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         UnsortedLinkedList_search(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
@@ -283,6 +295,7 @@ double AppController_timeForUnsortedLinkedList_remove(AppController *_this, Unso
     double duration = 0;
     for (int i = 0; i < aTestSize; i++) {
         Timer_start(timer);
+        BinaryNode_newWith(Key_newWith(_this->_testData[i]), Object_newWith(_this->_testData[i]), NULL, NULL);
         UnsortedLinkedList_remove(aList, _this->_testData[i]);
         Timer_stop(timer);
         duration += Timer_duration(timer);
