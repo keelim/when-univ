@@ -35,3 +35,16 @@
     - Document store
     - sns, iot
     - NoSQL
+
+## 2019 07 23
+> Relational database
+
+    - mysql
+        - web + mysql
+    - oracle
+    - sql server
+    - PostgreSql
+    - DB2
+    - Access
+
+> 웹사이트의 정보를 데이터베이스에 반영을 할 수 있다. 
