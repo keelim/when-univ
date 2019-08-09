@@ -122,3 +122,10 @@ SELECT * FROM [Sales].[SalesOrderHeader] WHERE [CustomerID] = '11901' ORDER BY [
 SELECT *FROM TABLE WHERE FIELD LIKE  %조건%
 ```
     - 조건 포함 결과 출력 
+
+## 2019 08 09
+> BETWEEN
+
+> 문자함수
+
+> 날짜함수
