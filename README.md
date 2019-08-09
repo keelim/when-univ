@@ -95,7 +95,30 @@ UPDATE [HumanResouces].[Employee] SET [Jobtitle='Asia Sales Manager'] WHERE [Bus
 
 ## 2019 08 09
 > DELETE FROM
+```SQL
+DELETE FROM TABLE WHERE 조건=조건식
+SELECT *FROM[HumanResources].[Department] WHERE [Department ID] = 19
+```
+    - 필요 없는 데이터는 없다. 
+    - 삭제의 경우에도 삭제를 하지 않는 것
+    - WHERE 은 항상 붙어 있어야 한다.
 
 > SELECT FROM
+```SQL
+SELECT * FROM TABLE 
+SELECT * FROM [Production].[Product]
+SELECT [ProductID].[Name].[ProductNumber] FROM [Production].[Product]
+SELECT FIELD1, FIELD2 FROM TABLE WHERE 조건=조건식
+SELECT * FROM TABLE WHERE 조건=조건식
+SELECT * FROM [Production].[Product] WHERE [Name] = 'Chain'
+SELECT FIELD1, FIELD2 FROM TABLE WHERE 조건=조건식 ORDER BY FIELD 명 (ASC/DESC)
+SELECT * FROM [Sales].[SalesOrderHeader] WHERE [CustomerID] = '11901' ORDER BY [OrderDate] DESC
+
+```
 
 > LIKE
+
+```SQL
+SELECT *FROM TABLE WHERE FIELD LIKE  %조건%
+```
+    - 조건 포함 결과 출력 
