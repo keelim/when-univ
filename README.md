@@ -123,9 +123,19 @@ SELECT *FROM TABLE WHERE FIELD LIKE  %조건%
 ```
     - 조건 포함 결과 출력 
 
-## 2019 08 09
+## 2019 08 13
 > BETWEEN
+```sql 
+SELECT * FROM[Production].[Product] WHERE [ListPrice] >= 1000 AND [ListPrice]<=3000
+SELECT * FROM TABLE WHERE FIELD BETWEEN '조건1' AND '조건2'
+SELECT * FROM [Production].[Product] WHERE [ListPrice] BETWEEN 1000 AND 3000
+```
 
-> 문자함수
+> IN
+```sql
+SELECT * FROM TABLE WHERE FIELD IN (조건1, 조건2....)
+SELECT * FROM [Sales].[Store] WHERE [SalesPersonID]=277 OR [Sales PersonID]=281 OR [SalesPersonID]=283 OR [SalesPersonID] = 290
+```
 
-> 날짜함수
+## 2019 08 14
+> 형변환과 중복 제거
