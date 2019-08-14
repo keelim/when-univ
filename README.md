@@ -139,3 +139,12 @@ SELECT * FROM [Sales].[Store] WHERE [SalesPersonID]=277 OR [Sales PersonID]=281 
 
 ## 2019 08 14
 > 형변환과 중복 제거
+
+```sql
+CONVERT(x1, x2, [x3])
+SELECT CONVERT(VARCHAR(10), GETDATE()) AS CV01, CONVERT(VARCHAR(10)M GETDATE(), 23) AS CV02
+SELECT [City] FROM [Person].[Address]
+
+SELECT DISTINCT ([City]) AS DISTINCT_TEST FROM [Person].[Address]
+```
+
