@@ -148,3 +148,14 @@ SELECT [City] FROM [Person].[Address]
 SELECT DISTINCT ([City]) AS DISTINCT_TEST FROM [Person].[Address]
 ```
 
+> 그룹화
+```sql
+SELECT DISTINCT([Gender]) AS DC01 FROM [HumanResources].[Employee]
+SELECT [Gender] FROM [HumanResources].[Employee] GROUP BY [Gender]
+SELECT DISTINCT([Gender]) AS DC01, COUNT([Gender]) AS COUNTER01 FROM [HumanResources].[Employee]
+SELECT [Gender],COUNT([Gender]) AS COUNTER01 FROM [HumanResources].[Emploee] GROUP BY [Gender]
+
+```
+
+> 집계 함수
+
