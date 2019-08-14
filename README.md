@@ -158,4 +158,15 @@ SELECT [Gender],COUNT([Gender]) AS COUNTER01 FROM [HumanResources].[Emploee] GRO
 ```
 
 > 집계 함수
+```sql
+STDEV, AVG, VAR, COUNT, SUM
+SELECT MAX([Subtotal]) AS S_MAX, MIN([SubTotal]) AS S_MIN, STDEV([SubTotalS]) AS S_STDEV, AVG([SubTotal]) AS S_AVG FROM[Purchasing].[PurchaseOrderHeader]
+```
+
+## 2019 08 15
+관계형 데이터베이스의 핵심
+
+> IN-LINE VIEW and SUBQUERY
+> CROSS AND UNION
+> OUTER-JOIN
 
