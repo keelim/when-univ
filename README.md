@@ -203,3 +203,27 @@ SELECT * FROM TABLE1 AS T1 [LEFT OR RIGHT, FULL] OUTER JOIN TABLE2 AS T2 ON 조�
 SELECT * FROM TABLE AS 별칭1 INNER JOIN TABLE2 AS 별칭2 ON 조건식
  
 ```
+
+## 2019 08 18 
+> INNER JOIN
+
+```sql
+SELECT * FROM TABLE1 AS 별칭1 INNER JOIN TABLE2 AS 별칭2 ON 조건식
+SELECT [ProductID], [Description] FROM [Production].[Product] INNER JOIN [Prdocuction].[ProductDescription] ON [ProductID]=[ProductDescription]D
+SELECT * FROM TABLE1 AS 별칭1, TABLE2 AS 별칭2 WHERE 조건식
+
+``` 
+    - JOIN의 테이블 수 확인
+    - 출력 필드 확인, 해당 필드의 SELECT 를 학인을 해볼 것
+    - 각각의 테이블에서 완성된 최종 쿼리르르 키 값에 따라 JOIN 하여 최종 쿼리 완성
+    
+> INSERT
+    
+```sql
+SELECT * FROM INTO COPY_TABLE FROM BASIC_TABLE
+INSERT INTO  TABLE1 SELECT* FROM TABLE2
+```
+    - 데이터를 보관을 할 수 있게 한다.
+    - 특정 테이블에 저장된 데이터를 한번에 입력하는 방법 
+
+ 
