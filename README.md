@@ -167,6 +167,39 @@ SELECT MAX([Subtotal]) AS S_MAX, MIN([SubTotal]) AS S_MIN, STDEV([SubTotalS]) AS
 관계형 데이터베이스의 핵심
 
 > IN-LINE VIEW and SUBQUERY
+    
+    - VIEW 물리적 공간을 차지하지 않는 가상의 테이블
+    - view 수정 시 원본데이터도 영향을 받는다.
+    
+```mysql
+    SELECT * FROM TABLE_A
+    SELECT * FROM(SELECT FIELD1, FIELD2 FROM TABLE_A) AS TEMP_T
+    SELECT * FROM (SELECT[Color], COUNT([Color], AVG([ListPrice], SUM([ListPrice]) FROM [Production].[Product] GROUP BY ([Color]) 
+    WHERE COUNT_c>10
+    SELECT * FROM [HumanResources].[EmployeeDepartmentHistory] WHERE [DepartmentID] IN (SELECT [DepatmentIF] FROM [HumanResources].[Department] WHERE [GroupName]='Sales and Marketing'
+
+
+```
 > CROSS AND UNION
+>
+    - CROSS JOIN 
+    - 모드 데이터들의 순서싸응로 결과를 나타내는 복합 query
+    - CROSS UNION 
+    - 두 테이블의 데이터를 하나로 합쳐 결과를 출력 복합 QUERY
+    - 필드의 개수 동일
+```mysql
+SELECT * FROM TABLE01 CROSS JOIN TABLE 02
+SELECT * FROM FIELD01, FIELD02 FROM TABLE1 UNION SELECT FIELD1, FIELD2 FROM TABLE2
+SELECT [BusinessEnityID].[LoginID] FROM [HumanResources].[Emplpoyee] UNION SELECT [DepartmentID].[Name] FROM [HumanResources].[Deparment]
+```
 > OUTER-JOIN
 
+    - 서로 연결되는 복수 테이블 간의 키값
+    - JOIN 은 반드시 조건이 명시되어야 한다.
+
+```mysql
+SELECT * FROM TABLE 1 AS 별칭1 [LEFT OR RIGHT] OUTER JOIN TABLE2 AS 별칭2
+SELECT * FROM TABLE1 AS T1 [LEFT OR RIGHT, FULL] OUTER JOIN TABLE2 AS T2 ON 조건식
+SELECT * FROM TABLE AS 별칭1 INNER JOIN TABLE2 AS 별칭2 ON 조건식
+ 
+```
