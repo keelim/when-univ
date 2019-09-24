@@ -9,3 +9,7 @@ Release
 x64
 *.hwp
 *.zip
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
