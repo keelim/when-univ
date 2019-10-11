@@ -313,3 +313,8 @@ INSERT INTO  TABLE1 SELECT* FROM TABLE2
     - os required
     - all category use database 
     - cloud
+
+## 2019 10 11
+> 데이터베이스 설계
+
+> 정규화 -> 가지 치기 > 필요 없는 것들을 가지 치기
