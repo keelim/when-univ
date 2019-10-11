@@ -242,7 +242,7 @@ INSERT INTO  TABLE1 SELECT* FROM TABLE2
 
     - 컴퓨터를 사용하여 정보를 수집하고 분석,  데이터베이스 기술이 활용
     - 정보, 데이터는 서로 다름
-    - 데이터베이스는 조직체의 응용시스템들이 공유해서 사용하는 운영데이터들이 구조wjr 통합된 모임.
+    - 데이터베이스는 조직체의 응용시스템들이 공유해서 사용하는 운영데이터들이 구조적 통합된 모임.
        - 파일 files collections of record 레코드를 묶어놓은 것이 파일 
        - 레코드는 collection of data // field
        - 하나를 data item 이라 하고 record 라고 한다.
