@@ -9,7 +9,7 @@ import java.io.IOException;
 public class LoginGui3 extends JFrame implements ActionListener {
     private JTextField loginField;
     private JPasswordField passwordField;
-    private User user = User.getInstance(); // 유저 인스턴스에 저장을 한다.
+    private MainTest.User user = MainTest.User.getInstance(); // 유저 인스턴스에 저장을 한다.
 
     //	서버 체크하기
     public LoginGui3() {
@@ -41,7 +41,7 @@ public class LoginGui3 extends JFrame implements ActionListener {
         getContentPane().add(SigninButton);
 
         JButton Signupbutton = new JButton("Sign up");
-        Signupbutton.addActionListener(e -> new MemberGui());
+        Signupbutton.addActionListener(e -> new MainTest.MemberGui());
         Signupbutton.setBounds(316, 83, 85, 21);
         getContentPane().add(Signupbutton);
         setLocationRelativeTo(null);
@@ -54,7 +54,7 @@ public class LoginGui3 extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) throws IOException {
-        LoginGui2 m = new LoginGui2();
+        MainTest.LoginGui2 m = new MainTest.LoginGui2();
     }
 
 
@@ -69,16 +69,16 @@ public class LoginGui3 extends JFrame implements ActionListener {
 
         } else {
 
-            boolean existLogin = Login.loginTest(id, password);
+            boolean existLogin = MainTest.Login.loginTest(id, password);
             if (existLogin) {
 
                 user.setID(id);
-                user.setGameMoney(Login.getMoney(id));
-                user.setWin(Login.getWin(id));
-                user.setLevel(Login.getlevel(id));
+                user.setGameMoney(MainTest.Login.getMoney(id));
+                user.setWin(MainTest.Login.getWin(id));
+                user.setLevel(MainTest.Login.getlevel(id));
 
                 setVisible(false);
-                new MainFrame();
+                new MainTest.MainFrame();
 
             } else {
                 // 로그인 실패일 경우
