@@ -1,4 +1,4 @@
-package MainTest;
+package maintest;
 
 import javax.swing.*;
 import java.awt.*;

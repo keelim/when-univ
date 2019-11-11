@@ -1,4 +1,4 @@
-package MainTest; // 관리자용 건들지 말 것
+package maintest; // 관리자용 건들지 말 것
 
 public class MemberSave {
     private String ID;

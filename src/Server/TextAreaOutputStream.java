@@ -1,4 +1,4 @@
-package ServerTest;
+package Server;
 
 import javax.swing.*;
 import java.awt.*;

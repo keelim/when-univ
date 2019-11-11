@@ -1,4 +1,4 @@
-package ServerTest;
+package Server;
 
 
 import Command.Command;
@@ -27,7 +27,7 @@ public class Server implements Serializable {
             JFrame frame = new JFrame();
             frame.add(new JLabel(" Server Monitoring"), BorderLayout.CENTER);
             JTextArea textArea = new JTextArea();
-            TextAreaOutputStream toutputStream = new TextAreaOutputStream(textArea, 60);
+            ServerTest.TextAreaOutputStream toutputStream = new ServerTest.TextAreaOutputStream(textArea, 60);
             PrintStream outputStream = new PrintStream(toutputStream);
             System.setOut(outputStream);
             System.setErr(outputStream);

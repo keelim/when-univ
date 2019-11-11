@@ -1,4 +1,4 @@
-package MainTest;
+package maintest;
 // 기보 로그인 관련
 
 import javax.swing.*;
@@ -69,13 +69,13 @@ public class LoginGui3 extends JFrame implements ActionListener {
 
         } else {
 
-            boolean existLogin = MainTest.Login.loginTest(id, password);
+            boolean existLogin = Login.loginTest(id, password);
             if (existLogin) {
 
                 user.setID(id);
-                user.setGameMoney(MainTest.Login.getMoney(id));
-                user.setWin(MainTest.Login.getWin(id));
-                user.setLevel(MainTest.Login.getlevel(id));
+                user.setGameMoney(Login.getMoney(id));
+                user.setWin(Login.getWin(id));
+                user.setLevel(Login.getlevel(id));
 
                 setVisible(false);
                 new MainTest.MainFrame();

@@ -1,4 +1,4 @@
-package MainTest;
+package maintest;
 
 import java.sql.*;
 import java.util.Properties;

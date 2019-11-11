@@ -1,4 +1,4 @@
-package MainTest;
+package maintest;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -51,7 +51,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
         col.add("GameMoney");
         col.add("level");
         col.add("win");
-        
+
         return col;
     }//getColumn
 

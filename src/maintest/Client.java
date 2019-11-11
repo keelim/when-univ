@@ -1,4 +1,4 @@
-package MainTest;
+package maintest;
 
 import Command.Command;
 

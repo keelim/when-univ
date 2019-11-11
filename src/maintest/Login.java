@@ -1,4 +1,4 @@
-package MainTest;
+package maintest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ public class Login {
     public static boolean loginTest(String ID, String PW) {
         boolean flag = false;
         String getPass;
-        DBConnectionMgr pool = DBConnectionMgr.getInstance();
+        MainTest.DBConnectionMgr pool = MainTest.DBConnectionMgr.getInstance();
 
         try {
             con = pool.getConnection();
@@ -41,7 +41,7 @@ public class Login {
     }
 
     public static int getMoney(String ID) {
-        DBConnectionMgr pool = DBConnectionMgr.getInstance();
+        MainTest.DBConnectionMgr pool = MainTest.DBConnectionMgr.getInstance();
         int gMoney = 0;
 
         try {
@@ -68,7 +68,7 @@ public class Login {
     }
 
     public static int getWin(String id) {
-        DBConnectionMgr pool = DBConnectionMgr.getInstance();
+        MainTest.DBConnectionMgr pool = MainTest.DBConnectionMgr.getInstance();
         int win = 0;
 
         try {
@@ -90,7 +90,7 @@ public class Login {
     }
 
     public static int getlevel(String id) {
-        DBConnectionMgr pool = DBConnectionMgr.getInstance();
+        MainTest.DBConnectionMgr pool = MainTest.DBConnectionMgr.getInstance();
         int level = 0;
 
         try {

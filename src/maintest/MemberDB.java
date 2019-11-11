@@ -1,4 +1,4 @@
-package MainTest; //DB로 직접적인 접근을 하는 것이다. --> 서버를 통해서 DB를 접근을 하고 인증을 하는 것이 더 낫지 않을까?
+package maintest; //DB로 직접적인 접근을 하는 것이다. --> 서버를 통해서 DB를 접근을 하고 인증을 하는 것이 더 낫지 않을까?
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;

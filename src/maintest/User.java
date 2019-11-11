@@ -1,4 +1,4 @@
-package MainTest;
+package maintest;
 
 public class User {
     private static User instance = null;
