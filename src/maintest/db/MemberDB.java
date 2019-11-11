@@ -1,4 +1,7 @@
-package maintest; //DB로 직접적인 접근을 하는 것이다. --> 서버를 통해서 DB를 접근을 하고 인증을 하는 것이 더 낫지 않을까?
+package maintest.db; //DB로 직접적인 접근을 하는 것이다. --> 서버를 통해서 DB를 접근을 하고 인증을 하는 것이 더 낫지 않을까?
+
+import maintest.MemberSave;
+import maintest.ui.Member_List;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -41,9 +44,9 @@ public class MemberDB {
     //회원 정보를 얻어온다.
     public MemberSave getMemberDB(String id) {
         MemberSave save = new MemberSave();
-        Connection con = null;       //연결
-        PreparedStatement ps = null; //명령
-        ResultSet rs = null;         //결과
+        Connection con;       //연결
+        PreparedStatement ps; //명령
+        ResultSet rs;         //결과
 
         try {
             con = getConn();
@@ -68,7 +71,7 @@ public class MemberDB {
      * 멤버리스트 출력
      */
     public Vector getMemberList() {
-        Vector data = new Vector();  //Jtable에 값을 쉽게 넣는 방법 1. 2차원배열   2. Vector 에 vector추가
+        Vector data = new Vector();  // Jtable 에 값을 쉽게 넣는 방법 1. 2차원배열   2. Vector 에 vector 추가
         Connection con;       //연결
         PreparedStatement ps; //명령
         ResultSet rs;         //결과
@@ -147,7 +150,7 @@ public class MemberDB {
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
             int r = ps.executeUpdate(); //실행 -> 수정
-            if (r > 0) ok = true; //수정이 성공되면 ok값을 true로 변경
+            if (r > 0) ok = true; //수정이 성공되면 ok 값을 true 로 변경
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -177,9 +180,6 @@ public class MemberDB {
     }
 
 
-    /**
-     * DB데이터 다시 불러오기
-     */
     public void userSelectAll(DefaultTableModel model) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -189,7 +189,7 @@ public class MemberDB {
             String sql = "select * from user order by ID asc ";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            // DefaultTableModel에 있는 데이터 지우기
+            // DefaultTableModel 에 있는 데이터 지우기
             for (int i = 0; i < model.getRowCount(); ) {
                 model.removeRow(0);
             }

@@ -1,5 +1,7 @@
 package maintest;
 
+import maintest.db.DBConnectionMgr;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +15,7 @@ public class Login {
     public static boolean loginTest(String ID, String PW) {
         boolean flag = false;
         String getPass;
-        MainTest.DBConnectionMgr pool = MainTest.DBConnectionMgr.getInstance();
+        DBConnectionMgr pool = DBConnectionMgr.getInstance();
 
         try {
             con = pool.getConnection();
@@ -31,7 +33,7 @@ public class Login {
                 }
             }
         } catch (Exception e) {
-            
+
             e.printStackTrace();
         } finally {
             // 자원반납
@@ -41,7 +43,7 @@ public class Login {
     }
 
     public static int getMoney(String ID) {
-        MainTest.DBConnectionMgr pool = MainTest.DBConnectionMgr.getInstance();
+        DBConnectionMgr pool = DBConnectionMgr.getInstance();
         int gMoney = 0;
 
         try {
@@ -68,7 +70,7 @@ public class Login {
     }
 
     public static int getWin(String id) {
-        MainTest.DBConnectionMgr pool = MainTest.DBConnectionMgr.getInstance();
+        DBConnectionMgr pool = DBConnectionMgr.getInstance();
         int win = 0;
 
         try {
@@ -89,8 +91,8 @@ public class Login {
         return win;
     }
 
-    public static int getlevel(String id) {
-        MainTest.DBConnectionMgr pool = MainTest.DBConnectionMgr.getInstance();
+    public static int getLevel(String id) {
+        DBConnectionMgr pool = DBConnectionMgr.getInstance();
         int level = 0;
 
         try {

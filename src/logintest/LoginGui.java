@@ -1,4 +1,10 @@
-package maintest;
+package logintest;
+
+import maintest.Login;
+import maintest.User;
+import maintest.ui.MainFrame;
+import maintest.ui.MemberGui;
+import maintest.ui.Member_List;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -33,21 +39,22 @@ public class LoginGui extends JFrame implements ActionListener {
         labelPassword.setBounds(68, 87, 57, 15);
         getContentPane().add(labelPassword);
 
-        JButton SigninButton = new JButton("Sign in");
-        SigninButton.setBounds(316, 53, 85, 21);
-        SigninButton.addActionListener(this);
-        getContentPane().add(SigninButton);
+        JButton signInButton = new JButton("Sign in");
+        signInButton.setBounds(316, 53, 85, 21);
+        signInButton.addActionListener(this);
+        getContentPane().add(signInButton);
 
-        JButton Signupbutton = new JButton("Sign up");
-        Signupbutton.addActionListener(e -> new MemberGui());
-        Signupbutton.setBounds(316, 83, 85, 21);
-        getContentPane().add(Signupbutton);
+        JButton signUpButton = new JButton("Sign up");
+        signUpButton.addActionListener(e -> new MemberGui());
+        signUpButton.setBounds(316, 83, 85, 21);
+        getContentPane().add(signUpButton);
         setLocationRelativeTo(null);
         setVisible(true);
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -76,7 +83,7 @@ public class LoginGui extends JFrame implements ActionListener {
 
                 user.setWin(Login.getWin(id));
 
-                user.setLevel(Login.getlevel(id));
+                user.setLevel(Login.getLevel(id));
                 if (id.equals("GM")) {
                     setVisible(false);
                     new Member_List();

@@ -1,6 +1,7 @@
 package maintest;
 
-import Command.Command;
+
+import command.Command;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -12,8 +13,8 @@ import java.net.Socket;
 public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
     public Command resultComm;
-    public Command readComm;
-    public Command writeComm;
+    private Command readComm;
+    private Command writeComm;
     private Socket socket;
     private ObjectInputStream readStream;
     private ObjectOutputStream writeStream;
@@ -33,9 +34,7 @@ public class Client implements Serializable {
     public Command getResponse() { //서버의 반응을 살핀다.
         try {
             readComm = (Command) readStream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return readComm;
@@ -72,15 +71,15 @@ public class Client implements Serializable {
         return getResponse();
     }
 
-    public Command idplus(String id) { //아이디 중복 방지
+    public Command idPlus(String id) { //아이디 중복 방지
         String[] args = {id};
-        sendValue(Command.PLUSID, args);
+        sendValue(Command.PLUS_ID, args);
         return getResponse();
     }
 
-    public Command pluswin(String id) { //승리를 데이터 베이스에서 구현
+    public Command plusWin(String id) { //승리를 데이터 베이스에서 구현
         String[] args = {id};
-        sendValue(Command.PLUSWIN, args);
+        sendValue(Command.PLUS_WIN, args);
         return getResponse();
     }
 

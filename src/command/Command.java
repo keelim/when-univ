@@ -1,15 +1,15 @@
-package Command;
+package command;
 
 import java.io.Serializable;
 
 public class Command implements Serializable { // 공통적으로 서버와 클라이언트가 통신을 하기 위한 클래스\
-    public static final int WIN = 7777;  // win을 작용시킨다.
+    private static final long serialVersionUID = 1L;
+
+    public static final int WIN = 7777;  // win 을 작용시킨다.
     public static final int POINT = 3333;  // 서버 상태를 확인한다.
     public static final int LEVEL = 2222; //레벨을 확인을 한다.
-    public static final int PLUSWIN = 8888; // 윷놀이 하고 연관을 시키면 된다.
-    public static final int PLUSID = 4444;
-
-    private static final long serialVersionUID = 1L;
+    public static final int PLUS_WIN = 8888; // 윷놀이 하고 연관을 시키면 된다.
+    public static final int PLUS_ID = 4444;
 
     private int commandValue; //어떤 한 명령이 들어오는지를 판단한다.
     private int status = 0;
@@ -66,6 +66,5 @@ public class Command implements Serializable { // 공통적으로 서버와 클�
     public void setStatus(int status) {
         this.status = status;
     }
-
 
 }

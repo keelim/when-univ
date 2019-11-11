@@ -1,4 +1,4 @@
-package Server;
+package server;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,12 +12,12 @@ public class TextAreaOutputStream extends OutputStream {
     private byte[] bytes;
     private Appender appender;
 
-    public TextAreaOutputStream(JTextArea txtara, int maxlin) {
-        if (maxlin < 1) {
-            throw new IllegalArgumentException("TextAreaOutputStream maximum lines must be positive (value=" + maxlin + ")");
+    public TextAreaOutputStream(JTextArea txtAra, int maxLin) {
+        if (maxLin < 1) {
+            throw new IllegalArgumentException("TextAreaOutputStream maximum lines must be positive (value=" + maxLin + ")");
         }
         bytes = new byte[1];
-        appender = new Appender(txtara, maxlin);
+        appender = new Appender(txtAra, maxLin);
     }
 
     static private String bytesToString(byte[] ba, int str, int len) {
@@ -65,12 +65,12 @@ public class TextAreaOutputStream extends OutputStream {
         private boolean clear;
         private boolean queue;
 
-        Appender(JTextArea txtara, int maxlin) {
-            textArea = txtara;
-            maxLines = maxlin;
+        Appender(JTextArea txtAra, int maxLin) {
+            textArea = txtAra;
+            maxLines = maxLin;
 
-            lengths = new LinkedList<Integer>();
-            values = new ArrayList<String>();
+            lengths = new LinkedList<>();
+            values = new ArrayList<>();
             curLength = 0;
             clear = false;
             queue = true;

@@ -1,4 +1,6 @@
-package maintest;
+package maintest.ui;
+
+import maintest.db.MemberDB;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,12 +12,12 @@ import java.awt.event.MouseListener;
 import java.util.Vector;
 
 public class Member_List extends JFrame implements MouseListener, ActionListener {
-    Vector v, cols;
-    DefaultTableModel model;
-    JTable table;
-    JScrollPane pane;
-    JPanel panel;
-    JButton button;
+    private Vector v, cols;
+    private DefaultTableModel model;
+    private JTable table;
+    private JScrollPane pane;
+    private JPanel panel;
+    private JButton button;
 
     public Member_List() {
         super("GM 회원 관리 창");
@@ -43,9 +45,9 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
     }
 
 
-    //JTable의 컬럼
-    public Vector getColumn() {
-        Vector col = new Vector();
+    //JTable 의 컬럼
+    public Vector<String> getColumn() {
+        Vector<String> col = new Vector<>();
         col.add("아이디");
         col.add("비밀번호");
         col.add("GameMoney");
@@ -56,7 +58,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
     }//getColumn
 
 
-    //Jtable 내용 갱신 메서드
+    // JTable 내용 갱신 메서드
     public void jTableRefresh() {
         MemberDB db = new MemberDB();
         DefaultTableModel model = new DefaultTableModel(db.getMemberList(), getColumn());

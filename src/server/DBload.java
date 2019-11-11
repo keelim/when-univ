@@ -1,6 +1,4 @@
-package Server;
-
-import main.java.ServerTest.Server;
+package server;
 
 import java.sql.*;
 

@@ -1,4 +1,7 @@
-package maintest;
+package maintest.ui;
+
+import maintest.MemberSave;
+import maintest.db.MemberDB;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +17,7 @@ public class MemberGui extends JFrame implements ActionListener {
     Member_List mList;
 
     public MemberGui() { //가입용 생성자
-        paintUI(); // UI작성해주는 메소드
+        paintUI(); // UI 작성해주는 메소드
         btnUpdate.setEnabled(false);
         btnUpdate.setVisible(false);
         btnDelete.setEnabled(false);
@@ -22,7 +25,7 @@ public class MemberGui extends JFrame implements ActionListener {
     }//생성자
 
     public MemberGui(Member_List mList) { //가입용 생성자
-        paintUI(); // UI작성해주는 메소드
+        paintUI(); // UI 작성해주는 메소드
         btnUpdate.setEnabled(false);
         btnUpdate.setVisible(false);
         btnDelete.setEnabled(false);

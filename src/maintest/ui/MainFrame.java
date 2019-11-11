@@ -1,4 +1,8 @@
-package maintest;
+package maintest.ui;
+
+import maintest.Client;
+import maintest.User;
+import maintest.Yut;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +12,7 @@ public class MainFrame extends JFrame {
     private User user = User.getInstance();
     private String id = user.getID();
     private Client client = new Client();
-    private int yutchecknum = 0;
+    private int yutCheckNum = 0;
     private int i = 0; // 가상의 적이 이동하는 말
     private int t = 0;
     private int t_1 = 0; // 가상의 적의 말이 6번에 왔을 때
@@ -32,7 +36,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         JOptionPane.showMessageDialog(null, "서버 이중 로그인 방지 ");
-        client.resultComm = client.idplus(id); // 서버 이중 로그인 방지 하는 것을 만들기
+        client.resultComm = client.idPlus(id); // 서버 이중 로그인 방지 하는 것을 만들기
 
         if (client.resultComm.getStatus() == -1) {
             JOptionPane.showMessageDialog(null, "접속 되어진 아이디가 있습니다. ");
@@ -48,7 +52,7 @@ public class MainFrame extends JFrame {
         JButton state_button = new JButton("상 태");
         state_button.setBounds(637, 185, 105, 49);
         state_button.addActionListener(e -> {
-            new Staus();
+            new Status();
         });
 
         getContentPane().add(state_button);
@@ -580,7 +584,7 @@ public class MainFrame extends JFrame {
         getContentPane().add(button_31);
         button_31.addActionListener(e -> {
 
-            if (yutchecknum == 0) {
+            if (yutCheckNum == 0) {
 
                 Yut u = new Yut();
 
@@ -881,7 +885,7 @@ public class MainFrame extends JFrame {
                 }
 
 
-                yutchecknum = 0;
+                yutCheckNum = 0;
             }
         });
 
@@ -899,7 +903,7 @@ public class MainFrame extends JFrame {
         private int win = 1;
 
         public Win() {
-            client.resultComm = client.pluswin(user.getID()); //서버에 승리를 보내어 DB에 넣도록 한다
+            client.resultComm = client.plusWin(user.getID()); //서버에 승리를 보내어 DB에 넣도록 한다
 
             JLabel label = new JLabel("WIN!");
             label.setFont(new Font("Serif", Font.BOLD, 100));
@@ -916,7 +920,7 @@ public class MainFrame extends JFrame {
         }
     }
 
-    class Lose extends JFrame {
+    static class Lose extends JFrame {
         private int win = 0;
 
         public Lose() {
@@ -930,14 +934,15 @@ public class MainFrame extends JFrame {
             setVisible(true);
 
         }
+
         int get_win() {
             return win;
         }
     }
 
-    class Staus extends JFrame {
+    class Status extends JFrame {
 
-        public Staus() { // Frame 상태에서는 쓰레드를 호환을 할 수 가 없다. ? --> 버튼을 눌러서 확인을 하는 방법을 사용
+        public Status() { // Frame 상태에서는 쓰레드를 호환을 할 수 가 없다. ? --> 버튼을 눌러서 확인을 하는 방법을 사용
 
             setTitle("자바 스테이터스 테스트");
             setSize(300, 300);
@@ -945,17 +950,17 @@ public class MainFrame extends JFrame {
             setLocation(1200, 300);
             getContentPane().setLayout(null);
 
-            JButton usersequence = new JButton("레  벨");
-            usersequence.setBounds(153, 21, 119, 38);
+            JButton userSequence = new JButton("레  벨");
+            userSequence.setBounds(153, 21, 119, 38);
 
-            usersequence.addActionListener(e -> {
+            userSequence.addActionListener(e -> {
                 System.out.println(id);
                 client.resultComm = client.level(id);
                 JOptionPane.showMessageDialog(null, "레벨 확인 "); //핸들러로 보낸다.
                 JOptionPane.showMessageDialog(null, "당신의 레벨은 " + client.resultComm.getLevel());
             });
 
-            getContentPane().add(usersequence);
+            getContentPane().add(userSequence);
 
             JButton open_user = new JButton("포 인 트");
             open_user.setBounds(153, 80, 119, 38);
@@ -969,21 +974,21 @@ public class MainFrame extends JFrame {
             getContentPane().add(open_user);
 
 
-            JButton exitbutton = new JButton("접속 종료");
-            exitbutton.setBounds(153, 198, 119, 38);
+            JButton exitButton = new JButton("접속 종료");
+            exitButton.setBounds(153, 198, 119, 38);
 
-            exitbutton.addActionListener(e -> {
+            exitButton.addActionListener(e -> {
                 System.out.println("프로그램을 종료 합니다. "); // 프로그램 종료 버튼을 누르면 프로그램을 종료 합니다.
                 JOptionPane.showMessageDialog(null, "프로그램을 종료");
                 client.close();
                 System.exit(1);
 
             });
-            getContentPane().add(exitbutton);
+            getContentPane().add(exitButton);
 
-            JLabel idlabel = new JLabel(user.getID());
-            idlabel.setBounds(35, 22, 57, 15);
-            getContentPane().add(idlabel);
+            JLabel idLabel = new JLabel(user.getID());
+            idLabel.setBounds(35, 22, 57, 15);
+            getContentPane().add(idLabel);
 
 
             JButton button = new JButton("승리 횟수");

@@ -1,4 +1,4 @@
-package maintest;
+package maintest.db;
 
 import java.sql.*;
 import java.util.Properties;
@@ -6,15 +6,14 @@ import java.util.Vector;
 
 public class DBConnectionMgr {
     private static DBConnectionMgr instance = null;
-    public String _driver = "org.gjt.mm.mysql.Driver";
-
-    public String _url = "jdbc:mysql://localhost:3306/comp2";
-    private Vector<ConnectionObject> connections = new Vector<ConnectionObject>(10);
+    public final String _driver = "org.gjt.mm.mysql.Driver";
+    public final String _url = "jdbc:mysql://localhost:3306/comp2";
+    private final Vector<ConnectionObject> connections = new Vector<>(10);
     private String _user = "root";
     private String _password = "kimjaehyun";
-    private boolean _traceOn = false;
+    private final boolean _traceOn = false;
     private boolean initialized = false;
-    private int _openConnections = 50;
+    private final int _openConnections = 50;
 
     public static DBConnectionMgr getInstance() {
         if (instance == null) {
@@ -37,8 +36,8 @@ public class DBConnectionMgr {
         }
 
         Connection c = null;
-        ConnectionObject co = null;
-        boolean badConnection = false;
+        ConnectionObject co;
+        boolean badConnection;
 
         for (int i = 0; i < connections.size(); i++) {
             co = connections.elementAt(i);
@@ -82,7 +81,7 @@ public class DBConnectionMgr {
         if (c == null)
             return;
 
-        ConnectionObject co = null;
+        ConnectionObject co;
 
         for (int i = 0; i < connections.size(); i++) {
             co = connections.elementAt(i);
@@ -142,7 +141,7 @@ public class DBConnectionMgr {
         if (c == null)
             return;
 
-        ConnectionObject co = null;
+        ConnectionObject co;
         for (int i = 0; i < connections.size(); i++) {
             co = connections.elementAt(i);
             if (c == co.connection) {
@@ -162,7 +161,7 @@ public class DBConnectionMgr {
 
     private Connection createConnection()
             throws SQLException {
-        Connection con = null;
+        Connection con;
 
         try {
             if (_user == null)
@@ -188,7 +187,7 @@ public class DBConnectionMgr {
 
         @SuppressWarnings("unused")
         Connection c = null;
-        ConnectionObject co = null;
+        ConnectionObject co;
 
         for (int i = 0; i < connections.size(); i++) {
             co = connections.elementAt(i);
@@ -197,8 +196,6 @@ public class DBConnectionMgr {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            co = null;
         }
 
         connections.removeAllElements();
@@ -214,10 +211,10 @@ public class DBConnectionMgr {
 
 
 class ConnectionObject {
-    public java.sql.Connection connection = null;
-    public boolean inUse = false;
+    java.sql.Connection connection;
+    boolean inUse;
 
-    public ConnectionObject(Connection c, boolean useFlag) {
+    ConnectionObject(Connection c, boolean useFlag) {
         connection = c;
         inUse = useFlag;
     }

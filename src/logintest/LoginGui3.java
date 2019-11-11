@@ -1,18 +1,22 @@
-package maintest;
+package logintest;
 // 기보 로그인 관련
+
+import maintest.Login;
+import maintest.User;
+import maintest.ui.MainFrame;
+import maintest.ui.MemberGui;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
-public class LoginGui2 extends JFrame implements ActionListener {
+public class LoginGui3 extends JFrame implements ActionListener {
     private JTextField loginField;
     private JPasswordField passwordField;
     private User user = User.getInstance(); // 유저 인스턴스에 저장을 한다.
 
     //	서버 체크하기
-    public LoginGui2() {
+    public LoginGui3() {
 
         setTitle("로그인 화면");
         setSize(450, 200);
@@ -35,25 +39,26 @@ public class LoginGui2 extends JFrame implements ActionListener {
         labelPassword.setBounds(68, 87, 57, 15);
         getContentPane().add(labelPassword);
 
-        JButton SigninButton = new JButton("Sign in");
-        SigninButton.setBounds(316, 53, 85, 21);
-        SigninButton.addActionListener(this);
-        getContentPane().add(SigninButton);
+        JButton signInButton = new JButton("Sign in");
+        signInButton.setBounds(316, 53, 85, 21);
+        signInButton.addActionListener(this);
+        getContentPane().add(signInButton);
 
-        JButton Signupbutton = new JButton("Sign up");
-        Signupbutton.addActionListener(e -> new MemberGui());
-        Signupbutton.setBounds(316, 83, 85, 21);
-        getContentPane().add(Signupbutton);
+        JButton signUpButton = new JButton("Sign up");
+        signUpButton.addActionListener(e -> new MemberGui());
+        signUpButton.setBounds(316, 83, 85, 21);
+        getContentPane().add(signUpButton);
         setLocationRelativeTo(null);
         setVisible(true);
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         LoginGui2 m = new LoginGui2();
     }
 
@@ -72,10 +77,11 @@ public class LoginGui2 extends JFrame implements ActionListener {
             boolean existLogin = Login.loginTest(id, password);
             if (existLogin) {
 
+
                 user.setID(id);
                 user.setGameMoney(Login.getMoney(id));
                 user.setWin(Login.getWin(id));
-                user.setLevel(Login.getlevel(id));
+                user.setLevel(Login.getLevel(id));
 
                 setVisible(false);
                 new MainFrame();

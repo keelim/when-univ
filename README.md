@@ -22,7 +22,12 @@
  --> 클라이언트 사이드의 결과를 서버로 보내주기만 하면 된다. 
 
 - - -
+
+## 2019 11 12
+1. refactoring programming 
+2. 
+
  ### complete project 
-1. Server side developing
+1. server side developing
 2. DB connection managing
 3. Developing Test
