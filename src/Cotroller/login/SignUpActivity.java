@@ -1,6 +1,8 @@
 package Cotroller.login;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SignUpActivity extends JFrame {
 
@@ -12,6 +14,7 @@ public class SignUpActivity extends JFrame {
     private JTextField signup_tel;
     private JTextField signup_status;
     private JButton sugnup_upButton;
+    private JButton ic_check;
 
 
     public JTextField getSignup_id() {
@@ -49,6 +52,13 @@ public class SignUpActivity extends JFrame {
         });
         pack();
         setVisible(true);
+        ic_check.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                id_checking();
+                JOptionPane.showMessageDialog(null, "아이디 확인 작업을 실행 합니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
+            }
+        });
     }
 
     private void getInformation() { //db 하나의 아이템으로 처리를 할 것
@@ -58,5 +68,8 @@ public class SignUpActivity extends JFrame {
         getSignup_passwd();
         getSignup_status();
         getSignup_tel();
+    }
+
+    private void id_checking() { //id checking 작업을 실행 합니다.
     }
 }

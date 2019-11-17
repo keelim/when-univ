@@ -207,15 +207,16 @@ public class DBConnectionMgr {
             System.err.println(s);
     }
 
-}
+    class ConnectionObject {
+        Connection connection;
+        boolean inUse;
 
-
-class ConnectionObject {
-    Connection connection;
-    boolean inUse;
-
-    ConnectionObject(Connection c, boolean useFlag) {
-        connection = c;
-        inUse = useFlag;
+        ConnectionObject(Connection c, boolean useFlag) {
+            connection = c;
+            inUse = useFlag;
+        }
     }
 }
+
+
+

@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="48171" class="javax.swing.JButton" binding="도서정보관리Button" default-binding="true">
+      <component id="48171" class="javax.swing.JButton" binding="BookInformationManagement">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -16,7 +16,7 @@
           <text value="도서 정보 관리"/>
         </properties>
       </component>
-      <component id="bd48d" class="javax.swing.JButton" binding="도서반납관리Button" default-binding="true">
+      <component id="bd48d" class="javax.swing.JButton" binding="BookReturnManagement">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -24,7 +24,7 @@
           <text value="도서 반납 관리"/>
         </properties>
       </component>
-      <component id="ba917" class="javax.swing.JButton" binding="회원정보관리Button" default-binding="true">
+      <component id="ba917" class="javax.swing.JButton" binding="UserInformationManagement">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

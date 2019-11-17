@@ -4,6 +4,8 @@ import javax.swing.*;
 
 public class MainActivity extends JFrame{
     private JPanel main_panel;
+    private JButton button1;
+    private JButton button2;
 
     public MainActivity() {
         setTitle("메인 화면");

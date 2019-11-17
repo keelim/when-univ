@@ -14,6 +14,7 @@ public class Login extends JFrame {
     private JButton signOut;
 
     public Login() {
+        setTitle("로그인 화면");
         setContentPane(main_panel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
