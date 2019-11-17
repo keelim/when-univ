@@ -8,10 +8,14 @@ public class AdminRankanagement extends JFrame {
     private JTable table1;
     private JButton 뒤로가기Button;
     private JPanel user_panel;
+    private JButton 도서등록Button;
+    private JButton 도서정보삭제Button;
+    private JButton 도서삭제Button;
 
     public AdminRankanagement() {
         setContentPane(user_panel);
         pack();
+        setTitle("도서 정보 관리");
         setVisible(true);
         setLocationRelativeTo(null);
         뒤로가기Button.addActionListener(e -> {

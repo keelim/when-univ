@@ -1,6 +1,10 @@
 package Cotroller.admin;
 
+import Cotroller.login.Login;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AdminActivity extends JFrame {
     private static AdminActivity instance;
@@ -8,6 +12,7 @@ public class AdminActivity extends JFrame {
     private JButton BookInformationManagement;
     private JButton BookReturnManagement;
     private JButton UserInformationManagement;
+    private JButton 로그아웃Button;
 
     public AdminActivity() {
         setContentPane(admin_panel);
@@ -26,11 +31,17 @@ public class AdminActivity extends JFrame {
         });
 
         UserInformationManagement.addActionListener(e -> {
+            new AdminUserManagement();
             setVisible(false);
+        });
+        로그아웃Button.addActionListener(e -> {
+            dispose();
+            JOptionPane.showMessageDialog(null, "로그 아웃을 실행 합니다.", "로그 아웃", JOptionPane.WARNING_MESSAGE);
+            Login.getInstance().setVisible(true);
         });
     }
 
-    public static AdminActivity getInstance(){
+    static AdminActivity getInstance(){
         if(instance==null){
             return new AdminActivity();
         } else{

@@ -11,7 +11,7 @@ public class AdminReturnTheBook extends JFrame{
     private JButton 뒤로가기Button;
 
     public AdminReturnTheBook() {
-        setTitle("반납");
+        setTitle("도서 반납 관리");
         setContentPane(return_panel);
         setLocationRelativeTo(null);
 

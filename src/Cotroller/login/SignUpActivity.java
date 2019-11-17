@@ -42,26 +42,26 @@ public class SignUpActivity extends JFrame {
     }
 
     public SignUpActivity() {
+        setTitle("회원 가입");
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         sugnup_upButton.addActionListener(e -> {
             getInformation();
             dispose();
+            JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.", "회원가입 완료", JOptionPane.WARNING_MESSAGE);
             Login.getInstance().setVisible(true);
         });
         pack();
         setVisible(true);
-        ic_check.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                id_checking();
-                JOptionPane.showMessageDialog(null, "아이디 확인 작업을 실행 합니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
-            }
+        ic_check.addActionListener(e -> {
+            id_checking();
+            JOptionPane.showMessageDialog(null, "아이디 확인 작업을 실행 합니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
         });
     }
 
     private void getInformation() { //db 하나의 아이템으로 처리를 할 것
+        //erd 고민을 할 것
         getSignup_email();
         getSignup_id();
         getSignup_name();
@@ -71,5 +71,8 @@ public class SignUpActivity extends JFrame {
     }
 
     private void id_checking() { //id checking 작업을 실행 합니다.
+        //sql 관련 함수를 콜 하는 것이 좋을 것 같다.
+        // 있으면 있다고 표시를 할 것
+        signup_id.setText(""); //없으면 다시 비운다.
     }
 }
