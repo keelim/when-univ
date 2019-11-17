@@ -1,8 +1,6 @@
 package Cotroller.login;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SignUpActivity extends JFrame {
 
@@ -15,6 +13,7 @@ public class SignUpActivity extends JFrame {
     private JTextField signup_status;
     private JButton sugnup_upButton;
     private JButton ic_check;
+    private JButton 뒤로가기Button;
 
 
     public JTextField getSignup_id() {
@@ -57,6 +56,10 @@ public class SignUpActivity extends JFrame {
         ic_check.addActionListener(e -> {
             id_checking();
             JOptionPane.showMessageDialog(null, "아이디 확인 작업을 실행 합니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
+        });
+        뒤로가기Button.addActionListener(e -> {
+            dispose();
+            Login.getInstance().setVisible(true);
         });
     }
 
