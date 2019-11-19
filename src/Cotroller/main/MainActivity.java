@@ -1,12 +1,9 @@
 package Cotroller.main;
 
 import Cotroller.login.Login;
-import sun.applet.Main;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainActivity extends JFrame {
     private static MainActivity instance;
@@ -31,6 +28,7 @@ public class MainActivity extends JFrame {
             Login.getInstance().setVisible(true);
         });
         도서검색Button.addActionListener(e -> {
+            setVisible(false);
             JOptionPane.showMessageDialog(null, "도서 검색 창으로 이동합니다.", "도서 검색", JOptionPane.WARNING_MESSAGE);
             new BookSearch();
         });
@@ -42,10 +40,7 @@ public class MainActivity extends JFrame {
         회원정보Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "회원 정보 창으로 이동 합니다.", "회원 정보", JOptionPane.WARNING_MESSAGE);
         });
-        도서검색Button.addActionListener(e -> {
 
-            JOptionPane.showMessageDialog(null, "회원 정보 창으로 이동 합니다.", "회원 정보", JOptionPane.WARNING_MESSAGE);
-        });;
     }
 
     private void initTable() { //초기 테이블을 작성을 한다.
@@ -64,10 +59,10 @@ public class MainActivity extends JFrame {
         table1.updateUI();
     }
 
-    public static MainActivity getInstance(){
-        if(instance==null){
+    public static MainActivity getInstance() {
+        if (instance == null) {
             return new MainActivity();
-        } else{
+        } else {
             return instance;
         }
     }

@@ -4,6 +4,8 @@ import Cotroller.admin.AdminActivity;
 import Cotroller.main.MainActivity;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login extends JFrame {
     private static Login instance;
@@ -22,16 +24,8 @@ public class Login extends JFrame {
 
         signIn.addActionListener(e -> {
             setVisible(false);
-            JOptionPane.showMessageDialog(null, "로그안에 실패하였습니다. 다시 시도 하시기 바랍니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
             setVisible(true);
-            int status = loginChecking();
-            if (status == 0) {
-                new MainActivity();
-                setVisible(false);
-            } else {
-                new AdminActivity();
-                setVisible(false);
-            }
+            login();
         });
 
         signOut.addActionListener(e -> {
@@ -41,6 +35,27 @@ public class Login extends JFrame {
 
         pack(); //반드시 있어야 한다.
         setVisible(true); // 반드시 있어야 한다.
+        id_field.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    login();
+                }
+            }
+        });
+    }
+
+    private void login() {
+        int status = loginChecking();
+        if (status == 0) {
+            JOptionPane.showMessageDialog(null, "사용자로 로그인을 합니다.", "로그인", JOptionPane.WARNING_MESSAGE);
+            new MainActivity();
+            setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "관리자로 로그인을 합니다.", "로그인", JOptionPane.WARNING_MESSAGE);
+            new AdminActivity();
+            setVisible(false);
+        }
     }
 
     private int loginChecking() { // 0이면 일반 사용자 1이면 관리자 모드

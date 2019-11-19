@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AdminUserManagement extends JFrame {
+    private static AdminUserManagement instance;
     private JButton 회원정보수정Button;
     private JButton 회원탈퇴Button;
     private JButton 회원대출목록관리Button;
@@ -30,6 +31,25 @@ public class AdminUserManagement extends JFrame {
 
         pack();
         setVisible(true);
+        회원탈퇴Button.addActionListener(e -> {
+            //확인이면 0 취소는 1
+            int answer = JOptionPane.showConfirmDialog(null, "선택하신 회원을 삭제를 하시겠습니까?");
+            if (answer == 0) {
+                JOptionPane.showMessageDialog(null, "선택하신 회원을 삭제하겠습니다.");
+            } else {
+
+            }
+
+        });
+        회원정보수정Button.addActionListener(e -> {
+            //회원 정보를 수정을 하는 이벤트 -> 새로운 창을 여는 것이 좋을 것 같다.
+            setVisible(false);
+            new AdminModifyUser();
+        });
+        회원대출목록관리Button.addActionListener(e -> {
+            setVisible(false);
+            new AdminBookList();
+        });
     }
 
     private void initTable() { //초기 테이블을 작성을 한다.
@@ -37,7 +57,7 @@ public class AdminUserManagement extends JFrame {
         String[][] b = {{"a1", "a2", "a3", "sd"},
                 {"b1", "b2", "b3", "sd"},
                 {"c1", "c2", "c3", "sd"}};
-        DefaultTableModel model = new DefaultTableModel(b, a){
+        DefaultTableModel model = new DefaultTableModel(b, a) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -45,5 +65,13 @@ public class AdminUserManagement extends JFrame {
         };
         table1.setModel(model);
         table1.updateUI();
+    }
+
+    public static AdminUserManagement getInstance() {
+        if (instance == null) {
+            return new AdminUserManagement();
+        } else {
+            return instance;
+        }
     }
 }

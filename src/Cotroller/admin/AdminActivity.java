@@ -3,8 +3,6 @@ package Cotroller.admin;
 import Cotroller.login.Login;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class AdminActivity extends JFrame {
     private static AdminActivity instance;
@@ -22,7 +20,7 @@ public class AdminActivity extends JFrame {
         pack();
         setVisible(true);
         BookInformationManagement.addActionListener(e -> {
-            new AdminRankanagement();
+            new AdminBookManagement();
             setVisible(false);
         });
         BookReturnManagement.addActionListener(e -> {

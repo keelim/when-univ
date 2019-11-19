@@ -2,6 +2,10 @@ package Cotroller.main;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class BookSearch extends JFrame {
     private JPanel panel;
@@ -26,9 +30,27 @@ public class BookSearch extends JFrame {
             MainActivity.getInstance().setVisible(true);
         });
         검색Button.addActionListener(e -> {
-            String keyword = searchfield.getText();
-            JOptionPane.showMessageDialog(null, keyword + " 검색합니다.", "도서 검색", JOptionPane.WARNING_MESSAGE);
+            search();
         });
+        searchfield.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    search();
+                }
+            }
+        });
+        도서대출Button.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "도서를 대출을 합니다.");
+        });
+        도서예약Button.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "도서를 예약을 합니다.");
+        });
+    }
+
+    private void search() {
+        String keyword = searchfield.getText();
+        JOptionPane.showMessageDialog(null, keyword + " 검색합니다.", "도서 검색", JOptionPane.WARNING_MESSAGE);
     }
 
     private void initTable() {
