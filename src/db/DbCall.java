@@ -77,8 +77,8 @@ public final class DbCall { // static 으로 작성을 해야 하나?
 
     }
 
-    public static void userWithdrawal(){
-
+    public static boolean userWithdrawal(){
+        return false;
     }
 
     public static String[][] monthBookList(){

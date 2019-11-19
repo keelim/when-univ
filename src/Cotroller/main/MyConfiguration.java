@@ -1,9 +1,10 @@
 package Cotroller.main;
 
+import Cotroller.login.Login;
+import db.DbCall;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MyConfiguration extends JFrame {
     private JPanel panel;
@@ -24,11 +25,19 @@ public class MyConfiguration extends JFrame {
         pack();
         setVisible(true);
         뒤로가기Button.addActionListener(e -> {
-           dispose();
-           MainActivity.getInstance().setVisible(true);
+            dispose();
+            MainActivity.getInstance().setVisible(true);
         });
         회원탈퇴Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "회원 탈퇴 신청을 합니다.", "회원 탈퇴", JOptionPane.WARNING_MESSAGE);
+            //회원 탈퇴를 신청을 합니다.
+            boolean flag = DbCall.userWithdrawal();
+            if (flag) {
+                dispose();
+                MainActivity.getInstance().dispose();
+                Login.getInstance().setVisible(true);
+                JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.");
+            }
         });
         회원정보수정Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "회원 정보를 수정 합니다.", "회원 정보 수정", JOptionPane.WARNING_MESSAGE);
