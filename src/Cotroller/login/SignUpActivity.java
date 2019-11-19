@@ -1,5 +1,7 @@
 package Cotroller.login;
 
+import db.DbCall;
+
 import javax.swing.*;
 
 public class SignUpActivity extends JFrame {
@@ -49,6 +51,9 @@ public class SignUpActivity extends JFrame {
             getInformation();
             dispose();
             JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.", "회원가입 완료", JOptionPane.WARNING_MESSAGE);
+
+            DbCall.signUpUser();
+
             Login.getInstance().setVisible(true);
         });
         pack();
@@ -56,6 +61,16 @@ public class SignUpActivity extends JFrame {
         ic_check.addActionListener(e -> {
             id_checking();
             JOptionPane.showMessageDialog(null, "아이디 확인 작업을 실행 합니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
+            boolean flag = DbCall.findId();
+            if (!flag) {
+                JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다. ");
+                dispose();
+                Login.getInstance().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "기존의 아이디가 존재를 합니다.  새로운 아이디를 입력을 해주세요");
+                signup_id.setText("");
+            }
+
         });
         뒤로가기Button.addActionListener(e -> {
             dispose();

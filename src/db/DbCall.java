@@ -44,5 +44,53 @@ public final class DbCall { // static 으로 작성을 해야 하나?
 //        return flag; //결과값 리터
 //    }
 
+    public static boolean loginValidate() {
+        return false;
+    }
+
+    public static String[][] getUser() { //null은 절대 나오면 안된다.
+
+        return null;
+    }
+
+    public static String[][] getBookList() {
+        return null;
+    }
+
+    public static String[][] getBookList23() {
+        return null;
+    }
+
+    public static void deleteBook() {
+
+    }
+
+    public static String[][] bookReturningList() {
+        return null;
+    }
+
+    public static String[][] getUserList(){
+        return null;
+    }
+
+    public static void modifyUserInformation(){
+
+    }
+
+    public static void userWithdrawal(){
+
+    }
+
+    public static String[][] monthBookList(){
+        return null;
+    }
+
+    public static boolean signUpUser(){
+        return false;
+    }
+
+    public static boolean findId(){
+        return false;
+    }
 
 }
