@@ -3,6 +3,7 @@ package Cotroller.login;
 import db.DbCall;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class SignUpActivity extends JFrame {
 
@@ -51,21 +52,22 @@ public class SignUpActivity extends JFrame {
             getInformation();
             dispose();
             JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.", "회원가입 완료", JOptionPane.WARNING_MESSAGE);
-
-            DbCall.signUpUser();
-
             Login.getInstance().setVisible(true);
         });
         pack();
         setVisible(true);
+
         ic_check.addActionListener(e -> {
-            id_checking();
+            String id = id_checking();
+            if (id.equals("")){
+                JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디확인", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             JOptionPane.showMessageDialog(null, "아이디 확인 작업을 실행 합니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
-            boolean flag = DbCall.findId();
+            boolean flag = DbCall.findId(id);
+            System.out.println(flag);
             if (!flag) {
-                JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다. ");
-                dispose();
-                Login.getInstance().setVisible(true);
+                JOptionPane.showMessageDialog(null, "사용가능한 아이디 입니다. ");
             } else {
                 JOptionPane.showMessageDialog(null, "기존의 아이디가 존재를 합니다.  새로운 아이디를 입력을 해주세요");
                 signup_id.setText("");
@@ -78,19 +80,25 @@ public class SignUpActivity extends JFrame {
         });
     }
 
-    private void getInformation() { //db 하나의 아이템으로 처리를 할 것
+    private ArrayList<String> getInformation() { //db 하나의 아이템으로 처리를 할 것
+        ArrayList<String> arrayList = new ArrayList();
         //erd 고민을 할 것
-        getSignup_email();
-        getSignup_id();
-        getSignup_name();
-        getSignup_passwd();
-        getSignup_status();
-        getSignup_tel();
+        arrayList.add(getSignup_email().getText());
+        arrayList.add(getSignup_id().getText());
+        arrayList.add(getSignup_name().getText());
+        arrayList.add(getSignup_passwd().getText());
+        arrayList.add(getSignup_status().getText());
+        arrayList.add(getSignup_tel().getText());
+
+        return arrayList;
     }
 
-    private void id_checking() { //id checking 작업을 실행 합니다.
+    private String id_checking() { //id checking 작업을 실행 합니다.
         //sql 관련 함수를 콜 하는 것이 좋을 것 같다.
         // 있으면 있다고 표시를 할 것
+        String id = signup_id.getText();
+        System.out.println(id);
         signup_id.setText(""); //없으면 다시 비운다.
+        return id;
     }
 }

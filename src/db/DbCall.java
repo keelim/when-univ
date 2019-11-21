@@ -3,17 +3,17 @@ package db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Vector;
 
 public final class DbCall { // static 으로 작성을 해야 하나?
     private static Connection con = null;
     private static PreparedStatement pstmt = null;
     private static ResultSet rs = null;
     private static String sql = null;
-    private static DBConnectionMgr pool;
+    private static DBConnectionMgr pool = DBConnectionMgr.getInstance();
 
-    public DbCall() {
-        pool = DBConnectionMgr.getInstance();
-    }
+
 
 //    public boolean call() {
 //        boolean flag = false;
@@ -44,11 +44,63 @@ public final class DbCall { // static 으로 작성을 해야 하나?
 //        return flag; //결과값 리터
 //    }
 
-    public static boolean loginValidate() {
+    public ArrayList<Object> dbConnection() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        try {
+            con = pool.getConnection();
+            sql = "select * from book";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                // 패스워드를 읽어온다.
+                arrayList.add(rs.getInt("ISBN"));
+                arrayList.add(rs.getString("title"));
+                arrayList.add(rs.getString("author"));
+                arrayList.add(rs.getString("publisher"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return arrayList; //결과값 리터
+    }
+
+    public static boolean findId(String pId) {
+        boolean flag = false;
+        Vector<String> id = new Vector<>();
+        System.out.println(pId);
+
+        try {
+            con = pool.getConnection();
+            sql = "select id from user";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                // 패스워드를 읽어온다.
+                id.add(rs.getString("id"));
+            }
+            System.out.println(id);
+            for (int i = 0; i < id.size(); i++) {
+                flag = pId.equals(id.get(i));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return flag; //결과값 리터
+
+    }
+
+    public static boolean loginValidate() { //비밀번호가 맞는지 확인을 한다.
         return false;
     }
 
-    public static String[][] getUser() { //null은 절대 나오면 안된다.
+    public static String[][] getUser() { //일반적인 userList를 가지고 온다..
 
         return null;
     }
@@ -69,27 +121,23 @@ public final class DbCall { // static 으로 작성을 해야 하나?
         return null;
     }
 
-    public static String[][] getUserList(){
+    public static String[][] getUserList() {
         return null;
     }
 
-    public static void modifyUserInformation(){
+    public static void modifyUserInformation() {
 
     }
 
-    public static boolean userWithdrawal(){
+    public static boolean userWithdrawal() {
         return false;
     }
 
-    public static String[][] monthBookList(){
+    public static String[][] monthBookList() {
         return null;
     }
 
-    public static boolean signUpUser(){
-        return false;
-    }
-
-    public static boolean findId(){
+    public static boolean signUpUser() {
         return false;
     }
 
