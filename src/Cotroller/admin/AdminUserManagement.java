@@ -1,5 +1,7 @@
 package Cotroller.admin;
 
+import db.DbCall;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -53,10 +55,12 @@ public class AdminUserManagement extends JFrame {
     }
 
     private void initTable() { //초기 테이블을 작성을 한다.
-        String[] a = {"a", "b", "c", "d"};
-        String[][] b = {{"a1", "a2", "a3", "sd"},
-                {"b1", "b2", "b3", "sd"},
-                {"c1", "c2", "c3", "sd"}};
+        String[] a = {"회원아이디", "회원구분", "회원이름", "회원이메일", "회원전화번호", "월 책 대출 수"};
+//        String[][] b = {{"a1", "a2", "a3", "sd"},
+//                {"b1", "b2", "b3", "sd"},
+//                {"c1", "c2", "c3", "sd"}};
+
+        String b[][] = DbCall.getUserList();
         DefaultTableModel model = new DefaultTableModel(b, a) {
             @Override
             public boolean isCellEditable(int row, int column) {

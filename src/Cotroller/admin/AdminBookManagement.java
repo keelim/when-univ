@@ -1,5 +1,7 @@
 package Cotroller.admin;
 
+import db.DbCall;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -58,10 +60,11 @@ public class AdminBookManagement extends JFrame {
     }
 
     private void initTable() {
-        String[] a = {"a", "b", "c", "d"};
-        String[][] b = {{"a1", "a2", "a3", "sd"},
-                {"b1", "b2", "b3", "sd"},
-                {"c1", "c2", "c3", "sd"}};
+        String[] a = {"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
+        String[][] b = DbCall.getBookList();
+//        String[][] b = {{"a1", "a2", "a3", "sd"},
+//                {"b1", "b2", "b3", "sd"},
+//                {"c1", "c2", "c3", "sd"}};
         DefaultTableModel model = new DefaultTableModel(b, a){
             @Override
             public boolean isCellEditable(int row, int column) {

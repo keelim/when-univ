@@ -20,7 +20,7 @@ public class AdminReturnTheBook extends JFrame {
         pack();
         setVisible(true);
         뒤로가기Button.addActionListener(e -> {
-            setVisible(false);
+            dispose();
             AdminActivity activity = AdminActivity.getInstance();
             activity.setVisible(true);
         });
@@ -30,13 +30,13 @@ public class AdminReturnTheBook extends JFrame {
     }
 
     private void initTable() {
-        String[] a = {"회원아이디", "회원이름", "반납 책 ISBN", "반납 책 이름"};
-//        String[][] b = DbCall.getReturnBookList();
+        String[] a = {"반납 도서 번호", "회원 아이디"};
+        String[][] b = DbCall.getReturnBookList();
 
 
-        String[][] b = {{"a1", "a2", "a3", "sd"},
-                {"b1", "b2", "b3", "sd"},
-                {"c1", "c2", "c3", "sd"}};
+//        String[][] b = {{"a1", "a2", "a3", "sd"},
+//                {"b1", "b2", "b3", "sd"},
+//                {"c1", "c2", "c3", "sd"}};
         DefaultTableModel model = new DefaultTableModel(b, a){
             @Override
             public boolean isCellEditable(int row, int column) {

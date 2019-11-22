@@ -50,11 +50,11 @@ public class SignUpActivity extends JFrame {
         setLocationRelativeTo(null);
         sugnup_upButton.addActionListener(e -> {
             boolean flag = DbCall.signUpUser(getInformation());
-            if(flag){
+            if (flag) {
                 dispose();
                 JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.", "회원가입 완료", JOptionPane.WARNING_MESSAGE);
                 Login.getInstance().setVisible(true);
-            } else{
+            } else {
                 JOptionPane.showMessageDialog(null, "회원 가입이 실패되었습니다.", "회원가입 실패", JOptionPane.WARNING_MESSAGE);
             }
         });
@@ -63,7 +63,8 @@ public class SignUpActivity extends JFrame {
 
         ic_check.addActionListener(e -> {
             String id = id_checking();
-            if (id.equals("")){
+            id = id.trim();
+            if (id.equals("")) {
                 JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디확인", JOptionPane.WARNING_MESSAGE);
                 return;
             }

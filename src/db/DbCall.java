@@ -51,10 +51,14 @@ public final class DbCall {
                 // 패스워드를 읽어온다.
                 id.add(rs.getString("id"));
             }
+            System.out.println(pId);
             System.out.println(id);
             for (int i = 0; i < id.size(); i++) {
                 flag = pId.equals(id.get(i));
+                if (flag)
+                    break;
             }
+            System.out.println("결과" + flag);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,38 +92,127 @@ public final class DbCall {
         return status;
     }
 
-//    public static String[][] getReturnBookList() {
-//        String[][] string = new String[0][];
-//        ArrayList<String[]> temp = new ArrayList<>();
-//        try {
-//            con = pool.getConnection();
-//            sql = "select * from library.return";
-//            pstmt = con.prepareStatement(sql);
-//            rs = pstmt.executeQuery();
-//            int i = 0;
-//            while (rs.next()) {
-//                temp.add(new String[]{String.valueOf(rs.getInt(1))
-//                        , String.valueOf(rs.getInt(2)),
-//                        rs.getString(3)});
-//            }
-//            string = new String[temp.size()][3];
-//            for (int j = 0; j < temp.size(); j++) {
-//                for (int k = 0; k < 2; k++) {
-//                    string[j][k] = temp.get(i)[k];
-//                }
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            // 자원반납
-//            pool.freeConnection(con, pstmt, rs);
-//        }
-//        return string;
-//    }
+
+    public static String[][] getReturnBookList() {
+        String[][] string = null;
+        ArrayList<String[]> temp = new ArrayList<>();
+        try {
+            con = pool.getConnection();
+            sql = "select * from library.return";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                temp.add(new String[]{String.valueOf(rs.getInt(2)), rs.getString(3)});
+            }
+            string = new String[temp.size()][2];
+            for (int j = 0; j < temp.size(); j++) {
+                System.arraycopy(temp.get(j), 0, string[j], 0, 2);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return string;
+    }
+
+    public static String[][] getUserList() {
+        String[][] string = null;
+        ArrayList<String[]> temp = new ArrayList<>();
+        try {
+            con = pool.getConnection();
+            sql = "select * from library.user";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+
+                temp.add(new String[]{rs.getString(1), convert(rs.getInt(3)), rs.getString(4), rs.getString(5), convert(rs.getInt(6)), convert(rs.getInt(8))});
+            }
+            string = new String[temp.size()][6];
+            for (int j = 0; j < temp.size(); j++) {
+                for (int k = 0; k < 6; k++) {
+                    string[j][k] = temp.get(j)[k];
+                }
+                System.arraycopy(temp.get(j), 0, string[j], 0, 2);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return string;
+
+    }
+
+    public static String[][] getBookList() {
+        String[][] string = null;
+        ArrayList<String[]> temp = new ArrayList<>();
+        try {
+            con = pool.getConnection();
+            sql = "select * from library.book";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                temp.add(new String[]{convert(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convert(rs.getInt(6))});
+            }
+            string = new String[temp.size()][5];
+            for (int j = 0; j < temp.size(); j++) {
+                for (int k = 0; k < 5; k++) {
+                    string[j][k] = temp.get(j)[k];
+                }
+                System.arraycopy(temp.get(j), 0, string[j], 0, 2);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return string;
+
+    }
+
+    public static String[][] getUserBookList(String ing_id) {
+        String[][] string = null;
+        ArrayList<String[]> temp = new ArrayList<>();
+        try {
+            con = pool.getConnection();
+            sql = "";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                temp.add(new String[]{convert(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convert(rs.getInt(6))});
+            }
+            string = new String[temp.size()][5];
+            for (int j = 0; j < temp.size(); j++) {
+                for (int k = 0; k < 5; k++) {
+                    string[j][k] = temp.get(j)[k];
+                }
+                System.arraycopy(temp.get(j), 0, string[j], 0, 2);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return string;
+
+    }
 
     public static boolean userWithdrawal() {
         return false;
+
     }
 
     public static boolean signUpUser(ArrayList<String> information) {
@@ -160,6 +253,10 @@ public final class DbCall {
             pool.freeConnection(con, pstmt, rs);
         }
         return true;
+    }
+
+    private static String convert(int s) {
+        return String.valueOf(s);
     }
 
 }

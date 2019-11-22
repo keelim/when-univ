@@ -58,7 +58,8 @@ public class Login extends JFrame {
         int status = loginChecking();
         if (status == 0) {
             JOptionPane.showMessageDialog(null, "사용자로 로그인을 합니다.", "로그인", JOptionPane.WARNING_MESSAGE);
-            new MainActivity();
+            new MainActivity(id_field.getText());
+
             setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "관리자로 로그인을 합니다.", "로그인", JOptionPane.WARNING_MESSAGE);

@@ -2,8 +2,6 @@ package Cotroller.admin;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class AdminBookList extends JFrame{
     private JTable table1;
@@ -30,7 +28,7 @@ public class AdminBookList extends JFrame{
     }
 
     private void initTable() { //초기 테이블을 작성을 한다.
-        String[] a = {"a", "b", "c", "d"};
+        String[] a = {"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
         String[][] b = {{"a1", "a2", "a3", "sd"},
                 {"b1", "b2", "b3", "sd"},
                 {"c1", "c2", "c3", "sd"}};
