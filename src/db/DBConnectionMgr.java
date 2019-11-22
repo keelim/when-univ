@@ -7,10 +7,10 @@ import java.util.Vector;
 public class DBConnectionMgr {
     private static DBConnectionMgr instance = null;
     public final String _driver = "com.mysql.jdbc.Driver";
-    public final String _url = "jdbc:mysql://localhost:3307/library";
+    public final String _url = "jdbc:mysql://localhost:3307/library"; //
     private final Vector<ConnectionObject> connections = new Vector<>(10);
-    private String _user = "root";
-    private String _password = "1234";
+    private String _user = "root"; //
+    private String _password = "1234"; //
     private final boolean _traceOn = false;
     private boolean initialized = false;
     private final int _openConnections = 50;
@@ -70,10 +70,8 @@ public class DBConnectionMgr {
             c = createConnection();
             co = new ConnectionObject(c, true);
             connections.addElement(co);
-
             trace("ConnectionPoolManager: Creating new DB connection #" + connections.size());
         }
-
         return c;
     }
 

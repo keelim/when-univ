@@ -1,7 +1,10 @@
 package Cotroller.admin;
 
+import db.DbCall;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.util.Vector;
 
 public class AdminReturnTheBook extends JFrame {
     private JPanel return_panel;
@@ -27,7 +30,10 @@ public class AdminReturnTheBook extends JFrame {
     }
 
     private void initTable() {
-        String[] a = {"a", "b", "c", "d"};
+        String[] a = {"회원아이디", "회원이름", "반납 책 ISBN", "반납 책 이름"};
+//        String[][] b = DbCall.getReturnBookList();
+
+
         String[][] b = {{"a1", "a2", "a3", "sd"},
                 {"b1", "b2", "b3", "sd"},
                 {"c1", "c2", "c3", "sd"}};

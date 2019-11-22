@@ -325,3 +325,8 @@ INSERT INTO  TABLE1 SELECT* FROM TABLE2
     프로젝트 구조 정의
     erd 수정
     데이터베이스 만들 것
+    
+## 2019 11 22
+0, 학부 
+1, 대학원 
+2, 교직원

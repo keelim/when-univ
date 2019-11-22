@@ -2,6 +2,7 @@ package Cotroller.login;
 
 import Cotroller.admin.AdminActivity;
 import Cotroller.main.MainActivity;
+import db.DbCall;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -43,6 +44,14 @@ public class Login extends JFrame {
                 }
             }
         });
+        pw_field.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    login();
+                }
+            }
+        });
     }
 
     private void login() {
@@ -59,16 +68,7 @@ public class Login extends JFrame {
     }
 
     private int loginChecking() { // 0이면 일반 사용자 1이면 관리자 모드
-        sql_id_checking();
-        if (id_field.getText().equals("1")) {
-            return 1;
-        }
-        return 0;
-    }
-
-    private void sql_id_checking() { //0 user, 1 admin
-        //관리자 인지 일반 사용자인지 확인을 하는 메소드
-
+        return DbCall.adminChecking(id_field.getText());
     }
 
     public static Login getInstance() {

@@ -49,10 +49,14 @@ public class SignUpActivity extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         sugnup_upButton.addActionListener(e -> {
-            getInformation();
-            dispose();
-            JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.", "회원가입 완료", JOptionPane.WARNING_MESSAGE);
-            Login.getInstance().setVisible(true);
+            boolean flag = DbCall.signUpUser(getInformation());
+            if(flag){
+                dispose();
+                JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.", "회원가입 완료", JOptionPane.WARNING_MESSAGE);
+                Login.getInstance().setVisible(true);
+            } else{
+                JOptionPane.showMessageDialog(null, "회원 가입이 실패되었습니다.", "회원가입 실패", JOptionPane.WARNING_MESSAGE);
+            }
         });
         pack();
         setVisible(true);
@@ -63,8 +67,10 @@ public class SignUpActivity extends JFrame {
                 JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디확인", JOptionPane.WARNING_MESSAGE);
                 return;
             }
+
             JOptionPane.showMessageDialog(null, "아이디 확인 작업을 실행 합니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
             boolean flag = DbCall.findId(id);
+
             System.out.println(flag);
             if (!flag) {
                 JOptionPane.showMessageDialog(null, "사용가능한 아이디 입니다. ");
@@ -81,15 +87,13 @@ public class SignUpActivity extends JFrame {
     }
 
     private ArrayList<String> getInformation() { //db 하나의 아이템으로 처리를 할 것
-        ArrayList<String> arrayList = new ArrayList();
-        //erd 고민을 할 것
-        arrayList.add(getSignup_email().getText());
+        ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(getSignup_id().getText());
-        arrayList.add(getSignup_name().getText());
         arrayList.add(getSignup_passwd().getText());
         arrayList.add(getSignup_status().getText());
+        arrayList.add(getSignup_name().getText());
+        arrayList.add(getSignup_email().getText());
         arrayList.add(getSignup_tel().getText());
-
         return arrayList;
     }
 
@@ -98,7 +102,6 @@ public class SignUpActivity extends JFrame {
         // 있으면 있다고 표시를 할 것
         String id = signup_id.getText();
         System.out.println(id);
-        signup_id.setText(""); //없으면 다시 비운다.
         return id;
     }
 }

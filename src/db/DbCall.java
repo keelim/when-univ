@@ -6,43 +6,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public final class DbCall { // static 으로 작성을 해야 하나?
+public final class DbCall {
     private static Connection con = null;
     private static PreparedStatement pstmt = null;
     private static ResultSet rs = null;
     private static String sql = null;
     private static DBConnectionMgr pool = DBConnectionMgr.getInstance();
 
-
-
-//    public boolean call() {
-//        boolean flag = false;
-//        String getPass;
-//
-//
-//        try {
-//            con = pool.getConnection();
-//            sql = "select PW from user where ID=?";
-//            pstmt = con.prepareStatement(sql);
-//            pstmt.setString(1, ID);
-//            rs = pstmt.executeQuery();
-//            if (rs.next()) {
-//                // 패스워드를 읽어온다.
-//                getPass = rs.getString("PW");
-//                // 데이터베이스에서 읽어온 문자열과 사용자가 입력한 비밀번호가 같을 경우에는
-//                if (getPass.equals(PW)) {
-////					System.out.println("받아온 비밀번호 :" + getPass); --> 비밀 번호를 확인을 하는 핸들러
-//                    flag = true;
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            // 자원반납
-//            pool.freeConnection(con, pstmt, rs);
-//        }
-//        return flag; //결과값 리터
-//    }
 
     public ArrayList<Object> dbConnection() {
         ArrayList<Object> arrayList = new ArrayList<>();
@@ -53,10 +23,10 @@ public final class DbCall { // static 으로 작성을 해야 하나?
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 // 패스워드를 읽어온다.
-                arrayList.add(rs.getInt("ISBN"));
-                arrayList.add(rs.getString("title"));
-                arrayList.add(rs.getString("author"));
-                arrayList.add(rs.getString("publisher"));
+                arrayList.add(rs.getInt("book_isbn"));
+                arrayList.add(rs.getString("book_title"));
+                arrayList.add(rs.getString("book_author"));
+                arrayList.add(rs.getString("book_publisher"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,49 +66,100 @@ public final class DbCall { // static 으로 작성을 해야 하나?
 
     }
 
-    public static boolean loginValidate() { //비밀번호가 맞는지 확인을 한다.
-        return false;
+    public static int adminChecking(String text) {
+        int status = -1;
+        try {
+            con = pool.getConnection();
+            sql = "select library.user.user_grant from user where id=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, text);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                // 패스워드를 읽어온다.
+                status = rs.getInt("user_grant");
+            }
+            System.out.println(status);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return status;
     }
 
-    public static String[][] getUser() { //일반적인 userList를 가지고 온다..
-
-        return null;
-    }
-
-    public static String[][] getBookList() {
-        return null;
-    }
-
-    public static String[][] getBookList23() {
-        return null;
-    }
-
-    public static void deleteBook() {
-
-    }
-
-    public static String[][] bookReturningList() {
-        return null;
-    }
-
-    public static String[][] getUserList() {
-        return null;
-    }
-
-    public static void modifyUserInformation() {
-
-    }
+//    public static String[][] getReturnBookList() {
+//        String[][] string = new String[0][];
+//        ArrayList<String[]> temp = new ArrayList<>();
+//        try {
+//            con = pool.getConnection();
+//            sql = "select * from library.return";
+//            pstmt = con.prepareStatement(sql);
+//            rs = pstmt.executeQuery();
+//            int i = 0;
+//            while (rs.next()) {
+//                temp.add(new String[]{String.valueOf(rs.getInt(1))
+//                        , String.valueOf(rs.getInt(2)),
+//                        rs.getString(3)});
+//            }
+//            string = new String[temp.size()][3];
+//            for (int j = 0; j < temp.size(); j++) {
+//                for (int k = 0; k < 2; k++) {
+//                    string[j][k] = temp.get(i)[k];
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            // 자원반납
+//            pool.freeConnection(con, pstmt, rs);
+//        }
+//        return string;
+//    }
 
     public static boolean userWithdrawal() {
         return false;
     }
 
-    public static String[][] monthBookList() {
-        return null;
-    }
+    public static boolean signUpUser(ArrayList<String> information) {
+        String id = information.get(0);
+        String pw = information.get(1);
+        String status = information.get(2);
+        int status_handler;
+        String name = information.get(3);
+        String email = information.get(4);
+        String tel = information.get(5);
 
-    public static boolean signUpUser() {
-        return false;
+        if (status.equals("학부")) {
+            status_handler = 0;
+        } else if (status.equals("대학원")) {
+            status_handler = 1;
+        } else {
+            status_handler = 2;
+        }
+
+        try {
+            con = pool.getConnection();
+            sql = "insert into library.user values (?, ?, ?, ?, ?, ?, ?, ? )";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, pw);
+            pstmt.setInt(3, status_handler);
+            pstmt.setString(4, name);
+            pstmt.setString(5, email);
+            pstmt.setInt(6, Integer.parseInt(tel));
+            pstmt.setInt(7, 0);
+            pstmt.setInt(8, 0);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
     }
 
 }
