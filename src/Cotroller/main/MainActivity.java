@@ -63,7 +63,7 @@ public class MainActivity extends JFrame {
     private void initTable() { //초기 테이블을 작성을 한다.
         //현재 가지고 있는 것을 콜을 한다.
         String[] a = {"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
-        String[][] b = DbCall.getUserBookList(getIng_id());
+        String[][] b = DbCall.getBookList();
 
         DefaultTableModel model = new DefaultTableModel(b, a) {
             @Override
