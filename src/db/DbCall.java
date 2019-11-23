@@ -1,10 +1,13 @@
 package db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
+
+import static java.lang.String.valueOf;
 
 public final class DbCall {
     private static Connection con = null;
@@ -103,7 +106,7 @@ public final class DbCall {
             rs = pstmt.executeQuery();
             int i = 0;
             while (rs.next()) {
-                temp.add(new String[]{String.valueOf(rs.getInt(2)), rs.getString(3)});
+                temp.add(new String[]{valueOf(rs.getInt(2)), rs.getString(3)});
             }
             string = new String[temp.size()][2];
             for (int j = 0; j < temp.size(); j++) {
@@ -130,7 +133,7 @@ public final class DbCall {
             int i = 0;
             while (rs.next()) {
 
-                temp.add(new String[]{rs.getString(1), convert(rs.getInt(3)), rs.getString(4), rs.getString(5), convert(rs.getInt(6)), convert(rs.getInt(8))});
+                temp.add(new String[]{rs.getString(1), convertI(rs.getInt(3)), rs.getString(4), rs.getString(5), convertI(rs.getInt(6)), convertI(rs.getInt(8))});
             }
             string = new String[temp.size()][6];
             for (int j = 0; j < temp.size(); j++) {
@@ -160,7 +163,7 @@ public final class DbCall {
             rs = pstmt.executeQuery();
             int i = 0;
             while (rs.next()) {
-                temp.add(new String[]{convert(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convert(rs.getInt(6))});
+                temp.add(new String[]{convertI(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convertI(rs.getInt(6))});
             }
             string = new String[temp.size()][5];
             for (int j = 0; j < temp.size(); j++) {
@@ -190,7 +193,37 @@ public final class DbCall {
             rs = pstmt.executeQuery();
             int i = 0;
             while (rs.next()) {
-                temp.add(new String[]{convert(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convert(rs.getInt(6))});
+                temp.add(new String[]{convertI(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convertI(rs.getInt(6))});
+            }
+            string = new String[temp.size()][5];
+            for (int j = 0; j < temp.size(); j++) {
+                for (int k = 0; k < 5; k++) {
+                    string[j][k] = temp.get(j)[k];
+                }
+                System.arraycopy(temp.get(j), 0, string[j], 0, 2);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return string;
+
+    }
+
+    public static String[][] getBorrowBookList() {
+        String[][] string = null;
+        ArrayList<String[]> temp = new ArrayList<>();
+        try {
+            con = pool.getConnection();
+            sql = "select * from library.borrow";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                temp.add(new String[]{convertI(rs.getInt(1)), convertI(rs.getInt(2)), rs.getString(3), convertD(rs.getDate(4)), convertD(rs.getDate(5))});
             }
             string = new String[temp.size()][5];
             for (int j = 0; j < temp.size(); j++) {
@@ -255,8 +288,12 @@ public final class DbCall {
         return true;
     }
 
-    private static String convert(int s) {
-        return String.valueOf(s);
+    private static String convertI(int s) {
+        return valueOf(s);
+    }
+
+    private static String convertD(Date d){
+        return d.toString();
     }
 
 }
