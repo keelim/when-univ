@@ -243,6 +243,27 @@ public final class DbCall {
 
     }
 
+    public static boolean insertBookInformation(ArrayList<String> arrayList) {
+
+        try {
+            con = pool.getConnection();
+            sql = "insert into library.book values (default , ?, ?, ?, 0, ?)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, arrayList.get(0));
+            pstmt.setString(2, arrayList.get(1));
+            pstmt.setString(3, arrayList.get(2));
+            pstmt.setInt(4, Integer.parseInt(arrayList.get(3)));
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
     public static boolean userWithdrawal() {
         return false;
 

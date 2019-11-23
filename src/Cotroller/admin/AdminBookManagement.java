@@ -17,6 +17,10 @@ public class AdminBookManagement extends JFrame {
     private JButton 도서정보수정Button;
     private JButton 도서삭제Button;
 
+    public JTable getTable1() {
+        return table1;
+    }
+
     public AdminBookManagement() {
         setContentPane(user_panel);
         pack();
@@ -34,9 +38,8 @@ public class AdminBookManagement extends JFrame {
         });
         도서등록Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "도서를 등록을 합니다.");
-            //새로운 창을 뛰어서 진행을 해야 하나?
-            // 창을 띄어서 값이 반영이면 테이블을 업데이트를 함.
-            table1.updateUI();
+            new AdminBookRegister();
+            setVisible(false);
         });
         도서정보수정Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "도서 정보를 수정을 합니다.");
