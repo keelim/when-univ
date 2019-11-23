@@ -4,8 +4,6 @@ import db.DbCall;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class AdminBookManagement extends JFrame {
 
@@ -38,8 +36,8 @@ public class AdminBookManagement extends JFrame {
         });
         도서등록Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "도서를 등록을 합니다.");
-            new AdminBookRegister();
             setVisible(false);
+            new AdminBookRegister();
         });
         도서정보수정Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "도서 정보를 수정을 합니다.");
@@ -62,12 +60,9 @@ public class AdminBookManagement extends JFrame {
         }
     }
 
-    private void initTable() {
+    public void initTable() {
         String[] a = {"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
-        String[][] b = DbCall.getBookList();
-//        String[][] b = {{"a1", "a2", "a3", "sd"},
-//                {"b1", "b2", "b3", "sd"},
-//                {"c1", "c2", "c3", "sd"}};
+        String[][] b = DbCall.getBookList();;
         DefaultTableModel model = new DefaultTableModel(b, a){
             @Override
             public boolean isCellEditable(int row, int column) {

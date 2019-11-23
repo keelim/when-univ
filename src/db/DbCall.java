@@ -309,11 +309,31 @@ public final class DbCall {
         return true;
     }
 
+    public static boolean deleteReturnBookList(ArrayList<String> arrayList) {
+        int book_num = Integer.parseInt(arrayList.get(0));
+        String user_id = arrayList.get(1);
+        System.out.println("삭제를 하는게 맞나?" + arrayList);
+        try {
+            con = pool.getConnection();
+            sql = "delete from library.return where return_book_num=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, book_num);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
     private static String convertI(int s) {
         return valueOf(s);
     }
 
-    private static String convertD(Date d){
+    private static String convertD(Date d) {
         return d.toString();
     }
 

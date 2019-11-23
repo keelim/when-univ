@@ -32,8 +32,8 @@ public class AdminBookRegister extends JFrame {
                 JOptionPane.showMessageDialog(null, "도서를 등록을 합니다.");
                 dispose();
                 AdminBookManagement book = AdminBookManagement.getInstance();
+                book.initTable();
                 book.getTable1().updateUI();
-                book.setVisible(true);
             } else
                 JOptionPane.showMessageDialog(null, "도서를 등록 실패하였습니다.");
         });
