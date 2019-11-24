@@ -58,12 +58,14 @@ public class MainActivity extends JFrame {
         this();
         setIng_id(text);
         JOptionPane.showMessageDialog(null, "환영합니다." + getIng_id() + "님", "환영", JOptionPane.WARNING_MESSAGE);
+        initTable();
     }
 
     private void initTable() { //초기 테이블을 작성을 한다.
         //현재 가지고 있는 것을 콜을 한다.
         String[] a = {"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
-        String[][] b = DbCall.getBookList();
+        System.out.println(getIng_id());
+        String[][] b = DbCall.getUserBookList(getIng_id());
 
         DefaultTableModel model = new DefaultTableModel(b, a) {
             @Override

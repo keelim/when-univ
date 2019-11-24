@@ -132,7 +132,6 @@ public final class DbCall {
             rs = pstmt.executeQuery();
             int i = 0;
             while (rs.next()) {
-
                 temp.add(new String[]{rs.getString(1), convertI(rs.getInt(3)), rs.getString(4), rs.getString(5), convertI(rs.getInt(6)), convertI(rs.getInt(8))});
             }
             string = new String[temp.size()][6];
@@ -188,13 +187,14 @@ public final class DbCall {
         ArrayList<String[]> temp = new ArrayList<>();
         try {
             con = pool.getConnection();
-            sql = "";
+            sql = "select book_num, book_title, book_author, book_publisher, book_isbn from library.book, library.user where library.user.id=?";
             pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, ing_id);
             rs = pstmt.executeQuery();
-            int i = 0;
             while (rs.next()) {
-                temp.add(new String[]{convertI(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convertI(rs.getInt(6))});
+                temp.add(new String[]{convertI(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convertI(rs.getInt(5))});
             }
+            System.out.println(temp);
             string = new String[temp.size()][5];
             for (int j = 0; j < temp.size(); j++) {
                 for (int k = 0; k < 5; k++) {

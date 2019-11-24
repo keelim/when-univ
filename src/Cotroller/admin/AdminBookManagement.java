@@ -47,7 +47,6 @@ public class AdminBookManagement extends JFrame {
         });
     }
 
-
     public static void main(String[] args) {
         new AdminBookManagement();
     }
