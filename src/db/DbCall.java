@@ -56,8 +56,8 @@ public final class DbCall {
             }
             System.out.println(pId);
             System.out.println(id);
-            for (int i = 0; i < id.size(); i++) {
-                flag = pId.equals(id.get(i));
+            for (String s : id) {
+                flag = pId.equals(s);
                 if (flag)
                     break;
             }

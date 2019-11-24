@@ -11,9 +11,7 @@ public class DBConnectionMgr {
     private final Vector<ConnectionObject> connections = new Vector<>(10);
     private String _user = "root"; //
     private String _password = "1234"; //
-    private final boolean _traceOn = false;
     private boolean initialized = false;
-    private final int _openConnections = 50;
 
     public static DBConnectionMgr getInstance() {
         if (instance == null) {
@@ -91,6 +89,7 @@ public class DBConnectionMgr {
 
         for (int i = 0; i < connections.size(); i++) {
             co = connections.elementAt(i);
+            int _openConnections = 50;
             if ((i + 1) > _openConnections && !co.inUse)
                 removeConnection(co.connection);
         }
@@ -201,11 +200,12 @@ public class DBConnectionMgr {
 
 
     private void trace(String s) {
+        boolean _traceOn = false;
         if (_traceOn)
             System.err.println(s);
     }
 
-    class ConnectionObject {
+    static class ConnectionObject {
         Connection connection;
         boolean inUse;
 
