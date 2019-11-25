@@ -4,6 +4,9 @@ import db.DbCall;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class AdminBookManagement extends JFrame {
 
@@ -14,6 +17,7 @@ public class AdminBookManagement extends JFrame {
     private JButton 도서등록Button;
     private JButton 도서정보수정Button;
     private JButton 도서삭제Button;
+    private ArrayList<String> arrayList;
 
     public JTable getTable1() {
         return table1;
@@ -31,7 +35,16 @@ public class AdminBookManagement extends JFrame {
             setVisible(false);
             activity.setVisible(true);
         });
-        도서삭제Button.addActionListener(e -> JOptionPane.showConfirmDialog(null, "도서를 삭제 하겠습니까?"));
+        도서삭제Button.addActionListener(e -> {
+            JOptionPane.showConfirmDialog(null, "도서를 삭제 하겠습니까?");
+            boolean flag = DbCall.deleteBook(arrayList);
+            if (flag){
+                JOptionPane.showMessageDialog(null, "삭제 완료하였습니다.");
+                initTable();
+            } else{
+                JOptionPane.showMessageDialog(null, "삭제를 실패하였습니다. 대출하고 있는 사용자가 있습니다.");
+            }
+        });
         도서등록Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "도서를 등록을 합니다.");
             setVisible(false);
@@ -42,6 +55,18 @@ public class AdminBookManagement extends JFrame {
             //새로운 창을 띄어서 정보를 수정을 합니다. --> 기존에 있는 정보를 라벨로 불러와서 사용을 하는 것이 좋을 것 같다.
             // 창을 띄어서 값이 반영이면 테이블을 업데이트를 함.
             table1.updateUI();
+        });
+        table1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // 클릭한 행을 통하여 DB 삭제를 한다.
+                arrayList = new ArrayList<>();
+                for (int i = 0; i < 5; i++) {
+                    arrayList.add((String) table1.getValueAt(table1.getSelectedRow(), i));
+                }
+                System.out.println(arrayList);
+
+            }
         });
     }
 

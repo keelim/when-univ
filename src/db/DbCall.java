@@ -329,6 +329,26 @@ public final class DbCall {
         return true;
     }
 
+    public static boolean deleteBook(ArrayList<String> arrayList) {
+        int book_num = Integer.parseInt(arrayList.get(0));
+        System.out.println("책을 삭제 합니다." + arrayList);
+        try {
+            con = pool.getConnection();
+            sql = "delete from library.book where book_num=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, book_num);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
     private static String convertI(int s) {
         return valueOf(s);
     }
