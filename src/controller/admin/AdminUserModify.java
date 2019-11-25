@@ -2,11 +2,11 @@ package controller.admin;
 
 import javax.swing.*;
 
-public class AdminModifyUser extends JFrame {
+public class AdminUserModify extends JFrame {
     private JButton 뒤로가기Button;
     private JPanel panel1;
 
-    public AdminModifyUser() {
+    public AdminUserModify() {
         setContentPane(panel1);
         setLocationRelativeTo(null);
         pack();

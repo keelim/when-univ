@@ -349,6 +349,55 @@ public final class DbCall {
         return true;
     }
 
+    public static boolean deleteUser(ArrayList<String> arrayList) {
+        String user_id = arrayList.get(0);
+        System.out.println("회원을 삭제 합니다. " + arrayList);
+//        if() //관리자 인지 체크를 할 것
+        try {
+            con = pool.getConnection();
+            sql = "delete from library.book where book_num=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, user_id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+
+    }
+
+    public static boolean modifyBook(ArrayList<String> arrayList, String book_id) {
+        String book_title = arrayList.get(0);
+        String book_author = arrayList.get(1);
+        String book_publisher = arrayList.get(2);
+        String book_isbn = arrayList.get(3);
+        System.out.println("도서 정보를 업데이트 합니다." + arrayList);
+        try {
+            con = pool.getConnection();
+            sql = "update library.book set book_title=?, book_author=?, book_publisher=?, book_isbn=? where book_num=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, book_title);
+            pstmt.setString(2, book_author);
+            pstmt.setString(3, book_publisher);
+            pstmt.setInt(4, Integer.parseInt(book_isbn));
+            pstmt.setInt(5, Integer.parseInt(book_id));
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
     private static String convertI(int s) {
         return valueOf(s);
     }

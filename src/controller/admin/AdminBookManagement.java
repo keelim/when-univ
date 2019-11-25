@@ -54,6 +54,8 @@ public class AdminBookManagement extends JFrame {
             JOptionPane.showMessageDialog(null, "도서 정보를 수정을 합니다.");
             //새로운 창을 띄어서 정보를 수정을 합니다. --> 기존에 있는 정보를 라벨로 불러와서 사용을 하는 것이 좋을 것 같다.
             // 창을 띄어서 값이 반영이면 테이블을 업데이트를 함.
+            new AdminBookModify(arrayList);
+            setVisible(false);
             table1.updateUI();
         });
         table1.addMouseListener(new MouseAdapter() {

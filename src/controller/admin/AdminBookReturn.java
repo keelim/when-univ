@@ -8,14 +8,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class AdminReturnTheBook extends JFrame {
+public class AdminBookReturn extends JFrame {
     private JPanel return_panel;
     private JTable table1;
     private JButton 반납승인Button;
     private JButton 뒤로가기Button;
     ArrayList<String> arrayList;
 
-    public AdminReturnTheBook() {
+    public AdminBookReturn() {
         setTitle("도서 반납 관리");
         setContentPane(return_panel);
         setLocationRelativeTo(null);
@@ -72,6 +72,6 @@ public class AdminReturnTheBook extends JFrame {
 
 
     public static void main(String[] args) {
-        new AdminReturnTheBook();
+        new AdminBookReturn();
     }
 }

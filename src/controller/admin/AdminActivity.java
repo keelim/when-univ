@@ -24,7 +24,7 @@ public class AdminActivity extends JFrame {
             setVisible(false);
         });
         BookReturnManagement.addActionListener(e -> {
-            new AdminReturnTheBook();
+            new AdminBookReturn();
             setVisible(false);
         });
 

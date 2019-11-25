@@ -4,6 +4,9 @@ import db.DbCall;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class AdminUserManagement extends JFrame {
     private static AdminUserManagement instance;
@@ -13,6 +16,7 @@ public class AdminUserManagement extends JFrame {
     private JTable table1;
     private JButton 뒤로가기Button;
     private JPanel userManagement_panel;
+    private ArrayList<String> arrayList;
 
 
     public AdminUserManagement() {
@@ -35,20 +39,47 @@ public class AdminUserManagement extends JFrame {
             //확인이면 0 취소는 1
             int answer = JOptionPane.showConfirmDialog(null, "선택하신 회원을 삭제를 하시겠습니까?");
             if (answer == 0) {
-                JOptionPane.showMessageDialog(null, "선택하신 회원을 삭제하겠습니다.");
-            } else {
+                boolean flag = DbCall.deleteUser(arrayList);
+                if (flag) {
+                    JOptionPane.showMessageDialog(null, "선택하신 회원을 삭제했습니다.");
+                    table1.updateUI();
+                }
 
             }
-
         });
         회원정보수정Button.addActionListener(e -> {
             //회원 정보를 수정을 하는 이벤트 -> 새로운 창을 여는 것이 좋을 것 같다.
             setVisible(false);
-            new AdminModifyUser();
+            new AdminUserModify();
         });
         회원대출목록관리Button.addActionListener(e -> {
             setVisible(false);
             new AdminBookList();
+        });
+        회원탈퇴Button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // 클릭한 행을 통하여 DB 삭제를 한다.
+                arrayList = new ArrayList<>();
+                for (int i = 0; i < 5; i++) {
+                    arrayList.add((String) table1.getValueAt(table1.getSelectedRow(), i));
+                }
+                System.out.println(arrayList);
+
+            }
+        });
+
+        table1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // 클릭한 행을 통하여 DB 삭제를 한다.
+                arrayList = new ArrayList<>();
+                for (int i = 0; i < 5; i++) {
+                    arrayList.add((String) table1.getValueAt(table1.getSelectedRow(), i));
+                }
+                System.out.println(arrayList);
+
+            }
         });
     }
 
