@@ -187,9 +187,12 @@ public final class DbCall {
         ArrayList<String[]> temp = new ArrayList<>();
         try {
             con = pool.getConnection();
-            sql = "select book_num, book_title, book_author, book_publisher, book_isbn from library.book, library.user where library.user.id=?";
+            sql = "select book_num, book_title, book_author, book_publisher, book_isbn from\n" +
+                    "library.book, (select * from library.borrow where borrow_user_id=?) as `idborrow`" +
+                    "where book_num=idborrow.borrow_num;";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, ing_id);
+            System.out.println("쿼리에 들어가는 아이디" + ing_id);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 temp.add(new String[]{convertI(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convertI(rs.getInt(5))});
@@ -390,6 +393,24 @@ public final class DbCall {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
+    public static boolean returnBooKRequest(ArrayList<String> arrayList, String ing_id) {
+        try {
+            con = pool.getConnection();
+            sql = "insert into library.return values (default ,?,?)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
+            pstmt.setString(2, ing_id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         } finally {
             // 자원반납

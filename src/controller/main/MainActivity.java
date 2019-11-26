@@ -5,6 +5,9 @@ import db.DbCall;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class MainActivity extends JFrame {
     private String ing_id;
@@ -16,12 +19,14 @@ public class MainActivity extends JFrame {
     private JButton 로그아웃Button;
     private JButton 도서반납Button;
     private JButton 도서검색Button;
+    private ArrayList<String> arrayList;
 
-    public String getIng_id() {
+
+    private String getIng_id() {
         return ing_id;
     }
 
-    public void setIng_id(String ing_id) {
+    private void setIng_id(String ing_id) {
         this.ing_id = ing_id;
     }
 
@@ -44,9 +49,30 @@ public class MainActivity extends JFrame {
             new BookSearch();
         });
 
-        도서반납Button.addActionListener(e -> JOptionPane.showMessageDialog(null, "관리자에게 도서 반납을 요청 합니다.", "도서 반납", JOptionPane.WARNING_MESSAGE));
+        도서반납Button.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "관리자에게 도서 반납을 요청 합니다.", "도서 반납", JOptionPane.WARNING_MESSAGE);
+            boolean flag = DbCall.returnBooKRequest(arrayList, getIng_id());
+            if(flag){
+                JOptionPane.showMessageDialog(null, "관리자에게 도서 반납을 요청 되었습니다. 잠시만 기다려주세요.", "도서 반납", JOptionPane.WARNING_MESSAGE);
+            } else{
+                JOptionPane.showMessageDialog(null, "오류 발생", "오류", JOptionPane.WARNING_MESSAGE);
+            }
+
+        });
 
         회원정보Button.addActionListener(e -> JOptionPane.showMessageDialog(null, "회원 정보 창으로 이동 합니다.", "회원 정보", JOptionPane.WARNING_MESSAGE));
+
+        table1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // 클릭한 행을 통하여 DB 삭제를 한다.
+                arrayList = new ArrayList<>();
+                for (int i = 0; i < 5; i++) {
+                    arrayList.add((String) table1.getValueAt(table1.getSelectedRow(), i));
+                }
+                System.out.println(arrayList);
+            }
+        });
     }
 
     public MainActivity(String text) {
