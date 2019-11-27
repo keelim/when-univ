@@ -267,9 +267,23 @@ public final class DbCall {
         return true;
     }
 
-    public static boolean userWithdrawal() {
-        return false;
-
+    public static boolean userWithdrawal(String ing_id) {
+        boolean flag = false;
+        try {
+            con = pool.getConnection();
+            sql = "delete from library.user where library.user.id=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, ing_id);
+            pstmt.executeUpdate();
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return flag;
     }
 
     public static boolean signUpUser(ArrayList<String> information) {
@@ -445,6 +459,84 @@ public final class DbCall {
         }
         return true;
 
+    }
+
+    public static boolean passwdChecking(String password) {
+        boolean flag = false;
+        try {
+            con = pool.getConnection();
+            sql = "select library.user.user_pw from user where library.user.user_pw=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, password);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                flag = password.equals(rs.getString("user_pw"));
+            }
+            System.out.println(flag);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return flag;
+
+    }
+
+    public static ArrayList<String> getUserInfo(String id) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        try {
+            con = pool.getConnection();
+            sql = "select user_name, email, tel from library.user where id=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                arrayList.add(rs.getString("user_name"));
+                arrayList.add(rs.getString("email"));
+                arrayList.add(String.valueOf(rs.getInt("tel")));
+            }
+            System.out.println("아무것도 안들어 있는 건가?" + arrayList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return arrayList; //결과값 리터
+    }
+
+    public static boolean modifyUserInformation(ArrayList<String> arrayList, String id) {
+        String user_name = arrayList.get(0);
+        String email = arrayList.get(1);
+        int tel = Integer.parseInt(arrayList.get(2));
+        try {
+            con = pool.getConnection();
+            sql = "update library.user set user_name=?, email=?, tel=? where id=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, user_name);
+            pstmt.setString(2, email);
+            pstmt.setInt(3, tel);
+            pstmt.setString(4, id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
+    public static String[][] titleSearch() {
+        return null;
+    }
+
+    public static String[][] isbnSearch() {
+        return null;
     }
 
     private static String convertI(int s) {

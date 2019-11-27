@@ -1,6 +1,7 @@
 package controller.login;
 
 import controller.admin.AdminActivity;
+import controller.admin.View;
 import controller.main.MainActivity;
 import db.DbCall;
 
@@ -24,7 +25,6 @@ public class Login extends JFrame {
 
 
         signIn.addActionListener(e -> {
-            setVisible(false);
             setVisible(true);
             login();
         });
@@ -47,7 +47,7 @@ public class Login extends JFrame {
         pw_field.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     login();
                 }
             }
@@ -56,16 +56,22 @@ public class Login extends JFrame {
 
     private void login() {
         int status = loginChecking();
-        if (status == 0) {
-            JOptionPane.showMessageDialog(null, "사용자로 로그인을 합니다.", "로그인", JOptionPane.WARNING_MESSAGE);
+        boolean flag = passwdChecking();
+        if (status == 0 && flag) {
+            View.alert("사용자로 로그인을 합니다.");
             new MainActivity(id_field.getText());
-
             setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(null, "관리자로 로그인을 합니다.", "로그인", JOptionPane.WARNING_MESSAGE);
+        } else if (status == 1 && flag) {
+            View.alert("관리자로 로그인을 합니다.");
             new AdminActivity();
             setVisible(false);
+        } else {
+            View.alert("로그인에 실패하였습니다. 아이디 및 비밀번호를 다시 확인 해주세요!");
         }
+    }
+
+    private boolean passwdChecking() {
+        return DbCall.passwdChecking(pw_field.getText());
     }
 
     private int loginChecking() { // 0이면 일반 사용자 1이면 관리자 모드
