@@ -34,7 +34,7 @@ public class AdminActivity extends JFrame {
         });
         로그아웃Button.addActionListener(e -> {
             dispose();
-            JOptionPane.showMessageDialog(null, "로그 아웃을 실행 합니다.", "로그 아웃", JOptionPane.WARNING_MESSAGE);
+            View.alert("로그아웃을 실행 합니다.");
             Login.getInstance().setVisible(true);
         });
     }

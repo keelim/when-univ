@@ -1,20 +1,16 @@
 package controller.admin;
 
-import controller.admin.AdminBookManagement;
 import db.DbCall;
-import org.omg.CORBA.ARG_IN;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class AdminBookModify extends JFrame {
     private JPanel panel;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
+    private JTextField book_title_field;
+    private JTextField book_author_field;
+    private JTextField book_publisher_field;
+    private JTextField book_isbn_field;
     private JButton 뒤로가기Button;
     private JButton 정보수정Button;
     private ArrayList<String> arrayList;
@@ -39,7 +35,6 @@ public class AdminBookModify extends JFrame {
         setVisible(true);
         정보수정Button.addActionListener(e -> {
             setList = getInformation();
-            JOptionPane.showMessageDialog(null, "기존의 정보하고 같습니다.");
             boolean flag = DbCall.modifyBook(setList, arrayList.get(0));
             if (flag){
                 JOptionPane.showMessageDialog(null, "수정이 성공하였습니다.");
@@ -54,18 +49,18 @@ public class AdminBookModify extends JFrame {
     }
 
     private void setInformation(ArrayList<String> list) {
-        textField1.setText(list.get(1));
-        textField2.setText(list.get(2));
-        textField3.setText(list.get(3));
-        textField4.setText(list.get(4));
+        book_title_field.setText(list.get(1));
+        book_author_field.setText(list.get(2));
+        book_publisher_field.setText(list.get(3));
+        book_isbn_field.setText(list.get(4));
     }
 
     private ArrayList<String> getInformation() {
         ArrayList<String> temp = new ArrayList<>();
-        temp.add(textField1.getText());
-        temp.add(textField2.getText());
-        temp.add(textField3.getText());
-        temp.add(textField4.getText());
-        return arrayList;
+        temp.add(book_title_field.getText());
+        temp.add(book_author_field.getText());
+        temp.add(book_publisher_field.getText());
+        temp.add(book_isbn_field.getText());
+        return temp;
     }
 }

@@ -17,7 +17,7 @@ public class AdminBookList extends JFrame{
         setLocationRelativeTo(null);
         initTable();
         새로고침Button.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "목록을 새로 고침한다.");
+            View.alert("목록을 새로 고침한다.");
             table1.updateUI();
         });
 

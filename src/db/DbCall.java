@@ -358,7 +358,7 @@ public final class DbCall {
 //        if() //관리자 인지 체크를 할 것
         try {
             con = pool.getConnection();
-            sql = "delete from library.book where book_num=?";
+            sql = "delete from library.user where id=?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, user_id);
             pstmt.executeUpdate();
@@ -372,6 +372,24 @@ public final class DbCall {
         }
         return true;
 
+    }
+
+    public static boolean returnBooKRequest(ArrayList<String> arrayList, String ing_id) {
+        try {
+            con = pool.getConnection();
+            sql = "insert into library.return values (default ,?,?)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
+            pstmt.setString(2, ing_id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
     }
 
     public static boolean modifyBook(ArrayList<String> arrayList, String book_id) {
@@ -401,22 +419,32 @@ public final class DbCall {
         return true;
     }
 
-    public static boolean returnBooKRequest(ArrayList<String> arrayList, String ing_id) {
+    public static boolean modifyUser(ArrayList<String> arrayList, String user_id) {
+        int user_status = Integer.parseInt(arrayList.get(0));
+        String user_name = arrayList.get(1);
+        String user_email = arrayList.get(2);
+        int user_tel = Integer.parseInt(arrayList.get(3));
+        System.out.println("도서 정보를 업데이트 합니다." + arrayList);
         try {
             con = pool.getConnection();
-            sql = "insert into library.return values (default ,?,?)";
+            sql = "update library.user set user_status=?, user_name=?, email=?, tel=? where id=?";
             pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
-            pstmt.setString(2, ing_id);
+            pstmt.setInt(1, user_status);
+            pstmt.setString(2, user_name);
+            pstmt.setString(3, user_email);
+            pstmt.setInt(4, user_tel);
+            pstmt.setString(5, user_id);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
         }
         return true;
+
     }
 
     private static String convertI(int s) {

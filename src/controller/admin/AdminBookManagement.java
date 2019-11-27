@@ -38,20 +38,20 @@ public class AdminBookManagement extends JFrame {
         도서삭제Button.addActionListener(e -> {
             JOptionPane.showConfirmDialog(null, "도서를 삭제 하겠습니까?");
             boolean flag = DbCall.deleteBook(arrayList);
-            if (flag){
-                JOptionPane.showMessageDialog(null, "삭제 완료하였습니다.");
+            if (flag) {
+                View.alert("삭제 완료하였습니다.");
                 initTable();
-            } else{
-                JOptionPane.showMessageDialog(null, "삭제를 실패하였습니다. 대출하고 있는 사용자가 있습니다.");
+            } else {
+                View.alert("삭제를 실패하였습니다. 대출하고 있는 사용자가 있습니다.");
             }
         });
         도서등록Button.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "도서를 등록을 합니다.");
+            View.alert("도서를 등록을 합니다.");
             setVisible(false);
             new AdminBookRegister();
         });
         도서정보수정Button.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "도서 정보를 수정을 합니다.");
+            View.alert("도서 정보를 수정을 합니다.");
             //새로운 창을 띄어서 정보를 수정을 합니다. --> 기존에 있는 정보를 라벨로 불러와서 사용을 하는 것이 좋을 것 같다.
             // 창을 띄어서 값이 반영이면 테이블을 업데이트를 함.
             new AdminBookModify(arrayList);
@@ -87,7 +87,7 @@ public class AdminBookManagement extends JFrame {
     public void initTable() {
         String[] a = {"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
         String[][] b = DbCall.getBookList();
-        DefaultTableModel model = new DefaultTableModel(b, a){
+        DefaultTableModel model = new DefaultTableModel(b, a) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
