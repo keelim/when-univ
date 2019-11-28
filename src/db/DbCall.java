@@ -540,13 +540,13 @@ public final class DbCall {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, keyword);
             rs = pstmt.executeQuery();
-//            "도서제목", "도서저자", "도서출판사", "도서ISBN"
+//          "도서번호"  "도서제목", "도서저자", "도서출판사", "도서ISBN"
             while (rs.next()) {
-                temp.add(new String[]{rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
+                temp.add(new String[]{String.valueOf(rs.getInt("book_num")), rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
             }
-            title = new String[temp.size()][4];
+            title = new String[temp.size()][5];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 4; k++) {
+                for (int k = 0; k < 5; k++) {
                     title[j][k] = temp.get(j)[k];
                 }
             }
@@ -572,17 +572,16 @@ public final class DbCall {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, keyword);
             rs = pstmt.executeQuery();
-//            "도서제목", "도서저자", "도서출판사", "도서ISBN"
+//           "도서번호" "도서제목", "도서저자", "도서출판사", "도서ISBN"
             while (rs.next()) {
-                temp.add(new String[]{rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
+                temp.add(new String[]{String.valueOf(rs.getInt("book_num")), rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
             }
-            isbn = new String[temp.size()][4];
+            isbn = new String[temp.size()][5];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 4; k++) {
+                for (int k = 0; k < 5; k++) {
                     isbn[j][k] = temp.get(j)[k];
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -593,6 +592,39 @@ public final class DbCall {
         System.out.println(Arrays.toString(isbn[0]));
         return isbn;
 
+    }
+
+    public static boolean borrowChecking(ArrayList<String> arrayList) {
+        boolean flag = false;
+        try {
+            con = pool.getConnection();
+            sql = "select book_grant from library.book where book_num=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
+            pstmt.executeQuery();
+            if (rs.next()) {
+                if (rs.getInt("book_grant") == 1) {
+                    flag = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return flag;
+
+    }
+
+    public static boolean reserve(ArrayList<String> arrayList, String ing_id) {
+        return false;
+    }
+
+    public static boolean borrowBook(ArrayList<String> arrayList, String ing_id) {
+        return false;
     }
 
     private static String convertI(int s) {

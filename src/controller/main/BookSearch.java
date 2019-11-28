@@ -1,12 +1,16 @@
 package controller.main;
 
 import controller.View;
+import db.DBConnectionMgr;
 import db.DbCall;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class BookSearch extends JFrame {
     private JPanel panel;
@@ -18,7 +22,7 @@ public class BookSearch extends JFrame {
     private JButton 도서예약Button;
     private JTextField isbn_field;
     private JButton ISBN검색Button;
-    private JLabel ISBN검색Label;
+    private ArrayList<String> arrayList;
 
 
     private String ing_id;
@@ -64,14 +68,44 @@ public class BookSearch extends JFrame {
             isbnSearch();
         });
 
-        도서대출Button.addActionListener(e -> JOptionPane.showMessageDialog(null, "도서를 대출을 합니다."));
-        도서예약Button.addActionListener(e -> JOptionPane.showMessageDialog(null, "도서를 예약을 합니다."));
+        도서대출Button.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "도서를 대출을 합니다.");
+            boolean flag = DbCall.borrowChecking(arrayList); //대출 여부를 확인을 하는 것
+            if(!flag){
+                boolean check = DbCall.borrowBook(arrayList, getIng_id());
+                if (check)
+                    View.alert("대출의 성공을 하였습니다. ");
+                else
+                    View.alert("대출의 실패를 하였습니다. ");
+            } else {
+                View.alert("대출 되어 있는 책 입니다. 예약을 진행을 해주세요");
+            }
+        });
+
+        도서예약Button.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "도서를 예약을 합니다.");
+            boolean flag = DbCall.reserve(arrayList, getIng_id());
+        });
+
         isbn_field.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     isbnSearch();
                 }
+            }
+        });
+
+        table1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // 클릭한 행을 통하여 DB 삭제를 한다.
+                arrayList = new ArrayList<>();
+                for (int i = 0; i < 5; i++) {
+                    arrayList.add((String) table1.getValueAt(table1.getSelectedRow(), i));
+                }
+                System.out.println(arrayList);
+
             }
         });
     }
@@ -111,7 +145,7 @@ public class BookSearch extends JFrame {
     private void initTable(String[][] givenArray) {
         //초기 테이블을 작성을 한다.
         //현재 가지고 있는 것을 콜을 한다.
-        String[] a = {"도서제목", "도서저자", "도서출판사", "도서ISBN"};
+        String[] a = {"도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"};
         DefaultTableModel model = new DefaultTableModel(givenArray, a) {
             @Override
             public boolean isCellEditable(int row, int column) {

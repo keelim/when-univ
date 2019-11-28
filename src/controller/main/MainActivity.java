@@ -38,14 +38,15 @@ public class MainActivity extends JFrame {
         setLocationRelativeTo(null);
         pack();
         setVisible(true);
+
         로그아웃Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "로그 아웃을 실행 합니다.", "로그 아웃", JOptionPane.WARNING_MESSAGE);
             dispose();
             Login.getInstance().setVisible(true);
         });
+
         도서검색Button.addActionListener(e -> {
             setVisible(false);
-            JOptionPane.showMessageDialog(null, "도서 검색 창으로 이동합니다.", "도서 검색", JOptionPane.WARNING_MESSAGE);
             new BookSearch(getIng_id());
         });
 
