@@ -1,7 +1,7 @@
 package controller.login;
 
 import controller.admin.AdminActivity;
-import controller.admin.View;
+import controller.View;
 import controller.main.MainActivity;
 import db.DbCall;
 

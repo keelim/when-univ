@@ -1,4 +1,4 @@
-package controller.admin;
+package controller;
 
 import javax.swing.*;
 

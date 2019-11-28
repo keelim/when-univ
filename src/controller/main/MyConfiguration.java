@@ -1,6 +1,6 @@
 package controller.main;
 
-import controller.admin.View;
+import controller.View;
 import controller.login.Login;
 import db.DbCall;
 

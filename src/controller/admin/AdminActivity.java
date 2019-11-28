@@ -1,5 +1,6 @@
 package controller.admin;
 
+import controller.View;
 import controller.login.Login;
 
 import javax.swing.*;
