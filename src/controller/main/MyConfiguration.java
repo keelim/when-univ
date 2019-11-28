@@ -46,9 +46,7 @@ public class MyConfiguration extends JFrame {
                 View.alert("대출 중이거나 예약되어 있는 책이 있습니다. 확인 부탁드립니다.");
             }
         });
-        회원정보수정Button.addActionListener(e -> {
-            new UserModify(getIng_id());
-        });
+        회원정보수정Button.addActionListener(e -> new UserModify(getIng_id()));
     }
 
     public MyConfiguration(String ing_id) {

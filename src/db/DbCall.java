@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Vector;
 
 import static java.lang.String.valueOf;
@@ -14,7 +15,7 @@ public final class DbCall {
     private static PreparedStatement pstmt = null;
     private static ResultSet rs = null;
     private static String sql = null;
-    private static DBConnectionMgr pool = DBConnectionMgr.getInstance();
+    private static final DBConnectionMgr pool = DBConnectionMgr.getInstance();
 
 
     public ArrayList<Object> dbConnection() {
@@ -217,33 +218,31 @@ public final class DbCall {
     }
 
     public static String[][] getBorrowBookList() {
-        String[][] string = null;
+//        {"id", "회원이름", "회원 대출 건수"}
+        String[][] string;
         ArrayList<String[]> temp = new ArrayList<>();
         try {
             con = pool.getConnection();
-            sql = "select * from library.borrow";
+            sql = "select * from library.user order by booknumbermonth desc";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            int i = 0;
             while (rs.next()) {
-                temp.add(new String[]{convertI(rs.getInt(1)), convertI(rs.getInt(2)), rs.getString(3), convertD(rs.getDate(4)), convertD(rs.getDate(5))});
+                temp.add(new String[]{rs.getString("id"), rs.getString("user_name"), convertI(rs.getInt("booknumbermonth"))});
             }
-            string = new String[temp.size()][5];
+            string = new String[temp.size()][3];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 5; k++) {
+                for (int k = 0; k < 3; k++) {
                     string[j][k] = temp.get(j)[k];
                 }
-                System.arraycopy(temp.get(j), 0, string[j], 0, 2);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
         }
         return string;
-
     }
 
     public static boolean insertBookInformation(ArrayList<String> arrayList) {
@@ -278,7 +277,7 @@ public final class DbCall {
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return flag;
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
@@ -531,12 +530,69 @@ public final class DbCall {
         return true;
     }
 
-    public static String[][] titleSearch() {
-        return null;
+    public static String[][] titleSearch(String keyword) {
+        String[][] title;
+        ArrayList<String[]> temp = new ArrayList<>();
+        keyword = "%" + keyword + "%";
+        try {
+            con = pool.getConnection();
+            sql = "select * from library.book where book_title like ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, keyword);
+            rs = pstmt.executeQuery();
+//            "도서제목", "도서저자", "도서출판사", "도서ISBN"
+            while (rs.next()) {
+                temp.add(new String[]{rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
+            }
+            title = new String[temp.size()][4];
+            for (int j = 0; j < temp.size(); j++) {
+                for (int k = 0; k < 4; k++) {
+                    title[j][k] = temp.get(j)[k];
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        System.out.println(Arrays.toString(title[0]));
+        return title;
     }
 
-    public static String[][] isbnSearch() {
-        return null;
+    public static String[][] isbnSearch(String keyword) {
+        String[][] isbn;
+        ArrayList<String[]> temp = new ArrayList<>();
+        keyword = "%" + keyword + "%";
+        try {
+            con = pool.getConnection();
+            sql = "select * from library.book where book_isbn like ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, keyword);
+            rs = pstmt.executeQuery();
+//            "도서제목", "도서저자", "도서출판사", "도서ISBN"
+            while (rs.next()) {
+                temp.add(new String[]{rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
+            }
+            isbn = new String[temp.size()][4];
+            for (int j = 0; j < temp.size(); j++) {
+                for (int k = 0; k < 4; k++) {
+                    isbn[j][k] = temp.get(j)[k];
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        System.out.println(Arrays.toString(isbn[0]));
+        return isbn;
+
     }
 
     private static String convertI(int s) {

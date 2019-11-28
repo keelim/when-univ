@@ -36,7 +36,7 @@ public class AdminBookManagement extends JFrame {
             activity.setVisible(true);
         });
         도서삭제Button.addActionListener(e -> {
-            JOptionPane.showConfirmDialog(null, "도서를 삭제 하겠습니까?");
+            View.alert("도서를 삭제 하겠습니까?");
             boolean flag = DbCall.deleteBook(arrayList);
             if (flag) {
                 View.alert("삭제 완료하였습니다.");

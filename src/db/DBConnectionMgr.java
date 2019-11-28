@@ -66,7 +66,7 @@ public class DBConnectionMgr {
 
         if (c == null) {
             c = createConnection();
-            co = new ConnectionObject(c, true);
+            co = new ConnectionObject(c);
             connections.addElement(co);
             trace("ConnectionPoolManager: Creating new DB connection #" + connections.size());
         }
@@ -206,12 +206,12 @@ public class DBConnectionMgr {
     }
 
     static class ConnectionObject {
-        Connection connection;
+        final Connection connection;
         boolean inUse;
 
-        ConnectionObject(Connection c, boolean useFlag) {
+        ConnectionObject(Connection c) {
             connection = c;
-            inUse = useFlag;
+            inUse = true;
         }
     }
 }

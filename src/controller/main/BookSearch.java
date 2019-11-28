@@ -82,39 +82,37 @@ public class BookSearch extends JFrame {
         setIng_id(ing_id);
     }
 
-    private String[][] titleSearch() {
+    private void titleSearch() {
         String[][] array;
         String keyword = search_field.getText();
         View.alert(keyword + "을 검색합니다.");
-        array = DbCall.titleSearch();
-        if (array != null) {
-            View.alert("검색을 완료하였습니다. ");
-        } else {
-            View.alert("검색에 실패하였습니다. ");
-        }
-        return array;
-    }
-
-    private String[][] isbnSearch() {
-        String[][] array;
-        String keyword = search_field.getText();
-        View.alert(keyword + "을 검색합니다.");
-        array = DbCall.isbnSearch();
+        array = DbCall.titleSearch(keyword);
         if (array != null) {
             View.alert("검색을 완료하였습니다. ");
             initTable(array);
         } else {
             View.alert("검색에 실패하였습니다. ");
         }
-        return array;
+    }
+
+    private void isbnSearch() {
+        String[][] array;
+        String keyword = isbn_field.getText();
+        View.alert(keyword + "을 검색합니다.");
+        array = DbCall.isbnSearch(keyword);
+        if (array != null) {
+            View.alert("검색을 완료하였습니다. ");
+            initTable(array);
+        } else {
+            View.alert("검색에 실패하였습니다. ");
+        }
     }
 
     private void initTable(String[][] givenArray) {
         //초기 테이블을 작성을 한다.
         //현재 가지고 있는 것을 콜을 한다.
         String[] a = {"도서제목", "도서저자", "도서출판사", "도서ISBN"};
-        String[][] b = givenArray;
-        DefaultTableModel model = new DefaultTableModel(b, a) {
+        DefaultTableModel model = new DefaultTableModel(givenArray, a) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -122,7 +120,6 @@ public class BookSearch extends JFrame {
         };
         table1.setModel(model);
         table1.updateUI();
-
     }
 
     private void initTable() {
