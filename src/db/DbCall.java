@@ -188,15 +188,14 @@ public final class DbCall {
         ArrayList<String[]> temp = new ArrayList<>();
         try {
             con = pool.getConnection();
-            sql = "select book_num, book_title, book_author, book_publisher, book_isbn from\n" +
-                    "library.book, (select * from library.borrow where borrow_user_id=?) as `idborrow`" +
-                    "where book_num=idborrow.borrow_num;";
+//            String[] a = {"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
+            sql = "select * from library.borrow inner join library.book on borrow.borrow_book_num = book.book_num where borrow_user_id = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, ing_id);
             System.out.println("쿼리에 들어가는 아이디" + ing_id);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                temp.add(new String[]{convertI(rs.getInt(1)), rs.getString(2), rs.getString(3), rs.getString(4), convertI(rs.getInt(5))});
+                temp.add(new String[]{convertI(rs.getInt("book_num")), rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
             }
             System.out.println(temp);
             string = new String[temp.size()][5];
@@ -204,7 +203,6 @@ public final class DbCall {
                 for (int k = 0; k < 5; k++) {
                     string[j][k] = temp.get(j)[k];
                 }
-                System.arraycopy(temp.get(j), 0, string[j], 0, 2);
             }
 
         } catch (Exception e) {
@@ -540,13 +538,13 @@ public final class DbCall {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, keyword);
             rs = pstmt.executeQuery();
-//          "도서번호"  "도서제목", "도서저자", "도서출판사", "도서ISBN"
+//          "도서번호"  "도서제목", "도서저자", "도서출판사", "도서ISBN", "도서 상태_book_grant
             while (rs.next()) {
-                temp.add(new String[]{String.valueOf(rs.getInt("book_num")), rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
+                temp.add(new String[]{String.valueOf(rs.getInt("book_num")), rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn")), convertBookGrant(rs.getInt("book_grant"))});
             }
-            title = new String[temp.size()][5];
+            title = new String[temp.size()][6];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 5; k++) {
+                for (int k = 0; k < 6; k++) {
                     title[j][k] = temp.get(j)[k];
                 }
             }
@@ -574,11 +572,11 @@ public final class DbCall {
             rs = pstmt.executeQuery();
 //           "도서번호" "도서제목", "도서저자", "도서출판사", "도서ISBN"
             while (rs.next()) {
-                temp.add(new String[]{String.valueOf(rs.getInt("book_num")), rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
+                temp.add(new String[]{String.valueOf(rs.getInt("book_num")), rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn")), convertBookGrant(rs.getInt("book_grant"))});
             }
-            isbn = new String[temp.size()][5];
+            isbn = new String[temp.size()][6];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 5; k++) {
+                for (int k = 0; k < 6; k++) {
                     isbn[j][k] = temp.get(j)[k];
                 }
             }
@@ -598,14 +596,13 @@ public final class DbCall {
         boolean flag = false;
         try {
             con = pool.getConnection();
-            sql = "select book_grant from library.book where book_num=?";
+            sql = "select * from library.book where book_num=?";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
-            pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             if (rs.next()) {
-                if (rs.getInt("book_grant") == 1) {
-                    flag = true;
-                }
+                if (rs.getInt("book_grant") == 0)
+                    flag = true; // 대출이 가능하다. 1이면 대출 불가
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -624,11 +621,57 @@ public final class DbCall {
     }
 
     public static boolean borrowBook(ArrayList<String> arrayList, String ing_id) {
-        return false;
+//        "도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
+        try {
+            con = pool.getConnection();
+            sql = "insert into library.borrow values (default , ?,?,?,?)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
+            pstmt.setString(2, ing_id);
+            pstmt.setDate(3, null);
+            pstmt.setDate(4, null);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
+    public static boolean bookStateChange(ArrayList<String> arrayList) {
+//        "도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
+        try {
+            con = pool.getConnection();
+            sql = "update library.book set book_grant=? where book_num=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, arrayList.get(0));
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+
     }
 
     private static String convertI(int s) {
         return valueOf(s);
+    }
+
+    private static String convertBookGrant(int s){
+        if(s==1){
+            return "대출중";
+        } else
+            return "대출 가능";
     }
 
     private static String convertD(Date d) {

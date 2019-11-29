@@ -71,11 +71,13 @@ public class BookSearch extends JFrame {
         도서대출Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "도서를 대출을 합니다.");
             boolean flag = DbCall.borrowChecking(arrayList); //대출 여부를 확인을 하는 것
-            if(!flag){
+            if(flag){
                 boolean check = DbCall.borrowBook(arrayList, getIng_id());
-                if (check)
+                if (check){
                     View.alert("대출의 성공을 하였습니다. ");
-                else
+                    boolean check1 = DbCall.bookStateChange(arrayList);
+                    System.out.println(check1);
+                } else
                     View.alert("대출의 실패를 하였습니다. ");
             } else {
                 View.alert("대출 되어 있는 책 입니다. 예약을 진행을 해주세요");
@@ -145,7 +147,7 @@ public class BookSearch extends JFrame {
     private void initTable(String[][] givenArray) {
         //초기 테이블을 작성을 한다.
         //현재 가지고 있는 것을 콜을 한다.
-        String[] a = {"도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"};
+        String[] a = {"도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN", "도서상태"};
         DefaultTableModel model = new DefaultTableModel(givenArray, a) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -170,7 +172,4 @@ public class BookSearch extends JFrame {
         table1.updateUI();
     }
 
-    public static void main(String[] args) {
-        new BookSearch();
-    }
 }
