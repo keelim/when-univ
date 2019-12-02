@@ -663,6 +663,28 @@ public final class DbCall {
 
     }
 
+    public static boolean deleteBorrow(ArrayList<String> arrayList, String ing_id) {
+        boolean flag = false;
+        try {
+            con = pool.getConnection();
+            //"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
+            sql = "delete from library.borrow where library.borrow.borrow_user_id=? and library.borrow.borrow_book_num=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, ing_id);
+            pstmt.setInt(2, Integer.parseInt(arrayList.get(0)));
+            pstmt.executeUpdate();
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return flag;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return flag;
+
+    }
+
     private static String convertI(int s) {
         return valueOf(s);
     }

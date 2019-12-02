@@ -5,6 +5,8 @@ import db.DbCall;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class MainActivity extends JFrame {
     private JButton 로그아웃Button;
     private JButton 도서반납Button;
     private JButton 도서검색Button;
+    private JButton 새로고침Button;
     private ArrayList<String> arrayList;
 
 
@@ -55,6 +58,9 @@ public class MainActivity extends JFrame {
             boolean flag = DbCall.returnBooKRequest(arrayList, getIng_id());
             if (flag) {
                 JOptionPane.showMessageDialog(null, "관리자에게 도서 반납을 요청 되었습니다. 잠시만 기다려주세요.", "도서 반납", JOptionPane.WARNING_MESSAGE);
+                boolean check = DbCall.deleteBorrow(arrayList, getIng_id());
+                if (check)
+                    initTable();
             } else {
                 JOptionPane.showMessageDialog(null, "오류 발생", "오류", JOptionPane.WARNING_MESSAGE);
             }
@@ -77,6 +83,14 @@ public class MainActivity extends JFrame {
                 System.out.println(arrayList);
             }
         });
+        table1.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                initTable();
+            }
+        });
+
+        새로고침Button.addActionListener(e -> initTable());
     }
 
     public MainActivity(String text) {

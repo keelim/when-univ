@@ -4,8 +4,7 @@ import db.DbCall;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class AdminBookReturn extends JFrame {
@@ -13,6 +12,7 @@ public class AdminBookReturn extends JFrame {
     private JTable table1;
     private JButton 반납승인Button;
     private JButton 뒤로가기Button;
+    private JButton 새로고침Button;
     ArrayList<String> arrayList;
 
     public AdminBookReturn() {
@@ -52,6 +52,10 @@ public class AdminBookReturn extends JFrame {
                 }
                 System.out.println(arrayList);
             }
+        });
+
+        새로고침Button.addActionListener(e -> {
+            initTable();
         });
     }
 
