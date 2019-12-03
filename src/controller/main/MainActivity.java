@@ -5,10 +5,7 @@ import db.DbCall;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class MainActivity extends JFrame {
@@ -56,6 +53,7 @@ public class MainActivity extends JFrame {
         도서반납Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "관리자에게 도서 반납을 요청 합니다.", "도서 반납", JOptionPane.WARNING_MESSAGE);
             boolean flag = DbCall.returnBooKRequest(arrayList, getIng_id());
+            DbCall.grantZero(arrayList);
             if (flag) {
                 JOptionPane.showMessageDialog(null, "관리자에게 도서 반납을 요청 되었습니다. 잠시만 기다려주세요.", "도서 반납", JOptionPane.WARNING_MESSAGE);
                 boolean check = DbCall.deleteBorrow(arrayList, getIng_id());
@@ -89,8 +87,9 @@ public class MainActivity extends JFrame {
                 initTable();
             }
         });
-
-        새로고침Button.addActionListener(e -> initTable());
+        새로고침Button.addActionListener(e -> {
+            initTable();
+        });
     }
 
     public MainActivity(String text) {

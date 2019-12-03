@@ -76,6 +76,7 @@ public class BookSearch extends JFrame {
                 if (check){
                     View.alert("대출의 성공을 하였습니다. ");
                     boolean check1 = DbCall.bookStateChange(arrayList);
+                    boolean check2 = DbCall.bookTodayDate(arrayList);
                     System.out.println(check1);
                 } else
                     View.alert("대출의 실패를 하였습니다. ");

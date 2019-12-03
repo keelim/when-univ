@@ -617,6 +617,8 @@ public final class DbCall {
     }
 
     public static boolean reserve(ArrayList<String> arrayList, String ing_id) {
+        //"도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
+        // num id num  date line // 예약 순서
         return false;
     }
 
@@ -624,12 +626,12 @@ public final class DbCall {
 //        "도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
         try {
             con = pool.getConnection();
-            sql = "insert into library.borrow values (default , ?,?,?,?)";
+            sql = "insert into library.borrow values (default , ?,?,?,default)";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
             pstmt.setString(2, ing_id);
-            pstmt.setDate(3, null);
-            pstmt.setDate(4, null);
+            pstmt.setDate(3, java.sql.Date.valueOf(java.time.LocalDate.now()));
+//            pstmt.setDate(4, null); todo 회원 구분을 통하여 반납 날짜 확인 하기
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -685,12 +687,52 @@ public final class DbCall {
 
     }
 
+    public static boolean grantZero(ArrayList<String> arrayList) {
+        boolean flag = false;
+        try {
+            con = pool.getConnection();
+            //"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
+            sql = "update library.book set book_grant = 0 where book_num=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
+            pstmt.executeUpdate();
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return flag;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return flag;
+
+    }
+
+    public static boolean bookTodayDate(ArrayList<String> arrayList) {
+        //        "도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
+        try {
+            con = pool.getConnection();
+            sql = "update library.borrow set borrow_date = sysdate where book_num=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, arrayList.get(0));
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
     private static String convertI(int s) {
         return valueOf(s);
     }
 
-    private static String convertBookGrant(int s){
-        if(s==1){
+    private static String convertBookGrant(int s) {
+        if (s == 1) {
             return "대출중";
         } else
             return "대출 가능";
