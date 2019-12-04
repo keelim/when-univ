@@ -12,7 +12,7 @@ public class AdminBookList extends JFrame{
     private JPanel panel;
 
 
-    public AdminBookList() {
+    public AdminBookList() { //todo 대출한 회원과 대출 날짜 반납 날짜를 표시를 한다.
         setContentPane(panel);
         setLocationRelativeTo(null);
         initTable();
@@ -27,8 +27,8 @@ public class AdminBookList extends JFrame{
     }
 
     private void initTable() { //초기 테이블을 작성을 한다.
-        String[] a = {"id", "회원이름", "회원 대출 건수"};
-        String[][] b = DbCall.getBorrowBookList();
+        String[] a = {"id", "도서번호", "대출날짜", "반납날짜"};
+        String[][] b = DbCall.borrowUser();
         DefaultTableModel model = new DefaultTableModel(b, a) {
             @Override
             public boolean isCellEditable(int row, int column) {

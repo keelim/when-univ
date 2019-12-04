@@ -188,19 +188,19 @@ public final class DbCall {
         ArrayList<String[]> temp = new ArrayList<>();
         try {
             con = pool.getConnection();
-//            String[] a = {"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
+//            String[] a = {"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"}; 대출일자와 반납 일자 도 있어야 한다.
             sql = "select * from library.borrow inner join library.book on borrow.borrow_book_num = book.book_num where borrow_user_id = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, ing_id);
             System.out.println("쿼리에 들어가는 아이디" + ing_id);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                temp.add(new String[]{convertI(rs.getInt("book_num")), rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn"))});
+                temp.add(new String[]{convertI(rs.getInt("book_num")), rs.getString("book_title"), rs.getString("book_author"), rs.getString("book_publisher"), convertI(rs.getInt("book_isbn")), convertD(rs.getDate("borrow_date")), convertD(rs.getDate("borrow_return_date"))});
             }
             System.out.println(temp);
-            string = new String[temp.size()][5];
+            string = new String[temp.size()][7];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 5; k++) {
+                for (int k = 0; k < 7; k++) {
                     string[j][k] = temp.get(j)[k];
                 }
             }
@@ -719,7 +719,7 @@ public final class DbCall {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
-            return false;
+            return true;
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
@@ -771,12 +771,41 @@ public final class DbCall {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
-            return false;
+            return true;
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
         }
         return true;
+    }
+
+    public static String[][] borrowUser() {
+        String[][] borrowUserInformation;
+        ArrayList<String[]> temp = new ArrayList<>();
+//        String[] a = {"id", "도서번호", "대출날짜", "반납날짜"};
+        try {
+            con = pool.getConnection();
+            sql = "select * from library.borrow inner join library.user on borrow.borrow_user_id = id";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                temp.add(new String[]{rs.getString("borrow_user_id"), convertI(rs.getInt("borrow_book_num")), convertD(rs.getDate("borrow_date")), convertD(rs.getDate("borrow_return_date"))});
+            }
+            borrowUserInformation = new String[temp.size()][4];
+            for (int j = 0; j < temp.size(); j++) {
+                for (int k = 0; k < 4; k++) {
+                    borrowUserInformation[j][k] = temp.get(j)[k];
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        System.out.println("잘 설정됨");
+        return borrowUserInformation;
     }
 
     private static String convertI(int s) {
@@ -791,6 +820,9 @@ public final class DbCall {
     }
 
     private static String convertD(Date d) {
+        if (d == null) {
+            return "";
+        }
         return d.toString();
     }
 
