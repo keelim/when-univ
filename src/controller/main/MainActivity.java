@@ -5,7 +5,10 @@ import db.DbCall;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class MainActivity extends JFrame {
@@ -19,6 +22,7 @@ public class MainActivity extends JFrame {
     private JButton 도서반납Button;
     private JButton 도서검색Button;
     private JButton 새로고침Button;
+    private JButton 도서예약관리Button;
     private ArrayList<String> arrayList;
 
 
@@ -89,6 +93,10 @@ public class MainActivity extends JFrame {
         });
         새로고침Button.addActionListener(e -> {
             initTable();
+        });
+        도서예약관리Button.addActionListener(e -> {
+            setVisible(false);
+            new ReserveManagement(getIng_id());
         });
     }
 

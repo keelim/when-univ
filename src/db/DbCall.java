@@ -712,8 +712,60 @@ public final class DbCall {
         //        "도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
         try {
             con = pool.getConnection();
-            sql = "update library.borrow set borrow_date = sysdate where book_num=?";
+            sql = "update library.borrow set borrow_date = sysdate where borrow_book_num=?";
             pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, arrayList.get(0));
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
+    public static int getUserStatus(String ing_id) {
+        int status = 0; //1 학부, 2. 대학원 3. 교직원
+        try {
+            con = pool.getConnection();
+            sql = "select library.user.user_status from library.user where id=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, ing_id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                // 패스워드를 읽어온다.
+                status = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return status;
+    }
+
+    public static boolean bookReturnDate(int status, ArrayList<String> arrayList) {
+        //        "도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
+        try {
+            con = pool.getConnection();
+            switch (status) {
+                case 1:
+                    sql = "update library.borrow set borrow_return_date = sysdate+10 where borrow_book_num=?";
+                    break;
+                case 2:
+                    sql = "update library.borrow set borrow_return_date = sysdate+30 where borrow_book_num=?";
+                    break;
+                case 3:
+                    sql = "update library.borrow set borrow_return_date = sysdate+60 where borrow_book_num=?";
+                    break;
+            }
+            pstmt = con.prepareStatement(sql);
+
             pstmt.setString(1, arrayList.get(0));
             pstmt.executeUpdate();
         } catch (Exception e) {
