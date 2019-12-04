@@ -53,7 +53,7 @@ public class ReserveManagement extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 arrayList = new ArrayList<>();
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 2; i++) {
                     arrayList.add((String) table1.getValueAt(table1.getSelectedRow(), i));
                 }
                 System.out.println(arrayList);
@@ -66,8 +66,7 @@ public class ReserveManagement extends JFrame {
         //현재 가지고 있는 것을 콜을 한다.
         String[] a = {"예약 도서번호", "예약 날짜"};
         System.out.println(getIng_id());
-        String[][] b = DbCall.getUserBookList(getIng_id()); //todo 예약 테이블 작성을 할 것4
-//        String[][] b = DbCall.getReserveBookList(arrayList);
+        String[][] b = DbCall.getReserveBookList();
 
         DefaultTableModel model = new DefaultTableModel(b, a) {
             @Override

@@ -826,6 +826,35 @@ public final class DbCall {
         return true;
     }
 
+    public static String[][] getReserveBookList() {
+        String[][] reserveBookList;
+        ArrayList<String[]> temp = new ArrayList<>();
+// {"예약 도서번호", "예약 날짜"};
+        try {
+            con = pool.getConnection();
+            sql = "select * from library.reserve";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                temp.add(new String[]{rs.getString("reserve_book_num"), convertD(rs.getDate("reserve_date"))});
+            }
+            reserveBookList = new String[temp.size()][2];
+            for (int j = 0; j < temp.size(); j++) {
+                for (int k = 0; k < 2; k++) {
+                    reserveBookList[j][k] = temp.get(j)[k];
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        System.out.println("잘 설정됨");
+        return reserveBookList;
+    }
+
     private static String convertI(int s) {
         return valueOf(s);
     }
