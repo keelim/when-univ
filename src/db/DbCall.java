@@ -779,6 +779,35 @@ public final class DbCall {
         return true;
     }
 
+    public static String[][] borrowUser() {
+        String[][] borrowUserInformation;
+        ArrayList<String[]> temp = new ArrayList<>();
+//        String[] a = {"id", "도서번호", "대출날짜", "반납날짜"};
+        try {
+            con = pool.getConnection();
+            sql = "select * from library.borrow inner join library.user on borrow.borrow_user_id = id";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                temp.add(new String[]{rs.getString("borrow_user_id"), convertI(rs.getInt("borrow_book_num")), convertD(rs.getDate("borrow_date")), convertD(rs.getDate("borrow_return_date"))});
+            }
+            borrowUserInformation = new String[temp.size()][4];
+            for (int j = 0; j < temp.size(); j++) {
+                for (int k = 0; k < 4; k++) {
+                    borrowUserInformation[j][k] = temp.get(j)[k];
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        System.out.println("잘 설정됨");
+        return borrowUserInformation;
+    }
+
     private static String convertI(int s) {
         return valueOf(s);
     }
