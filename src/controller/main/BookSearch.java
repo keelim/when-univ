@@ -91,6 +91,11 @@ public class BookSearch extends JFrame {
         도서예약Button.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "도서를 예약을 합니다.");
             boolean flag = DbCall.reserve(arrayList, getIng_id());
+            if (flag) {
+                View.alert("예약이 완료 되었습니다.");
+            } else{
+                View.alert("예약에 문제가 있습니다.");
+            }
         });
 
         isbn_field.addKeyListener(new KeyAdapter() {

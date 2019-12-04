@@ -618,8 +618,24 @@ public final class DbCall {
 
     public static boolean reserve(ArrayList<String> arrayList, String ing_id) {
         //"도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
-        // num id num  date line // 예약 순서
-        return false;
+        // num id num  date line // 예약 순서 --> default
+        try {
+            con = pool.getConnection();
+            sql = "insert into library.reserve values (default, ?, ?, ?, default)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, ing_id);
+            pstmt.setInt(2, Integer.parseInt(arrayList.get(0)));
+            pstmt.setDate(3, java.sql.Date.valueOf(java.time.LocalDate.now()));
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
     }
 
     public static boolean borrowBook(ArrayList<String> arrayList, String ing_id) {
