@@ -1,5 +1,6 @@
 package controller.main;
 
+import controller.View;
 import db.DbCall;
 
 import javax.swing.*;
@@ -39,6 +40,13 @@ public class ReserveManagement extends JFrame {
         });
 
         예약취소Button.addActionListener(e -> {
+            View.alert("예약을 취소 합니다. ");
+            boolean flag = DbCall.reserveCancel(arrayList); // 예약 도서 번호를 테이블에서 삭제
+            if (flag){
+                View.alert("예약이 취소 되었습니다.");
+                initTable();
+            } else
+                View.alert("오류가 났습니다.");
 
         });
         table1.addMouseListener(new MouseAdapter() {
@@ -59,6 +67,7 @@ public class ReserveManagement extends JFrame {
         String[] a = {"예약 도서번호", "예약 날짜"};
         System.out.println(getIng_id());
         String[][] b = DbCall.getUserBookList(getIng_id()); //todo 예약 테이블 작성을 할 것4
+//        String[][] b = DbCall.getReserveBookList(arrayList);
 
         DefaultTableModel model = new DefaultTableModel(b, a) {
             @Override

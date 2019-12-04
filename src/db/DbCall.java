@@ -808,6 +808,24 @@ public final class DbCall {
         return borrowUserInformation;
     }
 
+    public static boolean reserveCancel(ArrayList<String> arrayList) {
+//        "예약 도서번호", "예약 날짜"
+        try {
+            con = pool.getConnection();
+            sql = "delete from library.reserve where reserve_book_num = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, Integer.parseInt(arrayList.get(0))); //선택을 하면 삭제를 한다.
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // 자원반납
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return true;
+    }
+
     private static String convertI(int s) {
         return valueOf(s);
     }
