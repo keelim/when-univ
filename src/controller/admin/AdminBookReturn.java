@@ -7,13 +7,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class AdminBookReturn extends JFrame {
+class AdminBookReturn extends JFrame {
     private JPanel return_panel;
     private JTable table1;
     private JButton 반납승인Button;
     private JButton 뒤로가기Button;
     private JButton 새로고침Button;
-    ArrayList<String> arrayList;
+    private ArrayList<String> arrayList;
 
     public AdminBookReturn() {
         setTitle("도서 반납 관리");
@@ -54,9 +54,7 @@ public class AdminBookReturn extends JFrame {
             }
         });
 
-        새로고침Button.addActionListener(e -> {
-            initTable();
-        });
+        새로고침Button.addActionListener(e -> initTable());
     }
 
     private void initTable() {
@@ -74,8 +72,4 @@ public class AdminBookReturn extends JFrame {
         table1.updateUI();
     }
 
-
-    public static void main(String[] args) {
-        new AdminBookReturn();
-    }
 }

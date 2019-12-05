@@ -5,7 +5,7 @@ import db.DbCall;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class AdminUserModify extends JFrame {
+class AdminUserModify extends JFrame {
     private JButton 뒤로가기Button;
     private JPanel panel1;
     private JTextField user_status_field;

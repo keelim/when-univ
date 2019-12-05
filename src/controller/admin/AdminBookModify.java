@@ -5,7 +5,7 @@ import db.DbCall;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class AdminBookModify extends JFrame {
+class AdminBookModify extends JFrame {
     private JPanel panel;
     private JTextField book_title_field;
     private JTextField book_author_field;
@@ -17,7 +17,7 @@ public class AdminBookModify extends JFrame {
     private ArrayList<String> setList;
 
 
-    public void setArrayList(ArrayList<String> arrayList) {
+    private void setArrayList(ArrayList<String> arrayList) {
         this.arrayList = arrayList;
     }
 

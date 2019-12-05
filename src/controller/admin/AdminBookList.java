@@ -5,7 +5,7 @@ import db.DbCall;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class AdminBookList extends JFrame{
+class AdminBookList extends JFrame{
     private JTable table1;
     private JButton 뒤로가기Button;
     private JButton 새로고침Button;

@@ -6,7 +6,7 @@ import db.DbCall;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class UserModify extends JFrame{
+class UserModify extends JFrame{
     private static UserModify instance;
     private JTextField user_name_field;
     private JTextField user_email_field;
@@ -17,11 +17,11 @@ public class UserModify extends JFrame{
     private String id;
     private ArrayList<String> arrayList;
 
-    public String getId() {
+    private String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    private void setId(String id) {
         this.id = id;
     }
 
@@ -31,7 +31,7 @@ public class UserModify extends JFrame{
         setInformation();
     }
 
-    public UserModify() {
+    private UserModify() {
         setContentPane(panel1);
         setLocationRelativeTo(null);
 

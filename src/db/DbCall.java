@@ -138,9 +138,7 @@ public final class DbCall {
             }
             string = new String[temp.size()][6];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 6; k++) {
-                    string[j][k] = temp.get(j)[k];
-                }
+                System.arraycopy(temp.get(j), 0, string[j], 0, 6);
                 System.arraycopy(temp.get(j), 0, string[j], 0, 2);
             }
 
@@ -168,9 +166,7 @@ public final class DbCall {
             }
             string = new String[temp.size()][5];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 5; k++) {
-                    string[j][k] = temp.get(j)[k];
-                }
+                System.arraycopy(temp.get(j), 0, string[j], 0, 5);
                 System.arraycopy(temp.get(j), 0, string[j], 0, 2);
             }
 
@@ -201,9 +197,7 @@ public final class DbCall {
             System.out.println(temp);
             string = new String[temp.size()][7];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 7; k++) {
-                    string[j][k] = temp.get(j)[k];
-                }
+                System.arraycopy(temp.get(j), 0, string[j], 0, 7);
             }
 
         } catch (Exception e) {
@@ -230,9 +224,7 @@ public final class DbCall {
             }
             string = new String[temp.size()][3];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 3; k++) {
-                    string[j][k] = temp.get(j)[k];
-                }
+                System.arraycopy(temp.get(j), 0, string[j], 0, 3);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -276,12 +268,12 @@ public final class DbCall {
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
-            return flag;
+            return false;
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
         }
-        return flag;
+        return true;
     }
 
     public static boolean signUpUser(ArrayList<String> information) {
@@ -546,9 +538,7 @@ public final class DbCall {
             }
             title = new String[temp.size()][6];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 6; k++) {
-                    title[j][k] = temp.get(j)[k];
-                }
+                System.arraycopy(temp.get(j), 0, title[j], 0, 6);
             }
 
         } catch (Exception e) {
@@ -578,9 +568,7 @@ public final class DbCall {
             }
             isbn = new String[temp.size()][6];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 6; k++) {
-                    isbn[j][k] = temp.get(j)[k];
-                }
+                System.arraycopy(temp.get(j), 0, isbn[j], 0, 6);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -697,17 +685,16 @@ public final class DbCall {
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
-            return flag;
+            return false;
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
         }
-        return flag;
+        return true;
 
     }
 
     public static boolean grantZero(ArrayList<String> arrayList) {
-        boolean flag = false;
         try {
             con = pool.getConnection();
             //"도서번호", "도서이름", "도서저자", "도서출판사", "도서 isbn"};
@@ -715,36 +702,16 @@ public final class DbCall {
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
             pstmt.executeUpdate();
-            flag = true;
         } catch (Exception e) {
             e.printStackTrace();
-            return flag;
-        } finally {
-            // 자원반납
-            pool.freeConnection(con, pstmt, rs);
-        }
-        return flag;
-
-    }
-
-    public static boolean bookTodayDate(ArrayList<String> arrayList) {
-        //        "도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
-        try {
-            con = pool.getConnection();
-            sql = "update library.borrow set borrow_date = sysdate where borrow_book_num=?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, arrayList.get(0));
-            pstmt.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-            return true;
+            return false;
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
         }
         return true;
     }
+
 
     public static int getUserStatus(String ing_id) {
         int status = 0; //1 학부, 2. 대학원 3. 교직원
@@ -792,7 +759,7 @@ public final class DbCall {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
-            return true;
+            return false;
         } finally {
             // 자원반납
             pool.freeConnection(con, pstmt, rs);
@@ -814,9 +781,7 @@ public final class DbCall {
             }
             borrowUserInformation = new String[temp.size()][4];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 4; k++) {
-                    borrowUserInformation[j][k] = temp.get(j)[k];
-                }
+                System.arraycopy(temp.get(j), 0, borrowUserInformation[j], 0, 4);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -861,9 +826,7 @@ public final class DbCall {
             }
             reserveBookList = new String[temp.size()][2];
             for (int j = 0; j < temp.size(); j++) {
-                for (int k = 0; k < 2; k++) {
-                    reserveBookList[j][k] = temp.get(j)[k];
-                }
+                System.arraycopy(temp.get(j), 0, reserveBookList[j], 0, 2);
             }
         } catch (Exception e) {
             e.printStackTrace();

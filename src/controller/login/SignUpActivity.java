@@ -5,7 +5,7 @@ import db.DbCall;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class SignUpActivity extends JFrame {
+class SignUpActivity extends JFrame {
 
     private JPanel panel1;
     private JTextField signup_id;
@@ -19,23 +19,23 @@ public class SignUpActivity extends JFrame {
     private JComboBox comboBox1;
 
 
-    public JTextField getSignup_id() {
+    private JTextField getSignup_id() {
         return signup_id;
     }
 
-    public JTextField getSignup_passwd() {
+    private JTextField getSignup_passwd() {
         return signup_passwd;
     }
 
-    public JTextField getSignup_name() {
+    private JTextField getSignup_name() {
         return signup_name;
     }
 
-    public JTextField getSignup_email() {
+    private JTextField getSignup_email() {
         return signup_email;
     }
 
-    public JTextField getSignup_tel() {
+    private JTextField getSignup_tel() {
         return signup_tel;
     }
 

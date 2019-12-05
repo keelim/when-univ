@@ -1,7 +1,6 @@
 package controller.main;
 
 import controller.View;
-import db.DBConnectionMgr;
 import db.DbCall;
 
 import javax.swing.*;
@@ -12,7 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class BookSearch extends JFrame {
+class BookSearch extends JFrame {
     private JPanel panel;
     private JTextField search_field;
     private JButton 검색Button;
@@ -27,15 +26,15 @@ public class BookSearch extends JFrame {
 
     private String ing_id;
 
-    public String getIng_id() {
+    private String getIng_id() {
         return ing_id;
     }
 
-    public void setIng_id(String ing_id) {
+    private void setIng_id(String ing_id) {
         this.ing_id = ing_id;
     }
 
-    public BookSearch() {
+    private BookSearch() {
         setContentPane(panel);
         setTitle("메인 화면");
         initTable();

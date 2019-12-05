@@ -6,8 +6,8 @@ import java.util.Vector;
 
 public class DBConnectionMgr {
     private static DBConnectionMgr instance = null;
-    public final String _driver = "com.mysql.jdbc.Driver";
-    public final String _url = "jdbc:mysql://localhost:3307/library"; //
+    private final String _driver = "com.mysql.jdbc.Driver";
+    private final String _url = "jdbc:mysql://localhost:3307/library"; //
     private final Vector<ConnectionObject> connections = new Vector<>(10);
     private String _user = "root"; //
     private String _password = "1234"; //
@@ -73,7 +73,7 @@ public class DBConnectionMgr {
         return c;
     }
 
-    public synchronized void freeConnection(Connection c) {
+    private synchronized void freeConnection(Connection c) {
         if (c == null)
             return;
 
@@ -134,7 +134,7 @@ public class DBConnectionMgr {
     }
 
 
-    public synchronized void removeConnection(Connection c) {
+    private synchronized void removeConnection(Connection c) {
         if (c == null)
             return;
 

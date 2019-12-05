@@ -34,7 +34,7 @@ public class MainActivity extends JFrame {
         this.ing_id = ing_id;
     }
 
-    public MainActivity() {
+    private MainActivity() {
         setContentPane(main_panel);
         setTitle("메인 화면");
         initTable();
@@ -91,9 +91,7 @@ public class MainActivity extends JFrame {
                 initTable();
             }
         });
-        새로고침Button.addActionListener(e -> {
-            initTable();
-        });
+        새로고침Button.addActionListener(e -> initTable());
         도서예약관리Button.addActionListener(e -> {
             setVisible(false);
             new ReserveManagement(getIng_id());

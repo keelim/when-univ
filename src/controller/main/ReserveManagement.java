@@ -9,7 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class ReserveManagement extends JFrame {
+class ReserveManagement extends JFrame {
     private String ing_id;
     private JPanel panel;
     private JTable table1;
@@ -26,7 +26,7 @@ public class ReserveManagement extends JFrame {
     }
 
 
-    public ReserveManagement() {
+    private ReserveManagement() {
         setTitle("예약관리");
         setContentPane(panel);
         setLocationRelativeTo(null);
@@ -62,7 +62,7 @@ public class ReserveManagement extends JFrame {
         });
     }
 
-    public void initTable() { //초기 테이블을 작성을 한다.
+    private void initTable() { //초기 테이블을 작성을 한다.
         //현재 가지고 있는 것을 콜을 한다.
         String[] a = {"예약 도서번호", "예약 날짜"};
         System.out.println(getIng_id());

@@ -5,7 +5,7 @@ import db.DbCall;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class AdminBookRegister extends JFrame {
+class AdminBookRegister extends JFrame {
     private JTextField book_title;
     private JTextField book_author;
     private JTextField book_publisher;

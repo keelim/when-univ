@@ -14,15 +14,15 @@ public class MyConfiguration extends JFrame {
     private JButton 뒤로가기Button;
     private String ing_id;
 
-    public String getIng_id() {
+    private String getIng_id() {
         return ing_id;
     }
 
-    public void setIng_id(String ing_id) {
+    private void setIng_id(String ing_id) {
         this.ing_id = ing_id;
     }
 
-    public MyConfiguration() {
+    private MyConfiguration() {
         setContentPane(panel);
         setTitle("설정 화면");
         setVisible(true);
