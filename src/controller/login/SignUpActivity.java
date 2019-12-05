@@ -13,10 +13,10 @@ public class SignUpActivity extends JFrame {
     private JTextField signup_name;
     private JTextField signup_email;
     private JTextField signup_tel;
-    private JTextField signup_status;
-    private JButton sugnup_upButton;
+    private JButton signUpButton;
     private JButton ic_check;
     private JButton 뒤로가기Button;
+    private JComboBox comboBox1;
 
 
     public JTextField getSignup_id() {
@@ -39,16 +39,13 @@ public class SignUpActivity extends JFrame {
         return signup_tel;
     }
 
-    public JTextField getSignup_status() {
-        return signup_status;
-    }
 
     public SignUpActivity() {
         setTitle("회원 가입");
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        sugnup_upButton.addActionListener(e -> {
+        signUpButton.addActionListener(e -> {
             boolean flag = DbCall.signUpUser(getInformation());
             if (flag) {
                 dispose();
@@ -91,7 +88,7 @@ public class SignUpActivity extends JFrame {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(getSignup_id().getText());
         arrayList.add(getSignup_passwd().getText());
-        arrayList.add(getSignup_status().getText());
+        arrayList.add((String) comboBox1.getSelectedItem());
         arrayList.add(getSignup_name().getText());
         arrayList.add(getSignup_email().getText());
         arrayList.add(getSignup_tel().getText());

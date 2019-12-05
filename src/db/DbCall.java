@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
@@ -287,11 +288,12 @@ public final class DbCall {
         String id = information.get(0);
         String pw = information.get(1);
         String status = information.get(2);
-        int status_handler;
         String name = information.get(3);
         String email = information.get(4);
         String tel = information.get(5);
 
+        System.out.println("학부? 대학원? " +status);
+        int status_handler;
         if (status.equals("학부")) {
             status_handler = 0;
         } else if (status.equals("대학원")) {
@@ -646,7 +648,8 @@ public final class DbCall {
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, Integer.parseInt(arrayList.get(0)));
             pstmt.setString(2, ing_id);
-            pstmt.setDate(3, java.sql.Date.valueOf(java.time.LocalDate.now()));
+            LocalDate today = java.time.LocalDate.now();
+            pstmt.setDate(3, java.sql.Date.valueOf(today));
 //            pstmt.setDate(4, null); todo 회원 구분을 통하여 반납 날짜 확인 하기
             pstmt.executeUpdate();
         } catch (Exception e) {
@@ -769,20 +772,22 @@ public final class DbCall {
         //        "도서번호", "도서제목", "도서저자", "도서출판사", "도서ISBN"
         try {
             con = pool.getConnection();
+            sql = "update library.borrow set borrow_return_date = ? where borrow_book_num=?";
+            pstmt = con.prepareStatement(sql);
+            LocalDate day = java.time.LocalDate.now();
             switch (status) {
                 case 1:
-                    sql = "update library.borrow set borrow_return_date = sysdate+10 where borrow_book_num=?";
+                    day = day.plusDays(10);
                     break;
                 case 2:
-                    sql = "update library.borrow set borrow_return_date = sysdate+30 where borrow_book_num=?";
+                    day = day.plusDays(30);
                     break;
                 case 3:
-                    sql = "update library.borrow set borrow_return_date = sysdate+60 where borrow_book_num=?";
+                    day = day.plusDays(60);
                     break;
             }
-            pstmt = con.prepareStatement(sql);
-
-            pstmt.setString(1, arrayList.get(0));
+            pstmt.setDate(1, Date.valueOf(day));
+            pstmt.setString(2, arrayList.get(0));
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
