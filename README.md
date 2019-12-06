@@ -331,6 +331,20 @@ INSERT INTO  TABLE1 SELECT* FROM TABLE2
 2, 교직원
 
 ## 2019 12 05
+
+
+final exam
+    실습에서 2문제
+    1. sql 작성하는 것
+        -> 테이블을 2개 주고 조인을 하는 것 -> 결과값
+        -> 쿼리를 조금 주고 여기서 빈칸 문제를 낼 것이냐?
+        -> select * from member a inner join 
+       
+    2. erd 그리는 것
+        -> 객체 생성 쿼리를 주고 준다음에 
+        -> 그것을 기반으로 erd를 그려라 -> erd로 표현을 할 수 있는가?
+        -> sqld ansi 표준 on 있는 것 
+        -> 월요일 6시 시험
  
 > 
     도서 대출 요청을 어떻게 해야 하는가?
