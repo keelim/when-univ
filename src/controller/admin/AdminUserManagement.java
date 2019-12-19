@@ -1,5 +1,7 @@
 package controller.admin;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+import controller.View;
 import db.DbCall;
 
 import javax.swing.*;
@@ -34,11 +36,13 @@ public class AdminUserManagement extends JFrame {
             //확인이면 0 취소는 1
             int answer = JOptionPane.showConfirmDialog(null, "선택하신 회원을 삭제를 하시겠습니까?");
             if (answer == 0) {
-                boolean flag = DbCall.deleteUser(arrayList);
+                boolean flag = false;
+                flag = DbCall.deleteUser(arrayList);
                 if (flag) {
                     JOptionPane.showMessageDialog(null, "선택하신 회원을 삭제했습니다.");
                     initTable();
-                }
+                } else
+                    View.alert("선택한 회원은 떄출중이거나 반납중인 도서가 있습니다. 확인 바랍니다.");
             }
         });
         회원정보수정Button.addActionListener(e -> {
