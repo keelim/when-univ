@@ -45,7 +45,7 @@ public class AdminUserManagement extends JFrame {
             //회원 정보를 수정을 하는 이벤트 -> 새로운 창을 여는 것이 좋을 것 같다.
             if (arrayList == null) {
                 JOptionPane.showMessageDialog(null, "선택을 해주세요");
-            } else{
+            } else {
                 setVisible(false);
                 new AdminUserModify(arrayList);
             }
@@ -84,6 +84,9 @@ public class AdminUserManagement extends JFrame {
     public void initTable() { //초기 테이블을 작성을 한다.
         String[] a = {"회원아이디", "회원구분", "회원이름", "회원이메일", "회원전화번호", "월 책 대출 수"};
         String[][] b = DbCall.getUserList();
+        for (int i = 0; i < b.length; i++) {
+            b[i][4] = "0" + b[i][4];
+        }
         DefaultTableModel model = new DefaultTableModel(b, a) {
             @Override
             public boolean isCellEditable(int row, int column) {
