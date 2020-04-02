@@ -1,37 +1,26 @@
-package week2;
+package week3;
 
-public class Program2_2 {
+import java.util.Scanner;
+
+public class Program3_2{
     public static void main(String[] args) {
-        int sum = 1;
-        System.out.println("1 부터 1까지의 합은 " + sum + " 입니다");
+        int givenN, count = 1, sum = 1;
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("<< 1부터 주어진 수 까지의 합을 계산하는 프로그램을 시작합니다.>>");
+        System.out.print("- N 값을 입력하시오: " );
+        givenN = sc.nextInt();
+        if(givenN<0){
+            System.out.println("[오류] 주어진 N 값이 1 보다 작아서 합을 계산할 수 없습니다.");
+        } else{
+            while(count<givenN){
+                count++;
+                sum+=count;
+            }
+            System.out.println("합계는 "+sum+ " 입니다.");
+        }
+        
 
-        sum = 1 + 2; // 1 -1
-        System.out.println("1 부터 2까지의 합은 " + sum + " 입니다");
-
-        sum = 1 + 2 + 3; // 2-1
-        System.out.println("1 부터 3까지의 합은 " + sum + " 입니다");
-
-        sum = 1 + 2 + 3 + 4; //3-1
-        System.out.println("1 부터 4까지의 합은 " + sum + " 입니다");
-
-        sum = 1 + 2 + 3 + 4 + 5; //4-1
-        System.out.println("1 부터 5까지의 합은 " + sum + " 입니다");
-
-        sum = 0; //0-1
-        sum = sum + 1; //1-1
-        System.out.println("1 부터 1까지의 합은 " + sum + " 입니다");
-
-        sum = sum + 2; //1-1
-        System.out.println("1 부터 2까지의 합은 " + sum + " 입니다");
-
-        sum = sum + 3; // 1-1
-        System.out.println("1 부터 3까지의 합은 " + sum + " 입니다");
-
-        sum = sum + 4; //1-1
-        System.out.println("1 부터 4까지의 합은 " + sum + " 입니다");
-
-        sum = sum + 5; //1-1
-        System.out.println("1 부터 5까지의 합은 " + sum + " 입니다");
+        System.out.println("\n<< 1 부터 주어진 수까지의 합을 계산하는 프로그램을 종료합니다. >>");
     }
 }
-
