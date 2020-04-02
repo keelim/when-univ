@@ -1,42 +1,35 @@
-package week2;
+package week3;
 
 import java.util.Scanner;
 
-public class Program2_1 {
+public class Program3_1 {
     public static void main(final String[] args) {
-        double a, b, c;
-        double determinant;
-        double x1, x2;
-        // 서로 다른 실근
-        a = 1.0; b = 0.0; c = -4.0;
+        double a, b, c, determinant, x1, x2;
+        Scanner sc = new Scanner(System.in);
 
-//        a=3.0; b=0.0; c=-27.0;
-//
-        // 중근
-        a=1.0; b=2.0; c=1.0;
-
-//        a=1.0; b=2.0; c=4.0;
-//
-//        // 허근
-//        a=1.0; b=1.0; c=1.0;
-//
-//        a=2.0; b=2.0; c=2.0;
-        System.out.println("a= " + a + "b= " + b + "c= " + c);
+        System.out.println("<< 이차방정식 풀이 프로그램을 시작합니다.>>");
+        System.out.print("-2 차항의 계수 (a)를 입력하시오: ");
+        a = sc.nextDouble();
+        System.out.print("-1 차항의 계수 (b)를 입력하시오: ");
+        b = sc.nextDouble();
+        System.out.print("- 상수항의 계수 (c)를 입력하시오: ");
+        c = sc.nextDouble();
+        System.out.println("입력된 방정식의 계수: a=" + a + " b=" + b + " c=" + c);
         determinant = b * b - 4.0 * a * c;
-        if(determinant>0){
-            x1 = ((-b+Math.sqrt(determinant))/(2.0*a));
-            x2 = ((-b-Math.sqrt(determinant))/(2.0*a));
-            System.out.println("The solution is either"+x1+" or "+x2);
-        } else if (determinant ==0){
-            x1 = ((-b+Math.sqrt(determinant))/(2.0*a));
-            System.out.println("The solution is only" +x1);
+
+        if ((-0.0000001 < a) && (a < 0.0000001)) {
+            System.out.println("오류: 2차항의 계수가 0이므로, 이차방정식을 풀 수 없습니다.");
+        } else if (determinant > 0) {
+            x1 = ((-b + Math.sqrt(determinant)) / (2.0 * a));
+            x2 = ((-b - Math.sqrt(determinant)) / (2.0 * a));
+            System.out.format("방정식의 해: %.1f 또는 %.1f\n", x1, x2);
+        } else if (determinant == 0) {
+            x1 = ((-b + Math.sqrt(determinant)) / (2.0 * a));
+            System.out.println("방정식의 해: " + x1);
         } else {
-            System.out.println("The solution is NaN");
+            System.out.println("[오류] 판별식의 값이 음수이어서 이차방정식의 해가 존재하지 않습니다.");
         }
 
-        Scanner sc = new Scanner(System.in);
-        int hello;
-        hello = sc.nextInt();
+        System.out.println("\n<< 이차방정식 풀이 프로그램을 종료합니다 >>");
     }
 }
-
