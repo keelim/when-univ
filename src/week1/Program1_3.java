@@ -1,4 +1,4 @@
-package project;
+package week1;
 
 public class Program1_3 {
     public static void main(String[] args) {
