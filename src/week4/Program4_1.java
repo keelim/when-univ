@@ -10,7 +10,6 @@ public class Program4_1 {
 
         System.out.println("<< 이차방정식 풀이 프로그램을 시작합니다.>>\n");
         System.out.print("> 이차방정식 풀이를 하겠습니까? 하려면 'Y' 또는 'y' 를 입력하시오: ");
-        
         userAnswer = sc.next().charAt(0); // 사용자의 대답을 얻기 위해 키보드에서 글자 하나를 입력 받는다
         while ( /* 대답이 ‘Y’ 또는 'y' 이면 */ userAnswer == 'Y' || userAnswer == 'y') {
 
