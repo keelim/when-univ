@@ -75,7 +75,7 @@ public class Program7_1 {
             return 3.0;
         else if (grade == 'C')
             return 2.0;
-        else if (grade == 'C')
+        else if (grade == 'D')
             return 1.0;
         else
             return 0.0;
