@@ -7,12 +7,13 @@ public class Program7_2 {
     static int count1 = 0, count2 = 0, count3 = 0, count4 = 0;
 
     public static void main(final String[] args) {
-        int num;
         int korean, english, computer;
+
         System.out.println(">세 과목 (국어, 영어, 컴퓨터) 의 점수를 차례로 입력합니다.");
         korean = inputScore();
         english = inputScore();
         computer = inputScore();
+
         while (korean >= 0 && english >= 0 && computer >= 0) {
 
             if (korean > 100 || english > 100 || computer > 100) {
@@ -26,6 +27,7 @@ public class Program7_2 {
             char grade1 = score2Grade(korean);
             char grade2 = score2Grade(english);
             char grade3 = score2Grade(computer);
+
             double point1 = score2Point(grade1);
             double point2 = score2Point(grade2);
             double point3 = score2Point(grade3);
@@ -45,15 +47,18 @@ public class Program7_2 {
             computer = inputScore();
         }
         System.out.println("음의 점수가 입력되어 입력을 종료합니다.\n");
+        printCount();
 
+        System.out.println("\n프로그램을 종료합니다.");
+
+    }
+
+    private static void printCount(){
         System.out.println("평균 평점 대 별 학생 수는 다음과 같습니다.");
         System.out.println("- 3.0 이상: " + count3 + " 명");
         System.out.println("- 2.0 이상 3.0 미만: " + count2 + " 명");
         System.out.println("- 1.0 이상 2.0 미만: " + count1 + " 명");
         System.out.println("- 1.0 미만: " + count4 + " 명");
-
-        System.out.println("\n프로그램을 종료합니다.");
-
     }
 
     private static int inputScore() {
@@ -91,11 +96,11 @@ public class Program7_2 {
             return 0.0;
     }
 
-    private static double calcGPA(double score1, double score2, double score3) {
+    private static double calcGPA(double score1, double score2, double score3) { //평균 학점 계산
         return (score1 + score2 + score3) / 3.0;
     }
 
-    private static void countGPA_Person(double gpa) {
+    private static void countGPA_Person(double gpa) { // 학점 명 수 계산
         if (gpa >= 3.0)
             count3++;
         else if (gpa >= 2.0)

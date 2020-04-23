@@ -19,7 +19,7 @@ public class Program7_1 {
             }
             char grade = score2Grade(num);
             double point = score2Point(grade);
-            System.out.println("점수: "+num+", 학점:"+grade+", 평점: "+point);
+            System.out.println("점수: " + num + ", 학점:" + grade + ", 평점: " + point);
 
             num = inputScore();
         }
@@ -67,7 +67,6 @@ public class Program7_1 {
         }
 
     }
-
     private static double score2Point(char grade) {
         if (grade == 'A')
             return 4.0;
