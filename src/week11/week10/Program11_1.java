@@ -1,8 +1,8 @@
-package week10;
+package week11.week10;
 
 import java.util.Scanner;
 
-public class Program10_1 {
+public class Program11_1 {
     static final Scanner sc = new Scanner(System.in);
 
     public static void main(final String[] args) {

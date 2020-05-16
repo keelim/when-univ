@@ -1,6 +1,6 @@
-package week10;
+package week11.week10;
 
-public class Student extends Program10_1 {
+public class Student extends Program11_1 {
     private int _scoreKorean;
     private int _scoreEnglish;
     private int _scoreComputer;
