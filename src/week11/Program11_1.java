@@ -2,10 +2,11 @@ package week11;
 
 import java.util.Scanner;
 
+
 public class Program11_1 {
     static final Scanner sc = new Scanner(System.in);
     private static final int MAX_STUDENTS = 50;
-    private static Student[] c1;
+    private static week11.Student[] c1;
     private static int numberOfStudents = 0;
     private static double average;
     private static double upAverage = 0.0;
@@ -17,7 +18,7 @@ public class Program11_1 {
 
 
     public static void main(final String[] args) {
-        c1 = new Student[MAX_STUDENTS];
+        c1 = new week11.Student[MAX_STUDENTS];
         inputAndStoreStudentInfo();
         showStudentInfo();
         calcAverage();
@@ -43,13 +44,13 @@ public class Program11_1 {
     private static void calcAverage() {
         int sum = 0;
         for (int i = 0; i < numberOfStudents; i++) {
-            Student student = new Student();
+            week11.Student student = new week11.Student();
             sum += student.score();
         }
         average = (double) sum / numberOfStudents;
 
         for (int i = 0; i < numberOfStudents; i++) {
-            Student student = new Student();
+            week11.Student student = new week11.Student();
             if (student.score() > average) upAverage++;
         }
     }
@@ -58,7 +59,7 @@ public class Program11_1 {
         System.out.println("\n 학생들의 성적 목록입니다.");
 
         for (int i = 0; i < numberOfStudents; i++) {
-            Student tempStu = c1[i];
+            week11.Student tempStu = c1[i];
             System.out.printf("학번: %s 점수: %d 학점: %c \n", tempStu.studentNo(), tempStu.score(), tempStu.grade());
 
         }
@@ -85,7 +86,7 @@ public class Program11_1 {
             if (score < 0 || score > 100)
                 System.out.println("[오류 ] 잘못된 점수 입력");
             else {
-                Student currentStudent = new Student();
+                week11.Student currentStudent = new week11.Student();
                 currentStudent.setStudentNo(studentNo);
                 currentStudent.setScore(score);
                 addStudent(currentStudent);
@@ -94,7 +95,7 @@ public class Program11_1 {
         }
     }
 
-    private static void addStudent(Student aStudent) {
+    private static void addStudent(week11.Student aStudent) {
         c1[numberOfStudents] = aStudent;
         numberOfStudents++;
     }
