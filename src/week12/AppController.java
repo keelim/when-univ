@@ -16,8 +16,8 @@ public class AppController {
         this.inputAndStoreStudentsInfo();
         this.showStudentsInfo();
         this._ban.calcAverageInfo();
-        this.showAverageInfo();
         this._ban.countStudentsByGrade();
+        this.showAverageInfo();
         this.showGradeInfo();
 
         System.out.println("프로그램을 종료합니다.");
@@ -35,19 +35,21 @@ public class AppController {
             studentNo = inputStudentNo();
             score = inputScore();
             if (score < 0 || score > 100) {
-                System.out.println("[오류]");
+                System.out.println("오류: 0보다 작서나 100 보다 커서, 정상적인 점수가 아닙니다.\n");
             } else {
                 currentStudent = new Student();
                 currentStudent.setStudentNo(studentNo);
                 currentStudent.setScore(score);
                 _ban.addStudent(currentStudent);
             }
+            System.out.println();
             moreStudentExist = inputMoreStudentsExist();
         }
 
     }
 
     private String inputStudentNo() {
+        System.out.print("-학번을 입력하시오: ");
         return sc.next();
     }
 
@@ -58,6 +60,7 @@ public class AppController {
 
 
     private boolean inputMoreStudentsExist() {
+        System.out.print("? 학생정보를 입력하려면 'Y'를 입력을 종료하려면 'N' 을 치시오: ");
         String temp = sc.next();
         if (temp.equals("Y") || temp.equals("y")) {
             return true;
@@ -87,8 +90,15 @@ public class AppController {
     }
 
     private void showGradeInfo() {
-        System.out.println("평균점수는 " + _ban.average() + " 입니다.");
+
+        System.out.printf("\n 평균점수는 %.2f 입니다.", _ban.average());
         System.out.println("평균 이상인 학생은 모두 " + _ban.numberOfStudentsWithAboveAverage() + " 입니다.");
+        Student student = null;
+        for (int i = 0; i < _ban.numberOfStudents(); i++) {
+            student = _ban.students()[i];
+            if (student.score() > _ban.average())
+                System.out.printf("학번: %s 점수: %d 학점: %c \n", student.studentNo(), student.score(), student.grade());
+        }
 
 
     }
