@@ -1,6 +1,6 @@
 package week12;
 
-public class Ban {
+public class Ban {//반으로 처리
     private int _capacity;
     private int _numberOfStudents;
     private Student[] _students;
