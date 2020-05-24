@@ -17,8 +17,8 @@ public class AppController {
         this.showStudentsInfo();
         this._ban.calcAverageInfo();
         this._ban.countStudentsByGrade();
-        this.showAverageInfo();
         this.showGradeInfo();
+        this.showAverageInfo();
 
         System.out.println("프로그램을 종료합니다.");
     }
@@ -99,6 +99,7 @@ public class AppController {
             if (student.score() > _ban.average())
                 System.out.printf("학번: %s 점수: %d 학점: %c \n", student.studentNo(), student.score(), student.grade());
         }
+        System.out.println();
 
 
     }
