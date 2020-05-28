@@ -1,4 +1,4 @@
-package week13;
+package week13.program2;
 
 import java.util.Scanner;
 

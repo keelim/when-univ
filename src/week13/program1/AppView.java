@@ -1,4 +1,4 @@
-package week13;
+package week13.program1;
 
 import java.util.Scanner;
 
@@ -14,20 +14,20 @@ public class AppView {
         return (line.charAt(0));
     }
 
-    public String inputString(){
+    public String inputString() {
         String line = this._scanner.next();
         return line;
     }
 
-    public int inputInt(){
+    public int inputInt() {
         return this._scanner.nextInt();
     }
 
-    public void outputLine(String aMessage){
+    public void outputLine(String aMessage) {
         System.out.println(aMessage);
     }
 
-    public void output(String aMessage){
+    public void output(String aMessage) {
         System.out.print(aMessage);
     }
 }

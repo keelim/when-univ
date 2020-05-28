@@ -1,4 +1,4 @@
-package week13;
+package week13.program1;
 
 public class Student {
     private String _studentNo;
@@ -39,5 +39,4 @@ public class Student {
             return 'F';
         }
     }
-
 }

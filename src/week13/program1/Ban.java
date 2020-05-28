@@ -1,6 +1,6 @@
-package week13;
+package week13.program1;
 
-public class Ban {
+public class Ban {//반으로 처리
     private int _capacity;
     private int _numberOfStudents;
     private Student[] _students;
@@ -11,14 +11,6 @@ public class Ban {
     private int _numberOfStudentsFoRGradeC;
     private int _numberOfStudentsFoRGradeD;
     private int _numberOfStudentsFoRGradeF;
-
-    private int _maxNumberOfStudents;
-    private double _averageGPA;
-    private int _numberOfStudentsAboveAverageGPA;
-
-
-
-
 
     public Ban(int givenCapacity) {
         this._capacity = givenCapacity;
