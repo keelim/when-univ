@@ -6,18 +6,6 @@ public class Ban {
     private Student[] _students;
     private double _average;
     private int _numberOfStudentsWithAboveAverage;
-    private int _numberOfStudentsFoRGradeA;
-    private int _numberOfStudentsFoRGradeB;
-    private int _numberOfStudentsFoRGradeC;
-    private int _numberOfStudentsFoRGradeD;
-    private int _numberOfStudentsFoRGradeF;
-
-    private int _maxNumberOfStudents;
-    private double _averageGPA;
-    private int _numberOfStudentsAboveAverageGPA;
-
-
-
 
 
     public Ban(int givenCapacity) {
@@ -27,11 +15,6 @@ public class Ban {
         this._average = 0.0;
 
         this._numberOfStudentsWithAboveAverage = 0;
-        this._numberOfStudentsFoRGradeA = 0;
-        this._numberOfStudentsFoRGradeB = 0;
-        this._numberOfStudentsFoRGradeC = 0;
-        this._numberOfStudentsFoRGradeD = 0;
-        this._numberOfStudentsFoRGradeF = 0;
     }
 
     public Student[] students() {
@@ -77,15 +60,15 @@ public class Ban {
             this._average = 0.0;
             this._numberOfStudentsWithAboveAverage = 0;
         } else {
-            int sum = 0;
+            double gpa = 0.0;
             for (int i = 0; i < this._numberOfStudents; i++) {
                 Student currentStudent = this._students[i];
-                sum += currentStudent.score();
+                gpa += currentStudent.GPA();
             }
-            this._average = (double) sum / (double) this._numberOfStudents;
+            this._average = gpa / this._numberOfStudents;
             this._numberOfStudentsWithAboveAverage = 0;
             for (int i = 0; i < this._numberOfStudents; i++) {
-                if ((double) this._students[i].score() >= this._average) {
+                if (this._students[i].GPA() >= this._average) {
                     this._numberOfStudentsWithAboveAverage++;
                 }
             }
@@ -100,48 +83,4 @@ public class Ban {
         return this._numberOfStudentsWithAboveAverage;
     }
 
-    public void countStudentsByGrade() {
-        this._numberOfStudentsFoRGradeA = 0;
-        this._numberOfStudentsFoRGradeB = 0;
-        this._numberOfStudentsFoRGradeC = 0;
-        this._numberOfStudentsFoRGradeD = 0;
-        this._numberOfStudentsFoRGradeF = 0;
-        char currentGrade;
-
-        for (int i = 0; i < this._numberOfStudents; i++) {
-            currentGrade = this._students[i].grade();
-            if (currentGrade == 'A') {
-                this._numberOfStudentsFoRGradeA++;
-            } else if (currentGrade == 'B') {
-                this._numberOfStudentsFoRGradeB++;
-            } else if (currentGrade == 'C') {
-                this._numberOfStudentsFoRGradeC++;
-            } else if (currentGrade == 'D') {
-                this._numberOfStudentsFoRGradeD++;
-            } else {
-                this._numberOfStudentsFoRGradeF++;
-            }
-
-        }
-    }
-
-    public int numberOfStudentsFoRGradeA() {
-        return _numberOfStudentsFoRGradeA;
-    }
-
-    public int numberOfStudentsFoRGradeB() {
-        return _numberOfStudentsFoRGradeB;
-    }
-
-    public int numberOfStudentsFoRGradeC() {
-        return _numberOfStudentsFoRGradeC;
-    }
-
-    public int numberOfStudentsFoRGradeD() {
-        return _numberOfStudentsFoRGradeD;
-    }
-
-    public int numberOfStudentsFoRGradeF() {
-        return _numberOfStudentsFoRGradeF;
-    }
 }
