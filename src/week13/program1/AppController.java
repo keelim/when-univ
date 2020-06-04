@@ -22,7 +22,7 @@ public class AppController {
         this._ban.countStudentsByGrade();
         this.showGradeInfo();
 
-        System.out.println("프로그램을 종료합니다.");
+        System.out.println("<<< 프로그램을 종료합니다. >>>");
     }
 
 
@@ -82,7 +82,7 @@ public class AppController {
     }
 
     private void showAverageInfo() {
-        this._appView.outputLine("\n평균점수는 " + _ban.average() + " 입니다.\n");
+        this._appView.outputLine("\n평균점수는 " + String.format("%.2f",_ban.average()) + " 입니다.\n");
     }
 
     private void showGradeInfo() {

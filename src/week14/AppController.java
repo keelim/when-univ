@@ -23,7 +23,7 @@ public class AppController {
             currentOrderValidity = this._magicSquare.checkOrderValidity(order);
             if (currentOrderValidity == OrderValidity.Valid) { // 차수가 유효한지 검사
                 this.showTitleWithOrder(order);
-                this._board = this._magicSquare.solve(order);
+                this._board = this._magicSquare.solve(order); //마방진 해결
                 this.showBoard(this._board);
 
 
