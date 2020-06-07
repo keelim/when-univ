@@ -42,7 +42,7 @@ int main(void)
 
 void init(void)
 {
-    if (wiringPiSetUp() == -1)
+    if (wiringPiSetup() == -1)
     {
         puts("Setup Fail");
         exit(1);

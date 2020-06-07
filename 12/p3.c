@@ -211,13 +211,76 @@ void turn_on(int pin)
     }
 }
 
-void bindLed(int pin)
+void bindLed(int pin) //TODO 일단 ,핀별로 할 일 수정 --> 기억을 해야 하는 일을 따로 만들어야 할 듯
 {
+    //TODO 수정은 해야 한다.
+    puts(pin);
+    puts("ok");
+    // Thread 는 이걸로만 실행을 한다. 이걸 진행하게 해주는 것은
+    //세마 포어
+    switch (pin)
+    {
+    case pin == SW_R:
+        while (1)
+        {
+            if (digitalRead(SW_R) == 0)
+            {
+                digitalWrite(LED_R, 1);
+            }
+            off();
+        }
+        break;
+    case pin == SW_Y:
+        while (1)
+        {
+            if (digitalRead(SW_Y) == 0)
+            {
+                digitalWrite(LED_R, 1);
+            }
+            off();
+        }
+        break;
+
+    case pin == SW_G:
+        while (1)
+        {
+            if (digitalRead(SW_Y) == 0)
+            {
+                digitalWrite(LED_R, 1);
+            }
+            off();
+        }
+        break;
+
+    default:
+        while (1)
+        {
+            if (digitalRead(SW_Y) == 0)
+            {
+                digitalWrite(LED_R, 1);
+            }
+            off();
+        }
+
+        break;
+    }
+    while (1)
+    {
+        if (digitalRead(SW_R) == 0)
+        {
+            digitalWrite(LED_R, 1);
+        }
+        off();
+    }
 }
 
-void input()
+void input()  // 일단 프로그램 로직은 다시 고려를 해볼 것
 {
     // 값 입력 받기
+    // 여기부터 입력 핀들의 값을 기억을 해야 한다.  
+    // 쓰레드 함수하고 어떻게 이어야 하는가?
+    // 색깔별로 세마포어를 설정?
+
 
     sem_post(&sem);
 }
