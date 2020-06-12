@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <wiringPi.h>
 #include <pthread.h>
-#include <unistd.h>
+#include <wiringPi.h>
+#include <string.h>
 #include <semaphore.h>
 
 #define LED_R 3
@@ -13,92 +12,114 @@
 #define SW_Y 5
 #define SW_G 4
 #define SW_W 27
-#define max_num 6
+
+int arr[5];
+int brr[5];
+
+pthread_t buttonR, buttonY, buttonG, buttonW;
+sem_t *sem_r, *sem_y, *sem_g, *sem_w;
+int flag_r, flag_y, flag_g, flag_w;
 
 void init(void);
 void off(void);
 void blink(void);
+
+// 추가 LED 알림
 void game_start(void);
 void game_sucess(void);
 void game_fail(void);
-int random_num(void);
-void turn_on(int pin);
-void bindLed(int pin);
-
-pthread_t p_thread[4];
-int id;
-int pin;
-int status;
-int a[max_num] = {
-    0,
-};
-int b[max_num] = {
-    0,
-};
-sem_t sem;
-int sem_value;
+//게임 내용
+int ran_num(void);    //랜덤 넘버 만들기
+void check_val(void); //세마포어
+int check();
+void bindLED(int data);
+void arrayLED(int temp);
 
 int main(void)
 {
     init();
 
-    pthread_join(p_thread[0], (void *)&status);
-    pthread_join(p_thread[1], (void *)&status);
-    pthread_join(p_thread[2], (void *)&status);
-    pthread_join(p_thread[3], (void *)&status); // 여기까지 pin 하고 Led 묶어놓기
-
-    //// 쓰레드 준비
-    game_start(); //
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 여기부터 게임 진행
-    int level = 1;
-    while (level <= 5)
+    int final_flag = 0;
+    int i = 1;
+    //게임 시작 1단계
+    while (i <= 5)
     {
-        memset(a, 0, sizeof(a));
-        memset(b, 0, sizeof(b)); //다시 초기화
-        game_start();            //
-        //랜덤 값 생성 단계별로
-        for (int i = 0; i < level; i++)
-            a[i] = random_num(); //랜덤 생성
+        memset(brr, 0, sizeof(brr)); // 단계 마다 입력 배열 만 초기화
 
-        input();       //입력 LED
-        white_input(); // 하얀색 입력이 되면 종료
+        for (int j = 0; j < i; j++)
+        {
+            int temp = arr[j]; //1 빨, 2 노랑, 3 그린
+            arrayLED(temp);
+            delay(250);
+        } // 여기까지 배열 출력
 
-        //세마포어 검증
-
-        if (a.length() != level || b.length() != level)
-        { // 예외 처리 (하얀 색 그냥 누르거나 단계로 누르지 않음)
-            game_fail();
-            return 0; //게임 종료
+        // 배열 값 받아 배열 B 저장 하얀색 눌러야 함 --> 여기는 나중에 구현
+        for (int j = 0; j < i; j++)
+        {
+            //입력을 받아야 한다.
+            int check_num = check();
+            brr[i] = check_num;
+            delay(250);
         }
-        // 비교 시작
-        for (int i = 0; i < level; i++)
-        { //단계별로 입력이니 단계
-            int ea = a[i];
-            int eb = b[i];
 
-            if (ea != eb)
+        while (1) //흰 색 누르기를 기다린다.
+        {
+            check_val();
+            if (flag_w >= 2)
             {
-                game_fail();
-                return 0; // 게임 종료
+                sem_wait(sem_w);
+                break;
             }
+        }
 
-        } // 비교 한 후 이상이 없으면
+        // 배열 A B 비교 --> 게임 성공
+        for (int j = 0; j < i; j++)
+        {
+            int first = arr[j];  //rule
+            int second = brr[j]; //input
 
-        game_sucess(); // 레벨 증가
-        level++:
+            if (first != second)
+            {
+                final_flag = 1;
+                break;
+            }
+            delay(250);
+        }
+
+        if (final_flag == 1)
+        {
+            break;
+        }
+
+        i++;
     }
 
+    if (final_flag == 0)
+    {
+        delay(250);
+        game_sucess();
+    }
+    else if (final_flag == 1)
+    {
+        game_fail();
+    }
     return 0;
 }
 
+/////////////////////////////////////////////////////////////////////////////////// 함수//
+
 void init(void)
 {
-    if (wiringPiSetUp() == -1)
+    if (wiringPiSetup() == -1)
     {
         puts("Setup Fail");
         exit(1);
     }
+    else
+    {
+        puts("ok");
+    }
+
     pinMode(SW_R, INPUT);
     pinMode(SW_Y, INPUT);
     pinMode(SW_G, INPUT);
@@ -106,14 +127,27 @@ void init(void)
     pinMode(LED_R, OUTPUT);
     pinMode(LED_Y, OUTPUT);
     pinMode(LED_G, OUTPUT);
+    // 입출력 버튼 생성
+    for (int i = 0; i < 5; i++)
+    {
+        int num = ran_num();
+        arr[i] = num;
+        printf("%d ", arr[i]);
+    } //랜덤 넘버 출력
+    printf("\n");
 
-    id = pthread_create(p_thread[0], NULL, (void &)&bindLed, &pin); //화
-    id = pthread_create(p_thread[1], NULL, (void &)&bindLed, &pin); //화
-    id = pthread_create(p_thread[2], NULL, (void &)&bindLed, &pin); //화
-    id = pthread_create(p_thread[3], NULL, (void &)&bindLed, &pin); //화
+    //세마포어 초기화
+    sem_init(sem_r, 0, 2);
+    sem_init(sem_y, 0, 2);
+    sem_init(sem_g, 0, 2);
+    sem_init(sem_w, 0, 2);
 
-    ///세마포어
-    sem_init(s & em, 0, 5); //5로 초기화
+    //쓰레드 설정
+    pthread_create(&buttonR, NULL, bindLED, (void *) SW_R);
+    pthread_create(&buttonG, NULL, bindLED, (void *) SW_G);
+    pthread_create(&buttonY, NULL, bindLED, (void *) SW_Y);
+    pthread_create(&buttonW, NULL, bindLED, (void *) SW_W);
+
     off();
 }
 
@@ -145,149 +179,138 @@ void blink(void)
     }
 }
 
-void game_fail(void)
+void game_start()
+{
+    blink();
+}
+
+void game_sucess()
+{
+    blink();
+}
+
+void game_fail()
 {
     int i = 0;
 
     while (i < 3)
     {
-        digitalWrite(LED_R, 0);
-        digitalWrite(LED_Y, 0);
-        digitalWrite(LED_G, 0);
-
-        delay(250);
-
         digitalWrite(LED_R, 1);
         digitalWrite(LED_Y, 1);
         digitalWrite(LED_G, 1);
-
         delay(250);
+        digitalWrite(LED_R, 0);
+        digitalWrite(LED_Y, 0);
+        digitalWrite(LED_G, 0);
         i++;
     }
 }
 
-void game_start(void)
+int ran_num(void)
 {
-    blink();
+    int num = (rand() % 3) + 1;
+
+    return num;
 }
 
-void game_sucess(void)
+void check_val()
 {
-    blink();
+    sem_getvalue(sem_r, &flag_r);
+    sem_getvalue(sem_y, &flag_y);
+    sem_getvalue(sem_g, &flag_g);
+    sem_getvalue(sem_w, &flag_w);
 }
-
-int random_num()
+int check()
 {
-    int n = rand() % 3 if (n == 0) return 1;
-    else if (n == 1) return 2;
-    else return 3;
-}
-
-void turn_on(int pin)
-{
-    if (pin == 1)
+    while (1)
     {
-        digitalWrite(LED_R, 0);
-        delay(100);
-        digitalWrite(LED_R, 1);
-        delay(100);
-        digitalWrite(LED_R, 0);
-    }
-    else if (pin == 2)
-    {
-        digitalWrite(LED_Y, 0);
-        delay(100);
-        digitalWrite(LED_Y, 1);
-        delay(100);
-        digitalWrite(LED_T, 0);
-    }
-    else
-    {
-        digitalWrite(LED_G, 0);
-        delay(100);
-        digitalWrite(LED_G, 1);
-        delay(100);
-        digitalWrite(LED_G, 0);
+        check_val();
+        if (flag_r >= 2)
+        {
+            sem_wait(sem_r);
+            return 1;
+        }
+        else if (flag_y >= 2)
+        {
+            sem_wait(sem_y);
+            return 2;
+        }
+        else if (flag_g >= 2)
+        {
+            sem_wait(sem_g);
+            return 3;
+        }
+        else
+        {
+            continue;
+        }
+        delay(250);
     }
 }
 
-void bindLed(int pin) //TODO 일단 ,핀별로 할 일 수정 --> 기억을 해야 하는 일을 따로 만들어야 할 듯
+void bindLED(int data) //입력도 추가를 해야 한다.
 {
-    //TODO 수정은 해야 한다.
-    puts(pin);
-    puts("ok");
-    // Thread 는 이걸로만 실행을 한다. 이걸 진행하게 해주는 것은
-    //세마 포어
-    switch (pin)
+    if (data == SW_R)
     {
-    case pin == SW_R:
         while (1)
         {
             if (digitalRead(SW_R) == 0)
             {
                 digitalWrite(LED_R, 1);
+                sem_post(sem_r);
             }
             off();
         }
-        break;
-    case pin == SW_Y:
-        while (1)
-        {
-            if (digitalRead(SW_Y) == 0)
-            {
-                digitalWrite(LED_R, 1);
-            }
-            off();
-        }
-        break;
-
-    case pin == SW_G:
-        while (1)
-        {
-            if (digitalRead(SW_Y) == 0)
-            {
-                digitalWrite(LED_R, 1);
-            }
-            off();
-        }
-        break;
-
-    default:
-        while (1)
-        {
-            if (digitalRead(SW_Y) == 0)
-            {
-                digitalWrite(LED_R, 1);
-            }
-            off();
-        }
-
-        break;
     }
-    while (1)
+    else if (data == SW_Y)
     {
-        if (digitalRead(SW_R) == 0)
+        while (1)
         {
-            digitalWrite(LED_R, 1);
+            if (digitalRead(SW_Y) == 0)
+            {
+                digitalWrite(LED_Y, 1);
+                sem_post(sem_y);
+            }
+            off();
         }
-        off();
+    }
+    else if (data == SW_G)
+    {
+        while (1)
+        {
+            if (digitalRead(SW_G) == 0)
+            {
+                digitalWrite(LED_G, 1);
+                sem_post(sem_g);
+            }
+            off();
+        }
+    }
+    else
+    { //white
+        //얘는 조금 다르게 설정을 해야 한다.
+        sem_post(sem_w);
     }
 }
 
-void input()  // 일단 프로그램 로직은 다시 고려를 해볼 것
+void arrayLED(int temp)
 {
-    // 값 입력 받기
-    // 여기부터 입력 핀들의 값을 기억을 해야 한다.  
-    // 쓰레드 함수하고 어떻게 이어야 하는가?
-    // 색깔별로 세마포어를 설정?
-
-
-    sem_post(&sem);
-}
-
-void white_input()
-{ // 각각의 버튼의 세마포어 post 를 붙인다.
-    //화이트는 세마포어 값을 저장하고 연결
-
-    sem_getvalue(&sem, &sem_value);
+    if (temp == 1)
+    {
+        digitalWrite(LED_R, 1);
+        delay(250);
+        digitalWrite(LED_R, 0);
+    }
+    else if (temp == 2)
+    {
+        digitalWrite(LED_Y, 1);
+        delay(250);
+        digitalWrite(LED_Y, 0);
+    }
+    else if (temp == 3)
+    {
+        digitalWrite(LED_G, 1);
+        delay(250);
+        digitalWrite(LED_G, 0);
+    }
 }
