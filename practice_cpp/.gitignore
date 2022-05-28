@@ -1,0 +1,15 @@
+.idea
+cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/tmp/
+cmake-build-debug/CMakeFiles/CMakeTmp/
+cmake-build-debug
+.vs
+.gitattributes
+Debug
+Release
+x64
+*.hwp
+*.zip
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
